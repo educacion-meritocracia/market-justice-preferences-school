@@ -1,0 +1,2361 @@
+{
+    "sources": [
+        {
+            "DOI": "10.3386/w29125",
+            "URL": "https://www.nber.org/papers/w29125",
+            "abstract": "This paper presents an analysis of what types of values, especially in regards to obedience vs. independence, families impart to their children and how these values interact with social mobility. In the model, obedience is a useful characteristic for employers, especially when wages are low, because independent workers require more incentives (when wages are high, these incentives are automatic). Hence, in low-wage environments, low-income families will impart values of obedience to their children to prevent disadvantaging them in the labor market. To the extent that independence is useful for entrepreneurial activities, this then depresses their social mobility. High-income and privileged parents, on the other hand, always impart values of independence, since they expect that their children can enter into higher-income entrepreneurial (or managerial) activities thanks to their family resources and privileges. I also discuss how political activity can be hampered when labor market incentives encourage greater obedience and how this can generate multiple steady states with different patterns of social hierarchy and mobility.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        5,
+                        2
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Acemoglu",
+                    "given": "Daron"
+                }
+            ],
+            "collection-title": "Working paper series",
+            "genre": "Working Paper",
+            "id": "acemoglu_obedience_2021",
+            "issued": {
+                "date-parts": [
+                    [
+                        2021,
+                        8
+                    ]
+                ]
+            },
+            "number": "29125",
+            "publisher": "National Bureau of Economic Research",
+            "title": "Obedience in the labor market and social mobility: A socio-economic approach",
+            "title-short": "Obedience in the labor market and social mobility",
+            "type": ""
+        },
+        {
+            "DOI": "10.1126/science.1187300",
+            "ISSN": "0036-8075, 1095-9203",
+            "PMID": "20508132",
+            "URL": "http://science.sciencemag.org/content/328/5982/1176",
+            "abstract": "Fairness considerations fundamentally affect human behavior, but our understanding of the nature and development of people’s fairness preferences is limited. The dictator game has been the standard experimental design for studying fairness preferences, but it only captures a situation where there is broad agreement that fairness requires equality. In real life, people often disagree on what is fair because they disagree on whether individual achievements, luck, and efficiency considerations of what maximizes total benefits can justify inequalities. We modified the dictator game to capture these features and studied how inequality acceptance develops in adolescence. We found that as children enter adolescence, they increasingly view inequalities reflecting differences in individual achievements, but not luck, as fair, whereas efficiency considerations mainly play a role in late adolescence. As children progress to adolescence, their sense of fairness changes from pure equality to proportionality based on merit.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2016,
+                        8,
+                        10
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Almås",
+                    "given": "Ingvild"
+                },
+                {
+                    "family": "Cappelen",
+                    "given": "Alexander W."
+                },
+                {
+                    "family": "Sørensen",
+                    "given": "Erik Ø"
+                },
+                {
+                    "family": "Tungodden",
+                    "given": "Bertil"
+                }
+            ],
+            "container-title": "Science",
+            "id": "almas_fairness_2010",
+            "issue": "5982",
+            "issued": {
+                "date-parts": [
+                    [
+                        2010,
+                        5
+                    ]
+                ]
+            },
+            "keyword": "Adolescence,Chile,Dictator game,Experiments,Fairness,Inequality,Inequality acceptance,Undergraduates",
+            "language": "en-US",
+            "page": "1176-1178",
+            "title": "Fairness and the development of inequality acceptance",
+            "type": "article-journal",
+            "volume": "328"
+        },
+        {
+            "DOI": "10.1177/1470594X15618966",
+            "ISSN": "1470-594X",
+            "URL": "http://dx.doi.org/10.1177/1470594X15618966",
+            "abstract": "Fairness preferences fundamentally affect individual behavior and play an important role in shaping social and political institutions. However, people differ both with respect to what they view as fair and with respect to how much weight they attach to fairness considerations. In this article, we study the role of family background in explaining these heterogeneities in fairness preferences. In particular, we examine how socioeconomic background relates to fairness views and to how people make trade-offs between fairness and self-interest. To study this, we conducted an economic experiment with a representative sample of 14- to 15-year-old and matched the experimental data to administrative data on parental income and education. The participants made two distributive choices in the experiment. The first choice was to distribute money between themselves and another participant in a situation where there was no difference in merit. The second choice was to distribute money between two other participants with unequal merits. Our main finding is that there is a systematic difference in fairness view between children from low-socioceconomic status (SES) families and the rest of the participants; more than 50 percent of the participants from low-SES families are egalitarians, whereas only about 20 percent in the rest of the sample hold this fairness view. In contrast, we find no significant difference in the weight attached to fairness between children from different socioeconomic groups.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2017,
+                        7,
+                        25
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Almås",
+                    "given": "Ingvild"
+                },
+                {
+                    "family": "Cappelen",
+                    "given": "Alexander W"
+                },
+                {
+                    "family": "Salvanes",
+                    "given": "Kjell G"
+                },
+                {
+                    "family": "Sørensen",
+                    "given": "Erik Ø"
+                },
+                {
+                    "family": "Tungodden",
+                    "given": "Bertil"
+                }
+            ],
+            "container-title": "Politics, Philosophy & Economics",
+            "id": "almas_fairness_2017a",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        2017,
+                        5
+                    ]
+                ]
+            },
+            "keyword": "Adolescents,Fairness,Inequality,Read,Social class",
+            "language": "en-US",
+            "page": "117-131",
+            "title": "Fairness and family background",
+            "type": "article-journal",
+            "volume": "16"
+        },
+        {
+            "DOI": "10.1177/0002764220941214",
+            "ISSN": "0002-7642",
+            "URL": "https://doi.org/10.1177/0002764220941214",
+            "abstract": "We analyze economic elites’ perceptions and beliefs about meritocracy from a moral economy perspective. A moral economy perspective considers how norms and beliefs structure socioeconomic practices through the constitution and expression of what is considered acceptable, proper, and legitimate. Our study explores how economic elites make sense of the roles of talent and effort in the distribution of resources and how they reconcile the idea of meritocracy within a rigid social order. The site of our study is Chile, a country with fluid mobility between low and middle classes, but with high and persistent disparities and strong barriers to elite positions. We conducted 44 semistructured interviews with shareholders, board members, and high-level executives of large or high-turnover companies in three major Chilean cities. We find that the economic elite strongly support meritocracy but explain access to top positions based on talent rather than effort. The economic elite define talent in terms of business and leadership skills. They attribute upward mobility in the private sector to meritocratic practice. At the same time, they view the public sector as the epitome of nonmeritocratic practices, incompetence, and inefficiency. They profess empathy with the poor, but they reject redistributive policies. The economic elite believe in the primacy of competition in economic life and the necessity of continual economic growth, and thus, they understand meritocracy as both the means to survive in a market economy and a responsible approach to lead national development.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2020,
+                        7,
+                        22
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Atria",
+                    "given": "Jorge"
+                },
+                {
+                    "family": "Castillo",
+                    "given": "Juan"
+                },
+                {
+                    "family": "Maldonado",
+                    "given": "Luis"
+                },
+                {
+                    "family": "Ramirez",
+                    "given": "Simón"
+                }
+            ],
+            "container-title": "American Behavioral Scientist",
+            "id": "atria_economic_2020",
+            "issue": "9",
+            "issued": {
+                "date-parts": [
+                    [
+                        2020,
+                        7
+                    ]
+                ]
+            },
+            "keyword": "Chile,Elites,Meritocracy,Moral economy",
+            "language": "en-US",
+            "page": "1219-1241",
+            "publisher": "SAGE Publications Inc",
+            "title": "Economic elites’ attitudes toward meritocracy in chile: A moral economy perspective",
+            "title-short": "Economic elites’ attitudes toward meritocracy in chile",
+            "type": "article-journal",
+            "volume": "64"
+        },
+        {
+            "DOI": "10.1080/01402382.2022.2126679",
+            "ISSN": "0140-2382",
+            "URL": "https://doi.org/10.1080/01402382.2022.2126679",
+            "abstract": "Since the Eurozone crisis, intense political debate has resurfaced about deservingness judgements in European solidarity. To contribute to this debate, this article proposes a refined concept of “multi-level blame attribution”. It postulates that public support for EU-level welfare policies crucially depends on how citizens attribute responsibility for economic outcomes across different levels of agency. Results from an original public opinion survey conducted in 10 European Union member states demonstrate that attributing blame to individuals decreases citizens’ willingness to show solidarity with needy Europeans, whereas attributing blame to the EU increases support. The role of attributing blame to national governments is dependent on the country context; beliefs that worse economic outcomes are caused by national governments’ policy decisions tend to dampen support for EU targeted welfare policies only in the Nordic welfare states. The article concludes by discussing the implications of multi-level blame attribution for the formation of public attitudes towards European solidarity.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        5,
+                        2
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Baute",
+                    "given": "Sharon"
+                },
+                {
+                    "family": "Pellegata",
+                    "given": "Alessandro"
+                }
+            ],
+            "container-title": "West European Politics",
+            "id": "baute_multilevel_2022",
+            "issue": "0",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022,
+                        10
+                    ]
+                ]
+            },
+            "keyword": "blame attribution,deservingness,European solidarity,European Union,Eurozone crisis",
+            "page": "1-27",
+            "publisher": "Routledge",
+            "title": "Multi-level blame attribution and public support for EU welfare policies",
+            "type": "article-journal",
+            "volume": "0"
+        },
+        {
+            "ISBN": "0-8039-8320-4",
+            "author": [
+                {
+                    "family": "Bourdieu",
+                    "given": "Pierre"
+                },
+                {
+                    "family": "Passeron",
+                    "given": "Jean Claude"
+                }
+            ],
+            "edition": "Second Edition",
+            "id": "bourdieu_reproduction_1990",
+            "issued": {
+                "date-parts": [
+                    [
+                        1990,
+                        8
+                    ]
+                ]
+            },
+            "publisher": "Sage Publications Ltd",
+            "title": "Reproduction in education, society and culture",
+            "type": "book"
+        },
+        {
+            "DOI": "10.1016/j.rssm.2016.02.005",
+            "ISSN": "0276-5624",
+            "URL": "http://www.sciencedirect.com/science/article/pii/S0276562416300130",
+            "abstract": "Popular beliefs about the causes of inequality are often thought to reflect the actual processes behind social stratification. We use the case of Latin America to challenge this assumption. In these rigid and unequal societies, people are more likely to believe that wealth and poverty depend on individual merits or faults rather than structural constraints. Drawing on data from the 2007 Social Cohesion Survey, we use multinomial logistic regression and counterfactual simulation to investigate the factors that drive popular beliefs about wealth and poverty at the individual level, as well its distribution across countries. Our findings provide partial support to theories maintaining that being in an advantaged social position leads to favoring individualistic beliefs. We, however, report a novel effect of social class. More importantly, we show that unobserved country-level factors are the most powerful predictors and the only source of cross-country variation in the distribution of beliefs about the origins of inequality, thus ruling out a compositional explanation for cross-country heterogeneity.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2016,
+                        11,
+                        21
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Bucca",
+                    "given": "Mauricio"
+                }
+            ],
+            "container-title": "Research in Social Stratification and Mobility",
+            "id": "bucca_merit_2016",
+            "issued": {
+                "date-parts": [
+                    [
+                        2016,
+                        6
+                    ]
+                ]
+            },
+            "keyword": "Beliefs,Inequality,Latin America,Poverty,Read,Wealth",
+            "page": "98-112",
+            "title": "Merit and blame in unequal societies: Explaining latin americans’ beliefs about wealth and poverty",
+            "title-short": "Merit and blame in unequal societies",
+            "type": "article-journal",
+            "volume": "44"
+        },
+        {
+            "DOI": "10.1300/J134v07n03_03",
+            "ISSN": "1087-5549",
+            "URL": "https://doi.org/10.1300/J134v07n03_03",
+            "abstract": "This study assessed the relationship between attributions for wealth and poverty, beliefs about income inequality and support for progressive and restrictive welfare policies. An updated scale was developed to measure attributions for poverty. “Culture of poverty” items and new structural items loaded strongly, contributing to the development of a more contemporary scale for measuring attributions for poverty. Support for progressive welfare policies was predicted by structural attributions for poverty, dissatisfaction with income inequality, and attributing wealth to privilege, whereas restrictive welfare policies were predicted by individualistic attributions for poverty and wealth. Strategies for building support for progressive welfare policies are discussed.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        1,
+                        11
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Bullock",
+                    "given": "Heather E."
+                },
+                {
+                    "family": "Williams",
+                    "given": "Wendy R."
+                },
+                {
+                    "family": "Limbert",
+                    "given": "Wendy M."
+                }
+            ],
+            "container-title": "Journal of Poverty",
+            "id": "bullock_predicting_2003",
+            "issue": "3",
+            "issued": {
+                "date-parts": [
+                    [
+                        2003,
+                        6
+                    ]
+                ]
+            },
+            "keyword": "Attitudes,Attitudes toward welfare reform,Attributions,Beliefs about inequality,Class differences,Inequality beliefs,Poverty and wealth explanations,Redistribution attitudes,Welfare",
+            "page": "35-56",
+            "publisher": "Routledge",
+            "title": "Predicting support for welfare policies: The impact of attributions and beliefs about inequality",
+            "title-short": "Predicting support for welfare policies",
+            "type": "article-journal",
+            "volume": "7"
+        },
+        {
+            "author": [
+                {
+                    "family": "Castillo",
+                    "given": "Juan Carlos"
+                }
+            ],
+            "container-title": "Estudios Públicos",
+            "id": "castillo_cual_2009",
+            "issued": {
+                "date-parts": [
+                    [
+                        2009
+                    ]
+                ]
+            },
+            "keyword": "Chile,Income inequality,Individualism and Egalitarianism Scale,Inequality perception,Read,Scale",
+            "page": "237-266",
+            "title": "¿Cuál es la brecha salarial justa? Opinión pública y legitimación de la desigualdad económica en chile",
+            "type": "article-journal",
+            "volume": "113"
+        },
+        {
+            "DOI": "10.7764/psykhe.27.2.1152",
+            "ISSN": "0718-2228",
+            "URL": "http://www.scielo.cl/scielo.php?script=sci_abstract&pid=S0718-22282018000200108&lng=es&tlng=es&nrm=iso",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        5,
+                        2
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Castillo",
+                    "given": "Juan Carlos"
+                },
+                {
+                    "family": "Rivera-Gutiérrez",
+                    "given": "Mauricio"
+                }
+            ],
+            "container-title": "Psykhe (Santiago)",
+            "id": "castillo_dimensiones_2018",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        2018,
+                        11
+                    ]
+                ]
+            },
+            "keyword": "Poverty and wealth explanations",
+            "language": "es-ES",
+            "page": "01-10",
+            "publisher": "Pontificia Universidad Católica de Chile",
+            "title": "Dimensiones Comunes a las Atribuciones de Pobreza y Riqueza",
+            "type": "article-journal",
+            "volume": "27"
+        },
+        {
+            "DOI": "10.1007/s11211-011-0144-5",
+            "ISSN": "0885-7466, 1573-6725",
+            "URL": "http://link.springer.com/article/10.1007/s11211-011-0144-5",
+            "abstract": "Economic inequality is usually assumed to be a threat to social cohesion and democracy. Nevertheless, this opposition of inequality and democracy is based on further assumptions such as (a) that people perceive economic inequality accurately, and (b) that, by and large they consider inequality unjust. Research into distributive issues has not found consistent support for neither of these assumptions. Quite the contrary, empirical evidence indicates that economic inequality is widely misperceived and that inequality is to some extent considered legitimate. So far most of the empirical evidence in the area of legitimacy comes from experimental studies in the developed world. The present research aims at widening the scope of legitimacy studies by focusing on Chile as a case country, one of the societies with the highest economic inequality worldwide, guided by the question to what extent is economic inequality considered legitimate in a context of high economic inequality? In addressing this question, and based on previous evidence, the article proposes a way to evaluate (a) the legitimacy of inequality at a country level via survey research, and (b) the role of inequality perception and justice ideologies in the justification of economic inequality. The data to be analyzed is the public opinion survey International Social Justice Project (ISJP), implemented in Chile in the year 2007 (n = 890). Multivariate analysis results reveal signs of legitimacy of inequality in Chile, opening a series of issues regarding the acceptance and stability of unequal distributions.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2016,
+                        6,
+                        3
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Castillo",
+                    "given": "Juan Carlos"
+                }
+            ],
+            "container-title": "Social Justice Research",
+            "id": "castillo_legitimacy_2011",
+            "issue": "4",
+            "issued": {
+                "date-parts": [
+                    [
+                        2011,
+                        12
+                    ]
+                ]
+            },
+            "keyword": "Chile,Inequality,Inequality perception,Justice ideologies,Legitimacy,Legitimacy of income inequality,Mediation analysis,Read",
+            "language": "en-US",
+            "page": "314-340",
+            "title": "Legitimacy of inequality in a highly unequal context: Evidence from the chilean case",
+            "title-short": "Legitimacy of inequality in a highly unequal context",
+            "type": "article-journal",
+            "volume": "24"
+        },
+        {
+            "ISSN": "1529-7470",
+            "URL": "https://www.jstor.org/stable/20065525",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        5,
+                        2
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Chong",
+                    "given": "Alberto"
+                },
+                {
+                    "family": "Ñopo",
+                    "given": "Hugo"
+                },
+                {
+                    "family": "Ronconi",
+                    "given": "Lucas"
+                },
+                {
+                    "family": "Urquiola",
+                    "given": "Miguel"
+                }
+            ],
+            "container-title": "Economía",
+            "id": "chong_mystery_2008",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        2008
+                    ]
+                ]
+            },
+            "keyword": "Discrimination,Latin America,Structural beliefs",
+            "page": "79-115",
+            "publisher": "Brookings Institution Press",
+            "title": "The mystery of discrimination in latin america [with comments]",
+            "type": "article-journal",
+            "volume": "8"
+        },
+        {
+            "DOI": "10.1093/scan/nsl024",
+            "ISSN": "1749-5016",
+            "URL": "https://academic.oup.com/scan/article/1/3/165/2362733",
+            "abstract": "Social relationships are particularly important during adolescence. In recent years, histological and MRI studies have shown that the brain is subject to considerable structural development during adolescence. Brain regions that are implicated in social cognition, including parts of prefrontal, parietal and superior temporal cortex, undergo the most pronounced and prolonged change. However, the development of social cognition during adolescence and its neural underpinnings remains poorly understood. Here, we begin by outlining how the brain changes between childhood and adulthood. We then describe findings that have emerged from behavioural and neuroimaging studies of the recognition of facial expression during adolescence. Finally, we present new data that demonstrate development of emotional perspective taking during adolescence. In this study, 112 participants, aged 8–36 years, performed a computerised task that involved taking an emotional perspective either from the participant’s own point of view or from that of another person. The results showed that average difference in reaction time (RT) to answer questions in the first person perspective (1PP) and third person perspective (3PP) significantly decreased with age. The RT difference of adults tended to cluster close to the zero line (3PP = 1PP), while a greater proportion of pre-adolescents had higher difference values in both the positive (3PP &gt; 1PP) and negative direction (1PP &gt; 3PP) of the scale. The data suggest that the efficiency, and possibly strategy, of perspective taking develop in parallel with brain maturation and psychosocial development during adolescence.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2018,
+                        1,
+                        3
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Choudhury",
+                    "given": "Suparna"
+                },
+                {
+                    "family": "Blakemore",
+                    "given": "Sarah-Jayne"
+                },
+                {
+                    "family": "Charman",
+                    "given": "Tony"
+                }
+            ],
+            "container-title": "Social Cognitive and Affective Neuroscience",
+            "id": "choudhury_social_2006",
+            "issue": "3",
+            "issued": {
+                "date-parts": [
+                    [
+                        2006,
+                        12
+                    ]
+                ]
+            },
+            "keyword": "Adolescents,Perspective taking,Social cognition",
+            "page": "165-174",
+            "title": "Social cognitive development during adolescence",
+            "type": "article-journal",
+            "volume": "1"
+        },
+        {
+            "DOI": "10.1111/bjso.12214",
+            "ISSN": "2044-8309",
+            "URL": "https://onlinelibrary.wiley.com/doi/abs/10.1111/bjso.12214",
+            "abstract": "Meritocratic ideology can promote system justification and the perpetuation of inequalities. The present research tests whether priming merit in the school context enhances the effect of socioeconomic status (SES) on school achievement. French fifth graders read a text priming either school merit or a neutral content, reported their French and mathematics self-efficacy as well as their belief in school meritocracy (BSM), and then took French and mathematics tests. Compared to the neutral condition, the merit prime condition increased the SES achievement gap. Self-efficacy and BSM were tested as two potential mediators of the effect. The results support a mediated moderation model in which belief in school meritocracy is the mechanism through which the merit prime increased the SES achievement gap.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2022,
+                        6,
+                        15
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Darnon",
+                    "given": "Céline"
+                },
+                {
+                    "family": "Wiederkehr",
+                    "given": "Virginie"
+                },
+                {
+                    "family": "Dompnier",
+                    "given": "Benoît"
+                },
+                {
+                    "family": "Martinot",
+                    "given": "Delphine"
+                }
+            ],
+            "container-title": "British Journal of Social Psychology",
+            "id": "darnon_where_2018",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2018
+                    ]
+                ]
+            },
+            "keyword": "Children and youth,Experiments,Meritocracy,Read,School performance,Self-debilitating belief,Self-efficacy,Socioeconomic status",
+            "language": "en-US",
+            "page": "250-262",
+            "title": "“Where there is a will, there is a way”: Belief in school meritocracy and the social-class achievement gap",
+            "title-short": "“Where there is a will, there is a way”",
+            "type": "article-journal",
+            "volume": "57"
+        },
+        {
+            "DOI": "10.4067/S0718-22282007000200012",
+            "ISSN": "0718-2228",
+            "URL": "https://scielo.conicyt.cl/scielo.php?script=sci_abstract&pid=S0718-22282007000200012&lng=es&nrm=iso&tlng=es",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2019,
+                        8,
+                        1
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Río",
+                    "given": "M. Francisca",
+                    "non-dropping-particle": "del"
+                },
+                {
+                    "family": "Strasser",
+                    "given": "Katherine"
+                }
+            ],
+            "container-title": "Psykhe (Santiago)",
+            "id": "delrio_tienen_2007",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        2007,
+                        11
+                    ]
+                ]
+            },
+            "keyword": "Children and youth,Chile,Essentialism,Essentialist beliefs,Inequality,Poverty,Read,Social class",
+            "page": "139-149",
+            "title": "¿Tienen los niños una teoría esencialista acerca de la pobreza?",
+            "type": "article-journal",
+            "volume": "16"
+        },
+        {
+            "DOI": "10.1111/j.2044-835X.1990.tb00850.x",
+            "ISSN": "2044-835X",
+            "URL": "http://onlinelibrary.wiley.com/doi/10.1111/j.2044-835X.1990.tb00850.x/abstract",
+            "abstract": "The development of beliefs about the nature, causes and fairness of occupational prestige and income differentials, in subjects aged 10 to 16 years, was studied in relation to age and social class. Slight but stable age and class differences were found in perceptions of socio-economic inequality and the kind of explanations postulated for inequality. Open-ended questions produced a wide variety of explanations for prestige and income differentials but the reasons most commonly employed by all age and class groups were the “importance” or “social contribution” of the job, the “effort exerted” doing the job and the “education” or “training” needed. Strong and stable class effects and some age effects were found in the use of references to “education” or “training”. Judgements of the fairness of inequality were subject to class effects but largely unaffected by age. The results are discussed in relation to cognitive developmental theory and the role of social influence and socially transmitted information in the construction of socio-economic beliefs.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2018,
+                        1,
+                        3
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Dickinson",
+                    "given": "Julie"
+                }
+            ],
+            "container-title": "British Journal of Developmental Psychology",
+            "id": "dickinson_adolescent_1990",
+            "issue": "4",
+            "issued": {
+                "date-parts": [
+                    [
+                        1990,
+                        11
+                    ]
+                ]
+            },
+            "language": "en-US",
+            "page": "351-371",
+            "title": "Adolescent representations of socio-economic status",
+            "type": "article-journal",
+            "volume": "8"
+        },
+        {
+            "DOI": "10.1016/j.tics.2019.03.001",
+            "ISSN": "1364-6613",
+            "URL": "https://www.sciencedirect.com/science/article/pii/S1364661319300646",
+            "abstract": "One influential view holds that children’s sense of fairness emerges at age 8 and is rooted in the development of an aversion to unequal resource distributions. Here, we suggest two amendments to this view. First, we argue and present evidence that children’s sense of fairness emerges already at age 3 in (and only in) the context of collaborative activities. This is because, in our theoretical view, collaboration creates a sense of equal respect among partners. Second, we argue and present evidence that children’s judgments about what is fair are essentially judgments about the social meaning of the distributive act; for example, children accept unequal distributions if the procedure gave everyone an equal chance (so-called distributive justice). Children thus respond to unequal (and other) distributions not based on material concerns, but rather based on interpersonal concerns: they want equal respect.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2022,
+                        12,
+                        28
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Engelmann",
+                    "given": "Jan M."
+                },
+                {
+                    "family": "Tomasello",
+                    "given": "Michael"
+                }
+            ],
+            "container-title": "Trends in Cognitive Sciences",
+            "id": "engelmann_children_2019",
+            "issue": "6",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019,
+                        6
+                    ]
+                ]
+            },
+            "keyword": "Children and youth,Collaboration,Distributive justice,Equality,Fairness,Inequality,Inequity aversion,Respect,Respect for persons",
+            "language": "en-US",
+            "page": "454-463",
+            "title": "Children’s sense of fairness as equal respect",
+            "type": "article-journal",
+            "volume": "23"
+        },
+        {
+            "DOI": "10.1037/a0037934",
+            "author": [
+                {
+                    "family": "Flanagan",
+                    "given": "Constance A."
+                },
+                {
+                    "family": "Kim",
+                    "given": "Taehan"
+                },
+                {
+                    "family": "Pykett",
+                    "given": "Alisa"
+                },
+                {
+                    "family": "Finlay",
+                    "given": "Andrea"
+                },
+                {
+                    "family": "Gallay",
+                    "given": "Erin E."
+                },
+                {
+                    "family": "Pancer",
+                    "given": "Mark"
+                }
+            ],
+            "container-title": "Developmental psychology",
+            "id": "flanagan_adolescents_2014",
+            "issue": "11",
+            "issued": {
+                "date-parts": [
+                    [
+                        2014
+                    ]
+                ]
+            },
+            "keyword": "Adolescence,Inequality,Inequality perception",
+            "page": "2512-2525",
+            "title": "Adolescents’ theories about economic inequality: Why are some people poor while others are rich?",
+            "title-short": "Adolescents’ theories about economic inequality",
+            "type": "article-journal",
+            "volume": "50"
+        },
+        {
+            "DOI": "10.1111/cdev.12854",
+            "ISSN": "1467-8624",
+            "URL": "https://onlinelibrary.wiley.com/doi/abs/10.1111/cdev.12854",
+            "abstract": "Scholars call for more attention to how marginalization influences the development of low-income and racial/ethnic minority youth and emphasize the importance of youth’s subjective perceptions of contexts. This study examines how beliefs about the fairness of the American system (system justification) in sixth grade influence trajectories of self-esteem and behavior among 257 early adolescents (average age 11.4) from a diverse, low-income, middle school in an urban southwestern city. System justification was associated with higher self-esteem, less delinquent behavior, and better classroom behavior in sixth grade but worse trajectories of these outcomes from sixth to eighth grade. These findings provide novel evidence that system-justifying beliefs undermine the well-being of marginalized youth and that early adolescence is a critical developmental period for this process.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        5,
+                        2
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Godfrey",
+                    "given": "Erin B."
+                },
+                {
+                    "family": "Santos",
+                    "given": "Carlos E."
+                },
+                {
+                    "family": "Burson",
+                    "given": "Esther"
+                }
+            ],
+            "container-title": "Child Development",
+            "id": "godfrey_better_2019",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019
+                    ]
+                ]
+            },
+            "language": "en-US",
+            "page": "180-195",
+            "title": "For better or worse? System-justifying beliefs in sixth-grade predict trajectories of self-esteem and behavior across early adolescence",
+            "title-short": "For better or worse?",
+            "type": "article-journal",
+            "volume": "90"
+        },
+        {
+            "DOI": "10.1177/0956797616676600",
+            "ISSN": "0956-7976",
+            "URL": "https://doi.org/10.1177/0956797616676600",
+            "abstract": "Three studies conducted among fifth and sixth graders examined how school contexts disrupt the achievement of working-class students by staging unfair comparison with their advantaged middle-class peers. In regular classrooms, differences in performance among students are usually showcased in a way that does not acknowledge the advantage (i.e., higher cultural capital) experienced by middle-class students, whose upbringing affords them more familiarity with the academic culture than their working-class peers have. Results of Study 1 revealed that rendering differences in performance visible in the classroom by having students raise their hands was enough to undermine the achievement of working-class students. In Studies 2 and 3, we manipulated students? familiarity with an arbitrary standard as a proxy for social class. Our results suggest that classroom settings that make differences in performance visible undermine the achievement of the students who are less familiar with academic culture. In Study 3, we showed that being aware of the advantage in familiarity with a task restores the performance of the students who have less familiarity with the task.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        1,
+                        10
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Goudeau",
+                    "given": "Sébastien"
+                },
+                {
+                    "family": "Croizet",
+                    "given": "Jean-Claude"
+                }
+            ],
+            "container-title": "Psychological Science",
+            "id": "goudeau_hidden_2017",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        2017,
+                        2
+                    ]
+                ]
+            },
+            "language": "en-US",
+            "page": "162-170",
+            "publisher": "SAGE Publications Inc",
+            "title": "Hidden advantages and disadvantages of social class: How classroom settings reproduce social inequality by staging unfair comparison",
+            "title-short": "Hidden advantages and disadvantages of social class",
+            "type": "article-journal",
+            "volume": "28"
+        },
+        {
+            "DOI": "10.1007/s11205-012-0101-1",
+            "ISSN": "1573-0921",
+            "URL": "https://doi.org/10.1007/s11205-012-0101-1",
+            "abstract": "We examined the extent to which system justification buffered the negative effect of retrospective experiences of active harm from general sources in society on life satisfaction during the same assessment period, and prospectively 1 year later. Results from a nationally representative sample indicated that the retrospective assessment of active harm and quality of life were uncorrelated for people who endorsed system justifying ideology (N = 6,518). Study 2 replicated the concurrent buffering effect of system justification on subjective wellbeing and demonstrated that the effect reversed over time. For people high in system justification beliefs, societal-level harm prospectively predicted lower life satisfaction 1 year later (N = 136 undergraduates). Perceiving the system as fair and legitimate in the face of harm from others in society has opposing short and longer-term effects on wellbeing. We argue that these opposing effects occur because although system justification trumps experiences of harm and buffers life satisfaction in the short-term; the resulting experience-belief conflict engenders a state of ideological dissonance that predicts negative psychological outcomes down the track.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        5,
+                        2
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Harding",
+                    "given": "Jessica F."
+                },
+                {
+                    "family": "Sibley",
+                    "given": "Chris G."
+                }
+            ],
+            "container-title": "Social Indicators Research",
+            "id": "harding_palliative_2013",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2013,
+                        8
+                    ]
+                ]
+            },
+            "keyword": "Active harm,Life satisfaction,Subjective wellbeing,System justification",
+            "language": "en-US",
+            "page": "401-418",
+            "title": "The palliative function of system justification: Concurrent benefits versus longer-term costs to wellbeing",
+            "title-short": "The palliative function of system justification",
+            "type": "article-journal",
+            "volume": "113"
+        },
+        {
+            "DOI": "10.1007/s11211-006-0012-x",
+            "ISSN": "0885-7466, 1573-6725",
+            "URL": "https://link.springer.com/article/10.1007/s11211-006-0012-x",
+            "abstract": "System justification theorists have proposed that under some circumstances “‘people who suffer the most from a given state of affairs are paradoxically the least likely to question, challenge, reject, or change it’” Jost et al. (2003). These claims are contrary to theories that suggest that group members seek to enhance their self-interest or group-interest (e.g., realistic group conflict theory, rational choice models). The present study, conducted in one of the poorest countries in the world, Bolivia, tested if even the most impoverished people of the world will endorse beliefs justifying the status quo. A survey of 356 Bolivian school children found that low-status children endorse beliefs in the effectiveness of government in meeting the people’s needs more than their high-status counterparts. The results suggest that system-justifying beliefs are endorsed by low-status group members in even the most extreme cases of poverty, and even among the youngest politically aware members of society, and they raise questions about the capacity for true social change in those parts of the world that may need it the most.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2018,
+                        1,
+                        3
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Henry",
+                    "given": "P. J."
+                },
+                {
+                    "family": "Saul",
+                    "given": "Andrea"
+                }
+            ],
+            "container-title": "Social Justice Research",
+            "id": "henry_development_2006",
+            "issue": "3",
+            "issued": {
+                "date-parts": [
+                    [
+                        2006,
+                        9
+                    ]
+                ]
+            },
+            "keyword": "System justification theory",
+            "language": "en-US",
+            "page": "365-378",
+            "title": "The development of system justification in the developing world",
+            "type": "article-journal",
+            "volume": "19"
+        },
+        {
+            "DOI": "10.1093/sf/sox007",
+            "ISSN": "0037-7732",
+            "URL": "https://academic.oup.com/sf/article/95/3/1023/2967620",
+            "abstract": "Prior research on stratification beliefs has investigated individuals’ understandings regarding the causes of poverty in America. These past studies have uncovered demographic characteristics associated with individualist and structuralist explanations for poverty. In the current study, we will argue that Americans, like social scientists, envision poverty as a heterogeneous and complex phenomenon. We utilize a cultural cognition theoretical approach to conceptualize these understandings of poverty as schemas. We contend that a schema of poverty contains a set of unique associations regarding both demographic beliefs (who the poor are) and causal attributions (why they are poor). Using original data in a mixed-methods design that incorporates inductive and experimental components, we find that people differentiate between two key types of poverty: intergenerational poverty and downward mobility. People perceive each type of poverty as caused by a different set of factors and as experienced by a different group of people. The type of poverty envisioned is, in most cases, as important as or more important than a respondent’s own demographic characteristics in predicting what type of causal attributions he or she makes for poverty. These findings underscore the importance of investigating different schemas of poverty in future stratification beliefs research.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2018,
+                        2,
+                        15
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Homan",
+                    "given": "Patricia"
+                },
+                {
+                    "family": "Valentino",
+                    "given": "Lauren"
+                },
+                {
+                    "family": "Weed",
+                    "given": "Emi"
+                }
+            ],
+            "container-title": "Social Forces",
+            "id": "homan_being_2017",
+            "issue": "3",
+            "issued": {
+                "date-parts": [
+                    [
+                        2017,
+                        3
+                    ]
+                ]
+            },
+            "keyword": "Cultural schemas,Schemata,Split-consciousness",
+            "language": "en-US",
+            "page": "1023-1048",
+            "title": "Being and becoming poor: How cultural schemas shape beliefs about poverty",
+            "title-short": "Being and becoming poor",
+            "type": "article-journal",
+            "volume": "95"
+        },
+        {
+            "DOI": "10.1016/j.worlddev.2004.09.018",
+            "ISSN": "0305-750X",
+            "URL": "https://www.sciencedirect.com/science/article/pii/S0305750X05000458",
+            "abstract": "Based on research into elite attitudes toward poverty, this paper explores the political significance of elite categories of the poor in Bangladesh. While Bangladeshi elites do not divide the poor according to moral desert, they prioritize support for those among the poor viewed as potentially productive. The implications of these attitudes to the poor are explored through the example of a pension program for the elderly poor, and in a discussion of how elite categories of the poor influence the urgency and manner in which poverty is treated on the domestic political agenda.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        4,
+                        25
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Hossain",
+                    "given": "Naomi"
+                }
+            ],
+            "collection-title": "Exploring the politics of poverty reduction: How are the poorest represented?",
+            "container-title": "World Development",
+            "id": "hossain_productivity_2005",
+            "issue": "6",
+            "issued": {
+                "date-parts": [
+                    [
+                        2005,
+                        6
+                    ]
+                ]
+            },
+            "keyword": "Bangladesh,Elites,Justification of inequality,Politics of poverty,Poverty and wealth explanations",
+            "language": "en-US",
+            "page": "965-977",
+            "title": "Productivity and virtue: Elite categories of the poor in bangladesh",
+            "title-short": "Productivity and virtue",
+            "type": "article-journal",
+            "volume": "33"
+        },
+        {
+            "DOI": "10.1111/desc.12729",
+            "ISSN": "1467-7687",
+            "URL": "https://onlinelibrary.wiley.com/doi/abs/10.1111/desc.12729",
+            "abstract": "A concern for fairness is a fundamental and universal element of morality. To examine the extent to which cultural norms are integrated into fairness cognitions and influence social preferences regarding equality and equity, a large sample of children (N 2,163) aged 4–11 were tested in 13 diverse countries. Children participated in three versions of a third-party, contextualized distributive justice game between two hypothetical recipients differing in terms of wealth, merit, and empathy. Social decision-making in these games revealed universal age-related shifts from equality-based to equity-based distribution motivations across cultures. However, differences in levels of individualism and collectivism between the 13 countries predicted the age and extent to which children favor equity in each condition. Children from the most individualistic cultures endorsed equitable distributions to a greater degree than children from more collectivist cultures when recipients differed in regards to wealth and merit. However, in an empathy context where recipients differed in injury, children from the most collectivist cultures exhibited greater preferences to distribute resource equitably compared to children from more individualistic cultures. Children from the more individualistic cultures also favored equitable distributions at an earlier age than children from more collectivist cultures overall. These results demonstrate aspects of both cross-cultural similarity and divergence in the development of fairness preferences.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2022,
+                        8,
+                        8
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Huppert",
+                    "given": "Elizabeth"
+                },
+                {
+                    "family": "Cowell",
+                    "given": "Jason M."
+                },
+                {
+                    "family": "Cheng",
+                    "given": "Yawei"
+                },
+                {
+                    "family": "Contreras-Ibáñez",
+                    "given": "Carlos"
+                },
+                {
+                    "family": "Gomez-Sicard",
+                    "given": "Natalia"
+                },
+                {
+                    "family": "Gonzalez-Gadea",
+                    "given": "Maria Luz"
+                },
+                {
+                    "family": "Huepe",
+                    "given": "David"
+                },
+                {
+                    "family": "Ibanez",
+                    "given": "Agustin"
+                },
+                {
+                    "family": "Lee",
+                    "given": "Kang"
+                },
+                {
+                    "family": "Mahasneh",
+                    "given": "Randa"
+                },
+                {
+                    "family": "Malcolm-Smith",
+                    "given": "Susan"
+                },
+                {
+                    "family": "Salas",
+                    "given": "Natalia"
+                },
+                {
+                    "family": "Selcuk",
+                    "given": "Bilge"
+                },
+                {
+                    "family": "Tungodden",
+                    "given": "Bertil"
+                },
+                {
+                    "family": "Wong",
+                    "given": "Alina"
+                },
+                {
+                    "family": "Zhou",
+                    "given": "Xinyue"
+                },
+                {
+                    "family": "Decety",
+                    "given": "Jean"
+                }
+            ],
+            "container-title": "Developmental Science",
+            "id": "huppert_development_2019",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019
+                    ]
+                ]
+            },
+            "keyword": "Children and youth,Collectivism,Cross-cultural research,Equality,Equity,Fairness,Individualism,Meritocracy,Morality,Resource allocation,Social decision-making",
+            "language": "en-US",
+            "page": "e12729",
+            "title": "The development of children’s preferences for equality and equity across 13 individualistic and collectivist cultures",
+            "type": "article-journal",
+            "volume": "22"
+        },
+        {
+            "URL": "https://www.restud.com/paper/social-positions-and-fairness-views-on-inequality/",
+            "abstract": "We link survey data on Danish people’s perceived income positions and fairness views on inequality within various reference groups to administrative records on their reference groups, income histories, and life events. People are, on average, well-informed about the income levels of their reference groups. Yet, lower-ranked respondents in all groups tend to overestimate their own position among others because they believe others’ incomes are lower than they actually are, whereas the opposite holds true for higher-ranked respondents. Misperceptions of positions in reference groups relate to proximity to other individuals, transparency norms, and visible signals of income. People view inequalities within their co-workers and education groups as significantly more unfair than overall inequality, yet underestimate inequality the most exactly within these groups. Views on the fairness of inequalities are strongly correlated with an individual’s current position, move with shocks like unemployment or promotions, and change when experimentally informing people about their actual positions. However, the higher perceived unfairness of income differences within co-workers and education groups stays unchanged. The theoretical framework shows that this can have important implications for redistribution policy.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        1,
+                        10
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Hvidberg",
+                    "given": "Kristoffer B."
+                },
+                {
+                    "family": "Kreiner",
+                    "given": "Claus T."
+                },
+                {
+                    "family": "Stantcheva",
+                    "given": "Stefanie"
+                }
+            ],
+            "container-title": "The Review of Economic Studies",
+            "id": "hvidberg_social_2023a",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023
+                    ]
+                ]
+            },
+            "keyword": "Fairness,Fairness values,Inequality,Inequality beliefs,Social status",
+            "title": "Social positions and fairness views on inequality",
+            "type": "article-journal"
+        },
+        {
+            "DOI": "10.5334/irsp.285",
+            "ISSN": "2397-8570",
+            "URL": "http://www.rips-irsp.com/articles/10.5334/irsp.285/",
+            "abstract": "Social scientists have produced major theoretical and empirical advances documenting the importance of group status in shaping the group members’ perceptions of themselves and of society at large. Evidence is accumulating showing that members of high-status groups favor individualistic and autonomous self-conceptions and worldviews, whereas members of low-status groups turn to more collectivistic and less personalized ones. This paper reports on research that has examined this phenomenon with a focus on social class divisions. It outlines two main explanations that have been developed to account for this self-group discrepancy in status hierarchies. One explanation rests on the long run diverging socialization processes that take place in high and low social classes. A complementary explanation is based on social identity dynamics. It suggests that such orientations result from differing motivations among members of high-status and low-status groups: While the former aim to protect a positive social identity, the latter must cope with a social identity threat.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2021,
+                        6,
+                        26
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Iacoviello",
+                    "given": "Vincenzo"
+                },
+                {
+                    "family": "Lorenzi-Cioldi",
+                    "given": "Fabio"
+                }
+            ],
+            "container-title": "International Review of Social Psychology",
+            "id": "iacoviello_collectivism_2019",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019,
+                        10
+                    ]
+                ]
+            },
+            "keyword": "Collectivism,Individualism,Morality,Social class,Social identity,Social status,Socialization,Solipsism",
+            "language": "en-US",
+            "page": "15",
+            "publisher": "Ubiquity Press",
+            "title": "Collectivism and individualism in status hierarchies: Socialization and social identity explanations",
+            "title-short": "Collectivism and individualism in status hierarchies",
+            "type": "article-journal",
+            "volume": "32"
+        },
+        {
+            "DOI": "10.1177/0038040715614913",
+            "ISSN": "0038-0407",
+            "URL": "https://doi.org/10.1177/0038040715614913",
+            "abstract": "How do undergraduates engage authority figures in college? Existing explanations predict class-based engagement strategies. Using in-depth interviews with 89 undergraduates at an elite university, I show how undergraduates with disparate precollege experiences differ in their orientations toward and strategies for engaging authority figures in college. Middle-class undergraduates report being at ease in interacting with authority figures and are proactive in doing so. Lower-income undergraduates, however, are split. The privileged poor—lower-income undergraduates who attended boarding, day, and preparatory high schools—enter college primed to engage professors and are proactive in doing so. By contrast, the doubly disadvantaged—lower-income undergraduates who remained tied to their home communities and attended local, typically distressed high schools—are more resistant to engaging authority figures in college and tend to withdraw from them. Through documenting the heterogeneity among lower-income undergraduates, I show how static understandings of individuals’ cultural endowments derived solely from family background homogenize the experiences of lower-income undergraduates. In so doing, I shed new light on the cultural underpinnings of education processes in higher education and extend previous analyses of how informal university practices exacerbate class differences among undergraduates.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2022,
+                        3,
+                        17
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Jack",
+                    "given": "Anthony Abraham"
+                }
+            ],
+            "container-title": "Sociology of Education",
+            "id": "jack_no_2016",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2016,
+                        1
+                    ]
+                ]
+            },
+            "keyword": "academic engagement,Cultural capital,diversity,Education,Inequality,sense of belonging,trajectories",
+            "language": "en-US",
+            "page": "1-19",
+            "publisher": "SAGE Publications Inc",
+            "title": "(No) harm in asking: Class, acquired cultural capital, and academic engagement at an elite university",
+            "title-short": "(No) harm in asking",
+            "type": "article-journal",
+            "volume": "89"
+        },
+        {
+            "DOI": "10.1007/s11218-014-9279-1",
+            "ISSN": "1573-1928",
+            "URL": "https://doi.org/10.1007/s11218-014-9279-1",
+            "abstract": "This article discusses the effects of separating 15–16 years-old school students in isolated academic and practical study programs in upper-secondary education. It is based on an investigation of the social identities developed by and about youth learners in these circumstances. In particular we examine the creation of identity positions by youth on academic programs regarding themselves and people like them (in-group characteristics) on the one hand and for other kinds of students on the other, on vocational programs. These constructions are analyzed as a product of self-categorization theory. The investigation involved 224 students from upper-secondary school academic programs. Our results showed that the academic program students expressed strong stereotypes with extremely negative potentials in relation to future social solidarity and equity. On the basis of the findings we strongly recommend introducing mixed classes in upper-secondary school, where students from academic and vocational programs take the same courses in general subjects as a way of reducing stereotypes and prejudice.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        1,
+                        10
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Jonsson",
+                    "given": "Anna-Carin"
+                },
+                {
+                    "family": "Beach",
+                    "given": "Dennis"
+                }
+            ],
+            "container-title": "Social Psychology of Education",
+            "id": "jonsson_institutional_2015",
+            "issue": "4",
+            "issued": {
+                "date-parts": [
+                    [
+                        2015,
+                        12
+                    ]
+                ]
+            },
+            "keyword": "Education,Institutional discrimination,Social class,Stereotypes,Upper-secondary school",
+            "language": "en-US",
+            "page": "703-717",
+            "title": "Institutional discrimination: Stereotypes and social reproduction of “class” in the swedish upper-secondary school",
+            "title-short": "Institutional discrimination",
+            "type": "article-journal",
+            "volume": "18"
+        },
+        {
+            "DOI": "10.1177/0146167200265003",
+            "ISSN": "0146-1672",
+            "URL": "https://doi.org/10.1177/0146167200265003",
+            "abstract": "It is argued that members of low status groups are faced with a psychological conflict between group justification tendencies to evaluate members of one’s own group favorably and system justification tendencies to endorse the superiority of higher status out-groups. In Study 1, members of low status groups exhibited less ingroup favoritism and more ingroup ambivalence than did members of high status groups. Perceptions that the status differences were legitimate increased outgroup favoritism and ambivalence among low status groups, and they increased ingroup favoritism and decreased ambivalence among high status groups. In Study 2, the belief in a just world and social dominance orientation increased ambivalence on the part of women toward female victims of gender discrimination, but they decreased ambivalence on the part of men. Evidence here indicates that system-justifying variables increase ingroup ambivalence among low status group members and decrease ambivalence among high status group members.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2018,
+                        9,
+                        20
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Jost",
+                    "given": "John T."
+                },
+                {
+                    "family": "Burgess",
+                    "given": "Diana"
+                }
+            ],
+            "container-title": "Personality and Social Psychology Bulletin",
+            "id": "jost_attitudinal_2000",
+            "issue": "3",
+            "issued": {
+                "date-parts": [
+                    [
+                        2000,
+                        3
+                    ]
+                ]
+            },
+            "keyword": "System justification",
+            "language": "en-US",
+            "page": "293-305",
+            "title": "Attitudinal ambivalence and the conflict between group and system justification motives in low status groups",
+            "type": "article-journal",
+            "volume": "26"
+        },
+        {
+            "DOI": "10.1111/j.1467-9221.2004.00402.x",
+            "ISSN": "1467-9221",
+            "URL": "http://onlinelibrary.wiley.com/doi/10.1111/j.1467-9221.2004.00402.x/abstract",
+            "abstract": "Most theories in social and political psychology stress self-interest, intergroup conflict, ethnocentrism, homophily, ingroup bias, outgroup antipathy, dominance, and resistance. System justification theory is influenced by these perspectives—including social identity and social dominance theories—but it departs from them in several respects. Advocates of system justification theory argue that (a) there is a general ideological motive to justify the existing social order, (b) this motive is at least partially responsible for the internalization of inferiority among members of disadvantaged groups, (c) it is observed most readily at an implicit, nonconscious level of awareness and (d) paradoxically, it is sometimes strongest among those who are most harmed by the status quo. This article reviews and integrates 10 years of research on 20 hypotheses derived from a system justification perspective, focusing on the phenomenon of implicit outgroup favoritism among members of disadvantaged groups (including African Americans, the elderly, and gays/lesbians) and its relation to political ideology (especially liberalism-conservatism).",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2018,
+                        1,
+                        3
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Jost",
+                    "given": "John T."
+                },
+                {
+                    "family": "Banaji",
+                    "given": "Mahzarin R."
+                },
+                {
+                    "family": "Nosek",
+                    "given": "Brian A."
+                }
+            ],
+            "container-title": "Political Psychology",
+            "id": "jost_decade_2004",
+            "issue": "6",
+            "issued": {
+                "date-parts": [
+                    [
+                        2004,
+                        12
+                    ]
+                ]
+            },
+            "keyword": "Ideology,Implicit bias,Intergroup relations,System justification theory",
+            "language": "en-US",
+            "page": "881-919",
+            "title": "A decade of system justification theory: Accumulated evidence of conscious and unconscious bolstering of the status quo",
+            "title-short": "A decade of system justification theory",
+            "type": "article-journal",
+            "volume": "25"
+        },
+        {
+            "DOI": "10.1037/tps0000127",
+            "ISSN": "2332-2179, 2332-2136",
+            "URL": "http://doi.apa.org/getdoi.cfm?doi=10.1037/tps0000127",
+            "abstract": "This document is copyrighted by the American Psychological Association or one of its allied publishers. This article is intended solely for the personal use of the individual user and is not to be disseminated broadly.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        5,
+                        2
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Jost",
+                    "given": "John T."
+                },
+                {
+                    "family": "Langer",
+                    "given": "Melanie"
+                },
+                {
+                    "family": "Badaan",
+                    "given": "Vivienne"
+                },
+                {
+                    "family": "Azevedo",
+                    "given": "Flávio"
+                },
+                {
+                    "family": "Etchezahar",
+                    "given": "Edgardo"
+                },
+                {
+                    "family": "Ungaretti",
+                    "given": "Joaquin"
+                },
+                {
+                    "family": "Hennes",
+                    "given": "Erin P."
+                }
+            ],
+            "container-title": "Translational Issues in Psychological Science",
+            "id": "jost_ideology_2017",
+            "issue": "3",
+            "issued": {
+                "date-parts": [
+                    [
+                        2017,
+                        9
+                    ]
+                ]
+            },
+            "language": "en-US",
+            "page": "e1-e26",
+            "title": "Ideology and the limits of self-interest: System justification motivation and conservative advantages in mass politics.",
+            "title-short": "Ideology and the limits of self-interest",
+            "type": "article-journal",
+            "volume": "3"
+        },
+        {
+            "abstract": "As one of the most prestigious high schools in the nation, St. Paul’s School in Concord, New Hampshire, has long been the exclusive domain of America’s wealthiest sons. But times have changed. Today, a new elite of boys and girls is being molded at St. Paul’s, one that reflects the hope of openness but also the persistence of inequality. In Privilege, Shamus Khan returns to his alma mater to provide an inside look at an institution that has been the private realm of the elite for the past 150 years. He shows that St. Paul’s students continue to learn what they always have–how to embody privilege. Yet, while students once leveraged the trappings of upper-class entitlement, family connections, and high culture, current St. Paul’s students learn to succeed in a more diverse environment. To be the future leaders of a more democratic world, they must be at ease with everything from highbrow art to everyday life–from Beowulf to Jaws–and view hierarchies as ladders to scale. Through deft portrayals of the relationships among students, faculty, and staff, Khan shows how members of the new elite face the opening of society while still preserving the advantages that allow them to rule.",
+            "author": [
+                {
+                    "family": "Khan",
+                    "given": "Shamus"
+                }
+            ],
+            "id": "khan_privilege_2011",
+            "issued": {
+                "date-parts": [
+                    [
+                        2011,
+                        12
+                    ]
+                ]
+            },
+            "keyword": "Read",
+            "language": "en-US",
+            "publisher": "Princeton University Press",
+            "publisher-place": "Princeton, N.J.",
+            "title": "Privilege: The making of an adolescent elite at st. Paul’s school",
+            "title-short": "Privilege",
+            "type": "book"
+        },
+        {
+            "ISBN": "978-0-202-30327-7",
+            "abstract": "Motivated by the desire to explain how Americans perceive and evaluate inequality and related programs and policies, the authors conducted a national survey of beliefs about social and economic inequality in America. Here they present the results of their research on the structure, determinants, and certain political and personal consequences of these beliefs. The presentations serve two major goals; to describe and explain the central features of Americans’ images of inequality. Beliefs About Inequality begins with a focus on people’s perceptions of the most basic elements of inequality: the availability of opportunity in society, the causes of economic achievements, and the benefits and costs of equality and inequality. The book’s analysis of the public’s beliefs on these key issues is based on fundamental theories of social psychology and lays the groundwork for understanding how Americans evaluate inequality-related policies. The authors discuss the ultimate determinants of beliefs and the implications of their findings for social policies related to inequality. They propose that attitudes toward economic inequality and related policy are influenced by three major aspects of the current American social, economic, and political environment: a stable \"dominant ideology\" about economic inequality; individuals’ social and economic status; and specific beliefs and attitudes, often reflecting \"social liberalism\" shaped by recent political debates and events.",
+            "author": [
+                {
+                    "family": "Kluegel",
+                    "given": "James R."
+                },
+                {
+                    "family": "Smith",
+                    "given": "Eliot R."
+                }
+            ],
+            "id": "kluegel_beliefs_1987",
+            "issued": {
+                "date-parts": [
+                    [
+                        1987
+                    ]
+                ]
+            },
+            "keyword": "Split-consciousness",
+            "language": "en-US",
+            "publisher": "Routledge",
+            "publisher-place": "New York",
+            "title": "Beliefs about inequality: Americans’ views of what is and what ought to be",
+            "title-short": "Beliefs about inequality",
+            "type": "book"
+        },
+        {
+            "DOI": "10.2307/2092303",
+            "ISSN": "0003-1224",
+            "URL": "https://www.jstor.org/stable/2092303",
+            "abstract": "Social class is consistently related to men’s values–both their values for themselves and those for their children–and to their orientation to work, society, and self. Basic to all these class relationships is the distinction between self-direction and conformity to external authority, the former more highly valued by men of higher social class position, the latter by men of lower social class position. All these class relationships can be explained as resulting from the cumulative effects of education and occupational position. Education is important because it can foster the intellectual flexibility and breadth of perspective required for self-directed values and orientation. Occupational position is important because it is determinative of the conditions that facilitate or preclude the exercise of self-direction in work.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2021,
+                        6,
+                        26
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Kohn",
+                    "given": "Melvin L."
+                },
+                {
+                    "family": "Schooler",
+                    "given": "Carmi"
+                }
+            ],
+            "container-title": "American Sociological Review",
+            "id": "kohn_class_1969",
+            "issue": "5",
+            "issued": {
+                "date-parts": [
+                    [
+                        1969
+                    ]
+                ]
+            },
+            "page": "659-678",
+            "publisher": "[American Sociological Association, Sage Publications, Inc.]",
+            "title": "Class, occupation, and orientation",
+            "type": "article-journal",
+            "volume": "34"
+        },
+        {
+            "DOI": "10.1086/223403",
+            "ISSN": "0002-9602",
+            "URL": "https://www.journals.uchicago.edu/doi/10.1086/223403",
+            "abstract": "The argument of this analysis is that class differences in parent-child relationships are a product of differences in parental values (with middle-class parents’ values centering on self-direction and working-class parents’ values on conformity to external proscriptions); these differences in values, in turn, stem from differences in the conditions of life of the various social classes (particularly occupational conditions-middle-class occupations requiring a greater degree of self-direction, working-class occupations, in larger measure, requiring that one follow explicit rules set down by someone in authority). Values, thus, form a bridge between social structure and behavior.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2021,
+                        6,
+                        26
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Kohn",
+                    "given": "Melvin L."
+                }
+            ],
+            "container-title": "American Journal of Sociology",
+            "id": "kohn_social_1963",
+            "issue": "4",
+            "issued": {
+                "date-parts": [
+                    [
+                        1963,
+                        1
+                    ]
+                ]
+            },
+            "keyword": "Morality,Morals,Social class,Socialization",
+            "page": "471-480",
+            "publisher": "The University of Chicago Press",
+            "title": "Social class and parent-child relationships: An interpretation",
+            "title-short": "Social class and parent-child relationships",
+            "type": "article-journal",
+            "volume": "68"
+        },
+        {
+            "DOI": "10.1037/a0016357",
+            "ISSN": "1939-1315(Electronic);0022-3514(Print)",
+            "abstract": "Lower social class is associated with diminished resources and perceived subordinate rank. On the basis of this analysis, the authors predicted that social class would be closely associated with a reduced sense of personal control and that this association would explain why lower class individuals favor contextual over dispositional explanations of social events. Across 4 studies, lower social class individuals, as measured by subjective socioeconomic status (SES), endorsed contextual explanations of economic trends, broad social outcomes, and emotion. Across studies, the sense of control mediated the relation between subjective SES and contextual explanations, and this association was independent of objective SES, ethnicity, political ideology, and self-serving biases. Finally, experimentally inducing a higher sense of control attenuated the tendency for lower subjective SES individuals to make more contextual explanations (Study 4). Implications for future research on social class as well as theoretical distinctions between objective SES and subjective SES are discussed.",
+            "author": [
+                {
+                    "family": "Kraus",
+                    "given": "Michael W."
+                },
+                {
+                    "family": "Piff",
+                    "given": "Paul K."
+                },
+                {
+                    "family": "Keltner",
+                    "given": "Dacher"
+                }
+            ],
+            "container-title": "Journal of Personality and Social Psychology",
+            "id": "kraus_social_2009",
+            "issue": "6",
+            "issued": {
+                "date-parts": [
+                    [
+                        2009
+                    ]
+                ]
+            },
+            "keyword": "Attribution,Emotions,Power,Sense of control,Social class,social explanation,Subjective SES",
+            "page": "992-1004",
+            "title": "Social class, sense of control, and social explanation",
+            "type": "article-journal",
+            "volume": "97"
+        },
+        {
+            "DOI": "10.1525/eth.1999.27.2.210",
+            "ISSN": "1548-1352",
+            "URL": "https://anthrosource.onlinelibrary.wiley.com/doi/abs/10.1525/eth.1999.27.2.210",
+            "abstract": "Theories of the Western self are often based on a generic individualism based on the American upper-middle-class, and attempts to find sociocentric elements within our midst often constitute the stereotyping of the working class as conformist and women as relational. In speaking about their childrens’ self, parents from different social classes in Manhattan and Queens use different images and metaphors. These descriptions are explored here, and it is suggested that three different styles of individualism exist alongside sociocentric socialization practices: hard offensive, hard defensive, and soft offensive. However, the way parents in each community move from one (individualistic) socialization practice to the other (sociocentric) differs greatly.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2021,
+                        6,
+                        26
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Kusserow",
+                    "given": "Adrie Suzanne"
+                }
+            ],
+            "container-title": "Ethos",
+            "id": "kusserow_dehomogenizing_1999",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        1999
+                    ]
+                ]
+            },
+            "keyword": "Family,Individualism,Morality,Social class,Socialization",
+            "language": "en-US",
+            "page": "210-234",
+            "title": "De-homogenizing american individualism: Socializing hard and soft individualism in manhattan and queens",
+            "title-short": "De-homogenizing american individualism",
+            "type": "article-journal",
+            "volume": "27"
+        },
+        {
+            "DOI": "10.1002/ejsp.1949",
+            "ISSN": "1099-0992",
+            "URL": "https://onlinelibrary.wiley.com/doi/abs/10.1002/ejsp.1949",
+            "abstract": "Modern society is rife with inequality. People’s interpretations of these inequalities, however, vary considerably: Different people can interpret, for example, the existing gender gap in wages as being the result of systemic discrimination, or as being the fair and natural result of genuine differences between men and women. Here, we examine one factor that may help explain differing interpretations of existing social inequalities: perceptions of system stability. System justification theory proposes that people are often motivated to rationalize and justify the systems within which they operate, legitimizing whatever social inequalities are present within them. We draw on theories and evidence of rationalization more broadly to predict that people should be most likely to legitimize inequalities in their systems when they perceive those systems as stable and unchanging. In one study, participants who witnessed stability, rather than change, in the domain of gender equality in business subsequently reported less willingness to support programs designed to redress inequalities in completely unrelated domains. In a second study, exposure to the mere concept of stability, via a standard priming procedure, led participants to spontaneously produce legitimizing, rather than blaming, explanations for existing gender inequality in their country. This effect, however, emerged only among politically liberal participants. These findings contribute to an emerging body of research that aims to identify the conditions that promote, and those which prevent, system-justifying tendencies. Copyright © 2013 John Wiley & Sons, Ltd.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        5,
+                        2
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Laurin",
+                    "given": "Kristin"
+                },
+                {
+                    "family": "Gaucher",
+                    "given": "Danielle"
+                },
+                {
+                    "family": "Kay",
+                    "given": "Aaron"
+                }
+            ],
+            "container-title": "European Journal of Social Psychology",
+            "id": "laurin_stability_2013",
+            "issue": "4",
+            "issued": {
+                "date-parts": [
+                    [
+                        2013
+                    ]
+                ]
+            },
+            "keyword": "Inequality,Justification of inequality,System justification",
+            "language": "en-US",
+            "page": "246-254",
+            "title": "Stability and the justification of social inequality",
+            "type": "article-journal",
+            "volume": "43"
+        },
+        {
+            "DOI": "10.1093/ser/mwac018",
+            "ISSN": "1475-1461, 1475-147X",
+            "URL": "https://academic.oup.com/ser/article/21/2/1035/6573249",
+            "abstract": "Abstract There has been an upsurge in research on the politics of economic inequality in the 21st century. Discussions of popular responses to rising inequality have expanded in turn yet remain centered on support for explicit government redistribution of income from the rich to the poor. We argue that this focus may downwardly bias measurement of preferences for less inequality and propose an expanded framework that incorporates preferences regarding market institutions and policies that reduce labor market inequalities, which together can shed light on the public’s adherence to free market ideology. Empirically, we use original data to examine the US case, with a comparison to Sweden and Denmark. The results offer initial evidence of (1) the need for an expanded framework and research agenda in this field and (2) potentially broad-based support for policies that address economic inequality directly in the market sphere, contrary to key tenets of free market ideology.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2024,
+                        4,
+                        22
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Lindh",
+                    "given": "Arvid"
+                },
+                {
+                    "family": "McCall",
+                    "given": "Leslie"
+                }
+            ],
+            "container-title": "Socio-Economic Review",
+            "id": "lindh_bringing_2023",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023,
+                        6
+                    ]
+                ]
+            },
+            "language": "en-US",
+            "page": "1035-1055",
+            "title": "Bringing the market in: An expanded framework for understanding popular responses to economic inequality",
+            "title-short": "Bringing the market in",
+            "type": "article-journal",
+            "volume": "21"
+        },
+        {
+            "DOI": "10.1111/spol.12105",
+            "ISSN": "0144-5596, 1467-9515",
+            "URL": "https://onlinelibrary.wiley.com/doi/10.1111/spol.12105",
+            "abstract": "Abstract This article studies how citizens view the appropriateness of market criteria for allocating services commonly associated with social citizenship rights and welfare state responsibility. The article focuses specifically on a potential role for the market in the provision of social services. The relationship between welfare policy institutions, socio‐economic class and attitudes is explored by comparing attitudes across 17 countries of the O rganisation for E conomic C o‐operation and D evelopment, using multilevel modelling and data from the 2009 I nternational S ocial S urvey P rogramme. Results show that public support for market distribution of services is relatively weak in most countries, a result suggesting that public opinion is unlikely to pose a driving force within ongoing processes of welfare marketization. Still, attitudes are found to vary a lot across countries in tandem with between‐country variation in welfare policy design. First, aggregate public support for market distribution of services is stronger in countries with more private spending on services. Second, class differences in attitudes are larger in countries with more extensive state‐led delivery of services. Together, these results point to the operation of normative feedback‐effects flowing from existing welfare policy arrangements. The theoretical arguments and the empirical results presented in this article suggest that future research exploring the relationship between welfare policy and public opinion from a country‐comparative perspective is well advised to place greater focus on the market institutions that, to varying extents in different countries, act as complements to the state in the administration of social welfare.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2024,
+                        4,
+                        22
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Lindh",
+                    "given": "Arvid"
+                }
+            ],
+            "container-title": "Social Policy & Administration",
+            "id": "lindh_public_2015",
+            "issue": "7",
+            "issued": {
+                "date-parts": [
+                    [
+                        2015,
+                        12
+                    ]
+                ]
+            },
+            "language": "en-US",
+            "page": "887-910",
+            "title": "Public opinion against markets? Attitudes towards market distribution of social services – a comparison of 17 countries",
+            "title-short": "Public opinion against markets?",
+            "type": "article-journal",
+            "volume": "49"
+        },
+        {
+            "DOI": "10.1038/s41562-016-0042",
+            "ISSN": "2397-3374",
+            "URL": "https://www.nature.com/articles/s41562-016-0042",
+            "abstract": "<p>McAuliffe <i>et al</i>. synthesize recent behavioural and neuroscientific evidence on the development of fairness behaviours in children, which shows that the signatures of human fairness can be traced in childhood.</p>",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2018,
+                        1,
+                        3
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "McAuliffe",
+                    "given": "Katherine"
+                },
+                {
+                    "family": "Blake",
+                    "given": "Peter R."
+                },
+                {
+                    "family": "Steinbeis",
+                    "given": "Nikolaus"
+                },
+                {
+                    "family": "Warneken",
+                    "given": "Felix"
+                }
+            ],
+            "container-title": "Nature Human Behaviour",
+            "id": "mcauliffe_developmental_2017",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        2017,
+                        2
+                    ]
+                ]
+            },
+            "language": "en-US",
+            "page": "0042",
+            "title": "The developmental foundations of human fairness",
+            "type": "article-journal",
+            "volume": "1"
+        },
+        {
+            "DOI": "10.1093/ser/mwy051",
+            "ISSN": "1475-1461",
+            "URL": "https://doi.org/10.1093/ser/mwy051",
+            "abstract": "Inequality is on the rise: gains have been concentrated with a small elite, while most have seen their fortunes stagnate or fall. Despite what scholars and journalists consider a worrying trend, there is no evidence of growing popular concern about inequality. In fact, research suggests that citizens in unequal societies are less concerned than those in more egalitarian societies. How to make sense of this paradox? I argue that citizens’ consent to inequality is explained by their growing conviction that societal success is reflective of a meritocratic process. Drawing on 25 years of International Social Survey Program data, I show that rising inequality is legitimated by the popular belief that the income gap is meritocratically deserved: the more unequal a society, the more likely its citizens are to explain success in meritocratic terms, and the less important they deem nonmeritocratic factors such as a person’s family wealth and connections.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        5,
+                        2
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Mijs",
+                    "given": "Jonathan J B"
+                }
+            ],
+            "container-title": "Socio-Economic Review",
+            "id": "mijs_paradox_2021a",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2021,
+                        1
+                    ]
+                ]
+            },
+            "keyword": "Income inequality,Inequality,Justification of inequality,Meritocracy,Poverty and wealth explanations",
+            "page": "7-35",
+            "title": "The paradox of inequality: Income inequality and belief in meritocracy go hand in hand",
+            "title-short": "The paradox of inequality",
+            "type": "article-journal",
+            "volume": "19"
+        },
+        {
+            "DOI": "10.1080/01425692.2019.1677454",
+            "ISSN": "0142-5692",
+            "URL": "https://doi.org/10.1080/01425692.2019.1677454",
+            "abstract": "A prominent explanation of intergenerational educational inequality is Bourdieu’s cultural reproduction theory. Indeed, previous studies have frequently shown that children’s cultural capital relates to academic outcomes. However, it remains unclear how children convert their cultural capital into achievement. While Bourdieu argued that cultural capital influences academic outcomes primarily by biasing teachers’ grades, other researchers have proposed the alternative explanation that children’s cultural capital absorption directly translates into academic skills. Using survey data on 2975 fifth graders from the German National Educational Panel Study, we disentangle these two mechanisms of children’s cultural capital conversion; and argue that the main conversion mechanism depends on the cultural capital dimension examined. The results of our structural equation model suggest that both mechanisms are at work and that the main conversion mechanism depends on the dimension of cultural capital examined.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2020,
+                        1,
+                        23
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Mikus",
+                    "given": "Karoline"
+                },
+                {
+                    "family": "Tieben",
+                    "given": "Nicole"
+                },
+                {
+                    "family": "Schober",
+                    "given": "Pia S."
+                }
+            ],
+            "container-title": "British Journal of Sociology of Education",
+            "id": "mikus_children_2019",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019,
+                        11
+                    ]
+                ]
+            },
+            "keyword": "Cultural capital,Cultural capital conversion,Education inequalities,Educational achievement,Scholarly culture,Teacher expectation bias",
+            "page": "197-2017",
+            "title": "Children’s conversion of cultural capital into educational success: The symbolic and skill-generating functions of cultural capital",
+            "title-short": "Children’s conversion of cultural capital into educational success",
+            "type": "article-journal",
+            "volume": "41"
+        },
+        {
+            "DOI": "10.1177/1103308819886467",
+            "ISSN": "1103-3088",
+            "URL": "https://doi.org/10.1177/1103308819886467",
+            "abstract": "Adolescents’ beliefs regarding inequality have received scant attention in social research. This article tackles the underlying processes that explain adolescents’ justice evaluations of earning gaps across status groups in Chile. I investigate whether their perception of earning gaps and fairness values mediate the relationship between socio-economic status and what they consider a just payment difference. Results show that perceptions of inequality and fairness values emerged as mediators between status and the level of inequality deemed as just, although perception played a stronger role. The results also provide evidence for a consensual legitimacy of inequality across status groups: adolescents from different status groups do not disagree on the fair payment gap. This legitimization of inequality does not necessarily entail acceptance by most youths of the high levels of income inequality in Chile. Their values and perceptions of inequality are anchored in their social standing, and this anchoring has consequences in terms of the legitimization of inequality.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2019,
+                        12,
+                        7
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Salgado",
+                    "given": "Mauricio"
+                }
+            ],
+            "container-title": "Young",
+            "id": "salgado_adolescents_2020",
+            "issue": "3",
+            "issued": {
+                "date-parts": [
+                    [
+                        2020
+                    ]
+                ]
+            },
+            "keyword": "Adolescence,Chile,Fairness values,Inequality,Justice evaluations of earning gaps,Read",
+            "language": "en-US",
+            "page": "294-314",
+            "title": "Adolescents’ justice evaluations of earning gaps in an unequal country: Evidence from chile",
+            "title-short": "Adolescents’ justice evaluations of earning gaps in an unequal country",
+            "type": "article-journal",
+            "volume": "28"
+        },
+        {
+            "ISBN": "978-0-19-753948-4",
+            "abstract": "This chapter reviews current research on inequality, social stratification, and intergenerational mobility in Latin America. It is proposed that ascriptive factors such as gender and ethno-racial markers play a distinctive role that significantly affects the position individuals occupy in the status hierarchy. Besides the traditional mediating factors in the mobility process—such as educational achievement and occupational trajectory—the region also has particularities not observed in other places. On the one hand, average returns on schooling are higher in Latin America than in any other region of the world. On the other hand, Latin American labor markets are characterized by an enormous self-employed sector. This class is much larger and more heterogeneous in Latin America, giving rise to the notion of the “informal” sector. The chapter addresses some of the mechanisms bridging ascriptive characters and social origins with the mediating factors of social mobility.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        5,
+                        2
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Salgado",
+                    "given": "Mauricio"
+                },
+                {
+                    "family": "Castillo",
+                    "given": "Javier"
+                }
+            ],
+            "container-title": "The oxford handbook of social stratification",
+            "editor": [
+                {
+                    "family": "Gangl",
+                    "given": "Markus"
+                },
+                {
+                    "family": "Platt",
+                    "given": "Lucinda"
+                },
+                {
+                    "family": "Polavieja",
+                    "given": "Javier G."
+                },
+                {
+                    "family": "Werfhorst",
+                    "given": "Herman G.",
+                    "non-dropping-particle": "van de"
+                }
+            ],
+            "id": "salgado_inequality_2023",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023
+                    ]
+                ]
+            },
+            "keyword": "Latin America,Social mobility,Social stratification",
+            "page": "0",
+            "publisher": "Oxford University Press",
+            "publisher-place": "2023",
+            "title": "Inequality and stratification in latin america",
+            "type": "chapter"
+        },
+        {
+            "DOI": "10.1177/0022022104271428",
+            "ISSN": "0022-0221",
+            "URL": "https://doi.org/10.1177/0022022104271428",
+            "abstract": "This study examines whether locus and importance of causal attributions for poverty mediate effects of gender and political ideology on attitudes toward social welfare provision. The study also examines whether cultural differences moderate effects of causal attributions on attitudes toward social provision. Analyses of data from 14 cultures (N = 4,018) showed a positive relationship between importance of external causes of poverty and support for social provision of basic needs and a negative relationship between the internal causes and the support for social provision. Political conservatives, in particular men, ascribed less responsibility to government for need provision than did liberals. The ideological differences were partially mediated by external and internal attributions, whereas gender differences were mediated by external attributions. Not only did culture moderate effects of causal attributions, cultural differences in support of social provision were also partially but extremely differently (e.g., United States vs. Ireland) mediated by causal attributions",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        5,
+                        2
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Shirazi",
+                    "given": "Rez"
+                },
+                {
+                    "family": "Biel",
+                    "given": "Anders"
+                }
+            ],
+            "container-title": "Journal of Cross-Cultural Psychology",
+            "id": "shirazi_internalexternal_2005",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2005,
+                        1
+                    ]
+                ]
+            },
+            "keyword": "Inequality,Poverty and wealth explanations",
+            "language": "en-US",
+            "page": "96-116",
+            "publisher": "SAGE Publications Inc",
+            "title": "Internal-external causal attributions and perceived government responsibility for need provision: A 14-culture study",
+            "title-short": "Internal-external causal attributions and perceived government responsibility for need provision",
+            "type": "article-journal",
+            "volume": "36"
+        },
+        {
+            "DOI": "10.2307/1130812",
+            "ISSN": "0009-3920",
+            "URL": "https://www.jstor.org/stable/1130812",
+            "abstract": "Previous research on the development of distributive justice decisions, by centering largely on situations in which rewards for work productivity are to be allocated, has shed little light on the child’s developing ability to select the justice norm most appropriate to the situation. Children 5, 9, and 13 years of age were asked to allocate resources and judge the fairness of alternative decision rules in situations to which either equity, equality, or need norms were especially applicable. As predicted, young children were insensitive to contextual information, generally preferring to allocate resources equally, whereas older children tailored their decisions appropriately to the situation. The fact that developmental trends differed from situation to situation points to the importance of adopting a contextual perspective on the development of distributive justice orientations.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2021,
+                        8,
+                        30
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Sigelman",
+                    "given": "Carol K."
+                },
+                {
+                    "family": "Waitzman",
+                    "given": "Kara A."
+                }
+            ],
+            "container-title": "Child Development",
+            "id": "sigelman_development_1991",
+            "issue": "6",
+            "issued": {
+                "date-parts": [
+                    [
+                        1991
+                    ]
+                ]
+            },
+            "keyword": "Children and youth,Distributive justice,Distributive preferences,Prosocial behavior,Prosocial development",
+            "page": "1367-1378",
+            "publisher": "[Wiley, Society for Research in Child Development]",
+            "title": "The development of distributive justice orientations: Contextual influences on children’s resource allocations",
+            "title-short": "The development of distributive justice orientations",
+            "type": "article-journal",
+            "volume": "62"
+        },
+        {
+            "DOI": "10.1590/2238-38752015v517",
+            "ISSN": "2236-7527, 2238-3875",
+            "URL": "http://www.scielo.br/j/sant/a/kPrk76YGXfkc3hTvcgbVMzd/?format=html&lang=en",
+            "abstract": "Abstract We analyze the cultural repertoires mobilized by elites to describe \"Brazilian people.\" We rely on survey and in-depth interview data to capture how political, bureaucratic and business elites in Brazil frame poverty and inequality. Our data suggest that elites acknowledge poverty as a structural problem for the State to solve, but remain skeptical on the odds of actual solutions, indicating fatalistic perceptions that categorize the Brazilian poor as unorganized, passive, ignorant, and irrational. Moreover, in their definition of the poor, elites draw a symbolic boundary, separating an active sector (which includes the elites) and a passive one (the \"people\"). The paper also addresses the effects of such symbolic boundaries on the overall picture of Brazilian inequality.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        4,
+                        25
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Silva",
+                    "given": "Graziella Moraes"
+                },
+                {
+                    "family": "López",
+                    "given": "Matias"
+                }
+            ],
+            "container-title": "Sociologia & Antropologia",
+            "id": "silva_brazilian_2015",
+            "issued": {
+                "date-parts": []
+            },
+            "keyword": "Elites,Inequality,Justification of inequality,Poverty,Poverty and wealth explanations,Social distance,Symbolic boundaries",
+            "language": "en-US",
+            "page": "157-182",
+            "publisher": "Universidade Federal do Rio de Janeiro",
+            "title": "\"Brazilian people\" in the eyes of elites: Repertoires and symbolic boundaries of inequality",
+            "title-short": "\"BRAZILIAN PEOPLE\" IN THE EYES OF ELITES",
+            "type": "article-journal",
+            "volume": "5"
+        },
+        {
+            "DOI": "10.1146/annurev-soc-071811-145521",
+            "URL": "http://dx.doi.org/10.1146/annurev-soc-071811-145521",
+            "abstract": "Prompted by new data and a renewed concern about equality of opportunity, the study of intergenerational mobility has flourished in Latin America in the past decade. Although analysis is still restricted to a handful of countries, one conclusion appears clear: Intergenerational income mobility is weaker in Latin America than in industrial countries and is characterized by “persistence at the top,” a pattern consistent with the high levels of economic concentration in the region. However, social class mobility in Latin America does not differ from that in the industrialized world. This essay reviews two generations of mobility research since the 1960s, takes stock of current findings on economic and class mobility in Latin America, examines the linkages between mobility and macro-level factors, and engages a new literature on equality of opportunity. I suggest that the comparative understanding of mobility in Latin America can inform and inspire research in the industrialized world.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2017,
+                        5,
+                        22
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Torche",
+                    "given": "Florencia"
+                }
+            ],
+            "container-title": "Annual Review of Sociology",
+            "id": "torche_intergenerational_2014",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2014
+                    ]
+                ]
+            },
+            "keyword": "Latin America,Read,Returns to education,Social class,Social stratification",
+            "page": "619-642",
+            "title": "Intergenerational mobility and inequality: The latin american case",
+            "title-short": "Intergenerational mobility and inequality",
+            "type": "article-journal",
+            "volume": "40"
+        },
+        {
+            "DOI": "10.15195/v6.a3",
+            "ISSN": "23306696",
+            "URL": "https://www.sociologicalscience.com/articles-v6-3-43/",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        5,
+                        23
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Von Hippel",
+                    "given": "Paul"
+                },
+                {
+                    "family": "Hamrock",
+                    "given": "Caitlin"
+                }
+            ],
+            "container-title": "Sociological Science",
+            "id": "vonhippel_test_2019",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019
+                    ]
+                ]
+            },
+            "page": "43-80",
+            "title": "Do test score gaps grow before, during, or between the school years? Measurement artifacts and what we can know in spite of them",
+            "title-short": "Do test score gaps grow before, during, or between the school years?",
+            "type": "article-journal",
+            "volume": "6"
+        },
+        {
+            "ISBN": "978-3-11-086894-4",
+            "author": [
+                {
+                    "family": "Wegener",
+                    "given": "Bernd"
+                },
+                {
+                    "family": "Liebig",
+                    "given": "Stefan"
+                }
+            ],
+            "container-title": "Social justice and political change: Public opinion in capitalist and post-communist states",
+            "editor": [
+                {
+                    "family": "Kluegel",
+                    "given": "James R."
+                },
+                {
+                    "family": "Mason",
+                    "given": "David S."
+                },
+                {
+                    "family": "Wegener",
+                    "given": "Bernd"
+                }
+            ],
+            "id": "wegener_dominant_1995",
+            "issued": {
+                "date-parts": [
+                    [
+                        1995,
+                        1
+                    ]
+                ]
+            },
+            "keyword": "Demography,Social work,Sociology",
+            "language": "en-US",
+            "page": "239-259",
+            "publisher": "Walter de Gruyter",
+            "publisher-place": "New York",
+            "title": "Dominant ideologies and the variation of distributive justice norms: A comparison of east and west germany, and the united states",
+            "title-short": "Dominant ideologies and the variation of distributive justice norms",
+            "type": "chapter"
+        },
+        {
+            "ISSN": "1664-1078",
+            "URL": "https://www.frontiersin.org/articles/10.3389/fpsyg.2015.01053",
+            "abstract": "The belief that, in school, success only depends on will and hard work is widespread in Western societies despite evidence showing that several factors other than merit explain school success, including group belonging (e.g., social class, gender). In the present paper, we argue that because merit is the only track for low status students to reach upward mobility, Belief in School Meritocracy (BSM) is a particularly useful system-justifying tool to help them perceive their place in society as being deserved. Consequently, for low status students (but not high status students), this belief should be related to more general system-justifying beliefs (Study 1). Moreover, low status students should be particularly prone to endorsing this belief when their place within a system on which they strongly depend to acquire status is challenged (Study 2). In Study 1, high status (boys and high SES) were compared to low status (girls and low SES) high school students. Results indicated that BSM was related to system-justifying beliefs only for low SES students and for girls, but not for high SES students or for boys. In Study 2, university students were exposed (or not) to information about an important selection process that occurs at the university, depending on the condition. Their subjective status was assessed. Although such a confrontation reduced BSM for high subjective SES students, it tended to enhance it for low subjective SES students. Results are discussed in terms of system justification motives and the palliative function meritocratic ideology may play for low status students.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        5,
+                        2
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Wiederkehr",
+                    "given": "Virginie"
+                },
+                {
+                    "family": "Bonnot",
+                    "given": "Virginie"
+                },
+                {
+                    "family": "Krauth-Gruber",
+                    "given": "Silvia"
+                },
+                {
+                    "family": "Darnon",
+                    "given": "Céline"
+                }
+            ],
+            "container-title": "Frontiers in Psychology",
+            "id": "wiederkehr_belief_2015",
+            "issued": {
+                "date-parts": [
+                    [
+                        2015
+                    ]
+                ]
+            },
+            "keyword": "Children and youth,France,Justification of inequality,System justification",
+            "title": "Belief in school meritocracy as a system-justifying tool for low status students",
+            "type": "article-journal",
+            "volume": "6"
+        },
+        {
+            "DOI": "10.1177/0963721417734875",
+            "URL": "http://journals.sagepub.com/eprint/W25Umwu7WQ3VHXnzkCzA/full",
+            "abstract": "Many scholars draw on evidence from evolutionary biology, behavioral economics, and infant research to argue that humans are “noble savages,” endowed with indiscriminate kindness. We believe this is mistaken. While there is evidence for an early-emerging moral sense—even infants recognize and favor instances of fairness and kindness among third parties—altruistic behaviors are selective from the start. Babies and young children favor people who have been kind to them in the past and favor familiar individuals over strangers. They hold strong biases for in-group over out-group members and for themselves over others, and indeed are more unequivocally selfish than older children and adults. Much of what is most impressive about adult morality arises not through inborn capacities but through a fraught developmental process that involves exposure to culture and the exercise of rationality.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2018,
+                        1,
+                        3
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Wynn",
+                    "given": "Karen"
+                },
+                {
+                    "family": "Bloom",
+                    "given": "Paul"
+                },
+                {
+                    "family": "Jordan",
+                    "given": "Ashley"
+                },
+                {
+                    "family": "Marshall",
+                    "given": "Julia"
+                },
+                {
+                    "family": "Sheskin",
+                    "given": "Mark"
+                }
+            ],
+            "container-title": "Current Directions in Psychological Science",
+            "id": "wynn_not_2017",
+            "issued": {
+                "date-parts": [
+                    [
+                        2017,
+                        12
+                    ]
+                ]
+            },
+            "keyword": "Altruism,Children,Fairness,Selfish",
+            "language": "en-US",
+            "title": "Not noble savages after all: Limits to early altruism",
+            "title-short": "Not noble savages after all",
+            "type": "article-journal"
+        },
+        {
+            "author": [
+                {
+                    "family": "Bourdieu",
+                    "given": "Pierre"
+                },
+                {
+                    "family": "Passeron",
+                    "given": "Jean Claude"
+                }
+            ],
+            "edition": "Second Edition",
+            "id": "bourdieu1990",
+            "issued": {
+                "date-parts": [
+                    [
+                        1990,
+                        8,
+                        8
+                    ]
+                ]
+            },
+            "publisher": "Sage Publications Ltd",
+            "title": "Reproduction in education, society and culture",
+            "type": "book"
+        }
+    ],
+    "project_biblios": []
+}
