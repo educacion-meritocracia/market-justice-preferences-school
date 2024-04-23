@@ -1,0 +1,56 @@
+---
+title: "04-analisis"
+author: "Equipo Edumer"
+format: pdf
+editor: visual
+---
+
+## Analysis
+
+### Descriptive analysis
+
+```{r}
+#| fig-cap: "Market justice preferences in education, health and pensions by social and school meritocracy"
+```
+
+Figure 3 shows a series of graphs depicting the association between the variables of market justice preferences - in education, health, and pensions - and the variables of meritocratic perception at school (effort and talent) and in society (effort, talent, and deservingness) (see conceptual diagram en figure X). On the left, we observe the social meritocracy diagrams, while on the right the school meritocracy diagrams are shown. For the three variables of perception of meritocracy in society the relationship is clear, since the average of market justice preferences increases the more there is agreement that people are rewarded for their effort, merit, and talent. This relationship needs to be clarified in the case of the variables of perception of meritocracy at school. To the extent that there is more agreement that the perception of talent is essential for obtaining good grades, the average of market justice preferences increases, but this relationship is not as clear as with the variables of meritocracy in society. In addition, the graph does not show a clear trend in the relationship between the perception that effort is essential to obtain good grades and market justice preferences.
+
+### Cumulative link mixed models for the Justification of inequality in education, health and pensions
+
+Three Cumulative link mixed models were estimated for the ordinal dependent variables of justice in differential access to pensions, education, and health according to income. Figure 4 shows the estimation of this regression model containing all the variables used in the study for the three dependent variables separately. However, this figure shows only the effect of meritocracy variables on society and school as independent variables. Complete models are available in the appendix.
+
+```{r}
+#| fig-cap: "Odds-ratios of justification of education, pensions and health by social and school meritocracy"
+```
+
+Figure 4 shows that for the three dependent variables of justice in differential access to pensions, education, and health, the trend is similar. In the context of school meritocracy, the effects are mixed. As school talent increases, the justification for differentiated access to pensions, education, and health increases; on the contrary, as the school effort variable increases, the justification for differentiated access to pensions, education, and health decreases, keeping the rest of the independent variables constant. Regarding the variables of social meritocracy, the three variables of talent, effort, and deservingness show that as these increase, the justification for differentiated access to pensions, education, and health also increases.
+
+### Multilevel regression models for market justice preferences
+
+```{r}
+#| tbl-cap: "Individual effects of multilevel regression models"
+```
+
+Table 4 shows the results of the multilevel estimation for justice market preferences. For this variable, the intraclass correlation obtained shows that the variation between schools corresponds to 4% of the variation of students’ preferences. This means that there is low variance between schools and therefore limits the possibilities of finding effects at the aggregate level.
+
+Model 1 introduces social meritocratic variables: effort (whether efforts are rewarded), deservingness (people get what they deserve), and social talent (intelligence and skills are rewarded in society). In line with our hypotheses, the perception of a meritocratic society is positively related to the justification of inequality. Model 2 shows a mixed picture: while those perceiving that talent is rewarded also justify the inequality, the perception that effort is rewarded at school is negatively related to justification of inequality. Family background variables in Model 3 reveal that education and technology access are not related to justification of inequality, whereby we observe a negative impact of family cultural capital as measured by the number of books at home. While school socio-structural variables added in Model 4 show no significant effects, average achievement scores in the SIMCE test depict a negative relationship with the dependent variable, meaning that students that attend schools with better achievement scores on average justify less inequality. 
+
+In relation to model fit, when comparing the deviance with a model without predictors (null model), all the models have a statistically significant difference, with model 5 having the lowest deviance. According to Raudenbush and Bryk's (2002) estimate of R2, the level 1 variance of model 5 is 0.11 and the level 2 variance is 0.72. The total variance of model 5 according to Snijders and Bosker (2012) is 0.14.
+
+```{r}
+#| tbl-cap: "Contextual effects of multilevel regression models"
+```
+
+### Interactions effects
+
+```{r}
+#| tbl-cap: "Interactions effects"
+```
+
+The interaction terms in Table 6 suggest that students’ family background moderates the relationship between their meritocratic perceptions in Chile and their justification of inequality. The direction of these effects confirms our initial prediction. Thus, in line with our Hypothesis 3, the relationship between social effort and justification of inequality becomes less positive for those students whose parents achieved university or postgraduate education. That is, lower-status students (measured by parental education) justify more inequality when they adhere more strongly to deservingnessmeritocratic perceptions in Chile. We depict this moderating effect in Figure 1. This result confirms the enlightenment thesis (see above). The same moderating effect is observed for students’ family cultural capital: the relationship between effort (but not deservingness nor social talent) and justification of inequality becomes less positive for students with more than 25 books at home. Interestingly, family cultural capital also moderates the relationship between meritocratic beliefs at school (as measured by students’ belief that effort is important to get good grades) and justification of inequality.
+
+At the school level, we also observe moderating effects of school status and students’ meritocratic beliefs over their justification of inequality. Thus, in line with our Hypothesis 5, high-status schools justify less inequality when, on average, their students have a greater perception of meritocracy in Chile, as measured by the three indicators we used (i.e., effort, deservingness, and talent). Finally, as we stated in Hypothesis 7, lowhigh-achieving schools justify more inequality when their students have, on average, stronger meritocratic beliefs in Chile. In Figure 25 we depict this moderating effect of school achievement for the relationship between deservingness and justification of inequality. We did not observe these moderating effects at the school level for students’ meritocratic beliefs in the school (i.e., the idea that effort or talent are important to get good grades).
+
+```{r}
+#| fig-cap: "Interaction between deservingness and justification of inequality by school SIMCE achievement"
+```

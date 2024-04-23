@@ -1,0 +1,50 @@
+---
+title: "03-methods"
+author: "Equipo Edumer"
+format: pdf
+editor: visual
+---
+
+## Methods
+
+### Data
+
+The main data source for the analysis is the First Study of Citizenship Education in Chile, carried out by the Education Quality Agency of the Ministry of Education. The application date was November 9, 2017. The target population of this study is Eighth-grade students from 242 schools. In the data, there are 8,589 students and 6,770 parents. This database was analyzed with the R package “ResponsePatterns” to detect possible repetitive and “careless” response patterns and thus contribute to a higher quality of research data (Gottfried, et al 2022). Responses from 171 students and 79 parents were removed, which, when merged, gave a total of 6,270 valid cases.
+
+The analysis of school variables includes data from the Ministry of Education's SIMCE 2017 database. This database contains information at the school level, such as the administrative dependency, its socioeconomic classification, and the achievement scores obtained in the mathematics and language census tests. It is available for free use on the MINEDUC \[web page\].
+
+After eliminating missing cases, the final sample used in the analysis was based on 5,047 students and parents of 231 schools for the dependent variable of access to social services.
+
+### Variables
+
+**Dependent variables**
+
+This study has three dependent variables related to the justification of social inequality in specific policy domains. The first asks whether access to social services should be conditional on income, i,.e., “It is just that in Chile people who can pay have a better education for their children”. Students rated their preferences using the following responses: “strongly disagree”, “Disagree”, “Agree”, and ”strongly agree”. An average index is built with these items (Cronbach's Alpha = 0,86). (Apéndice: items en español y su correspondiente traducción al inglés)
+
+Table 1 shows the items used, their response categories, and their frequencies.
+
+```{r}
+#| tbl-cap: "Dependent variables"
+```
+
+**Independent variables**
+
+For the primary independent variable, the perception of meritocracy, five items address the perception of rewards according to effort and intelligence at the school and societal levels. At the school level, students answer whether “Intelligence is important to get good grades” and “Effort is important to get good grades”. At the societal level, students respond to the following questions: “In Chile, people are rewarded for their efforts”, “In Chile, people get what they deserve”, and “In Chile, people are rewarded for their intelligence and skills”. Each item was answered on a four-point scale ranging from “Strongly disagree” to “Strongly agree”.
+
+The rest of the independent variables are divided into individual and school levels. At the individual level, family socioeconomic status was measured by the parents' highest educational level and the number of books at home. Likewise, an index of access to technology includes the number of computers, tablets, and cell phones at home, as well as whether there is an Internet connection. Table 2 shows the items used, their response categories, and their frequency.
+
+```{r}
+#| tbl-cap: "Independent variables"
+```
+
+The school-level variables are the administrative dependency of the school, the socioeconomic classification made by the Ministry of Education, the level of performance in the SIMCE test of the school, and the proportion of parents with university or postgraduate degrees. Table 3 shows the items used, response categories, and frequency.
+
+```{r}
+#| tbl-cap: "School context variables"
+```
+
+### Methods
+
+The data has a hierarchical structure of students nested in schools, so the model estimation is performed in a multilevel (random effects) framework. This modeling approach lets us correctly estimate individual and contextual effects in a single model. We estimate cumulative link mixed models for the ordinal dependent variables, whereas we use linear mixed effects models for the average index of inequality justification.
+
+The hypotheses of this research were pre-registered in the Open Science Framework platform of the Center for Open ScorrectlyOSF), the access to the document is available at this \[link\](https://doi.org/10.17605/OSF.IO/UFSDV). The statistical analysis of this research was performed using the free software R version 4.1.3.
