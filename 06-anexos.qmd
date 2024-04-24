@@ -1,9 +1,10 @@
 ---
-title: "06-anexos"
 author: "Equipo EDUMER"
 format: pdf
 editor: visual
 ---
+
+## Appendix
 
 ```{r}
 #| tbl-cap: "Translation of inequality justification items"

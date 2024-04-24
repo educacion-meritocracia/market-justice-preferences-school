@@ -1,7 +1,7 @@
 ---
-title: "market-justice-preferences"
-author: "Equipo EDUMER"
-format: pdf
+format:
+  pdf:
+    keep-tex: true
 editor: visual
 bibliography: "input/bib/just-ineq-merit.bib"
 link-citations: true
@@ -9,4 +9,14 @@ link-citations: true
 
 # The socialization of meritocracy and market justice preferences at school
 
-## 
+{{< include 01-introduction.qmd >}}
+
+{{< include 02-antecedentes.qmd >}}
+
+{{< include 03-methods.qmd >}}
+
+{{< include 04-analisis.qmd >}}
+
+{{< include 05-conclusiones.qmd >}}
+
+{{< include 06-anexos.qmd >}}

@@ -1,10 +1,9 @@
 ---
-title: "05-conclusiones"
 author: "Equipo EDUMER"
 format: pdf
 editor: visual
 ---
 
-## 
+## Conclusion
 
 -   Efecto ilustrador de la educación? (esfuerzo -\> redistribución)

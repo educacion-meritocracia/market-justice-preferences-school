@@ -1,5 +1,4 @@
 ---
-title: "03-methods"
 author: "Equipo Edumer"
 format: pdf
 editor: visual
