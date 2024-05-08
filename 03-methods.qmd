@@ -20,30 +20,102 @@ After eliminating missing cases, the final sample used in the analysis was based
 
 This study has three dependent variables related to the justification of social inequality in specific policy domains. The first asks whether access to social services should be conditional on income, i,.e., “It is just that in Chile people who can pay have a better education for their children”. Students rated their preferences using the following responses: “strongly disagree”, “Disagree”, “Agree”, and ”strongly agree”. An average index is built with these items (Cronbach's Alpha = 0,86). (Apéndice: items en español y su correspondiente traducción al inglés)
 
-Table 1 shows the items used, their response categories, and their frequencies.
+@tbl-desc-dependientes shows the items used, their response categories, and their frequencies.
 
-```{r}
-#| tbl-cap: "Dependent variables"
+```{r echo=FALSE}
+pacman::p_load(summarytools, dplyr)
+load("input/data/dependientes.RData")
+
 ```
+
+```{r, results='asis', echo=FALSE}
+#| tbl-cap: "Dependent variables"
+#| label: tbl-desc-dependientes
+
+
+df<-dfSummary(dependientes,
+               plain.ascii = FALSE,
+               style = "multiline",
+               tmp.img.dir = "/tmp",
+               graph.magnif = 0.75,
+               headings = F,  # encabezado
+               varnumbers = F, # num variable
+               labels.col = T, # etiquetas
+               na.col = F,    # missing
+               graph.col = F, # plot
+               valid.col = T, # n valido
+               col.widths = c(30,10,10,10))
+
+df$Variable <- NULL # delete variable column
+
+print(df)
+```
+
 
 **Independent variables**
 
 For the primary independent variable, the perception of meritocracy, five items address the perception of rewards according to effort and intelligence at the school and societal levels. At the school level, students answer whether “Intelligence is important to get good grades” and “Effort is important to get good grades”. At the societal level, students respond to the following questions: “In Chile, people are rewarded for their efforts”, “In Chile, people get what they deserve”, and “In Chile, people are rewarded for their intelligence and skills”. Each item was answered on a four-point scale ranging from “Strongly disagree” to “Strongly agree”.
 
-The rest of the independent variables are divided into individual and school levels. At the individual level, family socioeconomic status was measured by the parents' highest educational level and the number of books at home. Likewise, an index of access to technology includes the number of computers, tablets, and cell phones at home, as well as whether there is an Internet connection. Table 2 shows the items used, their response categories, and their frequency.
+The rest of the independent variables are divided into individual and school levels. At the individual level, family socioeconomic status was measured by the parents' highest educational level and the number of books at home. Likewise, an index of access to technology includes the number of computers, tablets, and cell phones at home, as well as whether there is an Internet connection. @tbl-desc-independent shows the items used, their response categories, and their frequency.
 
-```{r}
-#| tbl-cap: "Independent variables"
+```{r echo=FALSE}
+load("input/data/independientes.RData")
 ```
 
-The school-level variables are the administrative dependency of the school, the socioeconomic classification made by the Ministry of Education, the level of performance in the SIMCE test of the school, and the proportion of parents with university or postgraduate degrees. Table 3 shows the items used, response categories, and frequency.
 
-```{r}
+```{r, results='asis', echo=FALSE}
+#| tbl-cap: "Independent variables"
+#| label: tbl-desc-independent
+
+df<-dfSummary(independientes,
+               plain.ascii = FALSE,
+               style = "multiline",
+               tmp.img.dir = "/tmp",
+               graph.magnif = 0.75,
+               headings = F,  # encabezado
+               varnumbers = F, # num variable
+               labels.col = T, # etiquetas
+               na.col = F,    # missing
+               graph.col = F, # plot
+               valid.col = T, # n valido
+               col.widths = c(30,10,10,10))
+
+df$Variable <- NULL # delete variable column
+
+print(df)
+```
+
+The school-level variables are the administrative dependency of the school, the socioeconomic classification made by the Ministry of Education, the level of performance in the SIMCE test of the school, and the proportion of parents with university or postgraduate degrees. @tbl-desc-school shows the items used, response categories, and frequency.
+
+```{r echo=FALSE}
+load("input/data/school.RData")
+```
+
+
+```{r, results='asis', echo=FALSE}
 #| tbl-cap: "School context variables"
+#| label: tbl-desc-school
+
+df<-dfSummary(school,
+               plain.ascii = FALSE,
+               style = "multiline",
+               tmp.img.dir = "/tmp",
+               graph.magnif = 0.75,
+               headings = F,  # encabezado
+               varnumbers = F, # num variable
+               labels.col = T, # etiquetas
+               na.col = F,    # missing
+               graph.col = F, # plot
+               valid.col = T, # n valido
+               col.widths = c(30,10,10,10))
+
+df$Variable <- NULL # delete variable column
+
+print(df)
 ```
 
 ### Methods
 
 The data has a hierarchical structure of students nested in schools, so the model estimation is performed in a multilevel (random effects) framework. This modeling approach lets us correctly estimate individual and contextual effects in a single model. We estimate cumulative link mixed models for the ordinal dependent variables, whereas we use linear mixed effects models for the average index of inequality justification.
 
-The hypotheses of this research were pre-registered in the Open Science Framework platform of the Center for Open ScorrectlyOSF), the access to the document is available at this \[link\](https://doi.org/10.17605/OSF.IO/UFSDV). The statistical analysis of this research was performed using the free software R version 4.1.3.
+The hypotheses of this research were pre-registered in the Open Science Framework platform of the Center for Open Science (OSF), the access to the document is available at this [link](https://doi.org/10.17605/OSF.IO/UFSDV). The statistical analysis of this research was performed using the free software R version 4.1.3.

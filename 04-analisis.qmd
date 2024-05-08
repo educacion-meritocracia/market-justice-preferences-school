@@ -8,8 +8,96 @@ editor: visual
 
 ### Descriptive analysis
 
-```{r}
+```{r echo=FALSE}
+load("input/data/deservingness.RData")
+load("input/data/soc_effort.RData")
+load("input/data/soc_talent.RData")
+load("input/data/school_effort.RData")
+load("input/data/school_talent.RData")
+pacman::p_load(ggpubr)
+```
+
+
+```{r echo=FALSE}
 #| fig-cap: "Market justice preferences in education, health and pensions by social and school meritocracy"
+#| fig-asp: 1.5
+
+plot_soc_effort <- soc_effort %>% ggplot(aes(esfuerzo_soc, mean)) +
+  theme_bw(base_size = 10) +
+  geom_point(aes(color = justice, shape = justice), size = 2) +
+  xlab("Social effort") +
+  ylab("Market justice preferences") +
+  scale_y_continuous(limits = c(1, 4)) +
+  scale_x_continuous(limits = c(1, 4),
+                     breaks = seq(1, 4, by = 1),
+                     label = c("Strongly\n disagree", 
+                               "Disagree", 
+                               "Agree", 
+                               "Strongly\n agree")) +
+  scale_color_discrete(name = NULL) +
+  scale_shape_discrete(name = NULL)
+
+plot_deservingness <- deservingness %>% ggplot(aes(merito_soc, mean)) +
+  theme_bw(base_size = 10) +
+  geom_point(aes(color = justice, shape = justice), size = 2) +
+  xlab("Deservingness") +
+  ylab("Market justice preferences") +
+  scale_y_continuous(limits = c(1, 4)) +
+  scale_x_continuous(limits = c(1, 4),
+                     breaks = seq(1, 4, by = 1),
+                     label = c("Strongly\n disagree", 
+                               "Disagree", 
+                               "Agree", 
+                               "Strongly\n agree")) +
+  scale_color_discrete(name = NULL) +
+  scale_shape_discrete(name = NULL)
+
+plot_soc_talent <- soc_talent %>% ggplot(aes(inteligencia_soc, mean)) +
+  theme_bw(base_size = 10) +
+  geom_point(aes(color = justice, shape = justice), size = 2) +
+  xlab("Social talent") +
+  ylab("Market justice preferences") +
+  scale_y_continuous(limits = c(1, 4)) +
+  scale_x_continuous(limits = c(1, 4),
+                     breaks = seq(1, 4, by = 1),
+                     label = c("Strongly\n disagree", 
+                               "Disagree", 
+                               "Agree", 
+                               "Strongly\n agree")) +
+  scale_color_discrete(name = NULL) +
+  scale_shape_discrete(name = NULL)
+
+plot_school_effort <- school_effort %>% ggplot(aes(esfuerzo_esc, mean)) +
+  theme_bw(base_size = 10) +
+  geom_point(aes(color = justice, shape = justice), size = 2) +
+  xlab("School effort") +
+  ylab("") +
+  scale_y_continuous(limits = c(1, 4)) +
+  scale_x_continuous(limits = c(1, 4),
+                     breaks = seq(1, 4, by = 1),
+                     label = c("Strongly\n disagree", 
+                               "Disagree", 
+                               "Agree", 
+                               "Strongly\n agree")) +
+  scale_color_discrete(name = NULL) +
+  scale_shape_discrete(name = NULL)
+
+plot_school_talent <- school_talent %>% ggplot(aes(inteligencia_esc, mean)) +
+  theme_bw(base_size = 10) +
+  geom_point(aes(color = justice, shape = justice), size = 2) +
+  xlab("School talent") +
+  ylab("") +
+  scale_y_continuous(limits = c(1, 4)) +
+  scale_x_continuous(limits = c(1, 4),
+                     breaks = seq(1, 4, by = 1),
+                     label = c("Strongly\n disagree", 
+                               "Disagree", 
+                               "Agree", 
+                               "Strongly\n agree")) +
+  scale_color_discrete(name = NULL) +
+  scale_shape_discrete(name = NULL)
+
+ggarrange(plot_soc_effort, plot_school_effort, plot_soc_talent, plot_school_talent, plot_deservingness, ncol = 2, nrow = 3, common.legend = TRUE)
 ```
 
 Figure 3 shows a series of graphs depicting the association between the variables of market justice preferences - in education, health, and pensions - and the variables of meritocratic perception at school (effort and talent) and in society (effort, talent, and deservingness) (see conceptual diagram en figure X). On the left, we observe the social meritocracy diagrams, while on the right the school meritocracy diagrams are shown. For the three variables of perception of meritocracy in society the relationship is clear, since the average of market justice preferences increases the more there is agreement that people are rewarded for their effort, merit, and talent. This relationship needs to be clarified in the case of the variables of perception of meritocracy at school. To the extent that there is more agreement that the perception of talent is essential for obtaining good grades, the average of market justice preferences increases, but this relationship is not as clear as with the variables of meritocracy in society. In addition, the graph does not show a clear trend in the relationship between the perception that effort is essential to obtain good grades and market justice preferences.
@@ -32,7 +120,7 @@ Figure 4 shows that for the three dependent variables of justice in differential
 
 Table 4 shows the results of the multilevel estimation for justice market preferences. For this variable, the intraclass correlation obtained shows that the variation between schools corresponds to 4% of the variation of students’ preferences. This means that there is low variance between schools and therefore limits the possibilities of finding effects at the aggregate level.
 
-Model 1 introduces social meritocratic variables: effort (whether efforts are rewarded), deservingness (people get what they deserve), and social talent (intelligence and skills are rewarded in society). In line with our hypotheses, the perception of a meritocratic society is positively related to the justification of inequality. Model 2 shows a mixed picture: while those perceiving that talent is rewarded also justify the inequality, the perception that effort is rewarded at school is negatively related to justification of inequality. Family background variables in Model 3 reveal that education and technology access are not related to justification of inequality, whereby we observe a negative impact of family cultural capital as measured by the number of books at home. While school socio-structural variables added in Model 4 show no significant effects, average achievement scores in the SIMCE test depict a negative relationship with the dependent variable, meaning that students that attend schools with better achievement scores on average justify less inequality. 
+Model 1 introduces social meritocratic variables: effort (whether efforts are rewarded), deservingness (people get what they deserve), and social talent (intelligence and skills are rewarded in society). In line with our hypotheses, the perception of a meritocratic society is positively related to the justification of inequality. Model 2 shows a mixed picture: while those perceiving that talent is rewarded also justify the inequality, the perception that effort is rewarded at school is negatively related to justification of inequality. Family background variables in Model 3 reveal that education and technology access are not related to justification of inequality, whereby we observe a negative impact of family cultural capital as measured by the number of books at home. While school socio-structural variables added in Model 4 show no significant effects, average achievement scores in the SIMCE test depict a negative relationship with the dependent variable, meaning that students that attend schools with better achievement scores on average justify less inequality.
 
 In relation to model fit, when comparing the deviance with a model without predictors (null model), all the models have a statistically significant difference, with model 5 having the lowest deviance. According to Raudenbush and Bryk's (2002) estimate of R2, the level 1 variance of model 5 is 0.11 and the level 2 variance is 0.72. The total variance of model 5 according to Snijders and Bosker (2012) is 0.14.
 
