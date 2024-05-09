@@ -19,10 +19,10 @@ pacman::p_load(dplyr, ggplot2, haven)
 load("input/data/issp_rec.RData")
 ```
 
-
 ```{r echo=FALSE}
 #| label: fig-issp
 #| fig-cap: "Average of market justice preferences by country"
+#| fig-asp: 0.65
 
 base$country <- as.character(base$country)
 base$country <- substr(base$country, 4, nchar(base$country))
@@ -94,11 +94,10 @@ H7: The perception of meritocracy in school and society will moderate the effect
 
 ### Summary of hypotheses
 
-```{r echo=FALSE}
+```{r echo=FALSE, out.width = "600px"}
 #| fig-cap: "Summary of hypotheses"
 #| label: fig-hypotheses
 
-knitr::include_graphics("input/img/hypotheses.png")
+knitr::include_graphics("input/img/hypotheses.png",
+  auto_pdf = getOption("knitr.graphics.auto_pdf", TRUE))
 ```
-
-## 

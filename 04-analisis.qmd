@@ -17,10 +17,10 @@ load("input/data/school_talent.RData")
 pacman::p_load(ggpubr)
 ```
 
-
 ```{r echo=FALSE}
 #| fig-cap: "Market justice preferences in education, health and pensions by social and school meritocracy"
-#| fig-asp: 1.5
+#| fig-asp: 1.22
+#| label: fig-bivariate
 
 plot_soc_effort <- soc_effort %>% ggplot(aes(esfuerzo_soc, mean)) +
   theme_bw(base_size = 10) +
@@ -35,7 +35,8 @@ plot_soc_effort <- soc_effort %>% ggplot(aes(esfuerzo_soc, mean)) +
                                "Agree", 
                                "Strongly\n agree")) +
   scale_color_discrete(name = NULL) +
-  scale_shape_discrete(name = NULL)
+  scale_shape_discrete(name = NULL)+
+  theme(legend.position = "none")
 
 plot_deservingness <- deservingness %>% ggplot(aes(merito_soc, mean)) +
   theme_bw(base_size = 10) +
@@ -50,7 +51,8 @@ plot_deservingness <- deservingness %>% ggplot(aes(merito_soc, mean)) +
                                "Agree", 
                                "Strongly\n agree")) +
   scale_color_discrete(name = NULL) +
-  scale_shape_discrete(name = NULL)
+  scale_shape_discrete(name = NULL)+
+  theme(legend.position = "none")
 
 plot_soc_talent <- soc_talent %>% ggplot(aes(inteligencia_soc, mean)) +
   theme_bw(base_size = 10) +
@@ -65,7 +67,8 @@ plot_soc_talent <- soc_talent %>% ggplot(aes(inteligencia_soc, mean)) +
                                "Agree", 
                                "Strongly\n agree")) +
   scale_color_discrete(name = NULL) +
-  scale_shape_discrete(name = NULL)
+  scale_shape_discrete(name = NULL)+
+  theme(legend.position = "none")
 
 plot_school_effort <- school_effort %>% ggplot(aes(esfuerzo_esc, mean)) +
   theme_bw(base_size = 10) +
@@ -80,7 +83,8 @@ plot_school_effort <- school_effort %>% ggplot(aes(esfuerzo_esc, mean)) +
                                "Agree", 
                                "Strongly\n agree")) +
   scale_color_discrete(name = NULL) +
-  scale_shape_discrete(name = NULL)
+  scale_shape_discrete(name = NULL)+
+  theme(legend.position = "none")
 
 plot_school_talent <- school_talent %>% ggplot(aes(inteligencia_esc, mean)) +
   theme_bw(base_size = 10) +
@@ -97,47 +101,230 @@ plot_school_talent <- school_talent %>% ggplot(aes(inteligencia_esc, mean)) +
   scale_color_discrete(name = NULL) +
   scale_shape_discrete(name = NULL)
 
-ggarrange(plot_soc_effort, plot_school_effort, plot_soc_talent, plot_school_talent, plot_deservingness, ncol = 2, nrow = 3, common.legend = TRUE)
+leg <- get_legend(plot_school_talent)
+plot_school_talent <- plot_school_talent + theme(legend.position = "none")
+ggarrange(plot_soc_effort, plot_school_effort, plot_soc_talent, plot_school_talent, plot_deservingness, leg, ncol = 2, nrow = 3)
 ```
 
-Figure 3 shows a series of graphs depicting the association between the variables of market justice preferences - in education, health, and pensions - and the variables of meritocratic perception at school (effort and talent) and in society (effort, talent, and deservingness) (see conceptual diagram en figure X). On the left, we observe the social meritocracy diagrams, while on the right the school meritocracy diagrams are shown. For the three variables of perception of meritocracy in society the relationship is clear, since the average of market justice preferences increases the more there is agreement that people are rewarded for their effort, merit, and talent. This relationship needs to be clarified in the case of the variables of perception of meritocracy at school. To the extent that there is more agreement that the perception of talent is essential for obtaining good grades, the average of market justice preferences increases, but this relationship is not as clear as with the variables of meritocracy in society. In addition, the graph does not show a clear trend in the relationship between the perception that effort is essential to obtain good grades and market justice preferences.
+@fig-bivariate shows a series of graphs depicting the association between the variables of market justice preferences - in education, health, and pensions - and the variables of meritocratic perception at school (effort and talent) and in society (effort, talent, and deservingness) (see conceptual diagram in @fig-hypotheses). On the left, we observe the social meritocracy diagrams, while on the right the school meritocracy diagrams are shown. For the three variables of perception of meritocracy in society the relationship is clear, since the average of market justice preferences increases the more there is agreement that people are rewarded for their effort, merit, and talent. This relationship needs to be clarified in the case of the variables of perception of meritocracy at school. To the extent that there is more agreement that the perception of talent is essential for obtaining good grades, the average of market justice preferences increases, but this relationship is not as clear as with the variables of meritocracy in society. In addition, the graph does not show a clear trend in the relationship between the perception that effort is essential to obtain good grades and market justice preferences.
 
 ### Cumulative link mixed models for the Justification of inequality in education, health and pensions
 
-Three Cumulative link mixed models were estimated for the ordinal dependent variables of justice in differential access to pensions, education, and health according to income. Figure 4 shows the estimation of this regression model containing all the variables used in the study for the three dependent variables separately. However, this figure shows only the effect of meritocracy variables on society and school as independent variables. Complete models are available in the appendix.
+Three Cumulative link mixed models were estimated for the ordinal dependent variables of justice in differential access to pensions, education, and health according to income. @fig-odds shows the estimation of this regression model containing all the variables used in the study for the three dependent variables separately. However, this figure shows only the effect of meritocracy variables on society and school as independent variables. Complete models are available in the appendix.
 
-```{r}
-#| fig-cap: "Odds-ratios of justification of education, pensions and health by social and school meritocracy"
+```{r echo=FALSE}
+pacman::p_load(lme4, ordinal, sjPlot, texreg)
+load("input/data/data_rec.RData")
+data_pension <- data_rec %>% dplyr::select(-just_educ, -just_salud, -redistribucion)
+data_pension <- na.omit(data_pension)
+data_pension$just_pension_fact <- as_factor(data_pension$just_pension)
+reg5_pension <- clmm(just_pension_fact ~ 1 + inteligencia_esc + esfuerzo_esc + inteligencia_soc + esfuerzo_soc + merito_soc + educacion_rec + libros_rec + acc_tec + internet_rec + mean_educ + cod_depe2 + cod_grupo + simce + (1 | mrbd), data=data_pension)
+data_salud <- data_rec %>% dplyr::select(-just_pension, -just_educ, -redistribucion)
+data_salud <- na.omit(data_salud)
+data_salud$just_salud_fact <- as_factor(data_salud$just_salud)
+reg5_salud <- clmm(just_salud_fact ~ 1 + inteligencia_esc + esfuerzo_esc + inteligencia_soc + esfuerzo_soc + merito_soc + educacion_rec + libros_rec + acc_tec + internet_rec + mean_educ + cod_depe2 + cod_grupo + simce + (1 | mrbd), data=data_salud)
+data_educ <- data_rec %>% dplyr::select(-just_pension, -just_salud, -redistribucion)
+data_educ <- na.omit(data_educ)
+data_educ$just_educ_fact <- as_factor(data_educ$just_educ)
+reg5_educ <- clmm(just_educ_fact ~ 1 + inteligencia_esc + esfuerzo_esc + inteligencia_soc + esfuerzo_soc + merito_soc + educacion_rec + libros_rec + acc_tec + internet_rec + mean_educ + cod_depe2 + cod_grupo + simce + (1 | mrbd), data=data_educ)
 ```
 
-Figure 4 shows that for the three dependent variables of justice in differential access to pensions, education, and health, the trend is similar. In the context of school meritocracy, the effects are mixed. As school talent increases, the justification for differentiated access to pensions, education, and health increases; on the contrary, as the school effort variable increases, the justification for differentiated access to pensions, education, and health decreases, keeping the rest of the independent variables constant. Regarding the variables of social meritocracy, the three variables of talent, effort, and deservingness show that as these increase, the justification for differentiated access to pensions, education, and health also increases.
+```{r echo=FALSE}
+#| fig-cap: "Odds-ratios of justification of education, pensions and health by social and school meritocracy"
+#| label: fig-odds
+#| fig-asp: 0.8
+
+plot_models(reg5_salud, reg5_educ, reg5_pension,  
+            rm.terms = c("1|2", "2|3", "3|4", "educacion_recEd Media", "educacion_recEd Tecnica", "educacion_recUniversidad o posgrado", "educacion_recNs/Nr", "libros_recMás de 25", "acc_tec", "internet_rec2", "internet_recNs/Nr", "mean_educ", "cod_depe2Part. subvencionado", "cod_depe2Part. privado", "cod_grupoMedio bajo", "cod_grupoMedio", "cod_grupoMedio alto", "cod_grupoAlto", "simceMedio", "simceAlto"), #quitar terminos
+            title = "", #quitar titulo
+            show.values = TRUE, #mostrar valor de efectos
+            dot.size = 1.3, #tamaño circulos
+            line.size = 1, #tamaño CI
+            value.size = 3.5, #tamaño valor efectoss
+            spacing = .7, #espacio entre efectos
+            grid = TRUE, # separa en un plot por modelo
+            vline.color = "red", # linea roja en punto neutro (1)
+            axis.labels = rev(c("School talent", 
+                            "School effort", 
+                            "Social talent",
+                            "Social effort", 
+                            "Deservingness"
+                            )), #con rev porque automatico los tira en otro orden
+            show.legend = FALSE,
+            m.labels = c("Health", "Education","Pension")) + # variables dependientes
+  theme_bw(base_size = 10)
+
+```
+
+@fig-odds shows that for the three dependent variables of justice in differential access to pensions, education, and health, the trend is similar. In the context of school meritocracy, the effects are mixed. As school talent increases, the justification for differentiated access to pensions, education, and health increases; on the contrary, as the school effort variable increases, the justification for differentiated access to pensions, education, and health decreases, keeping the rest of the independent variables constant. Regarding the variables of social meritocracy, the three variables of talent, effort, and deservingness show that as these increase, the justification for differentiated access to pensions, education, and health also increases.
 
 ### Multilevel regression models for market justice preferences
 
-```{r}
-#| tbl-cap: "Individual effects of multilevel regression models"
+```{r echo=FALSE, include=FALSE}
+load("input/data/data_index.RData")
+reg0_bienestar <- lmer(bienestar ~ 1 + (1 | mrbd), data=data_bienestar)
+reg1_bienestar <- lmer(bienestar ~ 1 + inteligencia_esc + esfuerzo_esc + inteligencia_soc + esfuerzo_soc + merito_soc + (1 | mrbd), data=data_bienestar)
+reg2_bienestar <- lmer(bienestar ~ 1 + inteligencia_esc + esfuerzo_esc + inteligencia_soc + esfuerzo_soc + merito_soc + educacion_rec + libros_rec + acc_tec + internet_rec + (1 | mrbd), data=data_bienestar)
+reg3_bienestar <- lmer(bienestar ~ 1 + mean_educ + cod_depe2 + cod_grupo + simce + (1 | mrbd), data=data_bienestar)
+reg4_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + internet_rec + mean_educ + cod_depe2 + cod_grupo + simce + (1 | mrbd), data=data_bienestar)
+
+test01<- anova(reg0_bienestar,reg1_bienestar,test = "Chisq")
+test02<- anova(reg0_bienestar,reg2_bienestar,test = "Chisq")
+test03<- anova(reg0_bienestar,reg3_bienestar,test = "Chisq")
+test04<- anova(reg0_bienestar,reg4_bienestar,test = "Chisq")
+
+
+test.pvalues1<- test01$`Pr(>Chisq)`[2]
+test.pvalues2<- test02$`Pr(>Chisq)`[2]
+test.pvalues3<- test03$`Pr(>Chisq)`[2]
+test.pvalues4<- test04$`Pr(>Chisq)`[2]
+
+deviance1 <- test01$deviance[2]
+deviance2 <- test02$deviance[2]
+deviance3 <- test03$deviance[2]
+deviance4 <- test04$deviance[2]
 ```
 
-Table 4 shows the results of the multilevel estimation for justice market preferences. For this variable, the intraclass correlation obtained shows that the variation between schools corresponds to 4% of the variation of students’ preferences. This means that there is low variance between schools and therefore limits the possibilities of finding effects at the aggregate level.
+```{r echo=FALSE, results='asis'}
+#| tbl-cap: "Individual effects of multilevel regression models"
+#| label: tbl-individual-reg
+
+texreg::texreg(list(reg1_bienestar, reg2_bienestar),
+        custom.model.names = c("Model 1",
+                               "Model 2"),
+        custom.note = "*** p < 0.001; ** p < 0.01; * p < 0.05", 
+        omit.coef = "(internet_rec)",
+        caption = "",
+        custom.coef.names = c("Intercept",  
+                              "School talent",
+                              "School effort", 
+                              "Social talent",  
+                              "Social effort",
+                              "Deservingness",
+                              "Secondary", 
+                              "Higher tec.", 
+                              "University or posgraduate", 
+                              "Missing", 
+                              "More than 25 books (Ref. Less than 25)", 
+                              "Technology access"),
+        groups = list("Parental education (Ref.= 8th grade or less)"=7:10),
+        custom.gof.rows=list("Deviance" = c(deviance1,
+                                            deviance2),
+                             "Deviance Test (p)" = c(test.pvalues1,
+                                                       test.pvalues2))
+        )
+
+```
+
+@tbl-individual-reg shows the results of the multilevel estimation for justice market preferences. For this variable, the intraclass correlation obtained shows that the variation between schools corresponds to 4% of the variation of students’ preferences. This means that there is low variance between schools and therefore limits the possibilities of finding effects at the aggregate level.
 
 Model 1 introduces social meritocratic variables: effort (whether efforts are rewarded), deservingness (people get what they deserve), and social talent (intelligence and skills are rewarded in society). In line with our hypotheses, the perception of a meritocratic society is positively related to the justification of inequality. Model 2 shows a mixed picture: while those perceiving that talent is rewarded also justify the inequality, the perception that effort is rewarded at school is negatively related to justification of inequality. Family background variables in Model 3 reveal that education and technology access are not related to justification of inequality, whereby we observe a negative impact of family cultural capital as measured by the number of books at home. While school socio-structural variables added in Model 4 show no significant effects, average achievement scores in the SIMCE test depict a negative relationship with the dependent variable, meaning that students that attend schools with better achievement scores on average justify less inequality.
 
 In relation to model fit, when comparing the deviance with a model without predictors (null model), all the models have a statistically significant difference, with model 5 having the lowest deviance. According to Raudenbush and Bryk's (2002) estimate of R2, the level 1 variance of model 5 is 0.11 and the level 2 variance is 0.72. The total variance of model 5 according to Snijders and Bosker (2012) is 0.14.
 
-```{r}
+```{r echo=FALSE, results='asis'}
 #| tbl-cap: "Contextual effects of multilevel regression models"
+#| label: tbl-contextual-reg
+
+texreg::texreg(list(reg3_bienestar, reg4_bienestar),
+        custom.model.names = c("Model 1",
+                               "Model 2"),
+        custom.note = "*** p < 0.001; ** p < 0.01; * p < 0.05", 
+        omit.coef = c("inteligencia_esc|esfuerzo_esc|inteligencia_soc|esfuerzo_soc|merito_soc|educacion_rec|libros_rec|acc_tec|internet_rec"),
+        caption = "",
+        custom.coef.names = c("Intercept", 
+                              "Prop. university level at school",
+                              "Subsidized private", 
+                              "Private", 
+                              "SES Medium low", 
+                              "SES Medium", 
+                              "SES Medium high", 
+                              "SES High", 
+                              "Simce Medium", 
+                              "Simce High"),
+        groups = list("Administrative dependence (Ref.= Public)"=3:4,
+                      "Socioeconomic level (Ref.= Low)"=5:8,
+                      "Achievement score (Ref.= Low)"=9:10),
+        custom.gof.rows=list("Deviance" = c(deviance3,
+                                            deviance4),
+                             "Deviance Test (p)" = c(test.pvalues3,
+                                                     test.pvalues4))
+        )
+
 ```
 
 ### Interactions effects
 
-```{r}
+```{r echo=FALSE}
 #| tbl-cap: "Interactions effects"
+#| label: tbl-interact
+
+pacman::p_load(kableExtra)
+load("input/data/interact.RData")
+kbl(collapse_rows,
+    align = "lccccc", booktabs = T,
+    col.names =  c("Variable", 
+                   "School talent", 
+                   "School effort",
+                   "Social talent",
+                   "Social effort", 
+                   "Deservingness")) %>%
+  add_header_above(c(" " = 1,
+                     "Market Justice Preferences"=5), 
+                   bold = T)%>%  
+  kable_styling(latex_options = c("scale_down","HOLD_position"),
+                full_width = F) %>%
+  column_spec(1, bold = T, width = "4cm") %>%
+  column_spec(column = 2:6,width = "1.5cm") %>%
+  collapse_rows(columns = 1:2, valign = "middle") %>% 
+  footnote(general = "***p < 0.001, **p < 0.01, *p < 0.05",
+           footnote_as_chunk = T,general_title = "Note: ")
+
 ```
 
-The interaction terms in Table 6 suggest that students’ family background moderates the relationship between their meritocratic perceptions in Chile and their justification of inequality. The direction of these effects confirms our initial prediction. Thus, in line with our Hypothesis 3, the relationship between social effort and justification of inequality becomes less positive for those students whose parents achieved university or postgraduate education. That is, lower-status students (measured by parental education) justify more inequality when they adhere more strongly to deservingnessmeritocratic perceptions in Chile. We depict this moderating effect in Figure 1. This result confirms the enlightenment thesis (see above). The same moderating effect is observed for students’ family cultural capital: the relationship between effort (but not deservingness nor social talent) and justification of inequality becomes less positive for students with more than 25 books at home. Interestingly, family cultural capital also moderates the relationship between meritocratic beliefs at school (as measured by students’ belief that effort is important to get good grades) and justification of inequality.
+The interaction terms in @tbl-interact suggest that students’ family background moderates the relationship between their meritocratic perceptions in Chile and their justification of inequality. The direction of these effects confirms our initial prediction. Thus, in line with our Hypothesis 3, the relationship between social effort and justification of inequality becomes less positive for those students whose parents achieved university or postgraduate education. That is, lower-status students (measured by parental education) justify more inequality when they adhere more strongly to deservingnessmeritocratic perceptions in Chile. This result confirms the enlightenment thesis (see above). The same moderating effect is observed for students’ family cultural capital: the relationship between effort (but not deservingness nor social talent) and justification of inequality becomes less positive for students with more than 25 books at home. Interestingly, family cultural capital also moderates the relationship between meritocratic beliefs at school (as measured by students’ belief that effort is important to get good grades) and justification of inequality.
 
-At the school level, we also observe moderating effects of school status and students’ meritocratic beliefs over their justification of inequality. Thus, in line with our Hypothesis 5, high-status schools justify less inequality when, on average, their students have a greater perception of meritocracy in Chile, as measured by the three indicators we used (i.e., effort, deservingness, and talent). Finally, as we stated in Hypothesis 7, lowhigh-achieving schools justify more inequality when their students have, on average, stronger meritocratic beliefs in Chile. In Figure 25 we depict this moderating effect of school achievement for the relationship between deservingness and justification of inequality. We did not observe these moderating effects at the school level for students’ meritocratic beliefs in the school (i.e., the idea that effort or talent are important to get good grades).
+At the school level, we also observe moderating effects of school status and students’ meritocratic beliefs over their justification of inequality. Thus, in line with our Hypothesis 5, high-status schools justify less inequality when, on average, their students have a greater perception of meritocracy in Chile, as measured by the three indicators we used (i.e., effort, deservingness, and talent). Finally, as we stated in Hypothesis 7, low-achieving schools justify more inequality when their students have, on average, stronger meritocratic beliefs in Chile. In @fig-interaction we depict this moderating effect of school achievement for the relationship between deservingness and justification of inequality. We did not observe these moderating effects at the school level for students’ meritocratic beliefs in the school (i.e., the idea that effort or talent are important to get good grades).
 
-```{r}
+```{r echo=FALSE, include=FALSE}
+load("input/data/data_rec.RData")
+data_rec <- data_rec %>% rowwise() %>%  mutate(educacion_rec2 = case_when(educacion_rec=="Ed Basica"~"Low level",
+                                                 educacion_rec=="Ed Media"~"Low level",
+                                                 educacion_rec=="Ed Tecnica"~"Low level",
+                                                 educacion_rec=="Universidad o posgrado"~"University or Postgraduate",
+                                                 educacion_rec=="Ns/Nr"~"Missing"
+                                                 ))
+data_rec$educacion_rec2 <- factor(data_rec$educacion_rec2, levels = c("Low level", "University or Postgraduate", "Missing"))
+
+
+data_rec <- data_rec %>% rowwise() %>%  mutate(cod_grupo2  = case_when(cod_grupo=="Bajo"~"Bajo",
+                                                                       cod_grupo=="Medio bajo"~"Bajo",
+                                                                       cod_grupo=="Medio"~"Bajo",
+                                                                       cod_grupo=="Medio alto"~"Alto",
+                                                                       cod_grupo=="Alto"~"Alto"))
+data_rec$cod_grupo2 <- factor(data_rec$cod_grupo2, levels = c("Bajo", "Alto"))
+data_rec$simce <- factor(data_rec$simce, labels = c("Low", "Medium", "High"))
+
+
+data_bienestar <- na.omit(data_rec)
+#data_bienestar <- data_bienestar %>% mutate(pension_rec = 5-just_pension,
+#                                            educ_rec = 5-just_educ,
+#                                            salud_rec = 5-just_salud)
+data_bienestar <- data_bienestar %>% rowwise() %>% dplyr::mutate(bienestar = mean(c(just_educ, just_salud, just_pension), na.omit=TRUE))
+data_bienestar$bienestar <- round(data_bienestar$bienestar, 2)
+
+reg26.2_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + merito_soc*simce + internet_rec + (1 + simce | mrbd), data=data_bienestar)
+
+plot_interact<- plot_model(reg26.2_bienestar, type = "int", mdrt.values="minmax", title = "", colors = c("red", "white", "blue")) +
+  ylim(1,4)+
+  labs(x = "Deservingness", y="Market Justice Preferences", colour = "School Simce")+
+  theme_bw()
+```
+
+```{r echo=FALSE, warning=FALSE}
 #| fig-cap: "Interaction between deservingness and justification of inequality by school SIMCE achievement"
+#| label: fig-interaction
+
+plot_interact
+
 ```

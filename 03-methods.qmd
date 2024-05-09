@@ -23,9 +23,9 @@ This study has three dependent variables related to the justification of social 
 @tbl-desc-dependientes shows the items used, their response categories, and their frequencies.
 
 ```{r echo=FALSE}
-pacman::p_load(summarytools, dplyr)
+pacman::p_load(summarytools, dplyr, sjlabelled)
 load("input/data/dependientes.RData")
-
+dependientes$bienestar <- set_label(dependientes$bienestar, "Market Justice Preferences")
 ```
 
 ```{r, results='asis', echo=FALSE}
@@ -51,7 +51,6 @@ df$Variable <- NULL # delete variable column
 print(df)
 ```
 
-
 **Independent variables**
 
 For the primary independent variable, the perception of meritocracy, five items address the perception of rewards according to effort and intelligence at the school and societal levels. At the school level, students answer whether “Intelligence is important to get good grades” and “Effort is important to get good grades”. At the societal level, students respond to the following questions: “In Chile, people are rewarded for their efforts”, “In Chile, people get what they deserve”, and “In Chile, people are rewarded for their intelligence and skills”. Each item was answered on a four-point scale ranging from “Strongly disagree” to “Strongly agree”.
@@ -61,7 +60,6 @@ The rest of the independent variables are divided into individual and school lev
 ```{r echo=FALSE}
 load("input/data/independientes.RData")
 ```
-
 
 ```{r, results='asis', echo=FALSE}
 #| tbl-cap: "Independent variables"
@@ -90,7 +88,6 @@ The school-level variables are the administrative dependency of the school, the 
 ```{r echo=FALSE}
 load("input/data/school.RData")
 ```
-
 
 ```{r, results='asis', echo=FALSE}
 #| tbl-cap: "School context variables"

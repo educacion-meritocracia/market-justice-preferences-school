@@ -111,6 +111,20 @@
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
 \KOMAoption{captions}{tableheading}
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
@@ -692,15 +706,13 @@ the effect of school academic achievement on market justice preferences.
 
 \centering{
 
-\includegraphics{input/img/hypotheses.png}
+\includegraphics[width=6.25in,height=\textheight]{input/img/hypotheses.png}
 
 }
 
 \caption{\label{fig-hypotheses}Summary of hypotheses}
 
 \end{figure}%
-
-\subsection{}\label{section}
 
 \subsection{Methods}\label{methods}
 
@@ -825,8 +837,7 @@ health services than people with low incomes &
 5933\\
 (94.6\%)\strut
 \end{minipage} \\
-Inequality justification index &
-\begin{minipage}[t]{\linewidth}\raggedright
+Market Justice Preferences & \begin{minipage}[t]{\linewidth}\raggedright
 Mean (sd) : 2.2 (0.9)\\
 min \textless{} med \textless{} max:\\
 1 \textless{} 2 \textless{} 4\\
@@ -1120,22 +1131,25 @@ version 4.1.3.
 
 \subsubsection{Descriptive analysis}\label{descriptive-analysis}
 
-\begin{figure}[H]
+\begin{figure}
 
-{\centering \includegraphics{paper_files/figure-pdf/unnamed-chunk-11-1.pdf}
+\centering{
+
+\includegraphics{paper_files/figure-pdf/fig-bivariate-1.pdf}
 
 }
 
-\caption{Market justice preferences in education, health and pensions by
-social and school meritocracy}
+\caption{\label{fig-bivariate}Market justice preferences in education,
+health and pensions by social and school meritocracy}
 
 \end{figure}%
 
-Figure 3 shows a series of graphs depicting the association between the
-variables of market justice preferences - in education, health, and
-pensions - and the variables of meritocratic perception at school
-(effort and talent) and in society (effort, talent, and deservingness)
-(see conceptual diagram en figure X). On the left, we observe the social
+Figure~\ref{fig-bivariate} shows a series of graphs depicting the
+association between the variables of market justice preferences - in
+education, health, and pensions - and the variables of meritocratic
+perception at school (effort and talent) and in society (effort, talent,
+and deservingness) (see conceptual diagram in
+Figure~\ref{fig-hypotheses}). On the left, we observe the social
 meritocracy diagrams, while on the right the school meritocracy diagrams
 are shown. For the three variables of perception of meritocracy in
 society the relationship is clear, since the average of market justice
@@ -1156,33 +1170,106 @@ pensions}\label{cumulative-link-mixed-models-for-the-justification-of-inequality
 
 Three Cumulative link mixed models were estimated for the ordinal
 dependent variables of justice in differential access to pensions,
-education, and health according to income. Figure 4 shows the estimation
-of this regression model containing all the variables used in the study
-for the three dependent variables separately. However, this figure shows
-only the effect of meritocracy variables on society and school as
-independent variables. Complete models are available in the appendix.
+education, and health according to income. Figure~\ref{fig-odds} shows
+the estimation of this regression model containing all the variables
+used in the study for the three dependent variables separately. However,
+this figure shows only the effect of meritocracy variables on society
+and school as independent variables. Complete models are available in
+the appendix.
 
-Figure 4 shows that for the three dependent variables of justice in
-differential access to pensions, education, and health, the trend is
-similar. In the context of school meritocracy, the effects are mixed. As
-school talent increases, the justification for differentiated access to
-pensions, education, and health increases; on the contrary, as the
-school effort variable increases, the justification for differentiated
-access to pensions, education, and health decreases, keeping the rest of
-the independent variables constant. Regarding the variables of social
-meritocracy, the three variables of talent, effort, and deservingness
-show that as these increase, the justification for differentiated access
-to pensions, education, and health also increases.
+\begin{figure}
+
+\centering{
+
+\includegraphics{paper_files/figure-pdf/fig-odds-1.pdf}
+
+}
+
+\caption{\label{fig-odds}Odds-ratios of justification of education,
+pensions and health by social and school meritocracy}
+
+\end{figure}%
+
+Figure~\ref{fig-odds} shows that for the three dependent variables of
+justice in differential access to pensions, education, and health, the
+trend is similar. In the context of school meritocracy, the effects are
+mixed. As school talent increases, the justification for differentiated
+access to pensions, education, and health increases; on the contrary, as
+the school effort variable increases, the justification for
+differentiated access to pensions, education, and health decreases,
+keeping the rest of the independent variables constant. Regarding the
+variables of social meritocracy, the three variables of talent, effort,
+and deservingness show that as these increase, the justification for
+differentiated access to pensions, education, and health also increases.
 
 \subsubsection{Multilevel regression models for market justice
 preferences}\label{multilevel-regression-models-for-market-justice-preferences}
 
-Table 4 shows the results of the multilevel estimation for justice
-market preferences. For this variable, the intraclass correlation
-obtained shows that the variation between schools corresponds to 4\% of
-the variation of students' preferences. This means that there is low
-variance between schools and therefore limits the possibilities of
-finding effects at the aggregate level.
+\begin{table}
+
+\caption{\label{tbl-individual-reg}Individual effects of multilevel
+regression models}
+
+\centering{
+
+\begin{center}
+\begin{tabular}{l c c}
+\hline
+ & Model 1 & Model 2 \\
+\hline
+Intercept                                    & $1.34^{***}$  & $1.37^{***}$  \\
+                                             & $(0.09)$      & $(0.10)$      \\
+School talent                                & $0.11^{***}$  & $0.10^{***}$  \\
+                                             & $(0.01)$      & $(0.01)$      \\
+School effort                                & $-0.12^{***}$ & $-0.12^{***}$ \\
+                                             & $(0.02)$      & $(0.02)$      \\
+Social talent                                & $0.07^{***}$  & $0.07^{***}$  \\
+                                             & $(0.02)$      & $(0.02)$      \\
+Social effort                                & $0.08^{***}$  & $0.08^{***}$  \\
+                                             & $(0.02)$      & $(0.02)$      \\
+Deservingness                                & $0.20^{***}$  & $0.20^{***}$  \\
+                                             & $(0.02)$      & $(0.02)$      \\
+Parental education (Ref.= 8th grade or less) &               &               \\
+                                             &               &               \\
+\quad Secondary                              &               & $-0.07$       \\
+                                             &               & $(0.05)$      \\
+\quad Higher tec.                            &               & $-0.10$       \\
+                                             &               & $(0.05)$      \\
+\quad University or posgraduate              &               & $-0.02$       \\
+                                             &               & $(0.05)$      \\
+\quad Missing                                &               & $-0.00$       \\
+                                             &               & $(0.05)$      \\
+More than 25 books (Ref. Less than 25)       &               & $-0.05$       \\
+                                             &               & $(0.03)$      \\
+Technology access                            &               & $0.01$        \\
+                                             &               & $(0.01)$      \\
+\hline
+Deviance                                     & $12368.85$    & $12355.60$    \\
+Deviance Test (p)                            & $0.00$        & $0.00$        \\
+AIC                                          & $12422.86$    & $12468.36$    \\
+BIC                                          & $12475.07$    & $12572.78$    \\
+Log Likelihood                               & $-6203.43$    & $-6218.18$    \\
+Num. obs.                                    & $5047$        & $5047$        \\
+Num. groups: mrbd                            & $231$         & $231$         \\
+Var: mrbd (Intercept)                        & $0.02$        & $0.02$        \\
+Var: Residual                                & $0.66$        & $0.66$        \\
+\hline
+\multicolumn{3}{l}{\scriptsize{*** p < 0.001; ** p < 0.01; * p < 0.05}}
+\end{tabular}
+\caption{}
+\label{table:coefficients}
+\end{center}
+
+}
+
+\end{table}%
+
+Table~\ref{tbl-individual-reg} shows the results of the multilevel
+estimation for justice market preferences. For this variable, the
+intraclass correlation obtained shows that the variation between schools
+corresponds to 4\% of the variation of students' preferences. This means
+that there is low variance between schools and therefore limits the
+possibilities of finding effects at the aggregate level.
 
 Model 1 introduces social meritocratic variables: effort (whether
 efforts are rewarded), deservingness (people get what they deserve), and
@@ -1208,10 +1295,103 @@ According to Raudenbush and Bryk's (2002) estimate of R2, the level 1
 variance of model 5 is 0.11 and the level 2 variance is 0.72. The total
 variance of model 5 according to Snijders and Bosker (2012) is 0.14.
 
+\begin{table}
+
+\caption{\label{tbl-contextual-reg}Contextual effects of multilevel
+regression models}
+
+\centering{
+
+\begin{center}
+\begin{tabular}{l c c}
+\hline
+ & Model 1 & Model 2 \\
+\hline
+Intercept                                & $2.29^{***}$  & $1.42^{***}$  \\
+                                         & $(0.04)$      & $(0.11)$      \\
+Prop. university level at school         & $0.25$        & $0.18$        \\
+                                         & $(0.24)$      & $(0.22)$      \\
+Administrative dependence (Ref.= Public) &               &               \\
+                                         &               &               \\
+\quad Subsidized private                 & $0.01$        & $0.00$        \\
+                                         & $(0.04)$      & $(0.04)$      \\
+\quad Private                            & $-0.07$       & $-0.08$       \\
+                                         & $(0.14)$      & $(0.13)$      \\
+Socioeconomic level (Ref.= Low)          &               &               \\
+                                         &               &               \\
+\quad SES Medium low                     & $0.00$        & $0.02$        \\
+                                         & $(0.05)$      & $(0.05)$      \\
+\quad SES Medium                         & $-0.13$       & $-0.03$       \\
+                                         & $(0.07)$      & $(0.06)$      \\
+\quad SES Medium high                    & $-0.23^{*}$   & $-0.08$       \\
+                                         & $(0.09)$      & $(0.09)$      \\
+\quad SES High                           & $0.09$        & $0.25$        \\
+                                         & $(0.17)$      & $(0.15)$      \\
+Achievement score (Ref.= Low)            &               &               \\
+                                         &               &               \\
+\quad Simce Medium                       & $-0.09^{*}$   & $-0.10^{**}$  \\
+                                         & $(0.04)$      & $(0.04)$      \\
+\quad Simce High                         & $-0.27^{***}$ & $-0.24^{***}$ \\
+                                         & $(0.05)$      & $(0.04)$      \\
+\hline
+Deviance                                 & $12889.80$    & $12306.45$    \\
+Deviance Test (p)                        & $0.00$        & $0.00$        \\
+AIC                                      & $12954.69$    & $12473.31$    \\
+BIC                                      & $13033.01$    & $12636.48$    \\
+Log Likelihood                           & $-6465.35$    & $-6211.66$    \\
+Num. obs.                                & $5047$        & $5047$        \\
+Num. groups: mrbd                        & $231$         & $231$         \\
+Var: mrbd (Intercept)                    & $0.02$        & $0.01$        \\
+Var: Residual                            & $0.74$        & $0.66$        \\
+\hline
+\multicolumn{3}{l}{\scriptsize{*** p < 0.001; ** p < 0.01; * p < 0.05}}
+\end{tabular}
+\caption{}
+\label{table:coefficients}
+\end{center}
+
+}
+
+\end{table}%
+
 \subsubsection{Interactions effects}\label{interactions-effects}
 
-The interaction terms in Table 6 suggest that students' family
-background moderates the relationship between their meritocratic
+\begin{table}
+
+\caption{\label{tbl-interact}Interactions effects}
+
+\centering{
+
+[H]
+\centering
+\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
+\begin{tabular}[t]{>{\raggedright\arraybackslash}p{4cm}>{\centering\arraybackslash}p{1.5cm}>{\centering\arraybackslash}p{1.5cm}>{\centering\arraybackslash}p{1.5cm}>{\centering\arraybackslash}p{1.5cm}>{\centering\arraybackslash}p{1.5cm}}
+\toprule
+\multicolumn{1}{c}{\textbf{ }} & \multicolumn{5}{c}{\textbf{Market Justice Preferences}} \\
+\cmidrule(l{3pt}r{3pt}){2-6}
+Variable & School talent & School effort & Social talent & Social effort & Deservingness\\
+\midrule
+\textbf{University or Postgraduate} & -0.034 & -0.012 & -0.073. & -0.079* & -0.118**\\
+\cmidrule{1-6}
+\textbf{More than 25 books} & -0.015 & -0.046 & -0.029 & -0.081** & -0.035\\
+\cmidrule{1-6}
+\textbf{School SES high} & 0.004 & 0.001 & -0.057. & -0.063* & -0.08**\\
+\cmidrule{1-6}
+\textbf{Prop. university level} & 0.008 & -0.021 & -0.123 & -0.171* & -0.162.\\
+\cmidrule{1-6}
+\textbf{Simce Medium} & 0.001 & 0.032 & -0.037 & -0.041 & -0.082*\\
+\cmidrule{1-6}
+\textbf{Simce High} & -0.016 & 0.008 & -0.043 & -0.063. & -0.087*\\
+\bottomrule
+\multicolumn{6}{l}{\rule{0pt}{1em}\textit{Note: } ***p < 0.001, **p < 0.01, *p < 0.05}\\
+\end{tabular}}
+
+}
+
+\end{table}%
+
+The interaction terms in Table~\ref{tbl-interact} suggest that students'
+family background moderates the relationship between their meritocratic
 perceptions in Chile and their justification of inequality. The
 direction of these effects confirms our initial prediction. Thus, in
 line with our Hypothesis 3, the relationship between social effort and
@@ -1219,15 +1399,14 @@ justification of inequality becomes less positive for those students
 whose parents achieved university or postgraduate education. That is,
 lower-status students (measured by parental education) justify more
 inequality when they adhere more strongly to deservingnessmeritocratic
-perceptions in Chile. We depict this moderating effect in Figure 1. This
-result confirms the enlightenment thesis (see above). The same
-moderating effect is observed for students' family cultural capital: the
-relationship between effort (but not deservingness nor social talent)
-and justification of inequality becomes less positive for students with
-more than 25 books at home. Interestingly, family cultural capital also
-moderates the relationship between meritocratic beliefs at school (as
-measured by students' belief that effort is important to get good
-grades) and justification of inequality.
+perceptions in Chile. This result confirms the enlightenment thesis (see
+above). The same moderating effect is observed for students' family
+cultural capital: the relationship between effort (but not deservingness
+nor social talent) and justification of inequality becomes less positive
+for students with more than 25 books at home. Interestingly, family
+cultural capital also moderates the relationship between meritocratic
+beliefs at school (as measured by students' belief that effort is
+important to get good grades) and justification of inequality.
 
 At the school level, we also observe moderating effects of school status
 and students' meritocratic beliefs over their justification of
@@ -1235,13 +1414,26 @@ inequality. Thus, in line with our Hypothesis 5, high-status schools
 justify less inequality when, on average, their students have a greater
 perception of meritocracy in Chile, as measured by the three indicators
 we used (i.e., effort, deservingness, and talent). Finally, as we stated
-in Hypothesis 7, lowhigh-achieving schools justify more inequality when
+in Hypothesis 7, low-achieving schools justify more inequality when
 their students have, on average, stronger meritocratic beliefs in Chile.
-In Figure 25 we depict this moderating effect of school achievement for
-the relationship between deservingness and justification of inequality.
-We did not observe these moderating effects at the school level for
-students' meritocratic beliefs in the school (i.e., the idea that effort
-or talent are important to get good grades).
+In Figure~\ref{fig-interaction} we depict this moderating effect of
+school achievement for the relationship between deservingness and
+justification of inequality. We did not observe these moderating effects
+at the school level for students' meritocratic beliefs in the school
+(i.e., the idea that effort or talent are important to get good grades).
+
+\begin{figure}
+
+\centering{
+
+\includegraphics{paper_files/figure-pdf/fig-interaction-1.pdf}
+
+}
+
+\caption{\label{fig-interaction}Interaction between deservingness and
+justification of inequality by school SIMCE achievement}
+
+\end{figure}%
 
 \subsection{Conclusion}\label{conclusion}
 
