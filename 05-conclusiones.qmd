@@ -4,6 +4,6 @@ format: pdf
 editor: visual
 ---
 
-## Conclusion
+## Discussion and conclusion
 
 -   Efecto ilustrador de la educación? (esfuerzo -\> redistribución)

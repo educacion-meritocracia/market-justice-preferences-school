@@ -4,14 +4,14 @@ format: pdf
 editor: visual
 ---
 
-## Appendix
+## Appendix {#appendix}
 
 ```{r}
 #| tbl-cap: "Translation of inequality justification items"
 ```
 
 |                                                                                                                    |                                                                                                                                              |
-|--------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+|--------------------------------|---------------------------------------|
 | **English translation**                                                                                            | **Original Spanish**                                                                                                                         |
 | It is just that in Chile people who cna pay have a better education for their children                             | Es justo que en Chile las personas que puedan pagar tengan una mejor educación para sus hijos.                                               |
 | It is just that in Chile people with higher incomes can have better pensions than people with low incomes          | Es justo que en Chile las personas con mayores ingresos puedan tener mejores pensiones que las personas de ingresos más bajos                |

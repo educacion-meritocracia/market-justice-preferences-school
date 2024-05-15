@@ -1,10 +1,12 @@
 ---
 format:
-  pdf:
+  html:
     keep-tex: true
 editor: visual
 bibliography: "input/bib/just-ineq-merit.bib"
+csl: "input/bib/apa6.csl"
 link-citations: true
+mainfont: Times New Roman
 ---
 
 # The socialization of meritocracy and market justice preferences at school
