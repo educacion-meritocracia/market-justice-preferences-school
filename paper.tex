@@ -9,6 +9,7 @@
   numbers=noendperiod]{scrartcl}
 
 \usepackage{amsmath,amssymb}
+\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
@@ -18,10 +19,7 @@
   \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
-\fi
-\usepackage{lmodern}
-\ifPDFTeX\else  
-    % xetex/luatex font selection
+  \setmainfont[]{Times New Roman}
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -77,38 +75,28 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-% definitions for citeproc citations
-\NewDocumentCommand\citeproctext{}{}
-\NewDocumentCommand\citeproc{mm}{%
-  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
-\makeatletter
- % allow citations to break across lines
- \let\@cite@ofmt\@firstofone
- % avoid brackets around text for \cite:
- \def\@biblabel#1{}
- \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
-\makeatother
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
 \newlength{\csllabelwidth}
 \setlength{\csllabelwidth}{3em}
-\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
- {\begin{list}{}{%
-  \setlength{\itemindent}{0pt}
-  \setlength{\leftmargin}{0pt}
-  \setlength{\parsep}{0pt}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
   % turn on hanging indent if param 1 is 1
   \ifodd #1
-   \setlength{\leftmargin}{\cslhangindent}
-   \setlength{\itemindent}{-1\cslhangindent}
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
   \fi
   % set entry spacing
-  \setlength{\itemsep}{#2\baselineskip}}}
- {\end{list}}
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
 \usepackage{calc}
-\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
-\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
-\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 \usepackage{booktabs}
@@ -126,6 +114,10 @@
 \usepackage{makecell}
 \usepackage{xcolor}
 \KOMAoption{captions}{tableheading}
+\makeatletter
+\makeatother
+\makeatletter
+\makeatother
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
@@ -162,16 +154,21 @@
 \newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
 \makeatother
 \makeatletter
-\makeatother
-\makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[many]{tcolorbox}}
+\makeatother
+\makeatletter
+\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
+\makeatother
+\makeatletter
 \makeatother
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-\usepackage{bookmark}
-
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
@@ -183,48 +180,54 @@
   urlcolor={Blue},
   pdfcreator={LaTeX via pandoc}}
 
-\author{}
+\author{Equipo EDUMER}
 \date{}
 
 \begin{document}
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, breakable, enhanced, borderline west={3pt}{0pt}{shadecolor}, interior hidden, sharp corners, boxrule=0pt]}{\end{tcolorbox}}\fi
 
+\hypertarget{the-socialization-of-meritocracy-and-market-justice-preferences-at-school}{%
 \section{The socialization of meritocracy and market justice preferences
 at
-school}\label{the-socialization-of-meritocracy-and-market-justice-preferences-at-school}
+school}\label{the-socialization-of-meritocracy-and-market-justice-preferences-at-school}}
 
-\subsection{Introduction}\label{introduction}
+\hypertarget{introduction}{%
+\subsection{Introduction}\label{introduction}}
 
 Since its origins, educational institutions have been related to the
 idea of social mobility and access to better opportunities. Therefore,
 the consistent evidence of the high level of social reproduction at the
 school level represents a threat to the promise of education and a
-meritocratic system (\citeproc{ref-bourdieu_reproduction_1990}{Bourdieu
-and Passeron 1990}). A large part of the research in this field at an
+meritocratic system
+(\protect\hyperlink{ref-bourdieu_reproduction_1990}{Bourdieu \&
+Passeron, 1990}). A large part of the research in this field at an
 international level has addressed the extent to which the social origin
 of students affects their academic results and their life opportunities
-(\citeproc{ref-vonhippel_test_2019}{Von Hippel and Hamrock 2019}),
-confirming that schools have severe difficulties in closing the gaps of
-origin. Besides this socioeconomic perspective on school opportunities,
-recent research has addressed to what extent inequalities in the school
-context are also influencing students' perceptions, beliefs, and
-attitudes: Are social inequalities perceived at the school context? Are
-they rejected by the students, particularly those who are worst-off in
-socioeconomic terms? Or, Is there evidence at the school level that
-social inequalities are tolerated and even justified?
-(\citeproc{ref-batruch_belief_2022}{Batruch et al. 2022};
-\citeproc{ref-wiederkehr_belief_2015}{Wiederkehr et al. 2015}).
+(\protect\hyperlink{ref-vonhippel_test_2019}{Von Hippel \& Hamrock,
+2019}), confirming that schools have severe difficulties in closing the
+gaps of origin. Besides this socioeconomic perspective on school
+opportunities, recent research has addressed to what extent inequalities
+in the school context are also influencing students' perceptions,
+beliefs, and attitudes: Are social inequalities perceived at the school
+context? Are they rejected by the students, particularly those who are
+worst-off in socioeconomic terms? Or, Is there evidence at the school
+level that social inequalities are tolerated and even justified?
+(\protect\hyperlink{ref-batruch_belief_2022}{Batruch et al., 2022};
+\protect\hyperlink{ref-wiederkehr_belief_2015}{Wiederkehr et al.,
+2015}).
 
 In the present paper, we deal with the justification of social
 inequalities by eighth-grade students in Chile, a country characterized
 by a highly stratified educational system. In particular, we focus on
-market justice preferences (\citeproc{ref-lane_market_1986}{Lane 1986}),
-which refer to the preferences for distributing public goods (as health
-and education) based on criteria such as competition and payment
-capacity. Although from a rational point of view it could be expected an
-opposition to market justice by the underprivileged majority, we argue
-that in a social environment characterized by a promotion of
-meritocratic ideals - as the school system - would lead to the opposite:
-a larger market justice preferences.
+market justice preferences
+(\protect\hyperlink{ref-lane_market_1986}{Lane, 1986}), which refer to
+the preferences for distributing public goods (as health and education)
+based on criteria such as competition and payment capacity. Although
+from a rational point of view it could be expected an opposition to
+market justice by the underprivileged majority, we argue that in a
+social environment characterized by a promotion of meritocratic ideals -
+as the school system - would lead to the opposite: a larger market
+justice preferences.
 
 Given that the school environment has an important focus on performance,
 achievement and acknowledgment, meritocracy has been one of the
@@ -232,19 +235,19 @@ principal concepts used for understanding and even for justifying
 performance differences among students. Meritocracy is a distributive
 system based on the belief that people should be rewarded and promoted
 based on their abilities, knowledge, and achievements
-(\citeproc{ref-young_rise_1958}{Young 1958}). It is often seen as a way
-to create equal opportunities and fairness, as individuals can rise to
-positions of power and influence based on their own merit rather than
-their background or connections. However, some argue that meritocracy
-can actually lead to tolerating or even justifying social inequalities,
-as it can create a hierarchy where those who already have resources and
-advantages are more likely to succeed. In this regard, a great deal of
-academic research about meritocracy delves into the assessment of to
-what extent rewards and privileges in society are related to merit,
-emphasizing the so-called unfulfillable promise of meritocracy
-(\citeproc{ref-mijs_stratified_2016}{Mijs 2016}). Complementing this
-agenda, a second and emerging research area deals with subjective
-aspects of meritocracy, such as perceptions and beliefs.
+(\protect\hyperlink{ref-young_rise_1958}{Young, 1958}). It is often seen
+as a way to create equal opportunities and fairness, as individuals can
+rise to positions of power and influence based on their own merit rather
+than their background or connections. However, some argue that
+meritocracy can actually lead to tolerating or even justifying social
+inequalities, as it can create a hierarchy where those who already have
+resources and advantages are more likely to succeed. In this regard, a
+great deal of academic research about meritocracy delves into the
+assessment of to what extent rewards and privileges in society are
+related to merit, emphasizing the so-called unfulfillable promise of
+meritocracy (\protect\hyperlink{ref-mijs_stratified_2016}{Mijs, 2016}).
+Complementing this agenda, a second and emerging research area deals
+with subjective aspects of meritocracy, such as perceptions and beliefs.
 
 {[}definición de market justice, welfare marketization, (Lindh){]}
 
@@ -254,21 +257,21 @@ calidad (lo público es peor){]}
 
 The perception of meritocracy refers to how individuals view and
 understand the concept of meritocracy in their own society
-(\citeproc{ref-duru-bellat_who_2012}{Duru-Bellat and Tenret 2012};
-\citeproc{ref-castillo_meritocracia_2019}{Castillo et al. 2019}). This
-perception can vary greatly depending on individual experiences, social,
-economic, and cultural background. Some people may see meritocracy as a
-fair and just system that allows anyone to succeed based on their
-abilities and hard work. In contrast, others may view it as a myth or a
-cover for existing power dynamics and inequality, serving to maintain
-and even reinforce inequality
-(\citeproc{ref-lampert_meritocratic_2013}{Lampert 2013};
-\citeproc{ref-mijs_paradox_2021}{Mijs 2021}). Based in this last
-perspective, we argue that individuals with a higher perception of
+(\protect\hyperlink{ref-castillo_meritocracia_2019}{Castillo et al.,
+2019}; \protect\hyperlink{ref-duru-bellat_who_2012}{Duru-Bellat \&
+Tenret, 2012}). This perception can vary greatly depending on individual
+experiences, social, economic, and cultural background. Some people may
+see meritocracy as a fair and just system that allows anyone to succeed
+based on their abilities and hard work. In contrast, others may view it
+as a myth or a cover for existing power dynamics and inequality, serving
+to maintain and even reinforce inequality
+(\protect\hyperlink{ref-lampert_meritocratic_2013}{Lampert, 2013};
+\protect\hyperlink{ref-mijs_paradox_2021}{Mijs, 2021}). Based in this
+last perspective, we argue that individuals with a higher perception of
 meritocracy will show a larger justification of social inequalities, as
 individual achievement would be seen as rewarded and social policies as
-less necessary (\citeproc{ref-batruch_belief_2022}{Batruch et al.
-2022}).
+less necessary (\protect\hyperlink{ref-batruch_belief_2022}{Batruch et
+al., 2022}).
 
 Most of the research that has related meritocratic beliefs to inequality
 justification so far has only considered adults, leaving aside the study
@@ -276,18 +279,19 @@ of how beliefs in this field develop at student age as well as the
 impact of the school context and the family as the main socialization
 agencies. Regarding schools, the way in which they deal with unequal
 conditions of origin has been linked to the \emph{hidden curriculum}
-(\citeproc{ref-chafel_schooling_1997}{Chafel 1997}), whereby students
-learn about distributive norms in society and mechanisms of
+(\protect\hyperlink{ref-chafel_schooling_1997}{Chafel, 1997}), whereby
+students learn about distributive norms in society and mechanisms of
 justification of social differences. Based on recent studies that relate
 school meritocracy to the justification of economic inequalities in the
-adult population (\citeproc{ref-batruch_belief_2022}{Batruch et al.
-2022}; \citeproc{ref-wiederkehr_belief_2015}{Wiederkehr et al. 2015}),
-the central hypothesis guiding this research is that school-age students
-with a higher perception of meritocracy - both at school and at the
-societal level - will show a larger justification of social
-inequalities, as individual achievement would be seen as appropriately
-rewarded and social mechanisms for correcting inequalities as less
-necessary (\citeproc{ref-batruch_belief_2022}{Batruch et al. 2022}).
+adult population (\protect\hyperlink{ref-batruch_belief_2022}{Batruch et
+al., 2022}; \protect\hyperlink{ref-wiederkehr_belief_2015}{Wiederkehr et
+al., 2015}), the central hypothesis guiding this research is that
+school-age students with a higher perception of meritocracy - both at
+school and at the societal level - will show a larger justification of
+social inequalities, as individual achievement would be seen as
+appropriately rewarded and social mechanisms for correcting inequalities
+as less necessary (\protect\hyperlink{ref-batruch_belief_2022}{Batruch
+et al., 2022}).
 
 \textasciitilde{}
 
@@ -312,60 +316,63 @@ socialization agencies that play a significant role in the socialization
 of cultural beliefs by transmitting cultural norms, values, and
 expectations to young people.
 
+\hypertarget{justification-of-inequality}{%
 \subsection{Justification of
-inequality}\label{justification-of-inequality}
+inequality}\label{justification-of-inequality}}
 
 Research on social stratification beliefs, which explore individual
 perceptions of who deserves what and why
-(\citeproc{ref-kluegel_beliefs_1987}{Kluegel and Smith 1987}),
+(\protect\hyperlink{ref-kluegel_beliefs_1987}{Kluegel \& Smith, 1987}),
 highlights that people's explanations and justifications of social
 inequality are closely tied to their judgments of deservingness. The
-influence of ideologies (\citeproc{ref-wegener_dominant_1995}{Wegener
-and Liebig 1995}) and cultural schemas
-(\citeproc{ref-homan_being_2017}{Homan, Valentino, and Weed 2017}) is
-pivotal in shaping these explanations by offering symbolic
-representations that frame societal structures and expectations. While
-significant attention has been paid to wage inequality, income
-distribution, and payment differentials in the literature {[}Castillo
-(\citeproc{ref-castillo_legitimacy_2011}{2011}); Evans et al., 2010;
-Jasso (\citeproc{ref-jasso_how_1999}{1999}) ; Shariff, Wiwad, and Aknin
-(\citeproc{ref-shariff_income_2016}{2016}){]}, there has been less
-examination of public beliefs about which life domains should be
-governed by market relations and even less about children's acceptance
-or rejection of these market principles. This oversight is notable given
-the extensive encroachment of market logic into public goods, welfare
-policy, and social services over the past five decades
-(\citeproc{ref-centeno_arc_2012}{Centeno and Cohen 2012};
-\citeproc{ref-harvey_breve_2015}{Harvey 2015}), affecting areas such as
-pensions, health services, and education. The justification of social
-inequality based on marketype criteria has been conceptualized as the
-individuals' adherence to one specific justice evaluation, the market
-justice, that is, affording legitimacy to the allocation of goods and
-services based on prices and individuals' ability to pay
-(\citeproc{ref-boltanski_new_2005}{Boltanski and Chiapello 2005};
-\citeproc{ref-lane_market_1986}{Lane 1986};
-\citeproc{ref-streeck_citizens_2012}{Streeck 2012}).
+influence of ideologies
+(\protect\hyperlink{ref-wegener_dominant_1995}{Wegener \& Liebig, 1995})
+and cultural schemas (\protect\hyperlink{ref-homan_being_2017}{Homan et
+al., 2017}) is pivotal in shaping these explanations by offering
+symbolic representations that frame societal structures and
+expectations. While significant attention has been paid to wage
+inequality, income distribution, and payment differentials in the
+literature {[}Castillo
+(\protect\hyperlink{ref-castillo_legitimacy_2011}{2011}); Evans et al.,
+2010; Jasso (\protect\hyperlink{ref-jasso_how_1999}{1999}) ; Shariff et
+al. (\protect\hyperlink{ref-shariff_income_2016}{2016}){]}, there has
+been less examination of public beliefs about which life domains should
+be governed by market relations and even less about children's
+acceptance or rejection of these market principles. This oversight is
+notable given the extensive encroachment of market logic into public
+goods, welfare policy, and social services over the past five decades
+(\protect\hyperlink{ref-centeno_arc_2012}{Centeno \& Cohen, 2012};
+\protect\hyperlink{ref-harvey_breve_2015}{Harvey, 2015}), affecting
+areas such as pensions, health services, and education. The
+justification of social inequality based on marketype criteria has been
+conceptualized as the individuals' adherence to one specific justice
+evaluation, the market justice, that is, affording legitimacy to the
+allocation of goods and services based on prices and individuals'
+ability to pay (\protect\hyperlink{ref-boltanski_new_2005}{Boltanski \&
+Chiapello, 2005}; \protect\hyperlink{ref-lane_market_1986}{Lane, 1986};
+\protect\hyperlink{ref-streeck_citizens_2012}{Streeck, 2012}).
 
 Robert E. Lane proposed the underpinnings of market justice, which he
 differentiated from political justice. For him, ``it is the genius of
 the market to stimulate wants without at the same time stimulating a
 sense of deserving more than one gets'' {[}-Lane
-(\citeproc{ref-lane_market_1986}{1986}); p.~384{]}. Following the theory
-of relative deprivation --a social phenomenon arising when individuals
-cannot afford what most others in their environment can (Merton 1950)--
-Lane notes that, in market settings, social comparisons are more likely
-to motivate increased effort rather than feelings of acute injustice
-because individuals attribute outcomes to their actions. Although
-empirical research has shown that, contrary to Lane's observation,
-relative deprivation, even in market settings, produces feelings of
-dissatisfaction, anger, and resentment that might motivate forms of
-collective action such as protests and revolt
-(\citeproc{ref-greitemeyer_subjective_2016}{Greitemeyer and Sagioglou
-2016}; \citeproc{ref-mishra_subjective_2015}{Mishra and Carleton 2015};
-\citeproc{ref-smith_relative_2012}{Smith et al. 2012};
-\citeproc{ref-power_deprivationprotest_2018}{Séamus A. Power 2018};
-\citeproc{ref-power_relative_2020}{Séamus A. Power, Madsen, and Morton
-2020}), the conceptualization of market justice has been since then
+(\protect\hyperlink{ref-lane_market_1986}{1986}); p.~384{]}. Following
+the theory of relative deprivation --a social phenomenon arising when
+individuals cannot afford what most others in their environment can
+(Merton 1950)-- Lane notes that, in market settings, social comparisons
+are more likely to motivate increased effort rather than feelings of
+acute injustice because individuals attribute outcomes to their actions.
+Although empirical research has shown that, contrary to Lane's
+observation, relative deprivation, even in market settings, produces
+feelings of dissatisfaction, anger, and resentment that might motivate
+forms of collective action such as protests and revolt
+(\protect\hyperlink{ref-greitemeyer_subjective_2016}{Greitemeyer \&
+Sagioglou, 2016}; \protect\hyperlink{ref-mishra_subjective_2015}{Mishra
+\& Carleton, 2015};
+\protect\hyperlink{ref-power_deprivationprotest_2018}{Séamus A. Power,
+2018}; \protect\hyperlink{ref-power_relative_2020}{Séamus A. Power et
+al., 2020}; \protect\hyperlink{ref-smith_relative_2012}{Smith et al.,
+2012}), the conceptualization of market justice has been since then
 closely coupled to the merit principle for allocating outcomes: the
 claim that the unequal levels of well-being individuals enjoy ought to
 be, to some extent, a function of their talents and efforts, regardless
@@ -380,9 +387,9 @@ social services.
 
 The management of social services manifests in varying approaches across
 nations, with substantial differences in funding and delivery methods
-(\citeproc{ref-jensen_worlds_2008}{Jensen 2008};
-\citeproc{ref-stoy_worlds_2014}{Stoy 2014}). Nordic countries, for
-example, predominantly employ public agencies to produce and provide
+(\protect\hyperlink{ref-jensen_worlds_2008}{Jensen, 2008};
+\protect\hyperlink{ref-stoy_worlds_2014}{Stoy, 2014}). Nordic countries,
+for example, predominantly employ public agencies to produce and provide
 social services, funding these through collective taxation and offering
 them in kind to the majority of citizens. This system prioritizes
 political justice, placing it above market mechanisms in accessing
@@ -391,88 +398,89 @@ entities and private funding, where service distribution depends mainly
 on individual financial capacity of paying user fees, highlighting the
 influence of market justice in service allocation. The trend toward
 marketization of welfare services has been growing since the 1980s
-(\citeproc{ref-salamon_marketization_1993}{Salamon 1993}), and this
-shift is increasingly evident even in countries where market solutions
-have traditionally had a minor role in social policy
-(\citeproc{ref-sivesind_changing_2017}{Sivesind 2017}).
+(\protect\hyperlink{ref-salamon_marketization_1993}{Salamon, 1993}), and
+this shift is increasingly evident even in countries where market
+solutions have traditionally had a minor role in social policy
+(\protect\hyperlink{ref-sivesind_changing_2017}{Sivesind, 2017}).
 
 The question arises whether adults and children justify unequal access
 to welfare services based on market justice principles. Influenced by
 theories of policy feedback, which suggest that social welfare policies
 can reinforce (positive feedback) or undermine (negative feedback)
 previous policy trajectories
-(\citeproc{ref-fernandez_positive_2013}{Fernandez and Jaime-Castillo
-2013}; \citeproc{ref-pierson_increasing_2000}{Pierson 2000};
-\citeproc{ref-weaver_paths_2010}{Weaver 2010}), citizens' beliefs about
-market justice are likely also shaped by the institutional and social
-contexts they encounter. Indeed, the justification of inequality in
-access to essential services like education and health, based on one's
-ability to pay, shows significant variation across countries, as
-demonstrated by international surveys, although they do not usually
-include children in their samples. For instance, the 2019 International
-Social Survey Program (ISSP) provides insights into how adults perceive
-inequality in accessing welfare services. Figure~\ref{fig-issp}
-illustrates the variation in agreement levels regarding whether it is
-just for individuals with higher incomes to purchase better education or
-healthcare. Notably, in 18 of the 29 countries analyzed, there is a
-greater justification for market inequality in healthcare access than in
-education. Nevertheless, the general sentiment typically ranges from
-`somewhat unjust' to 'neither just nor unjust, with mixed feelings.
+(\protect\hyperlink{ref-fernandez_positive_2013}{Fernandez \&
+Jaime-Castillo, 2013};
+\protect\hyperlink{ref-pierson_increasing_2000}{Pierson, 2000};
+\protect\hyperlink{ref-weaver_paths_2010}{Weaver, 2010}), citizens'
+beliefs about market justice are likely also shaped by the institutional
+and social contexts they encounter. Indeed, the justification of
+inequality in access to essential services like education and health,
+based on one's ability to pay, shows significant variation across
+countries, as demonstrated by international surveys, although they do
+not usually include children in their samples. For instance, the 2019
+International Social Survey Program (ISSP) provides insights into how
+adults perceive inequality in accessing welfare services.
+Figure~\ref{fig-issp} illustrates the variation in agreement levels
+regarding whether it is just for individuals with higher incomes to
+purchase better education or healthcare. Notably, in 18 of the 29
+countries analyzed, there is a greater justification for market
+inequality in healthcare access than in education. Nevertheless, the
+general sentiment typically ranges from `somewhat unjust' to 'neither
+just nor unjust, with mixed feelings.
 
 \begin{figure}
 
-\centering{
-
-\includegraphics{paper_files/figure-pdf/fig-issp-1.pdf}
+{\centering \includegraphics{paper_files/figure-pdf/fig-issp-1.pdf}
 
 }
 
 \caption{\label{fig-issp}Average of market justice preferences by
 country}
 
-\end{figure}%
+\end{figure}
 
 While contemporary policy developments have increasingly embraced the
 marketization of social welfare in areas such as education, pensions,
 and health services, questions about public acceptance of these changes
-persist. Lindh (\citeproc{ref-lindh_public_2015}{2015}) analysis of ISSP
-2009 data from 17 OECD countries reveals a general lack of support for
-market-based distribution of social services, suggesting widespread
-disapproval of market stratification of essential services. This finding
-is corroborated by Soler-Martínez, García-Sánchez, and Willis
-(\citeproc{ref-soler-martinez_concerns_2023}{2023}) research from
-Latinobarómetro 2020 across 18 Latin American countries, where concerns
-about health and education access predominated over income inequality.
-These results indicate that reforms toward welfare marketization are
-typically driven by elite political decisions rather than grassroots
-demand.
+persist. Lindh (\protect\hyperlink{ref-lindh_public_2015}{2015})
+analysis of ISSP 2009 data from 17 OECD countries reveals a general lack
+of support for market-based distribution of social services, suggesting
+widespread disapproval of market stratification of essential services.
+This finding is corroborated by Soler-Martínez et al.
+(\protect\hyperlink{ref-soler-martinez_concerns_2023}{2023}) research
+from Latinobarómetro 2020 across 18 Latin American countries, where
+concerns about health and education access predominated over income
+inequality. These results indicate that reforms toward welfare
+marketization are typically driven by elite political decisions rather
+than grassroots demand.
 
 Despite high-income inequality and limited social mobility in Latin
 America, there is a prevalent belief that individuals are solely
 responsible for their economic outcomes, a view that varies across the
-region (\citeproc{ref-bucca_merit_2016}{Bucca 2016};
-\citeproc{ref-chong_mystery_2008}{Chong and Ñopo 2008};
-\citeproc{ref-torche_intergenerational_2014}{Torche 2014};
-\citeproc{ref-salgado_inequality_2023}{Salgado and Castillo 2023}). The
-reliance on private welfare providers and widespread user fees
-(\citeproc{ref-molyneux_neoliberal_2008}{Molyneux 2008}) adds complexity
-to this context. Yet, research on children's justification of
-market-based inequalities in accessing welfare services remains limited,
-especially in Latin America, highlighting a significant gap in
-understanding how younger generations view market-based access to
+region (\protect\hyperlink{ref-bucca_merit_2016}{Bucca, 2016};
+\protect\hyperlink{ref-chong_mystery_2008}{Chong \& Ñopo, 2008};
+\protect\hyperlink{ref-salgado_inequality_2023}{Salgado \& Castillo,
+2023}; \protect\hyperlink{ref-torche_intergenerational_2014}{Torche,
+2014}). The reliance on private welfare providers and widespread user
+fees (\protect\hyperlink{ref-molyneux_neoliberal_2008}{Molyneux, 2008})
+adds complexity to this context. Yet, research on children's
+justification of market-based inequalities in accessing welfare services
+remains limited, especially in Latin America, highlighting a significant
+gap in understanding how younger generations view market-based access to
 welfare and whether these views are associated with their meritocratic
 beliefs.
 
-\subsection{Meritocracy}\label{meritocracy}
+\hypertarget{meritocracy}{%
+\subsection{Meritocracy}\label{meritocracy}}
 
 The concept of meritocracy frequently appears nowadays when analyzing
 cultural determinants of social inequalities. In general, it is
 mentioned as a value associated with justice, as it would link efforts
 and talents with rewards in an equitable manner. This normative sense is
 quite far from its original formulation by Young
-(\citeproc{ref-young_rise_1958}{1958}) in the satirical novel ``The Rise
-of Meritocracy'', where it ironically represented a mechanism for
-reproducing the inequalities of origin. The meritocratic ideal had
+(\protect\hyperlink{ref-young_rise_1958}{1958}) in the satirical novel
+``The Rise of Meritocracy'', where it ironically represented a mechanism
+for reproducing the inequalities of origin. The meritocratic ideal had
 remained relatively unchallenged until a series of recent publications
 turned into its potential consequences for maintaining social
 inequality. Perhaps one of the most recent sources in this line is
@@ -482,26 +490,26 @@ that do not guarantee equal opportunities and that generate a feeling of
 scarce recognition and appreciation of those who receive lesser rewards:
 ``In society's eyes, and perhaps also their own, their work no longer
 signified a valued contribution to the common good.''
-(\citeproc{ref-sandel_tyranny_2020}{Sandel 2020}, pp.).
+(\protect\hyperlink{ref-sandel_tyranny_2020}{Sandel, 2020}, pp.).
 
 Empirical research on meritocracy has increased along with the
 philosophical-normative discussion on meritocracy in recent years.
 Particularly from a sociological perspective, meritocracy has been used
 in research on social mobility to characterize societies with low
 mobility that threaten the meritocratic ideal
-(\citeproc{ref-goldthorpe_myth_2003}{Goldthorpe 2003}). More recently,
-sociology and social psychology research has attended to the subjective
-aspects vis-a-vis beliefs in meritocracy. The label of beliefs in this
-realm covers a series of areas, such as attitudes, perceptions, and
-preferences (Castillo et al), whereby most of the link this subjective
-dimensions to individual socio-structural factors and context-level
-determinants. For instance, some studies have analyzed how those with
-greater privileges believe more in meritocracy (Reynolds \& Chan 2014),
-how greater economic inequality increases meritocratic beliefs
-(\citeproc{ref-mijs_paradox_2021}{Mijs 2021}), and how larger inequality
-affects meritocratic beliefs
-(\citeproc{ref-morris_representing_2022}{Morris et al. 2022}). Based on
-these findings, a research agenda has been reinforced on the
+(\protect\hyperlink{ref-goldthorpe_myth_2003}{Goldthorpe, 2003}). More
+recently, sociology and social psychology research has attended to the
+subjective aspects vis-a-vis beliefs in meritocracy. The label of
+beliefs in this realm covers a series of areas, such as attitudes,
+perceptions, and preferences (Castillo et al), whereby most of the link
+this subjective dimensions to individual socio-structural factors and
+context-level determinants. For instance, some studies have analyzed how
+those with greater privileges believe more in meritocracy (Reynolds \&
+Chan 2014), how greater economic inequality increases meritocratic
+beliefs (\protect\hyperlink{ref-mijs_paradox_2021}{Mijs, 2021}), and how
+larger inequality affects meritocratic beliefs
+(\protect\hyperlink{ref-morris_representing_2022}{Morris et al., 2022}).
+Based on these findings, a research agenda has been reinforced on the
 legitimizing role of meritocracy, in line with previous studies using
 the concept of a just world (Lerner, Dalbert) and the theory of system
 justification (Jost \& Major).
@@ -510,117 +518,122 @@ How do meritocratic beliefs legitimize inequalities? Empirical studies
 have used experiments and surveys to address this question. For
 instance, the evidence suggests that just world beliefs correlate
 negatively with support for redistributive compensation systems
-(\citeproc{ref-frank_performance_2015}{Frank, Wertenbroch, and Maddux
-2015}). Conversely, individuals tend to support redistribution when they
-believe that the disadvantaged lack the opportunities to succeed
-(\citeproc{ref-evans_strong_2018}{Evans and Kelley 2018}). Almås,
-Cappelen, and Tungodden (\citeproc{ref-almas_cutthroat_2020}{2020})
-found that in a relatively unequal society (the United States), the
-highly educated accept inequality significantly more than the less
-educated because they perceive inequality as justifiable owing to
-differences in productivity (i.e., merit), whereas in a relatively equal
-society (Norway), the less educated accept inequality more, but not
+(\protect\hyperlink{ref-frank_performance_2015}{Frank et al., 2015}).
+Conversely, individuals tend to support redistribution when they believe
+that the disadvantaged lack the opportunities to succeed
+(\protect\hyperlink{ref-evans_strong_2018}{Evans \& Kelley, 2018}).
+Almås et al. (\protect\hyperlink{ref-almas_cutthroat_2020}{2020}) found
+that in a relatively unequal society (the United States), the highly
+educated accept inequality significantly more than the less educated
+because they perceive inequality as justifiable owing to differences in
+productivity (i.e., merit), whereas in a relatively equal society
+(Norway), the less educated accept inequality more, but not
 significantly more than the highly educated because meritocratic values
-are less prevalent. Barr and Miller
-(\citeproc{ref-barr_effect_2020}{2020}) also addressed this triple
-interaction between the level of inequality in a society, the individual
-level of education, and the perceived origin of the disparity (either by
-luck or effort) to determine the extent to which inequality is accepted.
-They found that the interaction's mechanism varies depending on the
-compared societies. Finally, García-Sánchez et al.
-(\citeproc{ref-garcia-sanchez_attitudes_2020}{2020}), using data for 41
-countries from the International Social Survey Programme (ISSP), found
-that the perceived size of the income gap correlated positively with
-support for progressive taxation. Still, this association was weaker
-among those who endorsed meritocratic and equal opportunity beliefs. In
-the same line, experimental research by Durante and Putterman
-(\citeproc{ref-durante_preferences_2009}{2009}) subjects support less
-redistribution when the initial distribution is determined according to
-task performance.
+are less prevalent. Barr \& Miller
+(\protect\hyperlink{ref-barr_effect_2020}{2020}) also addressed this
+triple interaction between the level of inequality in a society, the
+individual level of education, and the perceived origin of the disparity
+(either by luck or effort) to determine the extent to which inequality
+is accepted. They found that the interaction's mechanism varies
+depending on the compared societies. Finally, García-Sánchez et al.
+(\protect\hyperlink{ref-garcia-sanchez_attitudes_2020}{2020}), using
+data for 41 countries from the International Social Survey Programme
+(ISSP), found that the perceived size of the income gap correlated
+positively with support for progressive taxation. Still, this
+association was weaker among those who endorsed meritocratic and equal
+opportunity beliefs. In the same line, experimental research by Durante
+\& Putterman (\protect\hyperlink{ref-durante_preferences_2009}{2009})
+subjects support less redistribution when the initial distribution is
+determined according to task performance.
 
 Research about meritocratic beliefs at school age is rather scarce,
 leaving a wide research gap as schools are one of the primary
 socialization institutions where achievement based on merit explains
-success (\citeproc{ref-erivwo_meritocracy_2021}{Erivwo et al. 2021}).
-Nevertheless, it is possible to find some initial works focused on the
-area of distributive justice at school that are closely related to
-meritocratic beliefs, as the ones by Resh and Sabbagh (quotes). Using
+success (\protect\hyperlink{ref-erivwo_meritocracy_2021}{Erivwo et al.,
+2021}). Nevertheless, it is possible to find some initial works focused
+on the area of distributive justice at school that are closely related
+to meritocratic beliefs, as the ones by Resh and Sabbagh (quotes). Using
 justice in grade obtention as a measure of distributive justice and
 meritocracy (Sabbagh et al 2006), they find for instance that a larger
 sense of distributive justice about grades is associated to higher
-socio-economic status (\citeproc{ref-resh_sense_2010}{Resh 2010}), have
-a positive effect on liberal democratic orientation and on trust in
-people and in formal institutions (\citeproc{ref-resh_sense_2014}{Resh
-and Sabbagh 2014}), and tend to refrain from violence and to engage to a
-greater extent in extra-curricular school activity and community
-volunteering (\citeproc{ref-resh_sense_2017}{Resh and Sabbagh 2017}).
+socio-economic status (\protect\hyperlink{ref-resh_sense_2010}{Resh,
+2010}), have a positive effect on liberal democratic orientation and on
+trust in people and in formal institutions
+(\protect\hyperlink{ref-resh_sense_2014}{Resh \& Sabbagh, 2014}), and
+tend to refrain from violence and to engage to a greater extent in
+extra-curricular school activity and community volunteering
+(\protect\hyperlink{ref-resh_sense_2017}{Resh \& Sabbagh, 2017}).
 
+\hypertarget{childrens-judgments-of-inequality-schools-and-family-background}{%
 \subsection{Children's judgments of inequality, schools, and family
-background}\label{childrens-judgments-of-inequality-schools-and-family-background}
+background}\label{childrens-judgments-of-inequality-schools-and-family-background}}
 
 Research indicates various socialization practices at families and
 schools during childhood and adolescence that impact dispositional and
 behavioral tendencies concerning justifications of inequality in adult
 life. The differences in economic understanding across age groups are
 consistent with research on cognitive development
-(\citeproc{ref-choudhury_social_2006}{Choudhury, Blakemore, and Charman
-2006}). Adolescents with mature socio-cognitive abilities tend to
-express stronger preferences for fairness than infants and children
-(\citeproc{ref-wynn_not_2018}{Wynn et al. 2018}). As children grow
-older, they become more likely to behave fairly, with their
+(\protect\hyperlink{ref-choudhury_social_2006}{Choudhury et al., 2006}).
+Adolescents with mature socio-cognitive abilities tend to express
+stronger preferences for fairness than infants and children
+(\protect\hyperlink{ref-wynn_not_2018}{Wynn et al., 2018}). As children
+grow older, they become more likely to behave fairly, with their
 early-emerging strict egalitarianism being replaced by an increasing
 endorsement of fairness principles and engagement in collaborative
-activities (\citeproc{ref-huppert_development_2019}{Huppert et al.
-2019}; \citeproc{ref-mcauliffe_developmental_2017}{McAuliffe et al.
+activities (\protect\hyperlink{ref-huppert_development_2019}{Huppert et
+al., 2019};
+\protect\hyperlink{ref-mcauliffe_developmental_2017}{McAuliffe et al.,
 2017}). In these activities, their fairness views consider individual
 contributions, merits, and circumstances
-(\citeproc{ref-almas_fairness_2010}{Almås et al. 2010};
-\citeproc{ref-huppert_development_2019}{Huppert et al. 2019};
-\citeproc{ref-sigelman_development_1991}{Sigelman and Waitzman 1991}).
-Engelmann and Tomasello (\citeproc{ref-engelmann_children_2019}{2019})
-claim that children's sense of fairness emerges at three years old, and
-we can observe it in collaborative activities, where they accept
-inequality if the procedure gives everyone an equal chance. Therefore,
-children at this age respond to unequal distributions based on
-interpersonal concerns, as they already demand equal respect. In any
-case, between 3 and 8 years of age, inequitable and anti-meritorious
-allocations are evaluated more negatively, but equitable and meritorious
-allocations are not evaluated more positively
-(\citeproc{ref-elenbaas_unfairness_2019}{Elenbaas 2019}).
+(\protect\hyperlink{ref-almas_fairness_2010}{Almås et al., 2010};
+\protect\hyperlink{ref-huppert_development_2019}{Huppert et al., 2019};
+\protect\hyperlink{ref-sigelman_development_1991}{Sigelman \& Waitzman,
+1991}). Engelmann \& Tomasello
+(\protect\hyperlink{ref-engelmann_children_2019}{2019}) claim that
+children's sense of fairness emerges at three years old, and we can
+observe it in collaborative activities, where they accept inequality if
+the procedure gives everyone an equal chance. Therefore, children at
+this age respond to unequal distributions based on interpersonal
+concerns, as they already demand equal respect. In any case, between 3
+and 8 years of age, inequitable and anti-meritorious allocations are
+evaluated more negatively, but equitable and meritorious allocations are
+not evaluated more positively
+(\protect\hyperlink{ref-elenbaas_unfairness_2019}{Elenbaas, 2019}).
 
 Some research shows that the social environment in which children
 develop, such as family and school, is associated with their prosocial
 behaviors by playing an essential role in the transmission of equity
-norms (\citeproc{ref-schunk_fairness_2023}{Schunk and Zipperle 2023};
-\citeproc{ref-kosse_prosociality_2020}{Kosse and Tincani 2020}). In
-fact, schools contribute to institutionalizing and reproducing
-inequality by promoting values, norms, practices, and languages familiar
-to higher-class families because the dominant group's culture shapes
-educational institutions
-(\citeproc{ref-bourdieu_reproduction_1990}{Bourdieu and Passeron 1990}).
-Middle- and upper-class students are better equipped to face academic
-challenges and are more familiar with academic expectations
-(\citeproc{ref-mikus_children_2020}{Mikus, Tieben, and Schober 2020}).
-Such familiarity represents cultural capital in educational contexts
-because higher-status students come to school ready to meet these
-expectations and reap the benefits (\citeproc{ref-jack_no_2016}{Jack
-2016}; \citeproc{ref-khan_privilege_2011}{Khan 2011}). Conversely,
+norms (\protect\hyperlink{ref-kosse_prosociality_2020}{Kosse \& Tincani,
+2020}; \protect\hyperlink{ref-schunk_fairness_2023}{Schunk \& Zipperle,
+2023}). In fact, schools contribute to institutionalizing and
+reproducing inequality by promoting values, norms, practices, and
+languages familiar to higher-class families because the dominant group's
+culture shapes educational institutions
+(\protect\hyperlink{ref-bourdieu_reproduction_1990}{Bourdieu \&
+Passeron, 1990}). Middle- and upper-class students are better equipped
+to face academic challenges and are more familiar with academic
+expectations (\protect\hyperlink{ref-mikus_children_2020}{Mikus et al.,
+2020}). Such familiarity represents cultural capital in educational
+contexts because higher-status students come to school ready to meet
+these expectations and reap the benefits
+(\protect\hyperlink{ref-jack_no_2016}{Jack, 2016};
+\protect\hyperlink{ref-khan_privilege_2011}{Khan, 2011}). Conversely,
 lower-status children lacking cultural capital must catch up while
 experiencing inequitable comparisons
-(\citeproc{ref-goudeau_hidden_2017}{Goudeau and Croizet 2017}).
+(\protect\hyperlink{ref-goudeau_hidden_2017}{Goudeau \& Croizet, 2017}).
 Additionally, academic achievement is treated as the outcome of
 dispositional factors (e.g., pupils' efforts and talents or lack of
 them) rather than the result of differential access to critical
 resources. Due to the meritocratic frame schools encourage, both low-
 and high-status individuals believe that students' success or failure is
 not due to their family background but rather to differences in efforts
-and talents (\citeproc{ref-darnon_where_2018}{Darnon et al. 2018}). In
-this sense, we believe that the perception of meritocracy can influence
-students' judgments about market justice preferences. Furthermore, we
-believe there is a difference between students' perceptions of
-meritocracy based on their own experience in school and what they
-perceive in society at large. Consistently, our first two hypotheses
-are:
+and talents (\protect\hyperlink{ref-darnon_where_2018}{Darnon et al.,
+2018}). In this sense, we believe that the perception of meritocracy can
+influence students' judgments about market justice preferences.
+Furthermore, we believe there is a difference between students'
+perceptions of meritocracy based on their own experience in school and
+what they perceive in society at large. Consistently, our first two
+hypotheses are:
 
 H1a: Students who perceive that there is more meritocracy at school will
 show larger market justice preferences
@@ -630,38 +643,38 @@ will show larger market justice preferences
 
 Family background and family socialization practices also contribute to
 children's and adolescent's market justice preferences. For example,
-Almås et al. (\citeproc{ref-almas_fairness_2017}{2017}) found that
-adolescents from low-socioeconomic-status families are likelier to have
-an egalitarian fairness view and consider an equal distribution as fair
-in a situation with unequal merits. The authors speculate that
+Almås et al. (\protect\hyperlink{ref-almas_fairness_2017}{2017}) found
+that adolescents from low-socioeconomic-status families are likelier to
+have an egalitarian fairness view and consider an equal distribution as
+fair in a situation with unequal merits. The authors speculate that
 differences in socialization practices across status groups might bring
 about, to a great extent, the fairness views of children and adolescents
 because social status seems to interact with these evaluations (e.g.,
-\citeproc{ref-hvidberg_social_2023}{Hvidberg, Kreiner, and Stantcheva
-2023}).
+\protect\hyperlink{ref-hvidberg_social_2023}{Hvidberg et al., 2023}).
 
 The classic work of Kohn showed that middle-class parents value the
 expression of internal states and emotions, such as self-control,
 curiosity, happiness, and consideration, while working-class parents
 promote deference, obedience, and conformity to authority
-(\citeproc{ref-kohn_social_1963}{Kohn 1963};
-\citeproc{ref-kohn_class_1969}{Kohn and Schooler 1969}). Although
-parents from all social backgrounds encourage individualism in their
-children, this shared norm translates into different forms in high and
-low social classes (1999). Acemoglu
-(\citeproc{ref-acemoglu_obedience_2021}{2021}) claimed that the values
-families impart to their children interact with social mobility. Because
-obedience is a valuable characteristic for employers, in low-wage and
-social mobility environments, low-income families impart values of
-obedience to their children to prevent disadvantaging them in labor
-markets. On the one hand, children from privileged families are
+(\protect\hyperlink{ref-kohn_social_1963}{Kohn, 1963};
+\protect\hyperlink{ref-kohn_class_1969}{Kohn \& Schooler, 1969}).
+Although parents from all social backgrounds encourage individualism in
+their children, this shared norm translates into different forms in high
+and low social classes (1999). Acemoglu
+(\protect\hyperlink{ref-acemoglu_obedience_2021}{2021}) claimed that the
+values families impart to their children interact with social mobility.
+Because obedience is a valuable characteristic for employers, in
+low-wage and social mobility environments, low-income families impart
+values of obedience to their children to prevent disadvantaging them in
+labor markets. On the one hand, children from privileged families are
 socialized to adopt a clear conception of individualism that highlights
 their internal states, independence, and idiosyncrasies. In contrast,
 children from disadvantaged families are socialized to support a more
 balanced view of individualism that considers personal characteristics
 as resources to overcome collective impediments on the path to upward
-mobility (\citeproc{ref-iacoviello_collectivism_2019}{Iacoviello and
-Lorenzi-Cioldi 2019}). In this way, we believe that there are
+mobility
+(\protect\hyperlink{ref-iacoviello_collectivism_2019}{Iacoviello \&
+Lorenzi-Cioldi, 2019}). In this way, we believe that there are
 differences in the socialization of values according to socioeconomic
 differences that could influence market justice preferences and,
 therefore, we propose the following hypothesis:
@@ -672,16 +685,17 @@ market justice preferences.
 Recent empirical research has demonstrated that the institutional design
 of schools, coupled with the meritocratic ideology it fosters,
 significantly influences children's and adolescents' views on inequality
-and deservingness. For example, Jonsson and Beach
-(\citeproc{ref-jonsson_institutional_2015}{2015}) study revealed that
-higher-status adolescents in Sweden tend to perpetuate social class
-stereotypes while describing the vocational and academic tracks.
-Academic track students are depicted as wealthy, intelligent, ambitious,
-and diligent, while vocational track students are characterized as poor,
-unambitious, unintelligent, and lackadaisical. These stereotypes help
-individuals maintain a sense of superiority over others and legitimize
-the prevailing social hierarchies and economic disparities
-(\citeproc{ref-jost_attitudinal_2000}{Jost and Burgess 2000})
+and deservingness. For example, Jonsson \& Beach
+(\protect\hyperlink{ref-jonsson_institutional_2015}{2015}) study
+revealed that higher-status adolescents in Sweden tend to perpetuate
+social class stereotypes while describing the vocational and academic
+tracks. Academic track students are depicted as wealthy, intelligent,
+ambitious, and diligent, while vocational track students are
+characterized as poor, unambitious, unintelligent, and lackadaisical.
+These stereotypes help individuals maintain a sense of superiority over
+others and legitimize the prevailing social hierarchies and economic
+disparities (\protect\hyperlink{ref-jost_attitudinal_2000}{Jost \&
+Burgess, 2000})
 
 H3: Students from schools of higher social status will show larger
 market justice preferences.
@@ -700,71 +714,79 @@ the effect of school status on market justice preferences.
 H7: The perception of meritocracy in school and society will moderate
 the effect of school academic achievement on market justice preferences.
 
-\subsubsection{Summary of hypotheses}\label{summary-of-hypotheses}
+\hypertarget{summary-of-hypotheses}{%
+\subsubsection{Summary of hypotheses}\label{summary-of-hypotheses}}
 
 \begin{figure}
 
-\centering{
-
-\includegraphics[width=6.25in,height=\textheight]{input/img/hypotheses.png}
+{\centering \includegraphics[width=6.25in,height=\textheight]{input/img/hypotheses.png}
 
 }
 
 \caption{\label{fig-hypotheses}Summary of hypotheses}
 
-\end{figure}%
+\end{figure}
 
-\subsection{Methods}\label{methods}
+\hypertarget{methods}{%
+\subsection{Methods}\label{methods}}
 
-\subsubsection{Data}\label{data}
+\hypertarget{data}{%
+\subsubsection{Data}\label{data}}
 
-The main data source for the analysis is the First Study of Citizenship
-Education in Chile, carried out by the Education Quality Agency of the
-Ministry of Education. The application date was November 9, 2017. The
-target population of this study is Eighth-grade students from 242
-schools. In the data, there are 8,589 students and 6,770 parents. This
-database was analyzed with the R package ``ResponsePatterns'' to detect
-possible repetitive and ``careless'' response patterns and thus
-contribute to a higher quality of research data (Gottfried, et al 2022).
-Responses from 171 students and 79 parents were removed, which, when
-merged, gave a total of 6,270 valid cases.
+The main data source corresponds to the First Study of Civic Education
+in Chile, conducted by the Agency for Quality Education of the Ministry
+of Education in 2017. This database is based on the administration of a
+civic knowledge test to students and questionnaires to various members
+of the educational community. The target population consists of
+8th-grade students in 242 schools across the country. Initially, the
+database comprises 8,589 student observations and 6,770 parent
+observations. However, considering the survey's unit of analysis and to
+ensure higher data quality, 171 student cases and 79 parent cases
+exhibiting repetitive and careless response patterns were removed
+(Gottfried et al., 2022). Additionally, data from the System for
+Measuring the Quality of Education (SIMCE) conducted by the Ministry of
+Education for the year 2017 are employed, providing school-level
+information such as administrative dependence, socioeconomic
+classification, and results obtained in standardized mathematics and
+language tests. After variable processing and removal of missing cases,
+the final database for this study includes a two-level stratified
+sample, composed of 5,047 students and parents (level 1) nested within
+231 schools (level 2).
 
-The analysis of school variables includes data from the Ministry of
-Education's SIMCE 2017 database. This database contains information at
-the school level, such as the administrative dependency, its
-socioeconomic classification, and the achievement scores obtained in the
-mathematics and language census tests. It is available for free use on
-the MINEDUC {[}web page{]}.
+\hypertarget{variables}{%
+\subsubsection{Variables}\label{variables}}
 
-After eliminating missing cases, the final sample used in the analysis
-was based on 5,047 students and parents of 231 schools for the dependent
-variable of access to social services.
+\textbf{\emph{Individual level}}
 
-\subsubsection{Variables}\label{variables}
+\textbf{Justification of Inequality}: The dependent variable in this
+study is the justification of social inequality in specific policy
+domains, namely health, education, and pensions. This construct is
+measured through three variables addressing the degree of justification
+regarding whether access to social services in these domains should be
+income conditional. Justification of inequality in health is measured by
+the item ``Is it fair in Chile that people with higher incomes can
+access better healthcare than those with lower incomes,'' while in
+education, it is measured using the statement ``Is it fair in Chile that
+people who can afford it have better education for their children.'' In
+the case of pensions, it is measured through the item ``Is it fair in
+Chile that people with higher incomes can have better pensions than
+those with lower incomes.'' In all cases, respondents declare their
+preferences on a Likert scale ranging from ``completely disagree'' (1)
+to ``completely agree'' (4). Additionally, we include a summarized
+indicator of preferences for market justice (REF), measured by an
+average index across these items (α = 0.86), with values ranging from 1
+to 4, where higher values represent greater preferences for market
+justice (see Table~\ref{tbl-desc-dependientes}).
 
-\textbf{Dependent variables}
-
-This study has three dependent variables related to the justification of
-social inequality in specific policy domains. The first asks whether
-access to social services should be conditional on income, i,.e., ``It
-is just that in Chile people who can pay have a better education for
-their children''. Students rated their preferences using the following
-responses: ``strongly disagree'', ``Disagree'', ``Agree'', and
-''strongly agree''. An average index is built with these items
-(Cronbach's Alpha = 0,86). (Apéndice: items en español y su
-correspondiente traducción al inglés)
-
-Table~\ref{tbl-desc-dependientes} shows the items used, their response
-categories, and their frequencies.
-
+\hypertarget{tbl-desc-dependientes}{}
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.4286}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2551}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2143}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1020}}@{}}
-\caption{Dependent
-variables}\label{tbl-desc-dependientes}\tabularnewline
-\toprule\noalign{}
+\caption{\label{tbl-desc-dependientes}Dependent
+variables}\tabularnewline
+\toprule()
 \begin{minipage}[b]{\linewidth}\raggedright
 Label
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -774,9 +796,9 @@ Freqs (\% of Valid)
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Valid
 \end{minipage} \\
-\midrule\noalign{}
+\midrule()
 \endfirsthead
-\toprule\noalign{}
+\toprule()
 \begin{minipage}[b]{\linewidth}\raggedright
 Label
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -786,10 +808,8 @@ Freqs (\% of Valid)
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Valid
 \end{minipage} \\
-\midrule\noalign{}
+\midrule()
 \endhead
-\bottomrule\noalign{}
-\endlastfoot
 It is just that in Chile people with higher incomes can have better
 pensions than people with low incomes &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -847,38 +867,38 @@ IQR (CV) : 1.7 (0.4)\strut
 6077\\
 (96.9\%)\strut
 \end{minipage} \\
+\bottomrule()
 \end{longtable}
 
-\textbf{Independent variables}
+\textbf{Perception of Meritocracy}: The main independent variable refers
+to the perception of meritocracy, operationalized through five items
+addressing the perception of rewards based on talent and intelligence at
+both the school and societal levels. At the school level, students
+respond to whether ``Intelligence is important for getting good grades''
+and ``Effort is important for getting good grades.'' At the societal
+level, students respond to the following questions: ``In Chile, people
+are rewarded for their effort,'' ``In Chile, people get what they
+deserve,'' and ``In Chile, people are rewarded for their intelligence
+and skills.'' Each item was answered on a four-point Likert scale
+ranging from ``completely disagree'' (1) to ``completely agree'' (4).
 
-For the primary independent variable, the perception of meritocracy,
-five items address the perception of rewards according to effort and
-intelligence at the school and societal levels. At the school level,
-students answer whether ``Intelligence is important to get good grades''
-and ``Effort is important to get good grades''. At the societal level,
-students respond to the following questions: ``In Chile, people are
-rewarded for their efforts'', ``In Chile, people get what they
-deserve'', and ``In Chile, people are rewarded for their intelligence
-and skills''. Each item was answered on a four-point scale ranging from
-``Strongly disagree'' to ``Strongly agree''.
+The analysis includes several individual control variables that have
+been identified as influential in recent research. These variables
+encompass family socioeconomic status, assessed by the highest level of
+parental education, the number of books in the household, and an index
+measuring access to technologies, all aimed at mitigating compositional
+effects (REFS). Table~\ref{tbl-desc-independent} shows the independent
+variables used, their response categories and their frequencies.
 
-The rest of the independent variables are divided into individual and
-school levels. At the individual level, family socioeconomic status was
-measured by the parents' highest educational level and the number of
-books at home. Likewise, an index of access to technology includes the
-number of computers, tablets, and cell phones at home, as well as
-whether there is an Internet connection.
-Table~\ref{tbl-desc-independent} shows the items used, their response
-categories, and their frequency.
-
+\hypertarget{tbl-desc-independent}{}
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3925}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3084}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1963}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1028}}@{}}
-\caption{Independent
-variables}\label{tbl-desc-independent}\tabularnewline
-\toprule\noalign{}
+\caption{\label{tbl-desc-independent}Independent
+variables}\tabularnewline
+\toprule()
 \begin{minipage}[b]{\linewidth}\raggedright
 Label
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -888,9 +908,9 @@ Freqs (\% of Valid)
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Valid
 \end{minipage} \\
-\midrule\noalign{}
+\midrule()
 \endfirsthead
-\toprule\noalign{}
+\toprule()
 \begin{minipage}[b]{\linewidth}\raggedright
 Label
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -900,10 +920,8 @@ Freqs (\% of Valid)
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Valid
 \end{minipage} \\
-\midrule\noalign{}
+\midrule()
 \endhead
-\bottomrule\noalign{}
-\endlastfoot
 Intelligence is important to get good grades &
 \begin{minipage}[t]{\linewidth}\raggedright
 1. Strongly disagree\\
@@ -1015,22 +1033,31 @@ IQR (CV) : 3 (0.3)\strut
 6272\\
 (100.0\%)\strut
 \end{minipage} \\
+\bottomrule()
 \end{longtable}
 
-The school-level variables are the administrative dependency of the
-school, the socioeconomic classification made by the Ministry of
-Education, the level of performance in the SIMCE test of the school, and
-the proportion of parents with university or postgraduate degrees.
-Table~\ref{tbl-desc-school} shows the items used, response categories,
-and frequency.
+\textbf{\emph{Contextual level}}
 
+This study examines four variables at the school level. Firstly, we
+assess the administrative dependence of schools, categorized as
+``Public,'' ``Subsidized Private,'' or ``Private.'' Secondly, we
+consider the socioeconomic classification of schools, determined by the
+Ministry of Education and measured on an ordinal scale with five
+categories ranging from ``low'' (1) to ``high'' (5). Thirdly, we
+evaluate the performance level of schools in SIMCE standardized tests,
+categorized as ``low,'' ``medium,'' or ``high.'' Lastly, we analyze the
+proportion of parents with university or postgraduate education level at
+each school. The items used, response categories, and their frequencies
+are detailed in Table~\ref{tbl-desc-school}.
+
+\hypertarget{tbl-desc-school}{}
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.4040}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2626}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2222}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1111}}@{}}
-\caption{School context variables}\label{tbl-desc-school}\tabularnewline
-\toprule\noalign{}
+\caption{\label{tbl-desc-school}School context variables}\tabularnewline
+\toprule()
 \begin{minipage}[b]{\linewidth}\raggedright
 Label
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -1040,9 +1067,9 @@ Freqs (\% of Valid)
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Valid
 \end{minipage} \\
-\midrule\noalign{}
+\midrule()
 \endfirsthead
-\toprule\noalign{}
+\toprule()
 \begin{minipage}[b]{\linewidth}\raggedright
 Label
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -1052,10 +1079,8 @@ Freqs (\% of Valid)
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Valid
 \end{minipage} \\
-\midrule\noalign{}
+\midrule()
 \endhead
-\bottomrule\noalign{}
-\endlastfoot
 Proportion of parents with university level by school &
 \begin{minipage}[t]{\linewidth}\raggedright
 Mean (sd) : 0.2 (0.2)\\
@@ -1109,16 +1134,22 @@ Socioeconomic level of school &
 6272\\
 (100.0\%)\strut
 \end{minipage} \\
+\bottomrule()
 \end{longtable}
 
-\subsubsection{Methods}\label{methods-1}
+\hypertarget{methods-1}{%
+\subsubsection{Methods}\label{methods-1}}
 
-The data has a hierarchical structure of students nested in schools, so
-the model estimation is performed in a multilevel (random effects)
-framework. This modeling approach lets us correctly estimate individual
-and contextual effects in a single model. We estimate cumulative link
-mixed models for the ordinal dependent variables, whereas we use linear
-mixed effects models for the average index of inequality justification.
+Given the hierarchical structure of the data, with students nested
+within schools, model estimation is performed within a multilevel
+framework. These models are appropriate for capturing both individual
+and contextual effects in a single analysis, allowing for the estimation
+of fixed effects between groups and random effects that vary from one
+group to another (\protect\hyperlink{ref-bell_fixed_2019}{Bell et al.,
+2019}; \protect\hyperlink{ref-hox_multilevel_2010}{Hox et al., 2010}).
+Cumulative link mixed models were employed for the ordinal dependent
+variables, while linear mixed-effects models were applied for the
+average market justice preference index.
 
 The hypotheses of this research were pre-registered in the Open Science
 Framework platform of the Center for Open Science (OSF), the access to
@@ -1127,22 +1158,22 @@ the document is available at this
 analysis of this research was performed using the free software R
 version 4.1.3.
 
-\subsection{Analysis}\label{analysis}
+\hypertarget{analysis}{%
+\subsection{Analysis}\label{analysis}}
 
-\subsubsection{Descriptive analysis}\label{descriptive-analysis}
+\hypertarget{descriptive-analysis}{%
+\subsubsection{Descriptive analysis}\label{descriptive-analysis}}
 
 \begin{figure}
 
-\centering{
-
-\includegraphics{paper_files/figure-pdf/fig-bivariate-1.pdf}
+{\centering \includegraphics{paper_files/figure-pdf/fig-bivariate-1.pdf}
 
 }
 
 \caption{\label{fig-bivariate}Market justice preferences in education,
 health and pensions by social and school meritocracy}
 
-\end{figure}%
+\end{figure}
 
 Figure~\ref{fig-bivariate} shows a series of graphs depicting the
 association between the variables of market justice preferences - in
@@ -1164,9 +1195,10 @@ graph does not show a clear trend in the relationship between the
 perception that effort is essential to obtain good grades and market
 justice preferences.
 
+\hypertarget{cumulative-link-mixed-models-for-the-justification-of-inequality-in-education-health-and-pensions}{%
 \subsubsection{Cumulative link mixed models for the Justification of
 inequality in education, health and
-pensions}\label{cumulative-link-mixed-models-for-the-justification-of-inequality-in-education-health-and-pensions}
+pensions}\label{cumulative-link-mixed-models-for-the-justification-of-inequality-in-education-health-and-pensions}}
 
 Three Cumulative link mixed models were estimated for the ordinal
 dependent variables of justice in differential access to pensions,
@@ -1179,16 +1211,14 @@ the appendix.
 
 \begin{figure}
 
-\centering{
-
-\includegraphics{paper_files/figure-pdf/fig-odds-1.pdf}
+{\centering \includegraphics{paper_files/figure-pdf/fig-odds-1.pdf}
 
 }
 
 \caption{\label{fig-odds}Odds-ratios of justification of education,
 pensions and health by social and school meritocracy}
 
-\end{figure}%
+\end{figure}
 
 Figure~\ref{fig-odds} shows that for the three dependent variables of
 justice in differential access to pensions, education, and health, the
@@ -1202,16 +1232,12 @@ variables of social meritocracy, the three variables of talent, effort,
 and deservingness show that as these increase, the justification for
 differentiated access to pensions, education, and health also increases.
 
+\hypertarget{multilevel-regression-models-for-market-justice-preferences}{%
 \subsubsection{Multilevel regression models for market justice
-preferences}\label{multilevel-regression-models-for-market-justice-preferences}
+preferences}\label{multilevel-regression-models-for-market-justice-preferences}}
 
+\hypertarget{tbl-individual-reg}{}
 \begin{table}
-
-\caption{\label{tbl-individual-reg}Individual effects of multilevel
-regression models}
-
-\centering{
-
 \begin{center}
 \begin{tabular}{l c c}
 \hline
@@ -1256,13 +1282,10 @@ Var: Residual                                & $0.66$        & $0.66$        \\
 \hline
 \multicolumn{3}{l}{\scriptsize{*** p < 0.001; ** p < 0.01; * p < 0.05}}
 \end{tabular}
-\caption{}
+\caption{\label{tbl-individual-reg}Individual effects of multilevel regression models }
 \label{table:coefficients}
 \end{center}
-
-}
-
-\end{table}%
+\end{table}
 
 Table~\ref{tbl-individual-reg} shows the results of the multilevel
 estimation for justice market preferences. For this variable, the
@@ -1295,13 +1318,8 @@ According to Raudenbush and Bryk's (2002) estimate of R2, the level 1
 variance of model 5 is 0.11 and the level 2 variance is 0.72. The total
 variance of model 5 according to Snijders and Bosker (2012) is 0.14.
 
+\hypertarget{tbl-contextual-reg}{}
 \begin{table}
-
-\caption{\label{tbl-contextual-reg}Contextual effects of multilevel
-regression models}
-
-\centering{
-
 \begin{center}
 \begin{tabular}{l c c}
 \hline
@@ -1346,25 +1364,20 @@ Var: Residual                            & $0.74$        & $0.66$        \\
 \hline
 \multicolumn{3}{l}{\scriptsize{*** p < 0.001; ** p < 0.01; * p < 0.05}}
 \end{tabular}
-\caption{}
+\caption{\label{tbl-contextual-reg}Contextual effects of multilevel regression models }
 \label{table:coefficients}
 \end{center}
+\end{table}
 
-}
+\hypertarget{interactions-effects}{%
+\subsubsection{Interactions effects}\label{interactions-effects}}
 
-\end{table}%
+\hypertarget{tbl-interact}{}
+\begin{table}[H]
+\caption{\label{tbl-interact}Interactions effects }\tabularnewline
 
-\subsubsection{Interactions effects}\label{interactions-effects}
-
-\begin{table}
-
-\caption{\label{tbl-interact}Interactions effects}
-
-\centering{
-
-[H]
 \centering
-\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
+\resizebox{\linewidth}{!}{
 \begin{tabular}[t]{>{\raggedright\arraybackslash}p{4cm}>{\centering\arraybackslash}p{1.5cm}>{\centering\arraybackslash}p{1.5cm}>{\centering\arraybackslash}p{1.5cm}>{\centering\arraybackslash}p{1.5cm}>{\centering\arraybackslash}p{1.5cm}}
 \toprule
 \multicolumn{1}{c}{\textbf{ }} & \multicolumn{5}{c}{\textbf{Market Justice Preferences}} \\
@@ -1385,10 +1398,7 @@ Variable & School talent & School effort & Social talent & Social effort & Deser
 \bottomrule
 \multicolumn{6}{l}{\rule{0pt}{1em}\textit{Note: } ***p < 0.001, **p < 0.01, *p < 0.05}\\
 \end{tabular}}
-
-}
-
-\end{table}%
+\end{table}
 
 The interaction terms in Table~\ref{tbl-interact} suggest that students'
 family background moderates the relationship between their meritocratic
@@ -1424,18 +1434,17 @@ at the school level for students' meritocratic beliefs in the school
 
 \begin{figure}
 
-\centering{
-
-\includegraphics{paper_files/figure-pdf/fig-interaction-1.pdf}
+{\centering \includegraphics{paper_files/figure-pdf/fig-interaction-1.pdf}
 
 }
 
 \caption{\label{fig-interaction}Interaction between deservingness and
 justification of inequality by school SIMCE achievement}
 
-\end{figure}%
+\end{figure}
 
-\subsection{Conclusion}\label{conclusion}
+\hypertarget{conclusion}{%
+\subsection{Conclusion}\label{conclusion}}
 
 \begin{itemize}
 \tightlist
@@ -1444,15 +1453,14 @@ justification of inequality by school SIMCE achievement}
   redistribución)
 \end{itemize}
 
-\subsection{Appendix}\label{appendix}
+\hypertarget{appendix}{%
+\subsection{Appendix}\label{appendix}}
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4496}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5504}}@{}}
-\toprule\noalign{}
+\toprule()
 \endhead
-\bottomrule\noalign{}
-\endlastfoot
 \textbf{English translation} & \textbf{Original Spanish} \\
 It is just that in Chile people who cna pay have a better education for
 their children & Es justo que en Chile las personas que puedan pagar
@@ -1465,459 +1473,463 @@ It is just that in Chile people with higher incomes can access better
 health services than people with low incomes & Es justo que en Chile las
 personas con mayores ingresos puedan acceder a una mejor atención de
 salud que las personas con ingresos más bajos \\
+\bottomrule()
 \end{longtable}
 
-\phantomsection\label{refs}
+\hypertarget{refs}{}
 \begin{CSLReferences}{1}{0}
-\bibitem[\citeproctext]{ref-acemoglu_obedience_2021}
-Acemoglu, Daron. 2021. {``Obedience in the {Labor Market} and {Social
-Mobility}: {A Socio-Economic Approach}.''} w29125. Cambridge, MA:
-National Bureau of Economic Research.
-\url{https://doi.org/10.3386/w29125}.
+\leavevmode\vadjust pre{\hypertarget{ref-acemoglu_obedience_2021}{}}%
+Acemoglu, D. (2021). \emph{Obedience in the {Labor Market} and {Social
+Mobility}: {A Socio-Economic Approach}} (No. w29125) (p. w29125).
+Cambridge, MA: National Bureau of Economic Research.
+\url{https://doi.org/10.3386/w29125}
 
-\bibitem[\citeproctext]{ref-almas_fairness_2017}
-Almås, Ingvild, Alexander W Cappelen, Kjell G Salvanes, Erik Ø Sørensen,
-and Bertil Tungodden. 2017. {``Fairness and Family Background.''}
-\emph{Politics, Philosophy \& Economics} 16 (2): 117--31.
-\url{https://doi.org/10.1177/1470594X15618966}.
+\leavevmode\vadjust pre{\hypertarget{ref-almas_fairness_2017}{}}%
+Almås, I., Cappelen, A. W., Salvanes, K. G., Sørensen, E. Ø., \&
+Tungodden, B. (2017). Fairness and family background. \emph{Politics,
+Philosophy \& Economics}, \emph{16}(2), 117--131.
+\url{https://doi.org/10.1177/1470594X15618966}
 
-\bibitem[\citeproctext]{ref-almas_fairness_2010}
-Almås, Ingvild, Alexander W. Cappelen, Erik Ø. Sørensen, and Bertil
-Tungodden. 2010. {``Fairness and the {Development} of {Inequality
-Acceptance}.''} \emph{Science} 328 (5982): 1176--78.
-\url{https://doi.org/10.1126/science.1187300}.
+\leavevmode\vadjust pre{\hypertarget{ref-almas_fairness_2010}{}}%
+Almås, I., Cappelen, A. W., Sørensen, E. Ø., \& Tungodden, B. (2010).
+Fairness and the {Development} of {Inequality Acceptance}.
+\emph{Science}, \emph{328}(5982), 1176--1178.
+\url{https://doi.org/10.1126/science.1187300}
 
-\bibitem[\citeproctext]{ref-almas_cutthroat_2020}
-Almås, Ingvild, Alexander W. Cappelen, and Bertil Tungodden. 2020.
-{``Cutthroat {Capitalism} Versus {Cuddly Socialism}: {Are Americans More
-Meritocratic} and {Efficiency-Seeking} Than {Scandinavians}?''}
-\emph{Journal of Political Economy} 128 (5): 1753--88.
-\url{https://doi.org/10.1086/705551}.
+\leavevmode\vadjust pre{\hypertarget{ref-almas_cutthroat_2020}{}}%
+Almås, I., Cappelen, A. W., \& Tungodden, B. (2020). Cutthroat
+{Capitalism} versus {Cuddly Socialism}: {Are Americans More
+Meritocratic} and {Efficiency-Seeking} than {Scandinavians}?
+\emph{Journal of Political Economy}, \emph{128}(5), 1753--1788.
+\url{https://doi.org/10.1086/705551}
 
-\bibitem[\citeproctext]{ref-barr_effect_2020}
-Barr, Abigail, and Luis Miller. 2020. {``The Effect of Education, Income
-Inequality and Merit on Inequality Acceptance.''} \emph{Journal of
-Economic Psychology} 80 (May): 102276.
-\url{https://doi.org/10.1016/j.joep.2020.102276}.
+\leavevmode\vadjust pre{\hypertarget{ref-barr_effect_2020}{}}%
+Barr, A., \& Miller, L. (2020). The effect of education, income
+inequality and merit on inequality acceptance. \emph{Journal of Economic
+Psychology}, \emph{80}, 102276.
+\url{https://doi.org/10.1016/j.joep.2020.102276}
 
-\bibitem[\citeproctext]{ref-batruch_belief_2022}
-Batruch, Anatolia, Jolanda Jetten, Herman Van de Werfhorst, Céline
-Darnon, and Fabrizio Butera. 2022. {``Belief in {School Meritocracy} and
-the {Legitimization} of {Social} and {Income Inequality}.''}
-\emph{Social Psychological and Personality Science}, August,
-194855062211110. \url{https://doi.org/10.1177/19485506221111017}.
+\leavevmode\vadjust pre{\hypertarget{ref-batruch_belief_2022}{}}%
+Batruch, A., Jetten, J., Van de Werfhorst, H., Darnon, C., \& Butera, F.
+(2022). Belief in {School Meritocracy} and the {Legitimization} of
+{Social} and {Income Inequality}. \emph{Social Psychological and
+Personality Science}, 194855062211110.
+\url{https://doi.org/10.1177/19485506221111017}
 
-\bibitem[\citeproctext]{ref-boltanski_new_2005}
-Boltanski, Luc, and Eve Chiapello. 2005. \emph{The New Spirit of
-Capitalism}. London ; New York: Verso.
+\leavevmode\vadjust pre{\hypertarget{ref-bell_fixed_2019}{}}%
+Bell, A., Fairbrother, M., \& Jones, K. (2019). Fixed and random effects
+models: Making an informed choice. \emph{Quality \& Quantity},
+\emph{53}(2), 1051--1074.
+\url{https://doi.org/10.1007/s11135-018-0802-x}
 
-\bibitem[\citeproctext]{ref-bourdieu_reproduction_1990}
-Bourdieu, Pierre, and Jean Claude Passeron. 1990. \emph{Reproduction in
-{Education}, {Society} and {Culture}}. Second Edition. Sage Publications
-Ltd.
+\leavevmode\vadjust pre{\hypertarget{ref-boltanski_new_2005}{}}%
+Boltanski, L., \& Chiapello, E. (2005). \emph{The new spirit of
+capitalism}. London ; New York: Verso.
 
-\bibitem[\citeproctext]{ref-bucca_merit_2016}
-Bucca, Mauricio. 2016. {``Merit and Blame in Unequal Societies:
-{Explaining Latin Americans}' Beliefs about Wealth and Poverty.''}
-\emph{Research in Social Stratification and Mobility} 44 (June):
-98--112. \url{https://doi.org/10.1016/j.rssm.2016.02.005}.
+\leavevmode\vadjust pre{\hypertarget{ref-bourdieu_reproduction_1990}{}}%
+Bourdieu, P., \& Passeron, J. C. (1990). \emph{Reproduction in
+{Education}, {Society} and {Culture}} (Second Edition). Sage
+Publications Ltd.
 
-\bibitem[\citeproctext]{ref-castillo_legitimacy_2011}
-Castillo, Juan Carlos. 2011. {``Legitimacy of {Inequality} in a {Highly
-Unequal Context}: {Evidence} from the {Chilean Case}.''} \emph{Social
-Justice Research} 24 (4): 314--40.
-\url{https://doi.org/10.1007/s11211-011-0144-5}.
+\leavevmode\vadjust pre{\hypertarget{ref-bucca_merit_2016}{}}%
+Bucca, M. (2016). Merit and blame in unequal societies: {Explaining
+Latin Americans}' beliefs about wealth and poverty. \emph{Research in
+Social Stratification and Mobility}, \emph{44}, 98--112.
+\url{https://doi.org/10.1016/j.rssm.2016.02.005}
 
-\bibitem[\citeproctext]{ref-castillo_meritocracia_2019}
-Castillo, Juan Carlos, Alex Torres, Jorge Atria, and Luis Maldonado.
-2019. {``Meritocracia y Desigualdad Econ{ó}mica: {Percepciones},
-Preferencias e Implicancias.''} \emph{Revista Internacional de
-Sociolog{í}a} 77 (1): 117.
-\url{https://doi.org/10.3989/ris.2019.77.1.17.114}.
+\leavevmode\vadjust pre{\hypertarget{ref-castillo_legitimacy_2011}{}}%
+Castillo, J. C. (2011). Legitimacy of {Inequality} in a {Highly Unequal
+Context}: {Evidence} from the {Chilean Case}. \emph{Social Justice
+Research}, \emph{24}(4), 314--340.
+\url{https://doi.org/10.1007/s11211-011-0144-5}
 
-\bibitem[\citeproctext]{ref-centeno_arc_2012}
-Centeno, Miguel A., and Joseph N. Cohen. 2012. {``The {Arc} of
-{Neoliberalism}.''} \emph{Annual Review of Sociology} 38 (1): 317--40.
-\url{https://doi.org/10.1146/annurev-soc-081309-150235}.
+\leavevmode\vadjust pre{\hypertarget{ref-castillo_meritocracia_2019}{}}%
+Castillo, J. C., Torres, A., Atria, J., \& Maldonado, L. (2019).
+Meritocracia y desigualdad econ{ó}mica: {Percepciones}, preferencias e
+implicancias. \emph{Revista Internacional de Sociolog{í}a},
+\emph{77}(1), 117. \url{https://doi.org/10.3989/ris.2019.77.1.17.114}
 
-\bibitem[\citeproctext]{ref-chafel_schooling_1997}
-Chafel, Judith A. 1997. {``Schooling, the {Hidden Curriculum}, and
-{Children}'s {Conceptions} of {Poverty}.''} \emph{Social Policy Report}
-11 (1): 1--28. \url{https://doi.org/10.1002/j.2379-3988.1997.tb00004.x}.
+\leavevmode\vadjust pre{\hypertarget{ref-centeno_arc_2012}{}}%
+Centeno, M. A., \& Cohen, J. N. (2012). The {Arc} of {Neoliberalism}.
+\emph{Annual Review of Sociology}, \emph{38}(1), 317--340.
+\url{https://doi.org/10.1146/annurev-soc-081309-150235}
 
-\bibitem[\citeproctext]{ref-chong_mystery_2008}
-Chong, Alberto, and Hugo Ñopo. 2008. {``The {Mystery} of
-{Discrimination} in {Latin America}.''} \emph{Econom{í}a} 8 (2):
-79--107. \url{https://doi.org/10.1353/eco.0.0005}.
+\leavevmode\vadjust pre{\hypertarget{ref-chafel_schooling_1997}{}}%
+Chafel, J. A. (1997). Schooling, the {Hidden Curriculum}, and
+{Children}'s {Conceptions} of {Poverty}. \emph{Social Policy Report},
+\emph{11}(1), 1--28.
+\url{https://doi.org/10.1002/j.2379-3988.1997.tb00004.x}
 
-\bibitem[\citeproctext]{ref-choudhury_social_2006}
-Choudhury, Suparna, Sarah-Jayne Blakemore, and Tony Charman. 2006.
-{``Social Cognitive Development During Adolescence.''} \emph{Social
-Cognitive and Affective Neuroscience} 1 (3): 165--74.
-\url{https://doi.org/10.1093/scan/nsl024}.
+\leavevmode\vadjust pre{\hypertarget{ref-chong_mystery_2008}{}}%
+Chong, A., \& Ñopo, H. (2008). The {Mystery} of {Discrimination} in
+{Latin America}. \emph{Econom{í}a}, \emph{8}(2), 79--107.
+\url{https://doi.org/10.1353/eco.0.0005}
 
-\bibitem[\citeproctext]{ref-darnon_where_2018}
-Darnon, Céline, Virginie Wiederkehr, Benoît Dompnier, and Delphine
-Martinot. 2018. {``{`{Where} There Is a Will, There Is a Way'}: {Belief}
-in School Meritocracy and the Social-Class Achievement Gap.''}
-\emph{British Journal of Social Psychology} 57 (1): 250--62.
-\url{https://doi.org/10.1111/bjso.12214}.
+\leavevmode\vadjust pre{\hypertarget{ref-choudhury_social_2006}{}}%
+Choudhury, S., Blakemore, S.-J., \& Charman, T. (2006). Social cognitive
+development during adolescence. \emph{Social Cognitive and Affective
+Neuroscience}, \emph{1}(3), 165--174.
+\url{https://doi.org/10.1093/scan/nsl024}
 
-\bibitem[\citeproctext]{ref-durante_preferences_2009}
-Durante, Ruben, and Louis G. Putterman. 2009. {``Preferences for
+\leavevmode\vadjust pre{\hypertarget{ref-darnon_where_2018}{}}%
+Darnon, C., Wiederkehr, V., Dompnier, B., \& Martinot, D. (2018).
+{``{Where} there is a will, there is a way''}: {Belief} in school
+meritocracy and the social-class achievement gap. \emph{British Journal
+of Social Psychology}, \emph{57}(1), 250--262.
+\url{https://doi.org/10.1111/bjso.12214}
+
+\leavevmode\vadjust pre{\hypertarget{ref-durante_preferences_2009}{}}%
+Durante, R., \& Putterman, L. G. (2009). Preferences for
 {Redistribution} and {Perception} of {Fairness}: {An Experimental
-Study}.''} \emph{SSRN Electronic Journal}.
-\url{https://doi.org/10.2139/ssrn.1004573}.
+Study}. \emph{SSRN Electronic Journal}.
+\url{https://doi.org/10.2139/ssrn.1004573}
 
-\bibitem[\citeproctext]{ref-duru-bellat_who_2012}
-Duru-Bellat, Marie, and Elise Tenret. 2012. {``Who's for {Meritocracy}?
-{Individual} and {Contextual Variations} in the {Faith}.''}
-\emph{Comparative Education Review} 56 (2): 223--47.
-\url{https://doi.org/10.1086/661290}.
+\leavevmode\vadjust pre{\hypertarget{ref-duru-bellat_who_2012}{}}%
+Duru-Bellat, M., \& Tenret, E. (2012). Who's for {Meritocracy}?
+{Individual} and {Contextual Variations} in the {Faith}.
+\emph{Comparative Education Review}, \emph{56}(2), 223--247.
+\url{https://doi.org/10.1086/661290}
 
-\bibitem[\citeproctext]{ref-elenbaas_unfairness_2019}
-Elenbaas, Laura. 2019. {``Against Unfairness: {Young} Children's
-Judgments about Merit, Equity, and Equality.''} \emph{Journal of
-Experimental Child Psychology} 186 (October): 73--82.
-\url{https://doi.org/10.1016/j.jecp.2019.05.009}.
+\leavevmode\vadjust pre{\hypertarget{ref-elenbaas_unfairness_2019}{}}%
+Elenbaas, L. (2019). Against unfairness: {Young} children's judgments
+about merit, equity, and equality. \emph{Journal of Experimental Child
+Psychology}, \emph{186}, 73--82.
+\url{https://doi.org/10.1016/j.jecp.2019.05.009}
 
-\bibitem[\citeproctext]{ref-engelmann_children_2019}
-Engelmann, Jan M., and Michael Tomasello. 2019. {``Children's {Sense} of
-{Fairness} as {Equal Respect}.''} \emph{Trends in Cognitive Sciences} 23
-(6): 454--63. \url{https://doi.org/10.1016/j.tics.2019.03.001}.
+\leavevmode\vadjust pre{\hypertarget{ref-engelmann_children_2019}{}}%
+Engelmann, J. M., \& Tomasello, M. (2019). Children's {Sense} of
+{Fairness} as {Equal Respect}. \emph{Trends in Cognitive Sciences},
+\emph{23}(6), 454--463. \url{https://doi.org/10.1016/j.tics.2019.03.001}
 
-\bibitem[\citeproctext]{ref-erivwo_meritocracy_2021}
-Erivwo, Aroesiri, Elizabeth Varghese, Anthony Mathai, and Tasmia Afrin.
-2021. {``Meritocracy in the {Educational System},''} May.
-\url{https://doi.org/10.5281/ZENODO.4740695}.
+\leavevmode\vadjust pre{\hypertarget{ref-erivwo_meritocracy_2021}{}}%
+Erivwo, A., Varghese, E., Mathai, A., \& Afrin, T. (2021). Meritocracy
+in the {Educational System}.
+\url{https://doi.org/10.5281/ZENODO.4740695}
 
-\bibitem[\citeproctext]{ref-evans_strong_2018}
-Evans, M. D. R., and Jonathan Kelley. 2018. {``Strong {Welfare States Do
-Not Intensify Public Support} for {Income Redistribution}, but {Even
-Reduce It} Among the {Prosperous}: {A Multilevel Analysis} of {Public
-Opinion} in 30 {Countries}.''} \emph{Societies} 8 (4): 105.
-\url{https://doi.org/10.3390/soc8040105}.
+\leavevmode\vadjust pre{\hypertarget{ref-evans_strong_2018}{}}%
+Evans, M. D. R., \& Kelley, J. (2018). Strong {Welfare States Do Not
+Intensify Public Support} for {Income Redistribution}, but {Even Reduce
+It} among the {Prosperous}: {A Multilevel Analysis} of {Public Opinion}
+in 30 {Countries}. \emph{Societies}, \emph{8}(4), 105.
+\url{https://doi.org/10.3390/soc8040105}
 
-\bibitem[\citeproctext]{ref-fernandez_positive_2013}
-Fernandez, J. J., and A. M. Jaime-Castillo. 2013. {``Positive or
-{Negative Policy Feedbacks}? {Explaining Popular Attitudes Towards
-Pragmatic Pension Policy Reforms}.''} \emph{European Sociological
-Review} 29 (4): 803--15. \url{https://doi.org/10.1093/esr/jcs059}.
+\leavevmode\vadjust pre{\hypertarget{ref-fernandez_positive_2013}{}}%
+Fernandez, J. J., \& Jaime-Castillo, A. M. (2013). Positive or {Negative
+Policy Feedbacks}? {Explaining Popular Attitudes Towards Pragmatic
+Pension Policy Reforms}. \emph{European Sociological Review},
+\emph{29}(4), 803--815. \url{https://doi.org/10.1093/esr/jcs059}
 
-\bibitem[\citeproctext]{ref-frank_performance_2015}
-Frank, Douglas H., Klaus Wertenbroch, and William W. Maddux. 2015.
-{``Performance Pay or Redistribution? {Cultural} Differences in
-Just-World Beliefs and Preferences for Wage Inequality.''}
-\emph{Organizational Behavior and Human Decision Processes} 130
-(September): 160--70. \url{https://doi.org/10.1016/j.obhdp.2015.04.001}.
+\leavevmode\vadjust pre{\hypertarget{ref-frank_performance_2015}{}}%
+Frank, D. H., Wertenbroch, K., \& Maddux, W. W. (2015). Performance pay
+or redistribution? {Cultural} differences in just-world beliefs and
+preferences for wage inequality. \emph{Organizational Behavior and Human
+Decision Processes}, \emph{130}, 160--170.
+\url{https://doi.org/10.1016/j.obhdp.2015.04.001}
 
-\bibitem[\citeproctext]{ref-garcia-sanchez_attitudes_2020}
-García-Sánchez, Efraín, Danny Osborne, Guillermo B. Willis, and Rosa
-Rodríguez-Bailón. 2020. {``Attitudes Towards Redistribution and the
-Interplay Between Perceptions and Beliefs about Inequality.''}
-\emph{British Journal of Social Psychology} 59 (1): 111--36.
-\url{https://doi.org/10.1111/bjso.12326}.
+\leavevmode\vadjust pre{\hypertarget{ref-garcia-sanchez_attitudes_2020}{}}%
+García-Sánchez, E., Osborne, D., Willis, G. B., \& Rodríguez-Bailón, R.
+(2020). Attitudes towards redistribution and the interplay between
+perceptions and beliefs about inequality. \emph{British Journal of
+Social Psychology}, \emph{59}(1), 111--136.
+\url{https://doi.org/10.1111/bjso.12326}
 
-\bibitem[\citeproctext]{ref-goldthorpe_myth_2003}
-Goldthorpe, John. 2003. {``The Myth of Education-Based Meritocracy.''}
-\emph{New Economy} 10 (4): 234--39.
-\url{https://doi.org/10.1046/j.1468-0041.2003.00324.x}.
+\leavevmode\vadjust pre{\hypertarget{ref-goldthorpe_myth_2003}{}}%
+Goldthorpe, J. (2003). The myth of education-based meritocracy.
+\emph{New Economy}, \emph{10}(4), 234--239.
+\url{https://doi.org/10.1046/j.1468-0041.2003.00324.x}
 
-\bibitem[\citeproctext]{ref-goudeau_hidden_2017}
-Goudeau, Sébastien, and Jean-Claude Croizet. 2017. {``Hidden
-{Advantages} and {Disadvantages} of {Social Class}: {How Classroom
-Settings Reproduce Social Inequality} by {Staging Unfair Comparison}.''}
-\emph{Psychological Science} 28 (2): 162--70.
-\url{https://doi.org/10.1177/0956797616676600}.
+\leavevmode\vadjust pre{\hypertarget{ref-goudeau_hidden_2017}{}}%
+Goudeau, S., \& Croizet, J.-C. (2017). Hidden {Advantages} and
+{Disadvantages} of {Social Class}: {How Classroom Settings Reproduce
+Social Inequality} by {Staging Unfair Comparison}. \emph{Psychological
+Science}, \emph{28}(2), 162--170.
+\url{https://doi.org/10.1177/0956797616676600}
 
-\bibitem[\citeproctext]{ref-greitemeyer_subjective_2016}
-Greitemeyer, Tobias, and Christina Sagioglou. 2016. {``Subjective
-Socioeconomic Status Causes Aggression: {A} Test of the Theory of Social
-Deprivation.''} \emph{Journal of Personality and Social Psychology} 111
-(2): 178--94. \url{https://doi.org/10.1037/pspi0000058}.
+\leavevmode\vadjust pre{\hypertarget{ref-greitemeyer_subjective_2016}{}}%
+Greitemeyer, T., \& Sagioglou, C. (2016). Subjective socioeconomic
+status causes aggression: {A} test of the theory of social deprivation.
+\emph{Journal of Personality and Social Psychology}, \emph{111}(2),
+178--194. \url{https://doi.org/10.1037/pspi0000058}
 
-\bibitem[\citeproctext]{ref-harvey_breve_2015}
-Harvey, David. 2015. \emph{{Breve historia del neoliberalismo}}. Madrid
+\leavevmode\vadjust pre{\hypertarget{ref-harvey_breve_2015}{}}%
+Harvey, D. (2015). \emph{{Breve historia del neoliberalismo}}. Madrid
 (Espa{ñ}a): Ediciones Akal.
 
-\bibitem[\citeproctext]{ref-homan_being_2017}
-Homan, Patricia, Lauren Valentino, and Emi Weed. 2017. {``Being and
-{Becoming Poor}: {How Cultural Schemas Shape Beliefs About Poverty}.''}
-\emph{Social Forces} 95 (3): 1023--48.
-\url{https://doi.org/10.1093/sf/sox007}.
+\leavevmode\vadjust pre{\hypertarget{ref-homan_being_2017}{}}%
+Homan, P., Valentino, L., \& Weed, E. (2017). Being and {Becoming Poor}:
+{How Cultural Schemas Shape Beliefs About Poverty}. \emph{Social
+Forces}, \emph{95}(3), 1023--1048.
+\url{https://doi.org/10.1093/sf/sox007}
 
-\bibitem[\citeproctext]{ref-huppert_development_2019}
-Huppert, Elizabeth, Jason M. Cowell, Yawei Cheng, Carlos
-Contreras-Ibáñez, Natalia Gomez-Sicard, Maria Luz Gonzalez-Gadea, David
-Huepe, et al. 2019. {``The Development of Children's Preferences for
-Equality and Equity Across 13 Individualistic and Collectivist
-Cultures.''} \emph{Developmental Science} 22 (2): e12729.
-\url{https://doi.org/10.1111/desc.12729}.
+\leavevmode\vadjust pre{\hypertarget{ref-hox_multilevel_2010}{}}%
+Hox, J., Moerbeek, M., \& Schoot, R. van de. (2010). \emph{Multilevel
+{Analysis}: {Techniques} and {Applications}, {Second Edition}} (2nd
+ed.). New York: Routledge. \url{https://doi.org/10.4324/9780203852279}
 
-\bibitem[\citeproctext]{ref-hvidberg_social_2023}
-Hvidberg, Kristoffer B, Claus T Kreiner, and Stefanie Stantcheva. 2023.
-{``Social {Positions} and {Fairness Views} on {Inequality}.''}
-\emph{Review of Economic Studies} 90 (6): 3083--3118.
-\url{https://doi.org/10.1093/restud/rdad019}.
+\leavevmode\vadjust pre{\hypertarget{ref-huppert_development_2019}{}}%
+Huppert, E., Cowell, J. M., Cheng, Y., Contreras-Ibáñez, C.,
+Gomez-Sicard, N., Gonzalez-Gadea, M. L., \ldots{} Decety, J. (2019). The
+development of children's preferences for equality and equity across 13
+individualistic and collectivist cultures. \emph{Developmental Science},
+\emph{22}(2), e12729. \url{https://doi.org/10.1111/desc.12729}
 
-\bibitem[\citeproctext]{ref-iacoviello_collectivism_2019}
-Iacoviello, Vincenzo, and Fabio Lorenzi-Cioldi. 2019. {``Collectivism
-and {Individualism} in {Status Hierarchies}: {Socialization} and {Social
-Identity Explanations}.''} \emph{International Review of Social
-Psychology} 32 (1): 15. \url{https://doi.org/10.5334/irsp.285}.
+\leavevmode\vadjust pre{\hypertarget{ref-hvidberg_social_2023}{}}%
+Hvidberg, K. B., Kreiner, C. T., \& Stantcheva, S. (2023). Social
+{Positions} and {Fairness Views} on {Inequality}. \emph{Review of
+Economic Studies}, \emph{90}(6), 3083--3118.
+\url{https://doi.org/10.1093/restud/rdad019}
 
-\bibitem[\citeproctext]{ref-jack_no_2016}
-Jack, Anthony Abraham. 2016. {``({No}) {Harm} in {Asking}: {Class},
-{Acquired Cultural Capital}, and {Academic Engagement} at an {Elite
-University}.''} \emph{Sociology of Education} 89 (1): 1--19.
-\url{https://doi.org/10.1177/0038040715614913}.
+\leavevmode\vadjust pre{\hypertarget{ref-iacoviello_collectivism_2019}{}}%
+Iacoviello, V., \& Lorenzi-Cioldi, F. (2019). Collectivism and
+{Individualism} in {Status Hierarchies}: {Socialization} and {Social
+Identity Explanations}. \emph{International Review of Social
+Psychology}, \emph{32}(1), 15. \url{https://doi.org/10.5334/irsp.285}
 
-\bibitem[\citeproctext]{ref-jasso_how_1999}
-Jasso, Guillermina. 1999. {``How {Much Injustice} Is {There} in the
-{World}? {Two New Justice Indexes}.''} \emph{American Sociological
-Review} 64 (1): 133--68.
-\url{https://doi.org/10.1177/000312249906400110}.
+\leavevmode\vadjust pre{\hypertarget{ref-jack_no_2016}{}}%
+Jack, A. A. (2016). ({No}) {Harm} in {Asking}: {Class}, {Acquired
+Cultural Capital}, and {Academic Engagement} at an {Elite University}.
+\emph{Sociology of Education}, \emph{89}(1), 1--19.
+\url{https://doi.org/10.1177/0038040715614913}
 
-\bibitem[\citeproctext]{ref-jensen_worlds_2008}
-Jensen, Carsten. 2008. {``Worlds of Welfare Services and Transfers.''}
-\emph{Journal of European Social Policy} 18 (2): 151--62.
-\url{https://doi.org/10.1177/0958928707087591}.
+\leavevmode\vadjust pre{\hypertarget{ref-jasso_how_1999}{}}%
+Jasso, G. (1999). How {Much Injustice} is {There} in the {World}? {Two
+New Justice Indexes}. \emph{American Sociological Review}, \emph{64}(1),
+133--168. \url{https://doi.org/10.1177/000312249906400110}
 
-\bibitem[\citeproctext]{ref-jonsson_institutional_2015}
-Jonsson, Anna-Carin, and Dennis Beach. 2015. {``Institutional
-Discrimination: {Stereotypes} and Social Reproduction of {`Class'} in
-the {Swedish} Upper-Secondary School.''} \emph{Social Psychology of
-Education} 18 (4): 703--17.
-\url{https://doi.org/10.1007/s11218-014-9279-1}.
+\leavevmode\vadjust pre{\hypertarget{ref-jensen_worlds_2008}{}}%
+Jensen, C. (2008). Worlds of welfare services and transfers.
+\emph{Journal of European Social Policy}, \emph{18}(2), 151--162.
+\url{https://doi.org/10.1177/0958928707087591}
 
-\bibitem[\citeproctext]{ref-jost_attitudinal_2000}
-Jost, John T., and Diana Burgess. 2000. {``Attitudinal {Ambivalence} and
-the {Conflict} Between {Group} and {System Justification Motives} in
-{Low Status Groups}.''} \emph{Personality and Social Psychology
-Bulletin} 26 (3): 293--305.
-\url{https://doi.org/10.1177/0146167200265003}.
+\leavevmode\vadjust pre{\hypertarget{ref-jonsson_institutional_2015}{}}%
+Jonsson, A.-C., \& Beach, D. (2015). Institutional discrimination:
+{Stereotypes} and social reproduction of {``class''} in the {Swedish}
+upper-secondary school. \emph{Social Psychology of Education},
+\emph{18}(4), 703--717. \url{https://doi.org/10.1007/s11218-014-9279-1}
 
-\bibitem[\citeproctext]{ref-khan_privilege_2011}
-Khan, Shamus. 2011. \emph{Privilege: {The Making} of an {Adolescent
-Elite} at {St}. {Paul}'s {School}}. Princeton, N.J.: Princeton
-University Press.
+\leavevmode\vadjust pre{\hypertarget{ref-jost_attitudinal_2000}{}}%
+Jost, J. T., \& Burgess, D. (2000). Attitudinal {Ambivalence} and the
+{Conflict} between {Group} and {System Justification Motives} in {Low
+Status Groups}. \emph{Personality and Social Psychology Bulletin},
+\emph{26}(3), 293--305. \url{https://doi.org/10.1177/0146167200265003}
 
-\bibitem[\citeproctext]{ref-kluegel_beliefs_1987}
-Kluegel, James R., and Eliot R. Smith. 1987. \emph{Beliefs about
-Inequality: {Americans}' Views of What Is and What Ought to Be}. London
-New York: Routledge, Taylor \& Francis Group.
+\leavevmode\vadjust pre{\hypertarget{ref-khan_privilege_2011}{}}%
+Khan, S. (2011). \emph{Privilege: {The Making} of an {Adolescent Elite}
+at {St}. {Paul}'s {School}}. Princeton, N.J.: Princeton University
+Press.
 
-\bibitem[\citeproctext]{ref-kohn_social_1963}
-Kohn, Melvin L. 1963. {``Social {Class} and {Parent-Child
-Relationships}: {An Interpretation}.''} \emph{American Journal of
-Sociology} 68 (4): 471--80. \url{https://doi.org/10.1086/223403}.
+\leavevmode\vadjust pre{\hypertarget{ref-kluegel_beliefs_1987}{}}%
+Kluegel, J. R., \& Smith, E. R. (1987). \emph{Beliefs about inequality:
+{Americans}' views of what is and what ought to be}. London New York:
+Routledge, Taylor \& Francis Group.
 
-\bibitem[\citeproctext]{ref-kohn_class_1969}
-Kohn, Melvin L., and Carmi Schooler. 1969. {``Class, {Occupation}, and
-{Orientation}.''} \emph{American Sociological Review} 34 (5): 659.
-\url{https://doi.org/10.2307/2092303}.
+\leavevmode\vadjust pre{\hypertarget{ref-kohn_social_1963}{}}%
+Kohn, M. L. (1963). Social {Class} and {Parent-Child Relationships}: {An
+Interpretation}. \emph{American Journal of Sociology}, \emph{68}(4),
+471--480. \url{https://doi.org/10.1086/223403}
 
-\bibitem[\citeproctext]{ref-kosse_prosociality_2020}
-Kosse, Fabian, and Michela M. Tincani. 2020. {``Prosociality Predicts
-Labor Market Success Around the World.''} \emph{Nature Communications}
-11 (1): 5298. \url{https://doi.org/10.1038/s41467-020-19007-1}.
+\leavevmode\vadjust pre{\hypertarget{ref-kohn_class_1969}{}}%
+Kohn, M. L., \& Schooler, C. (1969). Class, {Occupation}, and
+{Orientation}. \emph{American Sociological Review}, \emph{34}(5), 659.
+\url{https://doi.org/10.2307/2092303}
 
-\bibitem[\citeproctext]{ref-lampert_meritocratic_2013}
-Lampert, Khen. 2013. \emph{Meritocratic {Education} and {Social
+\leavevmode\vadjust pre{\hypertarget{ref-kosse_prosociality_2020}{}}%
+Kosse, F., \& Tincani, M. M. (2020). Prosociality predicts labor market
+success around the world. \emph{Nature Communications}, \emph{11}(1),
+5298. \url{https://doi.org/10.1038/s41467-020-19007-1}
+
+\leavevmode\vadjust pre{\hypertarget{ref-lampert_meritocratic_2013}{}}%
+Lampert, K. (2013). \emph{Meritocratic {Education} and {Social
 Worthlessness}}. London: Palgrave Macmillan UK.
-\url{https://doi.org/10.1057/9781137324894}.
+\url{https://doi.org/10.1057/9781137324894}
 
-\bibitem[\citeproctext]{ref-lane_market_1986}
-Lane, Robert E. 1986. {``Market {Justice}, {Political Justice}.''}
-\emph{American Political Science Review} 80 (2): 383--402.
-\url{https://doi.org/10.2307/1958264}.
+\leavevmode\vadjust pre{\hypertarget{ref-lane_market_1986}{}}%
+Lane, R. E. (1986). Market {Justice}, {Political Justice}.
+\emph{American Political Science Review}, \emph{80}(2), 383--402.
+\url{https://doi.org/10.2307/1958264}
 
-\bibitem[\citeproctext]{ref-lindh_public_2015}
-Lindh, Arvid. 2015. {``Public {Opinion} Against {Markets}? {Attitudes}
-Towards {Market Distribution} of {Social Services} -- {A Comparison} of
-17 {Countries}.''} \emph{Social Policy \& Administration} 49 (7):
-887--910. \url{https://doi.org/10.1111/spol.12105}.
+\leavevmode\vadjust pre{\hypertarget{ref-lindh_public_2015}{}}%
+Lindh, A. (2015). Public {Opinion} against {Markets}? {Attitudes}
+towards {Market Distribution} of {Social Services} -- {A Comparison} of
+17 {Countries}. \emph{Social Policy \& Administration}, \emph{49}(7),
+887--910. \url{https://doi.org/10.1111/spol.12105}
 
-\bibitem[\citeproctext]{ref-mcauliffe_developmental_2017}
-McAuliffe, Katherine, Peter R. Blake, Nikolaus Steinbeis, and Felix
-Warneken. 2017. {``The Developmental Foundations of Human Fairness.''}
-\emph{Nature Human Behaviour} 1 (2): 0042.
-\url{https://doi.org/10.1038/s41562-016-0042}.
+\leavevmode\vadjust pre{\hypertarget{ref-mcauliffe_developmental_2017}{}}%
+McAuliffe, K., Blake, P. R., Steinbeis, N., \& Warneken, F. (2017). The
+developmental foundations of human fairness. \emph{Nature Human
+Behaviour}, \emph{1}(2), 0042.
+\url{https://doi.org/10.1038/s41562-016-0042}
 
-\bibitem[\citeproctext]{ref-mijs_stratified_2016}
-Mijs, Jonathan. 2016. {``Stratified {Failure}: {Educational
-Stratification} and {Students}' {Attributions} of {Their Mathematics
-Performance} in 24 {Countries}.''} \emph{Sociology of Education} 89 (2):
-137--53. \url{https://doi.org/10.1177/0038040716636434}.
+\leavevmode\vadjust pre{\hypertarget{ref-mijs_stratified_2016}{}}%
+Mijs, J. (2016). Stratified {Failure}: {Educational Stratification} and
+{Students}' {Attributions} of {Their Mathematics Performance} in 24
+{Countries}. \emph{Sociology of Education}, \emph{89}(2), 137--153.
+\url{https://doi.org/10.1177/0038040716636434}
 
-\bibitem[\citeproctext]{ref-mijs_paradox_2021}
----------. 2021. {``The Paradox of Inequality: Income Inequality and
-Belief in Meritocracy Go Hand in Hand.''} \emph{Socio-Economic Review}
-19 (1): 7--35. \url{https://doi.org/10.1093/ser/mwy051}.
+\leavevmode\vadjust pre{\hypertarget{ref-mijs_paradox_2021}{}}%
+Mijs, J. (2021). The paradox of inequality: Income inequality and belief
+in meritocracy go hand in hand. \emph{Socio-Economic Review},
+\emph{19}(1), 7--35. \url{https://doi.org/10.1093/ser/mwy051}
 
-\bibitem[\citeproctext]{ref-mikus_children_2020}
-Mikus, Karoline, Nicole Tieben, and Pia S. Schober. 2020. {``Children's
-Conversion of Cultural Capital into Educational Success: The Symbolic
-and Skill-Generating Functions of Cultural Capital.''} \emph{British
-Journal of Sociology of Education} 41 (2): 197--217.
-\url{https://doi.org/10.1080/01425692.2019.1677454}.
+\leavevmode\vadjust pre{\hypertarget{ref-mikus_children_2020}{}}%
+Mikus, K., Tieben, N., \& Schober, P. S. (2020). Children's conversion
+of cultural capital into educational success: The symbolic and
+skill-generating functions of cultural capital. \emph{British Journal of
+Sociology of Education}, \emph{41}(2), 197--217.
+\url{https://doi.org/10.1080/01425692.2019.1677454}
 
-\bibitem[\citeproctext]{ref-mishra_subjective_2015}
-Mishra, Sandeep, and R. Nicholas Carleton. 2015. {``Subjective Relative
-Deprivation Is Associated with Poorer Physical and Mental Health.''}
-\emph{Social Science \& Medicine} 147 (December): 144--49.
-\url{https://doi.org/10.1016/j.socscimed.2015.10.030}.
+\leavevmode\vadjust pre{\hypertarget{ref-mishra_subjective_2015}{}}%
+Mishra, S., \& Carleton, R. N. (2015). Subjective relative deprivation
+is associated with poorer physical and mental health. \emph{Social
+Science \& Medicine}, \emph{147}, 144--149.
+\url{https://doi.org/10.1016/j.socscimed.2015.10.030}
 
-\bibitem[\citeproctext]{ref-molyneux_neoliberal_2008}
-Molyneux, Maxine. 2008. {``The {`{Neoliberal Turn}'} and the {New Social
-Policy} in {Latin America}: {How Neoliberal}, {How New}?''}
-\emph{Development and Change} 39 (5): 775--97.
-\url{https://doi.org/10.1111/j.1467-7660.2008.00505.x}.
+\leavevmode\vadjust pre{\hypertarget{ref-molyneux_neoliberal_2008}{}}%
+Molyneux, M. (2008). The {``{Neoliberal Turn}''} and the {New Social
+Policy} in {Latin America}: {How Neoliberal}, {How New}?
+\emph{Development and Change}, \emph{39}(5), 775--797.
+\url{https://doi.org/10.1111/j.1467-7660.2008.00505.x}
 
-\bibitem[\citeproctext]{ref-morris_representing_2022}
-Morris, Jennifer, John Reilly, Sergey Paltsev, Andrei Sokolov, and
-Kenneth Cox. 2022. {``Representing {Socio}-{Economic Uncertainty} in
-{Human System Models}.''} \emph{Earth's Future} 10 (4): e2021EF002239.
-\url{https://doi.org/10.1029/2021EF002239}.
+\leavevmode\vadjust pre{\hypertarget{ref-morris_representing_2022}{}}%
+Morris, J., Reilly, J., Paltsev, S., Sokolov, A., \& Cox, K. (2022).
+Representing {Socio}-{Economic Uncertainty} in {Human System Models}.
+\emph{Earth's Future}, \emph{10}(4), e2021EF002239.
+\url{https://doi.org/10.1029/2021EF002239}
 
-\bibitem[\citeproctext]{ref-pierson_increasing_2000}
-Pierson, Paul. 2000. {``Increasing {Returns}, {Path Dependence}, and the
-{Study} of {Politics}.''} \emph{American Political Science Review} 94
-(2): 251--67. \url{https://doi.org/10.2307/2586011}.
+\leavevmode\vadjust pre{\hypertarget{ref-pierson_increasing_2000}{}}%
+Pierson, P. (2000). Increasing {Returns}, {Path Dependence}, and the
+{Study} of {Politics}. \emph{American Political Science Review},
+\emph{94}(2), 251--267. \url{https://doi.org/10.2307/2586011}
 
-\bibitem[\citeproctext]{ref-power_deprivationprotest_2018}
-Power, Séamus A. 2018. {``The {Deprivation-Protest Paradox}: {How} the
-{Perception} of {Unfair Economic Inequality Leads} to {Civic Unrest}.''}
-\emph{Current Anthropology} 59 (6): 765--89.
-\url{https://doi.org/10.1086/700679}.
+\leavevmode\vadjust pre{\hypertarget{ref-power_deprivationprotest_2018}{}}%
+Power, Séamus A. (2018). The {Deprivation-Protest Paradox}: {How} the
+{Perception} of {Unfair Economic Inequality Leads} to {Civic Unrest}.
+\emph{Current Anthropology}, \emph{59}(6), 765--789.
+\url{https://doi.org/10.1086/700679}
 
-\bibitem[\citeproctext]{ref-power_relative_2020}
-Power, Séamus A, Thomas Madsen, and Thomas A Morton. 2020. {``Relative
-Deprivation and Revolt: Current and Future Directions.''} \emph{Current
-Opinion in Psychology} 35 (October): 119--24.
-\url{https://doi.org/10.1016/j.copsyc.2020.06.010}.
+\leavevmode\vadjust pre{\hypertarget{ref-power_relative_2020}{}}%
+Power, Séamus A., Madsen, T., \& Morton, T. A. (2020). Relative
+deprivation and revolt: Current and future directions. \emph{Current
+Opinion in Psychology}, \emph{35}, 119--124.
+\url{https://doi.org/10.1016/j.copsyc.2020.06.010}
 
-\bibitem[\citeproctext]{ref-resh_sense_2010}
-Resh, Nura. 2010. {``Sense of Justice about Grades in School: Is It
-Stratified Like Academic Achievement?''} \emph{Social Psychology of
-Education} 13 (3): 313--29.
-\url{https://doi.org/10.1007/s11218-010-9117-z}.
+\leavevmode\vadjust pre{\hypertarget{ref-resh_sense_2010}{}}%
+Resh, N. (2010). Sense of justice about grades in school: Is it
+stratified like academic achievement? \emph{Social Psychology of
+Education}, \emph{13}(3), 313--329.
+\url{https://doi.org/10.1007/s11218-010-9117-z}
 
-\bibitem[\citeproctext]{ref-resh_sense_2014}
-Resh, Nura, and Clara Sabbagh. 2014. {``Sense of Justice in School and
-Civic Attitudes.''} \emph{Social Psychology of Education} 17 (1):
-51--72. \url{https://doi.org/10.1007/s11218-013-9240-8}.
+\leavevmode\vadjust pre{\hypertarget{ref-resh_sense_2014}{}}%
+Resh, N., \& Sabbagh, C. (2014). Sense of justice in school and civic
+attitudes. \emph{Social Psychology of Education}, \emph{17}(1), 51--72.
+\url{https://doi.org/10.1007/s11218-013-9240-8}
 
-\bibitem[\citeproctext]{ref-resh_sense_2017}
----------. 2017. {``Sense of Justice in School and Civic Behavior.''}
-\emph{Social Psychology of Education} 20 (2): 387--409.
-\url{https://doi.org/10.1007/s11218-017-9375-0}.
+\leavevmode\vadjust pre{\hypertarget{ref-resh_sense_2017}{}}%
+Resh, N., \& Sabbagh, C. (2017). Sense of justice in school and civic
+behavior. \emph{Social Psychology of Education}, \emph{20}(2), 387--409.
+\url{https://doi.org/10.1007/s11218-017-9375-0}
 
-\bibitem[\citeproctext]{ref-salamon_marketization_1993}
-Salamon, Lester M. 1993. {``The {Marketization} of {Welfare}: {Changing
-Nonprofit} and {For-Profit Roles} in the {American Welfare State}.''}
-\emph{Social Service Review} 67 (1): 16--39.
-\url{https://doi.org/10.1086/603963}.
+\leavevmode\vadjust pre{\hypertarget{ref-salamon_marketization_1993}{}}%
+Salamon, L. M. (1993). The {Marketization} of {Welfare}: {Changing
+Nonprofit} and {For-Profit Roles} in the {American Welfare State}.
+\emph{Social Service Review}, \emph{67}(1), 16--39.
+\url{https://doi.org/10.1086/603963}
 
-\bibitem[\citeproctext]{ref-salgado_inequality_2023}
-Salgado, Mauricio, and Javier Castillo. 2023. {``Inequality and
-{Stratification} in {Latin America}.''} In \emph{The {Oxford Handbook}
-of {Social Stratification}}, edited by Markus Gangl, Lucinda Platt,
-Javier G. Polavieja, and Herman G. van de Werfhorst, 0. 2023: Oxford
-University Press.
+\leavevmode\vadjust pre{\hypertarget{ref-salgado_inequality_2023}{}}%
+Salgado, M., \& Castillo, J. (2023). Inequality and {Stratification} in
+{Latin America}. In M. Gangl, L. Platt, J. G. Polavieja, \& H. G. van de
+Werfhorst (Eds.), \emph{The {Oxford Handbook} of {Social
+Stratification}} (p. 0). 2023: Oxford University Press.
 
-\bibitem[\citeproctext]{ref-sandel_tyranny_2020}
-Sandel, Michael J. 2020. \emph{The Tyranny of Merit: {What}'s Become of
-the Common Good?} First edition. New York: {Farrar, Straus and Giroux}.
+\leavevmode\vadjust pre{\hypertarget{ref-sandel_tyranny_2020}{}}%
+Sandel, M. J. (2020). \emph{The tyranny of merit: {What}'s become of the
+common good?} (First edition). New York: {Farrar, Straus and Giroux}.
 
-\bibitem[\citeproctext]{ref-schunk_fairness_2023}
-Schunk, Daniel, and Isabell Zipperle. 2023. {``Fairness and Inequality
-Acceptance in Children and Adolescents: {A} Survey on Behaviors in
-Economic Experiments''} 37 (5): 1715--42.
-\url{https://doi.org/10.1111/joes.12553}.
+\leavevmode\vadjust pre{\hypertarget{ref-schunk_fairness_2023}{}}%
+Schunk, D., \& Zipperle, I. (2023). Fairness and inequality acceptance
+in children and adolescents: {A} survey on behaviors in economic
+experiments, \emph{37}(5), 1715--1742.
+\url{https://doi.org/10.1111/joes.12553}
 
-\bibitem[\citeproctext]{ref-shariff_income_2016}
-Shariff, Azim F., Dylan Wiwad, and Lara B. Aknin. 2016. {``Income
-{Mobility Breeds Tolerance} for {Income Inequality}: {Cross-National}
-and {Experimental Evidence}.''} \emph{Perspectives on Psychological
-Science} 11 (3): 373--80.
-\url{https://doi.org/10.1177/1745691616635596}.
+\leavevmode\vadjust pre{\hypertarget{ref-shariff_income_2016}{}}%
+Shariff, A. F., Wiwad, D., \& Aknin, L. B. (2016). Income {Mobility
+Breeds Tolerance} for {Income Inequality}: {Cross-National} and
+{Experimental Evidence}. \emph{Perspectives on Psychological Science},
+\emph{11}(3), 373--380. \url{https://doi.org/10.1177/1745691616635596}
 
-\bibitem[\citeproctext]{ref-sigelman_development_1991}
-Sigelman, Carol K., and Kara A. Waitzman. 1991. {``The {Development} of
+\leavevmode\vadjust pre{\hypertarget{ref-sigelman_development_1991}{}}%
+Sigelman, C. K., \& Waitzman, K. A. (1991). The {Development} of
 {Distributive Justice Orientations}: {Contextual Influences} on
-{Children}'s {Resource Allocations}.''} \emph{Child Development} 62 (6):
-1367. \url{https://doi.org/10.2307/1130812}.
+{Children}'s {Resource Allocations}. \emph{Child Development},
+\emph{62}(6), 1367. \url{https://doi.org/10.2307/1130812}
 
-\bibitem[\citeproctext]{ref-sivesind_changing_2017}
-Sivesind, Karl Henrik. 2017. {``The {Changing Roles} of {For-Profit} and
-{Nonprofit Welfare Provision} in {Norway}, {Sweden}, and {Denmark}.''}
-In \emph{Promoting {Active Citizenship}}, edited by Karl Henrik Sivesind
-and Jo Saglie, 33--74. Cham: Springer International Publishing.
-\url{https://doi.org/10.1007/978-3-319-55381-8_2}.
+\leavevmode\vadjust pre{\hypertarget{ref-sivesind_changing_2017}{}}%
+Sivesind, K. H. (2017). The {Changing Roles} of {For-Profit} and
+{Nonprofit Welfare Provision} in {Norway}, {Sweden}, and {Denmark}. In
+K. H. Sivesind \& J. Saglie (Eds.), \emph{Promoting {Active
+Citizenship}} (pp. 33--74). Cham: Springer International Publishing.
+\url{https://doi.org/10.1007/978-3-319-55381-8_2}
 
-\bibitem[\citeproctext]{ref-smith_relative_2012}
-Smith, Heather J., Thomas F. Pettigrew, Gina M. Pippin, and Silvana
-Bialosiewicz. 2012. {``Relative {Deprivation}: {A Theoretical} and
-{Meta-Analytic Review}.''} \emph{Personality and Social Psychology
-Review} 16 (3): 203--32. \url{https://doi.org/10.1177/1088868311430825}.
+\leavevmode\vadjust pre{\hypertarget{ref-smith_relative_2012}{}}%
+Smith, H. J., Pettigrew, T. F., Pippin, G. M., \& Bialosiewicz, S.
+(2012). Relative {Deprivation}: {A Theoretical} and {Meta-Analytic
+Review}. \emph{Personality and Social Psychology Review}, \emph{16}(3),
+203--232. \url{https://doi.org/10.1177/1088868311430825}
 
-\bibitem[\citeproctext]{ref-soler-martinez_concerns_2023}
-Soler-Martínez, Francisco Miguel, Efraín García-Sánchez, and Guillermo
-B. Willis. 2023. {``Concerns {About Inequality} in {Health}, {Education}
-and {Income Jointly Predict Collective Actions}.''} \emph{Revista
-Latinoamericana de Psicolog{í}a} 55: 99.
-\url{https://doi.org/10.14349/rlp.2023.v55.12}.
+\leavevmode\vadjust pre{\hypertarget{ref-soler-martinez_concerns_2023}{}}%
+Soler-Martínez, F. M., García-Sánchez, E., \& Willis, G. B. (2023).
+Concerns {About Inequality} in {Health}, {Education} and {Income Jointly
+Predict Collective Actions}. \emph{Revista Latinoamericana de
+Psicolog{í}a}, \emph{55}, 99.
+\url{https://doi.org/10.14349/rlp.2023.v55.12}
 
-\bibitem[\citeproctext]{ref-stoy_worlds_2014}
-Stoy, Volquart. 2014. {``Worlds of {Welfare Services}: {From Discovery}
-to {Exploration}.''} \emph{Social Policy \& Administration} 48 (3):
-343--60. \url{https://doi.org/10.1111/spol.12006}.
+\leavevmode\vadjust pre{\hypertarget{ref-stoy_worlds_2014}{}}%
+Stoy, V. (2014). Worlds of {Welfare Services}: {From Discovery} to
+{Exploration}. \emph{Social Policy \& Administration}, \emph{48}(3),
+343--360. \url{https://doi.org/10.1111/spol.12006}
 
-\bibitem[\citeproctext]{ref-streeck_citizens_2012}
-Streeck, Wolfgang. 2012. {``Citizens as {Customers}: {Considerations} on
-the {New Politics} of {Consumption}.''} \emph{New Left Review} 76.
+\leavevmode\vadjust pre{\hypertarget{ref-streeck_citizens_2012}{}}%
+Streeck, W. (2012). Citizens as {Customers}: {Considerations} on the
+{New Politics} of {Consumption}. \emph{New Left Review}, \emph{76}.
 
-\bibitem[\citeproctext]{ref-torche_intergenerational_2014}
-Torche, Florencia. 2014. {``Intergenerational {Mobility} and
-{Inequality}: {The Latin American Case}.''} \emph{Annual Review of
-Sociology} 40 (1): 619--42.
-\url{https://doi.org/10.1146/annurev-soc-071811-145521}.
+\leavevmode\vadjust pre{\hypertarget{ref-torche_intergenerational_2014}{}}%
+Torche, F. (2014). Intergenerational {Mobility} and {Inequality}: {The
+Latin American Case}. \emph{Annual Review of Sociology}, \emph{40}(1),
+619--642. \url{https://doi.org/10.1146/annurev-soc-071811-145521}
 
-\bibitem[\citeproctext]{ref-vonhippel_test_2019}
-Von Hippel, Paul, and Caitlin Hamrock. 2019. {``Do {Test Score Gaps
-Grow} Before, During, or Between the {School Years}? {Measurement
-Artifacts} and {What We Can Know} in {Spite} of {Them}.''}
-\emph{Sociological Science} 6: 43--80.
-\url{https://doi.org/10.15195/v6.a3}.
+\leavevmode\vadjust pre{\hypertarget{ref-vonhippel_test_2019}{}}%
+Von Hippel, P., \& Hamrock, C. (2019). Do {Test Score Gaps Grow} before,
+during, or between the {School Years}? {Measurement Artifacts} and {What
+We Can Know} in {Spite} of {Them}. \emph{Sociological Science},
+\emph{6}, 43--80. \url{https://doi.org/10.15195/v6.a3}
 
-\bibitem[\citeproctext]{ref-weaver_paths_2010}
-Weaver, Kent. 2010. {``Paths and {Forks} or {Chutes} and {Ladders}?:
-{Negative Feedbacks} and {Policy Regime Change}.''} \emph{Journal of
-Public Policy} 30 (2): 137--62.
-\url{https://doi.org/10.1017/S0143814X10000061}.
+\leavevmode\vadjust pre{\hypertarget{ref-weaver_paths_2010}{}}%
+Weaver, K. (2010). Paths and {Forks} or {Chutes} and {Ladders}?:
+{Negative Feedbacks} and {Policy Regime Change}. \emph{Journal of Public
+Policy}, \emph{30}(2), 137--162.
+\url{https://doi.org/10.1017/S0143814X10000061}
 
-\bibitem[\citeproctext]{ref-wegener_dominant_1995}
-Wegener, Bernd, and Stefan Liebig. 1995. {``Dominant {Ideologies} and
-the {Variation} of {Distributive Justice Norms}: {A Comparison} of
-{East} and {West Germany}, and the {United States}.''} In \emph{Social
-{Justice} and {Political Change}: {Public Opinion} in {Capitalist} and
-{Post-Communist States}}, edited by James R. Kluegel, David S. Mason,
-and Bernd Wegener, 239--59. New York: Walter de Gruyter.
+\leavevmode\vadjust pre{\hypertarget{ref-wegener_dominant_1995}{}}%
+Wegener, B., \& Liebig, S. (1995). Dominant {Ideologies} and the
+{Variation} of {Distributive Justice Norms}: {A Comparison} of {East}
+and {West Germany}, and the {United States}. In J. R. Kluegel, D. S.
+Mason, \& B. Wegener (Eds.), \emph{Social {Justice} and {Political
+Change}: {Public Opinion} in {Capitalist} and {Post-Communist States}}
+(pp. 239--259). New York: Walter de Gruyter.
 
-\bibitem[\citeproctext]{ref-wiederkehr_belief_2015}
-Wiederkehr, Virginie, Virginie Bonnot, Silvia Krauth-Gruber, and Céline
-Darnon. 2015. {``Belief in School Meritocracy as a System-Justifying
-Tool for Low Status Students.''} \emph{Frontiers in Psychology} 6.
+\leavevmode\vadjust pre{\hypertarget{ref-wiederkehr_belief_2015}{}}%
+Wiederkehr, V., Bonnot, V., Krauth-Gruber, S., \& Darnon, C. (2015).
+Belief in school meritocracy as a system-justifying tool for low status
+students. \emph{Frontiers in Psychology}, \emph{6}.
 
-\bibitem[\citeproctext]{ref-wynn_not_2018}
-Wynn, Karen, Paul Bloom, Ashley Jordan, Julia Marshall, and Mark
-Sheskin. 2018. {``Not {Noble Savages After All}: {Limits} to {Early
-Altruism}.''} \emph{Current Directions in Psychological Science} 27 (1):
-3--8. \url{https://doi.org/10.1177/0963721417734875}.
+\leavevmode\vadjust pre{\hypertarget{ref-wynn_not_2018}{}}%
+Wynn, K., Bloom, P., Jordan, A., Marshall, J., \& Sheskin, M. (2018).
+Not {Noble Savages After All}: {Limits} to {Early Altruism}.
+\emph{Current Directions in Psychological Science}, \emph{27}(1), 3--8.
+\url{https://doi.org/10.1177/0963721417734875}
 
-\bibitem[\citeproctext]{ref-young_rise_1958}
-Young, Michael. 1958. \emph{The Rise of the Meritocracy}. New Brunswick,
+\leavevmode\vadjust pre{\hypertarget{ref-young_rise_1958}{}}%
+Young, M. (1958). \emph{The rise of the meritocracy}. New Brunswick,
 N.J., U.S.A: Transaction Publishers.
 
 \end{CSLReferences}
