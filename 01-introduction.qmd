@@ -6,7 +6,7 @@ bibliography: "input/bib/just-ineq-merit.bib"
 csl: "input/bib/apa6.csl"
 ---
 
-## Introduction
+# Introduction
 
 Since its origins,  educational institutions have been related to the idea of social mobility and access to better opportunities. Therefore, the consistent evidence of the high level of social reproduction at the school level represents a threat to the promise of education and a meritocratic system [@bourdieu_reproduction_1990]. A large part of the research in this field at an international level has addressed the extent to which the social origin of students affects their academic results and their life opportunities [@vonhippel_test_2019], confirming that schools have severe difficulties in closing the socio-economic and cultural gaps of origin. Besides this socioeconomic perspective on school opportunities, recent research has addressed to what extent inequalities in the school context are also influencing students' perceptions, beliefs, and attitudes: Are social inequalities even perceived at the school context? Are they rejected by the students, particularly those who are worst-off in socioeconomic terms? Or, Is there evidence at the school level that social inequalities are tolerated and even justified? [@batruch_belief_2022; @wiederkehr_belief_2015].
 

@@ -1,16 +1,15 @@
 ---
 author: "Equipo Edumer"
-format: pdf
 editor: visual
 ---
 
-## Data, variables and method
+# Data, variables and method
 
-### Data
+## Data
 
 The main data source corresponds to the First Study of Civic Education in Chile, conducted by the Agency for Quality Education of the Ministry of Education in 2017. This database is based on the administration of a civic knowledge test to students and questionnaires to various members of the educational community. The target population consists of 8th-grade students in 242 schools across the country. Initially, the database comprises 8,589 student observations and 6,770 parent observations. However, considering the survey's unit of analysis and to ensure higher data quality, 171 student cases and 79 parent cases exhibiting repetitive and careless response patterns were removed (Gottfried et al., 2022). Additionally, data from the System for Measuring the Quality of Education (SIMCE) conducted by the Ministry of Education for the year 2017 are employed, providing school-level information such as administrative dependence, socioeconomic classification, and results obtained in standardized mathematics and language tests. After variable processing and removal of missing cases, the final database for this study includes a two-level stratified sample, composed of 5,047 students and parents (level 1) nested within 231 schools (level 2).
 
-### Variables
+## Variables
 
 ***Individual level***
 
@@ -105,7 +104,7 @@ df$Variable <- NULL # delete variable column
 print(df)
 ```
 
-### Methods
+## Methods
 
 Given the hierarchical structure of the data, with students nested within schools, model estimation is performed within a multilevel framework. These models are appropriate for capturing both individual and contextual effects in a single analysis, allowing for the estimation of fixed effects between groups and random effects that vary from one group to another [@bell_fixed_2019; @hox_multilevel_2010]. Cumulative link mixed models were employed for the ordinal dependent variables, while linear mixed-effects models were applied for the average market justice preference index.
 

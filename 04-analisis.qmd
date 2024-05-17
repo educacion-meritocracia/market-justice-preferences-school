@@ -1,12 +1,11 @@
 ---
 author: "Equipo Edumer"
-format: pdf
 editor: visual
 ---
 
-## Analysis
+# Analysis
 
-### Descriptive analysis
+## Descriptive analysis
 
 ```{r packages, echo=FALSE}
 pacman::p_load(tidyverse,
@@ -161,7 +160,7 @@ ggarrange(plot_soc_effort, plot_school_effort, plot_soc_talent,
           plot_school_talent, plot_deservingness, leg, ncol = 2, nrow = 3)
 ```
 
-### Multivariate results
+## Models
 
 The results of the cumulative link mixed models for the ordinal dependent variables of justice in differential access to education, health, and pensions by income are presented in @fig-odds. This figure illustrates the effect of meritocratic variables on society and school as independent variables; however, the models incorporate all variables utilized in the study for each of the three dependent variables separately (complete models are available in the [Appendix](#appendix)).
 
