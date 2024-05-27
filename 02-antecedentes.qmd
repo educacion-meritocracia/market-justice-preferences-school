@@ -56,12 +56,12 @@ H6: The perception of meritocracy in school and society will moderate the effect
 H7: The perception of meritocracy in school and society will moderate the effect of school status on market justice preferences.
 
 
-### Summary of hypotheses @Kevin-carrasco, actualizar esquema
+### Summary of hypotheses
 
 ```{r echo=FALSE, out.width = "600px"}
 #| fig-cap: "Summary of hypotheses"
 #| label: fig-hypotheses
 
-knitr::include_graphics("input/img/hypotheses.png",
+knitr::include_graphics("input/img/hypothesis2.png",
   auto_pdf = getOption("knitr.graphics.auto_pdf", TRUE))
 ```
