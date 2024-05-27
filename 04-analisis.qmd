@@ -14,7 +14,8 @@ pacman::p_load(tidyverse,
                ordinal,
                sjPlot, 
                texreg,
-               kableExtra)
+               kableExtra,
+               sjPlot)
 
 options(scipen=999)
 rm(list = ls())
@@ -57,6 +58,57 @@ theme_nice <- function() {
 theme_set(theme_nice())
 
 ```
+
+*Market justice preferences*
+
+```{r echo=FALSE}
+#| fig-cap: "Market justice preferences in education, health and pensions"
+#| fig-asp: 1.22
+#| label: fig-marketjustice
+
+data_rec %>% 
+  select(just_salud, just_educ, just_pension) %>% 
+  sjPlot::plot_stackfrq(expand.grid =TRUE,
+                      geom.colors = "PuBu",
+                      show.total = FALSE, 
+                      legend.labels = c("Strongly disagree", "Disagree", "Agree", "Strongly agree"),
+                      axis.labels = c("Health", "Education", "Pensions")) +
+  theme_light(base_size = 16) +
+  theme(legend.position="bottom", text = element_text(size = 14),
+        plot.caption = element_text(hjust = 1))
+```
+
+@fig-marketjustice shows the frequency distribution for the three market justice preference items (pensions, education, and health). The majority of respondents disagree (63.0% in total) with the idea that it is just for higher-income individuals to access better pensions. However, a notable portion (27.0%) agrees, and a smaller minority (10.1%) strongly agrees. Similar to pensions, a majority of respondents (58.8%) disagree with the idea that higher-income individuals should have access to better education. However, a considerable portion (28.6%) agrees, and a slightly larger minority (12.6%) strongly agrees compared to pensions. In the context of health, an even larger majority of respondents (66.4%) disagree with the notion that higher-income individuals should access better healthcare services. A smaller percentage (23.6%) agrees, and a minority (10.0%) strongly agrees. Overall, @fig-marketjustice shows a predominant sentiment against the justice of higher-income individuals accessing better services across all three areas. The strongest opposition is observed in the health sector. Despite the overall disagreement, a significant portion of respondents agree with the statement, particularly in education, where agreement and strong agreement are slightly higher compared to pensions and health.
+
+*School and social meritocracy*
+
+```{r echo=FALSE}
+#| fig-cap: "Social and school meritocracy"
+#| fig-asp: 1.22
+#| label: fig-meritocracy
+
+plot<-data_rec %>% 
+  select(merito_soc, esfuerzo_soc, inteligencia_soc, esfuerzo_esc, inteligencia_esc) %>% 
+  sjPlot::plot_stackfrq(expand.grid =TRUE,
+                      geom.colors = "PuBu",
+                      show.total = FALSE, 
+                      vjust=c(rep(c("center"),12), "bottom", "top", rep(c("center"), 6)),
+                      legend.labels = c("Strongly disagree", "Disagree", "Agree", "Strongly agree"),
+                      axis.labels = c("Deservingness", "Social effort", "Social talent", "School effort", "School talent")) +
+  theme_light(base_size = 16) +
+  theme(legend.position="bottom", text = element_text(size = 14),
+        plot.caption = element_text(hjust = 1))
+
+plot + 
+  annotate("text", x = 5.5, y = 0, label = "School meritocracy", size = 5, hjust = 0, vjust = 1) +
+  annotate("text", x = 3.5, y = 0, label = "Social meritocracy", size = 5, hjust = 0, vjust = 1)
+```
+
+@fig-meritocracy shows the frequency distribution for the five meritocracy items for the dimensions of school and social meritocracy. While a significant portion of respondents (29.2%) strongly agrees that talent is important to get good grades, a larger majority (78.6% combining agree and strongly agree) supports this notion. However, the strong agreement is not as pronounced as for school effort. An overwhelming majority (73.1%) agree that students effort is important to get good grades, which is a much higher percentage compared to the strong agreement for talent (29.2%). This indicates that people believe effort is more important than talent at school. There is a strong belief that both effort and talent are important, with a particularly high agreement for effort (73.1% strongly agree).
+
+In relation with social meritocracy, @fig-meritocracy shows that a majority of respondents (63.7% combining agree and strongly agree) agree that people are rewarded for their talent in society, with a notable portion (17.1%) strongly agreeing. A majority (62.0% combining agree and strongly agree) agree that people are rewarded for their effort in society. Similar to social talent, the perception is positive but less overwhelming than school meritocracy. The perception of whether people get what they deserve in society is more divided. While a slim majority (56.5% combining agree and strongly agree) agree, a significant minority (43.6%) disagrees, showing that this is the most contentious item among respondents. There is general agreement that people are rewarded for talent and effort in society, but the consensus is weaker compared to school meritocracy. Deservingness in society is the most contentious, with significant disagreement among respondents.
+
+*Market justice preferences in education, health and pensions by social and school meritocracy*
 
 @fig-bivariate shows a series of graphs depicting the association between the variables of market justice preferences - in education, health, and pensions - and the variables of meritocratic perception at school (effort and talent) and in society (effort, talent, and deservingness) (see conceptual diagram in @fig-hypotheses). On the left, we observe the social meritocracy diagrams, while on the right the school meritocracy diagrams are shown. For the three variables of perception of meritocracy in society the relationship is clear, since the average of market justice preferences increases the more there is agreement that people are rewarded for their effort, merit, and talent. This relationship needs to be clarified in the case of the variables of perception of meritocracy at school. To the extent that there is more agreement that the perception of talent is essential for obtaining good grades, the average of market justice preferences increases, but this relationship is not as clear as with the variables of meritocracy in society. In addition, the graph does not show a clear trend in the relationship between the perception that effort is essential to obtain good grades and market justice preferences.
 
@@ -164,7 +216,7 @@ ggarrange(plot_soc_effort, plot_school_effort, plot_soc_talent,
 
 The results of the cumulative link mixed models for the ordinal dependent variables of justice in differential access to education, health, and pensions by income are presented in @fig-odds. This figure illustrates the effect of meritocratic variables on society and school as independent variables; however, the models incorporate all variables utilized in the study for each of the three dependent variables separately (complete models are available in the [Appendix](#appendix)).
 
-```{r echo=FALSE}
+```{r echo=FALSE, warning=FALSE}
 
 data_pension <- data_rec %>% dplyr::select(-just_educ, -just_salud, -redistribucion)
 data_pension <- na.omit(data_pension)
@@ -180,7 +232,7 @@ data_educ$just_educ_fact <- as_factor(data_educ$just_educ)
 reg5_educ <- clmm(just_educ_fact ~ 1 + inteligencia_esc + esfuerzo_esc + inteligencia_soc + esfuerzo_soc + merito_soc + educacion_rec + libros_rec + acc_tec + internet_rec + mean_educ + cod_depe2 + cod_grupo + simce + (1 | mrbd), data=data_educ)
 ```
 
-```{r echo=FALSE}
+```{r echo=FALSE, warning=FALSE}
 #| fig-cap: "Odds-ratios of justification of pensions, education and health by social and school meritocracy"
 #| label: fig-odds
 #| fig-asp: 0.8
@@ -202,7 +254,7 @@ plot_models(reg5_salud, reg5_educ, reg5_pension,
                             "Deservingness"
                             )), #con rev porque automatico los tira en otro orden
             show.legend = FALSE,
-            m.labels = c("Health", "Education","Pension"),
+            m.labels = c("Health", "Education","Pensions"),
             colors = gray(level = 0.2))  # variables dependientes
 
 ```
@@ -326,7 +378,7 @@ kbl(collapse_rows,
   column_spec(1, bold = T, width = "4cm") %>%
   column_spec(column = 2:6,width = "1.5cm") %>%
   collapse_rows(columns = 1:2, valign = "middle") %>% 
-  footnote(general = "***p < 0.001, **p < 0.01, *p < 0.05",
+  footnote(general = "*** p<0.001, ** p<0.01, * p<0.05",
            footnote_as_chunk = T,general_title = "Note: ")
 
 ```
