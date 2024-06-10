@@ -3,7 +3,6 @@ format:
   html: 
     toc: true
     keep-tex: true
-editor: visual
 smooth-scroll: true
 number-sections: true
 bibliography: "input/bib/just-ineq-merit.bib"
@@ -15,7 +14,6 @@ mainfont: Times New Roman
 # The socialization of meritocracy and market justice preferences at school {.unnumbered}
 
 Abstract
-
 
 {{< include 01-introduction.qmd >}}
 

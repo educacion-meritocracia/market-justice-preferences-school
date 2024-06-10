@@ -109,7 +109,7 @@ print(df)
 
 ***Controls***
 
-A series of individual control variables are included. At the individual level, an index of access to technology is constructed based on the number of computers, tablets, and cell phones in the household, as well as internet connectivity. At the contextual level, we use the administrative dependence of schools, classified as "Public," "Subsidized Private," or "Private," and the proportion of parents with university or postgraduate education at each school.
+A series of control variables are included. At the individual level, an index of access to technology is constructed based on the number of computers, tablets, and cell phones in the household, as well as internet connectivity. At the contextual level, we use the administrative dependence of schools, classified as "Public," "Subsidized Private," or "Private," and the proportion of parents with university or postgraduate education at each school.
 
 ## Methods
 
