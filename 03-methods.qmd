@@ -7,8 +7,6 @@ editor: visual
 
 ## Data
 
-## 🗒️ Answer
-
 The First Study of Civic Education in Chile, conducted by the Agency for Quality Education of the Ministry of Education in 2017, serves as the main data source. This database is composed by a civic knowledge test score and a series of items batteries measuring different aspects of citizenship. The target population includes 8th-grade students in 242 schools nationwide, as well as their parents and teachers. Initially, the database contains 8,589 student observations and 6,770 parent observations. To ensure higher data quality and considering the survey's unit of analysis, we removed 171 student cases and 79 parent cases that exhibited repetitive and careless response patterns (Gottfried et al., 2022). Additionally, we utilized data from the System for Measuring the Quality of Education (SIMCE) conducted by the Ministry of Education in 2017, which provides school-level information such as administrative dependence, socioeconomic classification, and results obtained in standardized mathematics and language tests. After processing the variables and removing missing cases, the final database for this study includes a two-level stratified sample composed of 5,047 students and parents (level 1) nested within 231 schools (level 2).
 
 ## Variables
