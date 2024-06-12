@@ -51,16 +51,8 @@ decimales <- function(x) {
 
 # set theme
 
-#windowsFonts(`Times New Roman` = windowsFont("Times New Roman"))
 
-theme_nice <- function() {
-  theme_bw() +
-    theme(text = element_text(family = "serif"))
-  
-  
-}
-
-theme_set(theme_nice())
+theme_set(theme_bw())
 
 ```
 
@@ -88,9 +80,7 @@ data_rec %>%
 
 ```
 
-Regarding the perception of meritocracy, @fig-meritocracy displays the frequency distribution of five items related to the dimensions of school and society. At the school level, there is a strong belief that both effort and talent are important for achieving good grades, with especially high agreement for effort. Specifically, while 78.6% agree or strongly agree on the importance of talent for obtaining good grades, this proportion rises to 96.8% for effort, indicating that respondents value effort more than talent in this context. 
-
-
+Regarding the perception of meritocracy, @fig-meritocracy displays the frequency distribution of five items related to the dimensions of school and society. At the school level, there is a strong belief that both effort and talent are important for achieving good grades, with especially high agreement for effort. Specifically, while 78.6% agree or strongly agree on the importance of talent for obtaining good grades, this proportion rises to 96.8% for effort, indicating that respondents value effort more than talent in this context.
 
 ```{r echo=FALSE}
 #| fig-cap: "Social and school meritocracy"
@@ -230,12 +220,16 @@ leg <- get_legend(plot_school_talent)
 plot_school_talent <- plot_school_talent + theme(legend.position = "none")
 
 ggarrange(plot_soc_effort, plot_school_effort, plot_soc_talent,
-          plot_school_talent, plot_deservingness, leg, ncol = 2, nrow = 3)
+          plot_school_talent, plot_deservingness, leg, ncol = 2, nrow = 3) +
+  labs(caption = paste0("Source: Authors calculation based on First Study of Civic Education 2017",
+                             " (N = ",dim(data_rec)[1],")"))
 ```
 
 ## Multivariate
 
-The results of the cumulative link mixed models for the ordinal dependent variables of justice in differential access to health, pensions and education by income are presented in @tbl-ordinal-reg[^1]. 
+This section presents the results of the multilevel models. We begin by showing the results of the cumulative link mixed models in @tbl-ordinal-reg for the ordinal dependent variables of justice in health, pensions, and education separately, to determine if the effect of the predictors differs across these items. Then, we present the results of the linear mixed-effects models for the average index of preference for market justice in @tbl-lineal-reg[^1]. For the health item, the intraclass correlation (ICC) obtained for the null model (not shown) indicates that 5% of the total variance of this item is associated with specific characteristics of the schools, while it is 3% for the pensions item and 4% for the education item (ICC based on [@hox_multilevel_2010, p.15]). For the average index of market justice preferences, the ICC reaches 4%, indicating that overall, only a small percentage of the total variance in students’ market justice preferences is associated with school characteristics, thus limiting the possibility of finding effects at this second level of analysis. 
+
+[^1]: The tables shows the effects of individual and contextual-level independent variables related to our hypothesis; however, the models also incorporate the control variables utilized in the study for each of the three dependent variables separately and for the average index (complete models are available in the [Appendix](#appendix)).
 
 ```{r echo=FALSE, include=FALSE}
 
@@ -318,7 +312,7 @@ modelos_educ <- list(m1_e, m2_e, m3_e)
 ```
 
 ```{r echo=FALSE, results='asis'}
-#| tbl-cap: "Cumulative link multilevel models of differential acces justificacion of education, health and pensions"
+#| tbl-cap: "Cumulative link multilevel models of differential acces justificacion of health, pensions, and education"
 #| label: tbl-ordinal-reg
 
 ccoef <- list(
@@ -362,9 +356,17 @@ texreg::htmlreg(l = list(modelos_health[[2]],
 
 ```
 
-@tbl-ordinal-reg demonstrates a similar trend for the three dependent variables of justice in differential access to pensions, education, and health, with all effects being statistically significant. In the context of school meritocracy, the effects are mixed: as perceived school talent increases, the justification for differentiated access to these services increases; conversely, as perceived school effort increases, the justification decreases, holding all other variables constant. Regarding the variables of social meritocracy, the three variables of talent, effort, and deservingness show that as these increase, the justification for differentiated access to pensions, education, and health also increases. Overall, these results provide partial support for our first hypothesis (H1a), which posited that students who perceive higher levels of meritocracy in school would be more likely to justify differential access to pensions, health, and education. This is evidenced by the positive effect of perceiving talent as important for achieving good grades. However, the results strongly support our second hypothesis (H1b), as a higher perception of societal meritocracy among students tends to increase the justification for market-based justice in these social services. CAMBIAR
 
-Contextual effects for ordinal models.
+
+Model 1 in @tbl-ordinal-reg for the three dependent variables of justice in differential access to health, pensions, and education demonstrates a similar trend regarding the effect of the perception of meritocracy on these items, with all effects being statistically significant (*p* < 0.05). Regarding the variables of social meritocracy, the three variables—talent, effort, and deservingness—show that as these increase, the justification for differentiated access to pensions, education, and health also increases. In the context of school meritocracy, the effects are mixed: as perceived school talent increases, the justification for differentiated access to these services increases; conversely, as perceived school effort increases, the justification decreases, holding all other variables constant.
+
+Additionally, Model 1 shows the effect of family status, measured through the highest educational level of the parents and the number of books at home. For the three items—health, pensions, and education—a negative but statistically non-significant association with parents' educational level is observed. However, the results suggest a negative and statistically significant effect of the number of books at home for market justice in health and pensions, indicating that those with more than 25 books at home tend to justify less differentiated access in these areas compared to those with fewer than 25 books, controlling for other variables. This association is not observed for market justice in education.
+
+Model 2 in @tbl-ordinal-reg incorporates school-level variables for the three items of market justice in health, pensions, and education. Regarding the socioeconomic level of the schools, the results show that high socioeconomic status schools maintain greater preferences for market justice in education compared to low socioeconomic status schools, with a statistically significant association (*p* < 0.05). This effect is not observed for the health and pensions variables. Moreover, the academic performance of schools shows negative and statistically significant effects for the three items of market justice separately. The findings suggest that schools with higher academic performance tend to justify market allocation principles less for access to health, pensions, and education compared to low-performing schools. This difference is also observed in schools with medium performance, but only for the domains of health and pensions.
+
+
+
+
 
 ```{r echo=FALSE, include=FALSE}
 
@@ -419,12 +421,12 @@ deviance5 <- test05$deviance[2]
 ```
 
 ```{r echo=FALSE, results='asis'}
-#| tbl-cap: "Multilevel models for meritocracy perception and market justice preferences"
-#| label: tbl-individual-reg
+#| tbl-cap: "Linear mixed-effects models for meritocracy perception and market justice preferences"
+#| label: tbl-lineal-reg
 
 
 ccoef <- list(
-  "(Intercept)" = "Intercept",
+  "(Intercept)" = "Constant",
   inteligencia_esc = "School talent",
   esfuerzo_esc = "School effort",
   inteligencia_soc = "Social talent",
@@ -550,6 +552,3 @@ plot_interact<- plot_model(reg26.2_bienestar, type = "int", mdrt.values="minmax"
 plot_interact
 
 ```
-
-
-[^1]: This table shows the effects of individual and contextual-level independent variables related to our hypothesis; however, the models also incorporate the control variables utilized in the study for each of the three dependent variables separately (complete models are available in the [Appendix](#appendix)).

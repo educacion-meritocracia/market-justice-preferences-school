@@ -15,14 +15,7 @@ rm(list = ls())
 
 load(file = "input/data/ELSOC_2016.RData")
 
-theme_nice <- function() {
-  theme_bw() +
-    theme(text = element_text(family = "serif"))
-  
-  
-}
-
-theme_set(theme_nice())
+theme_set(theme_bw())
 ```
 
 
@@ -48,14 +41,13 @@ elsoc_2016 <- elsoc_2016 %>%
                 Education = d02_02, 
                 Health = d02_03) %>% 
   mutate_all(.funs = ~ set_na(., na = c(-666,-777,-888,-999), drop.levels = F) %>% 
-               sjmisc::rec(., rec = "rev", append = F) %>% 
                factor(.,
                       levels = c(1,2,3,4,5),
-                      labels = c("Strongly agree",
-                                 "Agree",
-                                 "Neither agree nor disagree",
+                      labels = c("Strongly desagree",
                                  "Desagree",
-                                 "Strongly desagree"))) %>% 
+                                 "Neither agree nor disagree",
+                                 "Agree",
+                                 "Strongly agree"))) %>% 
   na.omit() 
 
 
@@ -79,7 +71,7 @@ elsoc_2016 %>%
             vjust = -0.5,
             size = 3,
             position = position_dodge(width = 0.8)) +
-  scale_fill_manual(values = c( "#F1EEF6", "#BDC9E1", "#b3b3b3ff", "#74A9CF", "#0570B0")) +
+  scale_fill_manual(values = c("#F1EEF6", "#BDC9E1", "#b3b3b3ff", "#74A9CF", "#0570B0")) +
   labs(x = NULL,
        y = "Proportion (%)",
        fill = NULL,
@@ -94,7 +86,7 @@ elsoc_2016 %>%
 
 ## Meritocratic perceptions and market justice
 
-The original definition of merit is a combination of effort and talent [@young_rise_1958], and a meritocracy is a distributive system where merit is the main criteria for allocating valuable goods and rewards. From a sociological perspective, meritocracy has been used in research on social mobility to characterize societies with low mobility that threaten the meritocratic ideal [@goldthorpe_myth_2003]. More recently, sociology and social psychology research has attended to subjective aspects related to the support for meritocratic principles in different societies, such as beliefs in meritocracy [@castillo_multidimensional_2023a; @mijs_unfulfillable_2016; @mijs_paradox_2019]. The label of beliefs in this realm covers different concepts, but in this paper we refer to a conceptual model developed by @castillo_multidimensional_2023 which identify two main aspects: preferences and perceptions for meritocracy.
+The original definition of merit is a combination of effort and talent [@young_rise_1958], and a meritocracy is a distributive system where merit is the main criteria for allocating valuable goods and rewards. From a sociological perspective, meritocracy has been used in research on social mobility to characterize societies with low mobility that threaten the meritocratic ideal [@goldthorpe_myth_2003]. More recently, sociology and social psychology research has attended to subjective aspects related to the support for meritocratic principles in different societies, such as beliefs in meritocracy [@castillo_multidimensional_2023; @mijs_unfulfillable_2016; @mijs_paradox_2019]. The label of beliefs in this realm covers different concepts, but in this paper we refer to a conceptual model developed by @castillo_multidimensional_2023 which identify two main aspects: preferences and perceptions for meritocracy.
 
 While meritocratic preferences refer to a justification of distribution based on merit criteria (effort and talent), the perception of meritocracy refers to how individuals view and understand the concept of meritocracy in their own society [@duru-bellat_who_2012; @castillo_meritocracia_2019]. This perception can vary greatly depending on individual experiences, social, economic, and cultural background. Some people may see meritocracy as a fair and just system that allows anyone to succeed based on their abilities and hard work. In contrast, others may view it as a myth or a cover for existing power dynamics and inequality, serving to maintain and even reinforce inequality [@lampert_meritocratic_2013; @mijs_paradox_2021]. Based in this last perspective, we argue that individuals with a higher perception of meritocracy will show a larger market justice preferences, as individual achievement would be seen as rewarded and social policies as less necessary.
 
