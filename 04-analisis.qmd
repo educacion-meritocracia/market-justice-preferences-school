@@ -17,6 +17,7 @@ pacman::p_load(tidyverse,
                kableExtra,
                easystats)
 
+
 options(scipen=999)
 rm(list = ls())
 ```
@@ -111,7 +112,60 @@ plot +
                              " (N = ",dim(data_rec)[1],")"))
 ```
 
+
 At the societal level, @fig-meritocracy shows that a majority of respondents agree or strongly agree that individuals are rewarded for their talents (63.7%) and efforts (62%). Nevertheless, a notable proportion perceives that both effort and talent are not adequately rewarded in society, with 38.1% and 36.3% respectively. The perception of whether people get what they deserve in society is more divided; while a slim majority (56.5% combining agree and strongly agree) agrees, a significant minority (43.6%) disagrees, indicating that this is the most contentious item among respondents. There is general agreement that people are rewarded for talent and effort in society, but the consensus is weaker compared to school meritocracy.
+
+*Market justice preferences*
+
+```{r echo=FALSE}
+#| fig-cap: "Market justice preferences in education, health and pensions"
+#| fig-asp: 1.22
+#| label: fig-marketjustice
+
+data_rec %>% 
+  select(just_salud, just_educ, just_pension) %>% 
+  sjPlot::plot_stackfrq(expand.grid =TRUE,
+                      geom.colors = "PuBu",
+                      show.total = FALSE, 
+                      legend.labels = c("Strongly disagree", "Disagree", "Agree", "Strongly agree"),
+                      axis.labels = c("Health", "Education", "Pensions")) +
+  theme_light(base_size = 16) +
+  theme(legend.position="bottom", text = element_text(size = 14),
+        plot.caption = element_text(hjust = 1))
+```
+
+@fig-marketjustice shows the frequency distribution for the three market justice preference items (pensions, education, and health). The majority of respondents disagree (63.0% in total) with the idea that it is just for higher-income individuals to access better pensions. However, a notable portion (27.0%) agrees, and a smaller minority (10.1%) strongly agrees. Similar to pensions, a majority of respondents (58.8%) disagree with the idea that higher-income individuals should have access to better education. However, a considerable portion (28.6%) agrees, and a slightly larger minority (12.6%) strongly agrees compared to pensions. In the context of health, an even larger majority of respondents (66.4%) disagree with the notion that higher-income individuals should access better healthcare services. A smaller percentage (23.6%) agrees, and a minority (10.0%) strongly agrees. Overall, @fig-marketjustice shows a predominant sentiment against the justice of higher-income individuals accessing better services across all three areas. The strongest opposition is observed in the health sector. Despite the overall disagreement, a significant portion of respondents agree with the statement, particularly in education, where agreement and strong agreement are slightly higher compared to pensions and health.
+
+*School and social meritocracy*
+
+```{r echo=FALSE}
+#| fig-cap: "Social and school meritocracy"
+#| fig-asp: 1.22
+#| label: fig-meritocracy
+
+plot<-data_rec %>% 
+  select(merito_soc, esfuerzo_soc, inteligencia_soc, esfuerzo_esc, inteligencia_esc) %>% 
+  sjPlot::plot_stackfrq(expand.grid =TRUE,
+                      geom.colors = "PuBu",
+                      show.total = FALSE, 
+                      vjust=c(rep(c("center"),12), "bottom", "top", rep(c("center"), 6)),
+                      legend.labels = c("Strongly disagree", "Disagree", "Agree", "Strongly agree"),
+                      axis.labels = c("Deservingness", "Social effort", "Social talent", "School effort", "School talent")) +
+  theme_light(base_size = 16) +
+  theme(legend.position="bottom", text = element_text(size = 14),
+        plot.caption = element_text(hjust = 1))
+
+plot + 
+  annotate("text", x = 5.5, y = 0, label = "School meritocracy", size = 5, hjust = 0, vjust = 1) +
+  annotate("text", x = 3.5, y = 0, label = "Social meritocracy", size = 5, hjust = 0, vjust = 1)
+```
+
+@fig-meritocracy shows the frequency distribution for the five meritocracy items for the dimensions of school and social meritocracy. While a significant portion of respondents (29.2%) strongly agrees that talent is important to get good grades, a larger majority (78.6% combining agree and strongly agree) supports this notion. However, the strong agreement is not as pronounced as for school effort. An overwhelming majority (73.1%) agree that students effort is important to get good grades, which is a much higher percentage compared to the strong agreement for talent (29.2%). This indicates that people believe effort is more important than talent at school. There is a strong belief that both effort and talent are important, with a particularly high agreement for effort (73.1% strongly agree).
+
+In relation with social meritocracy, @fig-meritocracy shows that a majority of respondents (63.7% combining agree and strongly agree) agree that people are rewarded for their talent in society, with a notable portion (17.1%) strongly agreeing. A majority (62.0% combining agree and strongly agree) agree that people are rewarded for their effort in society. Similar to social talent, the perception is positive but less overwhelming than school meritocracy. The perception of whether people get what they deserve in society is more divided. While a slim majority (56.5% combining agree and strongly agree) agree, a significant minority (43.6%) disagrees, showing that this is the most contentious item among respondents. There is general agreement that people are rewarded for talent and effort in society, but the consensus is weaker compared to school meritocracy. Deservingness in society is the most contentious, with significant disagreement among respondents.
+
+*Market justice preferences in education, health and pensions by social and school meritocracy*
+
 
 @fig-bivariate shows a series of graphs depicting the association between the variables of market justice preferences - in education, health, and pensions - and the variables of meritocratic perception at school (effort and talent) and in society (effort, talent, and deservingness) (see conceptual diagram in @fig-hypotheses). On the left, we observe the social meritocracy diagrams, while on the right the school meritocracy diagrams are shown. For the three variables of perception of meritocracy in society the relationship is clear, since the average of market justice preferences increases the more there is agreement that people are rewarded for their effort, merit, and talent. This relationship needs to be clarified in the case of the variables of perception of meritocracy at school. To the extent that there is more agreement that the perception of talent is essential for obtaining good grades, the average of market justice preferences increases, but this relationship is not as clear as with the variables of meritocracy in society. In addition, the graph does not show a clear trend in the relationship between the perception that effort is essential to obtain good grades and market justice preferences.
 
@@ -230,6 +284,7 @@ ggarrange(plot_soc_effort, plot_school_effort, plot_soc_talent,
 ## Multivariate
 
 This section presents the results of the multilevel models. We begin by showing the results of the cumulative link mixed models in @tbl-ordinal-reg for the ordinal dependent variables of justice in health, pensions, and education separately, to determine if the effect of the predictors differs across these items. Then, we present the results of the linear mixed-effects models for the average index of preference for market justice in @tbl-lineal-reg[^1]. For the health item, the intraclass correlation (ICC) obtained for the null model (not shown) indicates that 5% of the total variance of this item is associated with specific characteristics of the schools, while it is 3% for the pensions item and 4% for the education item (ICC based on [@hox_multilevel_2010, p.15]). For the average index of market justice preferences, the ICC reaches 4%, indicating that overall, only a small percentage of the total variance in students' market justice preferences is associated with school characteristics, thus limiting the possibility of finding effects at this second level of analysis.
+
 
 [^1]: The tables shows the effects of individual and contextual-level independent variables related to our hypothesis; however, the models also incorporate the control variables utilized in the study for each of the three dependent variables separately and for the average index (complete models are available in the [Appendix](#appendix)).
 
@@ -355,6 +410,7 @@ texreg::htmlreg(l = list(modelos_health[[2]],
                                 "Achievement score (Ref.= Low)" = 15:16),
                 custom.gof.rows = list("Controls"=rep("Yes",6)),
                 include.loglik = FALSE, include.aic = FALSE)
+
 
 ```
 
@@ -500,6 +556,7 @@ collapse_rows[c(-4),] %>%
   collapse_rows(columns = 1:2, valign = "middle") %>% 
   kableExtra::add_footnote(label = "Note: ***p < 0.001, **p < 0.01, *p < 0.05", 
                            notation = "none")
+
 
 ```
 
