@@ -89,7 +89,7 @@ load("input/data/school.RData")
 #| tbl-cap: "School context variables"
 #| label: tbl-desc-school
 
-df<-dfSummary(school,
+df<-dfSummary(school[,c(4,2)],
                plain.ascii = FALSE,
                style = "multiline",
                tmp.img.dir = "/tmp",

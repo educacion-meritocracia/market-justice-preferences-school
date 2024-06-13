@@ -58,6 +58,8 @@ theme_set(theme_bw())
 
 @fig-marketjustice illustrates the distribution of responses to the three items on market justice preferences (healthcare, pensions, and education), indicating that most respondents tend to disagree or strongly disagree with the idea that it is just for people with higher incomes to have access to better services in these areas. The strongest opposition is observed in the healthcare sector, as the majority of respondents (66.4%) are against the idea that higher-income individuals should have access to better healthcare services. Similarly, regarding the concept of justice related to access to better pensions based on income, the level of disagreement reaches 63.0%. This decreases significantly in the field of education, as the percentage of respondents who disagree or strongly disagree with those with higher incomes having access to better education decreases to 58.8%. Only a small proportion agree that access to healthcare should be conditional on income (23.6%), and a minority strongly agree (10%), as is the case with pensions. However, this increases in the case of education, being the area where there is a significant proportion of respondents who agree or strongly agree with access based on market justice (41.2%).
 
+This contrasts with the pattern observed for these items in the Chilean adult population (see @fig-elsoc). While both age groups tend to disagree that higher-income individuals should access better health, pension, and education services, this tendency is more pronounced in adults than in students, who show greater agreement with market justice preferences in these areas. Additionally, the hierarchy of these domains differs between groups; adults justify market justice least in education, followed by health, and then pensions, whereas students justify market principles less in health, then pensions, and lastly in education.
+
 ```{r echo=FALSE}
 #| fig-cap: "Market justice preferences in health, pensions and education"
 #| fig-asp: 0.6
@@ -227,7 +229,7 @@ ggarrange(plot_soc_effort, plot_school_effort, plot_soc_talent,
 
 ## Multivariate
 
-This section presents the results of the multilevel models. We begin by showing the results of the cumulative link mixed models in @tbl-ordinal-reg for the ordinal dependent variables of justice in health, pensions, and education separately, to determine if the effect of the predictors differs across these items. Then, we present the results of the linear mixed-effects models for the average index of preference for market justice in @tbl-lineal-reg[^1]. For the health item, the intraclass correlation (ICC) obtained for the null model (not shown) indicates that 5% of the total variance of this item is associated with specific characteristics of the schools, while it is 3% for the pensions item and 4% for the education item (ICC based on [@hox_multilevel_2010, p.15]). For the average index of market justice preferences, the ICC reaches 4%, indicating that overall, only a small percentage of the total variance in students’ market justice preferences is associated with school characteristics, thus limiting the possibility of finding effects at this second level of analysis. 
+This section presents the results of the multilevel models. We begin by showing the results of the cumulative link mixed models in @tbl-ordinal-reg for the ordinal dependent variables of justice in health, pensions, and education separately, to determine if the effect of the predictors differs across these items. Then, we present the results of the linear mixed-effects models for the average index of preference for market justice in @tbl-lineal-reg[^1]. For the health item, the intraclass correlation (ICC) obtained for the null model (not shown) indicates that 5% of the total variance of this item is associated with specific characteristics of the schools, while it is 3% for the pensions item and 4% for the education item (ICC based on [@hox_multilevel_2010, p.15]). For the average index of market justice preferences, the ICC reaches 4%, indicating that overall, only a small percentage of the total variance in students' market justice preferences is associated with school characteristics, thus limiting the possibility of finding effects at this second level of analysis.
 
 [^1]: The tables shows the effects of individual and contextual-level independent variables related to our hypothesis; however, the models also incorporate the control variables utilized in the study for each of the three dependent variables separately and for the average index (complete models are available in the [Appendix](#appendix)).
 
@@ -356,17 +358,11 @@ texreg::htmlreg(l = list(modelos_health[[2]],
 
 ```
 
+Model 1 in @tbl-ordinal-reg for the three dependent variables of justice in differential access to health, pensions, and education demonstrates a similar trend regarding the effect of the perception of meritocracy on these items, with all effects being statistically significant (*p* \< 0.05). Regarding the variables of social meritocracy, the three variables---talent, effort, and deservingness---show that as these increase, the justification for differentiated access to pensions, education, and health also increases. In the context of school meritocracy, the effects are mixed: as perceived school talent increases, the justification for differentiated access to these services increases; conversely, as perceived school effort increases, the justification decreases, holding all other variables constant.
 
+Additionally, Model 1 examines family status through parents' educational level and the number of books at home. For health, pensions, and education, a negative but statistically non-significant association with parents' education is observed. However, having more than 25 books at home shows a negative and statistically significant effect on market justice in health and pensions, suggesting less justification for differentiated access compared to those with fewer books. This effect is not seen in education.
 
-Model 1 in @tbl-ordinal-reg for the three dependent variables of justice in differential access to health, pensions, and education demonstrates a similar trend regarding the effect of the perception of meritocracy on these items, with all effects being statistically significant (*p* < 0.05). Regarding the variables of social meritocracy, the three variables—talent, effort, and deservingness—show that as these increase, the justification for differentiated access to pensions, education, and health also increases. In the context of school meritocracy, the effects are mixed: as perceived school talent increases, the justification for differentiated access to these services increases; conversely, as perceived school effort increases, the justification decreases, holding all other variables constant.
-
-Additionally, Model 1 shows the effect of family status, measured through the highest educational level of the parents and the number of books at home. For the three items—health, pensions, and education—a negative but statistically non-significant association with parents' educational level is observed. However, the results suggest a negative and statistically significant effect of the number of books at home for market justice in health and pensions, indicating that those with more than 25 books at home tend to justify less differentiated access in these areas compared to those with fewer than 25 books, controlling for other variables. This association is not observed for market justice in education.
-
-Model 2 in @tbl-ordinal-reg incorporates school-level variables for the three items of market justice in health, pensions, and education. Regarding the socioeconomic level of the schools, the results show that high socioeconomic status schools maintain greater preferences for market justice in education compared to low socioeconomic status schools, with a statistically significant association (*p* < 0.05). This effect is not observed for the health and pensions variables. Moreover, the academic performance of schools shows negative and statistically significant effects for the three items of market justice separately. The findings suggest that schools with higher academic performance tend to justify market allocation principles less for access to health, pensions, and education compared to low-performing schools. This difference is also observed in schools with medium performance, but only for the domains of health and pensions.
-
-
-
-
+Model 2 in @tbl-ordinal-reg incorporates school-level variables. The results show that high socioeconomic level schools show greater preferences for market justice in education compared to low socioeconomic level schools, with statistically significant results (*p* \< 0.05). This effect is not seen for health and pensions. Moreover, the findings suggest that schools with higher academic performance shows negative and statistically significant effects across all three items, suggesting these schools justify market allocation principles less. This pattern is also observed in medium-performing schools, but only for health and pensions.
 
 ```{r echo=FALSE, include=FALSE}
 
@@ -473,11 +469,9 @@ texreg::htmlreg(list(reg1_bienestar, reg2_bienestar, reg4_bienestar, reg5_bienes
 
 ```
 
-Regarding our measure of market justice preferences index, the results of the multilevel linear estimation are shown in @tbl-individual-reg. The intraclass correlation obtained for the null model (not shown) it's equal to 4% (ICC based on [@hox_multilevel_2010, p.15]), which indicates that only a small percentage of the total variance of the students' market justice preferences are associated with the characteristics of schools, and therefore limits the possibilities of finding effects at this second level of analysis.
+@tbl-lineal-reg presents the results of linear mixed-effects models for the market justice preference index. Model 1 shows that higher perceived societal meritocracy, through effort, talent, and deservingness, is positively and significantly associated with market justice preferences. School meritocracy perceptions yield mixed effects: perceived talent increases market justice preference, while perceived effort decreases it, both statistically significant (*p* \< 0.001). Model 2 includes family status, finding no statistically significant effects from parents' education or the number of books at home, both showing negative directions.
 
-Model 1 introduces social meritocratic variables: effort (whether efforts are rewarded), deservingness (people get what they deserve), and social talent (intelligence and skills are rewarded in society). In line with our hypotheses, the perception of a meritocratic society is positively related to the justification of inequality. Model 2 shows a mixed picture: while those perceiving that talent is rewarded also justify the inequality, the perception that effort is rewarded at school is negatively related to justification of inequality. Family background variables in Model 3 reveal that education and technology access are not related to justification of inequality, whereby we observe a negative impact of family cultural capital as measured by the number of books at home. While school socio-structural variables added in Model 4 show no significant effects, average achievement scores in the SIMCE test depict a negative relationship with the dependent variable, meaning that students that attend schools with better achievement scores on average justify less inequality.
-
-In relation to model fit, when comparing the deviance with a model without predictors (null model), all the models have a statistically significant difference, with model 5 having the lowest deviance. According to Raudenbush and Bryk's (2002) estimate of R2, the level 1 variance of model 5 is 0.11 and the level 2 variance is 0.72. The total variance of model 5 according to Snijders and Bosker (2012) is 0.14.
+Regarding school characteristics, Models 3 and 4 introduce socioeconomic level and academic performance. The results of Model 3 suggest no statistically significant relationship between school socioeconomic levels and market justice preferences. However, Model 4 indicates that schools with medium ($\beta$ = -0.10) and high ($\beta$ = -0.24) academic performance have lower market justice preferences compared to low-performing schools, with these effects being statistically significant when controlling for other variables.
 
 ```{r echo=FALSE}
 #| tbl-cap: "Interactions effects"
@@ -485,30 +479,33 @@ In relation to model fit, when comparing the deviance with a model without predi
 
 pacman::p_load(kableExtra)
 load("input/data/interact.RData")
-kbl(collapse_rows,
-    align = "lccccc", booktabs = T,
-    col.names =  c("Variable", 
-                   "School talent", 
-                   "School effort",
-                   "Social talent",
-                   "Social effort", 
-                   "Deservingness")) %>%
+
+collapse_rows[c(-4),] %>% 
+  as_tibble() %>% 
+  kbl(.,
+      align = "lccccc", booktabs = T,
+      col.names =  c("Variable", 
+                     "School talent", 
+                     "School effort",
+                     "Social talent",
+                     "Social effort", 
+                     "Deservingness")) %>% 
   add_header_above(c(" " = 1,
                      "Market Justice Preferences"=5), 
-                   bold = T)%>%  
+                   bold = T) %>% 
   kable_styling(latex_options = c("scale_down","HOLD_position"),
-                full_width = F) %>%
+                full_width = F) %>% 
   column_spec(1, bold = T, width = "4cm") %>%
   column_spec(column = 2:6,width = "1.5cm") %>%
   collapse_rows(columns = 1:2, valign = "middle") %>% 
-  footnote(general = "***p < 0.001, **p < 0.01, *p < 0.05",
-           footnote_as_chunk = T,general_title = "Note: ")
+  kableExtra::add_footnote(label = "Note: ***p < 0.001, **p < 0.01, *p < 0.05", 
+                           notation = "none")
 
 ```
 
-The interaction terms in @tbl-interact suggest that students' family background moderates the relationship between their meritocratic perceptions in Chile and their justification of inequality. The direction of these effects confirms our initial prediction. Thus, in line with our Hypothesis 3, the relationship between social effort and justification of inequality becomes less positive for those students whose parents achieved university or postgraduate education. That is, lower-status students (measured by parental education) justify more inequality when they adhere more strongly to deservingnessmeritocratic perceptions in Chile. This result confirms the enlightenment thesis (see above). The same moderating effect is observed for students' family cultural capital: the relationship between effort (but not deservingness nor social talent) and justification of inequality becomes less positive for students with more than 25 books at home. Interestingly, family cultural capital also moderates the relationship between meritocratic beliefs at school (as measured by students' belief that effort is important to get good grades) and justification of inequality.
+@tbl-interact displays the interaction terms related to our hypothesis. The results suggest that students' family background moderates the relationship between their meritocratic perceptions and their justification of market allocation in social services. Specifically, the relationship between social effort and market justice preferences is less positive for students whose parents have university or postgraduate education. Lower-status students (measured by parental education) prefer more market justice when they strongly adhere to meritocratic perceptions of deservingness. A similar moderating effect is seen with family cultural capital: the relationship between effort and market justice preferences is less positive for students with more than 25 books at home.
 
-At the school level, we also observe moderating effects of school status and students' meritocratic beliefs over their justification of inequality. Thus, in line with our Hypothesis 5, high-status schools justify less inequality when, on average, their students have a greater perception of meritocracy in Chile, as measured by the three indicators we used (i.e., effort, deservingness, and talent). Finally, as we stated in Hypothesis 7, low-achieving schools justify more inequality when their students have, on average, stronger meritocratic beliefs in Chile. In @fig-interaction we depict this moderating effect of school achievement for the relationship between deservingness and justification of inequality. We did not observe these moderating effects at the school level for students' meritocratic beliefs in the school (i.e., the idea that effort or talent are important to get good grades).
+At the school level, we observe that school status and students' meritocratic beliefs moderate their preferences for market justice. High-status schools show less preference for market justice when their students, on average, have a greater perception of meritocracy, as measured by effort, deservingness, and talent. Conversely, low-achieving schools prefer more market justice when their students have stronger meritocratic beliefs. @fig-interaction illustrates this moderating effect of school achievement on the relationship between deservingness and market justice. No moderating effects were observed at the school level for students' meritocratic beliefs regarding effort or talent in achieving good grades.
 
 ```{r echo=FALSE, include=FALSE}
 load("input/data/data_rec.RData")
