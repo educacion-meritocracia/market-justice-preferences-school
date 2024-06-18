@@ -23,6 +23,8 @@ Abstract
 
 {{< include 04-analisis.qmd >}}
 
-{{< include 05-conclusiones.qmd >}}
+{{< include 05-discussion.qmd >}}
 
-{{< include 06-anexos.qmd >}}
+{{< include 06-conclusion.qmd >}}
+
+{{< include 07-anexos.qmd >}}

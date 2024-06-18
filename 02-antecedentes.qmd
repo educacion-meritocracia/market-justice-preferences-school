@@ -106,23 +106,17 @@ Attending to the socialization within the family, the classic work of Kohn showe
 
 H2: Students from families of higher social status will show larger market justice preferences.
 
-Recent empirical research has demonstrated that the institutional design of schools, coupled with the meritocratic ideology it fosters, significantly influences children's and adolescents' views on inequality and deservingness. For example, @jonsson_institutional_2015 study revealed that higher-status adolescents in Sweden tend to perpetuate social class stereotypes while describing the vocational and academic tracks. Academic track students are depicted as wealthy, intelligent, ambitious, and diligent, while vocational track students are characterized as poor, unambitious, unintelligent, and lackadaisical. These stereotypes help individuals maintain a sense of superiority over others and legitimize the prevailing social hierarchies and economic disparities [@jost_attitudinal_2000]. The link between school socioeconomic status and market preferences is certainly reinforced in societies with high school segregation, as is the case of Chile. Consistently, we expect that
+Recent empirical research has demonstrated that the institutional design of schools, coupled with the meritocratic ideology it fosters, significantly influences children's and adolescents' views on inequality and deservingness. For example, @jonsson_institutional_2015 study revealed that higher-status adolescents in Sweden tend to perpetuate social class stereotypes while describing the vocational and academic tracks. Academic track students are depicted as wealthy, intelligent, ambitious, and diligent, while vocational track students are characterized as poor, unambitious, unintelligent, and lackadaisical. These stereotypes help individuals maintain a sense of superiority over others and legitimize the prevailing social hierarchies and economic disparities [@jost_attitudinal_2000]. In this line, and besides status, we also expect that schools that exhibit an average better performance scores in standardized large scale assessments would also show larger market justice preferences. The correspondent hypotheses are:
 
 H3: Students from schools of higher social status will show larger market justice preferences.
 
-The last set of hypotheses deal with the role of meritocratic perception as a moderator of family and school status on market justice preferences. These hypotheses have more an exploratory character, as there are not clear references in the literature to this regard. The general argument deals with the role of socioeconomic status and meritocratic perceptions, which is contested in the literature. On the one hand, and based on a mere rational argument, it would be expected that those who succeed in terms of educational rewards and carreer paths - usuaylly those of higher status - perceive more meritocracy. Nevertheless, evidence regarding the legitimacy of meritocracy relies on consensual beliefs from the side of both winners and losers from the distributive system, pointing in the direction of fewer status differences when it comes to meritocratic beliefs [@wiederkehr_belief_2015]. As this is the first study of this kind in the Chilean context, charaterized by extreme educational inequalities, we rely on a traditional and rational approach, proposing that:
+H4: Students from schools with an average better performance in standardized achivement tests will show larger market justice preferences.
 
-H4: Students from schools of higher social status will perceive more meritocracy.
+The last set of hypotheses deal with the moderation effects. We propose that the link between meritocracy and market justice could be stronger for those of high status and attendig to school with larger achievement scores. In this regard, the effecs of status and merit would not be independent, as it would be expected that those who succeed in terms of educational rewards and carreer paths - usuaylly those of higher status - perceive more meritocracy, which would reflect on a larger market justice prefences. In similar terms, schools of better performance would promote meritocratic perception, sthrengthening market justice prefences:
 
-H5: Students from families of higher social status will perceive more meritocracy.
+H5: The family social status will moderate the effect of meritocratic perception on market justice preferences.
 
-\[aca falta hipothesis de school performance\]
-
-The previous hypotheses serve as a sort of bridge for the final moderation hypotheses. As higher (family and school) status would be related to meritocratic perception (H5 and H6), and at the same time meritocratic perception would be related to larger market justice preferences (H1 and H2), we argue that meritocratic perceptions could play a moderating role: the association between high status and market justice would be stronger for those with a larger meritocratic perception:
-
-H6: The perception of meritocracy in school and society will moderate the effect of family social status on market justice preferences.
-
-H7: The perception of meritocracy in school and society will moderate the effect of school status on market justice preferences.
+H5: The school performance in standardized achievement tests will moderate the effect of meritocratic perceptions on market justice preferences.
 
 ### Summary of hypotheses
 
