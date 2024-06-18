@@ -425,7 +425,6 @@ reg5_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc +
                          mean_educ + cod_depe2 + school_nse + simce + 
                          (1 | mrbd), data=data_bienestar)
 
-knitreg(list(reg1_bienestar, reg2_bienestar, reg3_bienestar, reg4_bienestar, reg5_bienestar))
 
 test01 <- anova(reg0_bienestar, reg1_bienestar, test = "Chisq")
 test02 <- anova(reg0_bienestar, reg2_bienestar, test = "Chisq")
