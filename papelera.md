@@ -56,3 +56,8 @@ Some research shows that the social environment in which children develop, such 
 
 ---
 [Studies about meritocratic beliefs and inequality justification at school age is rather scarce, revealing a wide research gap as schools are one of the primary socialization institutions where achievement based on merit is related to success [@erivwo_meritocracy_2021]. A number of studies in this area have been developed by Clara Sabbagh and Nura Resh in Israel. Using justice in grade obtention as a measure of distributive justice and meritocracy ]
+
+
+
+
+Using data for 41 countries from the International Social Survey Programme (ISSP),@garcia-sanchez_attitudes_2020 found that the perceived size of the income gap correlated positively with support for progressive taxation, an association that was weaker among those who endorsed meritocratic and equal opportunity beliefs. Along the same line, experimental research by @durante_preferences_2009 showed that subjects support less redistribution when the initial distribution is determined according to task performance.
