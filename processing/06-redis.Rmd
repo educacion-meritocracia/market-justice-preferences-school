@@ -1,0 +1,273 @@
+---
+title: "04-redis"
+author: "Equipo EDUMER"
+date: '2022-06-27'
+output: 
+  html_document: 
+    toc: yes
+    code_folding: hide
+    toc_float: 
+      collapsed: true
+      smooth_scroll: false
+      number_sections: true
+---
+
+```{r}
+pacman::p_load(haven, dplyr, summarytools, sjmisc, car, sjlabelled, sjPlot, lme4, stargazer, corrplot, ltm, texreg, ordinal, MASS, webshot)
+load("input/data/proc/alumnos_patterns.RData")
+load("input/data/proc/apoderados_patterns.RData")
+```
+
+```{r}
+data_est <- alumnos_patterns %>% dplyr::select(idalumno,
+                                               sexo,
+                                               codigoCurso,
+                                               mrbd,
+                                               cod_depe2, #dependencia administrativa
+                                               cod_grupo, #categorizacion socioeconomica
+                                               simce_lect=prom_lect8b_rbd, #Promedio lectura escuela
+                                               simce_mate=prom_mate8b_rbd, # Promedio matematica escuela
+                                               inteligencia_esc=est_p6_1, # inteligencia escolar
+                                               esfuerzo_esc=est_p6_2, # esfuerzo escolar
+                                               esfuerzo_soc=est_p38_2, #esfuerzo social
+                                               merito_soc=est_p38_3, #merito social
+                                               inteligencia_soc=est_p38_4, #inteligencia social
+                                               just_pension=est_p39_1, #justicia pension
+                                               just_educ=est_p39_2, # justicia educacion
+                                               just_salud=est_p39_3, # justicia salud
+                                               redistribucion=est_p39_4, # redistribucion
+                                               libros=est_p3, # cantidad de libros
+                                               pc=est_p4_1, # tiene pc
+                                               tablet=est_p4_2, # tiene tablet
+                                               celular=est_p4_3 # tiene celular
+                                               ) %>% as.data.frame(.)
+
+data_apod <- apoderados_patterns %>% dplyr::select(idalumno,
+                                               educacion=educ_max, # nivel educacional mas alto
+                                               internet=apod_p9 # conexion a internet en la casa
+                                               ) %>% as.data.frame(.)
+
+data_apod <- data_apod %>%  set_na(internet, na = c(0,99), drop.levels = FALSE, as.tag = FALSE) # recode missings de doble marca (99) y vacío (0) a NA
+```
+
+## merge bases
+```{r}
+data <- left_join(data_est, data_apod, by="idalumno")
+rm(apoderados_patterns, alumnos_patterns, data_est, data_apod)
+```
+
+```{r}
+#Educacion
+data$educacion_rec <- ifelse(is.na(data$educacion), "Ns/Nr", data$educacion)
+data <- data %>% rowwise() %>%  mutate(educacion_rec = case_when(educacion_rec==1~"Ed Basica",
+                                                 educacion_rec==2~"Ed Basica",
+                                                 educacion_rec==3~"Ed Basica",
+                                                 educacion_rec==4~"Ed Media",
+                                                 educacion_rec==5~"Ed Media",
+                                                 educacion_rec==6~"Ed Tecnica",
+                                                 educacion_rec==7~"Ed Tecnica",
+                                                 educacion_rec==8~"Universidad o posgrado",
+                                                 educacion_rec==9~"Universidad o posgrado",
+                                                 educacion_rec==10~"Universidad o posgrado",
+                                                 educacion_rec=="Ns/Nr"~"Ns/Nr"
+                                                 ))
+data$educacion_rec <- factor(data$educacion_rec, levels = c("Ed Basica", "Ed Media", "Ed Tecnica", "Universidad o posgrado", "Ns/Nr"))
+
+## Proporcion de Universidad o posgrado por escuela
+data <- data %>% group_by(mrbd) %>%
+  mutate(mean_educ = mean(educacion_rec=="Universidad o posgrado", na.rm=T))
+
+# Internet
+data$internet <- factor(data$internet, labels = c("Si", "No"))
+data$internet_rec <- ifelse(is.na(data$internet), "Ns/Nr", data$internet)
+
+# libros
+data$libros_rec <- as.numeric(data$libros)
+data <- data %>% rowwise() %>% mutate(libros_rec = case_when(libros_rec==1 ~ "Menos de 25",
+                                                             libros_rec==2 ~ "Menos de 25",
+                                                             libros_rec==3 ~ "Más de 25",
+                                                             libros_rec==4 ~ "Más de 25",
+                                                             libros_rec==5 ~ "Más de 25"))
+data$libros_rec <- factor(data$libros_rec, levels = c("Menos de 25", "Más de 25"))
+```
+
+```{r}
+data <- data %>% rowwise() %>% mutate(prom_simce = mean(simce_lect,simce_mate))
+summary(data$prom_simce)
+data$simce <- ntile(data$prom_simce,3)
+table(data$simce)
+data$simce <- factor(data$simce, labels = c("Bajo", "Medio", "Alto"))
+```
+
+```{r}
+# Acceso a tecnologia
+data$pc <- as.numeric(data$pc)
+data$tablet <- as.numeric(data$tablet)
+data$celular <- as.numeric(data$celular)
+
+corrplot.mixed(cor(dplyr::select(data, pc, tablet, celular),
+                   method = "spearman",
+                   use = "complete.obs"))
+```
+
+```{r}
+ltm::cronbach.alpha(data  %>%
+  dplyr::select(pc, tablet, celular), na.rm=TRUE)
+```
+
+```{r}
+data <- data %>% rowwise() %>% dplyr::mutate(acc_tec = sum(pc, tablet, celular, na.rm = T))
+summary(data$acc_tec)
+```
+
+```{r}
+# Variables meritocracia
+data$inteligencia_esc <- as.numeric(data$inteligencia_esc)
+data$esfuerzo_esc <- as.numeric(data$esfuerzo_esc)
+data$esfuerzo_soc <- as.numeric(data$esfuerzo_soc)
+data$merito_soc <- as.numeric(data$merito_soc)
+data$inteligencia_soc <- as.numeric(data$inteligencia_soc)
+data$just_pension <- as.numeric(data$just_pension)
+data$just_salud <- as.numeric(data$just_salud)
+data$just_educ <- as.numeric(data$just_educ)
+data$redistribucion <- as.numeric(data$redistribucion)
+```
+
+```{r}
+data_rec <- data %>% dplyr::select(-educacion, -internet, -simce_lect, -simce_mate, -libros, -pc, -tablet, -celular)
+```
+
+# Modelos de regresión logística ordenada (ordinal logit) (CLMM del paquete ordinal - Cumulative link mixed models)
+
+## El gobierno deberia hacer algo para disminuir las brechas de ingresos
+
+```{r}
+data_redis <- data_rec %>% dplyr::select(-just_pension, -just_educ, -just_salud)
+data_redis <- na.omit(data_redis)
+data_redis$redistribucion_fact <- as_factor(data_redis$redistribucion)
+```
+
+## Intraclass correlation
+
+```{r}
+reg0_redis <- clmm(redistribucion_fact ~ 1 + (1 | mrbd), data=data_redis)
+performance::icc(reg0_redis)
+```
+
+## Regresiones
+
+```{r}
+reg1_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + (1 | mrbd), data=data_redis)
+reg2_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + (1 | mrbd), data=data_redis)
+reg3_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + internet_rec + (1 | mrbd), data=data_redis)
+reg4_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + internet_rec + mean_educ + cod_depe2 + cod_grupo + (1 | mrbd), data=data_redis)
+reg5_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + internet_rec + mean_educ + cod_depe2 + cod_grupo + simce + (1 | mrbd), data=data_redis)
+```
+
+```{r results='asis'}
+htmlreg(list(reg0_redis, reg1_redis, reg2_redis, reg3_redis, reg4_redis, reg5_redis), 
+        custom.model.names = c("Nulo",
+                               "Modelo 1",
+                               "Modelo 2",
+                               "Modelo 3",
+                               "Modelo 4",
+                               "Modelo 5"), 
+        custom.note = "$***p <$ 0.001, $**p <$ 0.01, $*p <$ 0.05", 
+        omit.coef = "(internet_rec)",
+        custom.coef.names = c("Muy desacuerdo|Desacuerdo",
+                              "Desacuerdo|De acuerdo",
+                              "De acuerdo|Muy de acuerdo",
+                              "Esfuerzo social", 
+                              "Merito social", 
+                              "Inteligencia social", 
+                              "Esfuerzo escolar", 
+                              "Inteligencia escolar", 
+                              "Ed media <br> <i>(Ref. Ed Basica)</i>", 
+                              "Ed tecnica", "Universidad o posgrado", 
+                              "Ns/Nr", 
+                              "Más de 25 libros <br> <i>(Ref. Menos de 25)</i>", 
+                              "Acceso a tecnología",
+                              "Prop. universitarios escuela",
+                              "Part. subv <br> <i>(Ref. Municipal)</i>", 
+                              "Part. priv", 
+                              "SES Medio bajo <br> <i>(Ref. Bajo)</i>", 
+                              "SES Medio", 
+                              "SES Medio alto", 
+                              "SES Alto", 
+                              "Simce_Medio <i>(Ref. Bajo)</i>", 
+                              "Simce_alto"))
+```
+
+```{r results='asis'}
+htmlreg(list(reg0_redis, reg1_redis, reg2_redis, reg3_redis, reg4_redis, reg5_redis), 
+        custom.model.names = c("Model 0", 
+                               "Model 1",
+                               "Model 2",
+                               "Model 3",
+                               "Model 4",
+                               "Model 5"), 
+        custom.note = "$***p <$ 0.001, $**p <$ 0.01, $*p <$ 0.05", 
+        omit.coef = "(internet_rec)",
+        custom.coef.names = c("Strongly Disagree|Disagree",
+                              "Disagree|Agree",
+                              "Agree|Strongly Agree",
+                               "Social effort",
+                              "Deservingness", 
+                              "Social talent", 
+                              "School effort", 
+                              "School talent", 
+                              "Secondary <br> <i>(Ref. 8th grade or less)</i>", 
+                              "Higher tec.", 
+                              "University or posgraduate", 
+                              "Missing", 
+                              "More than 25 books <br> <i>(Ref. Less than 25)</i>", 
+                              "Technology access",
+                              "Prop. university level at school",
+                              "Subsidized private <br> <i>(Ref. Public)</i>", 
+                              "Private", 
+                              "SES Medium low <br> <i>(Ref. Low)</i>", 
+                              "SES Medium", 
+                              "SES Medium high", 
+                              "SES High", 
+                              "Simce Medium <i>(Ref. Low)</i>", 
+                              "Simce High"),
+        caption = "Redistribution",
+        caption.above = TRUE,
+        file = "output/tables/reg_redis.html")
+webshot(url ="output/tables/reg_redis.html" ,file ="output/tables/reg_redis.png")
+webshot(url ="output/tables/reg_redis.html" ,file ="output/tables/reg_redis.pdf")
+```
+
+```{r}
+labels.1 <- c("1|2", "2|3", "3|4",
+              "Esfuerzo social",
+                              "Merito social", 
+                              "Inteligencia social", 
+                              "Esfuerzo escolar", 
+                              "Inteligencia escolar", 
+                              "Ed media", 
+                              "Ed tecnica", "Universidad o posgrado", 
+                              "Ns/Nr", 
+                              "Más de 25 libros", 
+                              "Acceso a tecnología",
+                              "Prop. universitarios escuela",
+                              "Part. subv", 
+                              "Part. priv", 
+                              "SES Medio bajo", 
+                              "SES Medio", 
+                              "SES Medio alto", 
+                              "SES Alto", 
+                              "Simce_Medio", 
+                              "Simce_alto",
+                              "Internet",
+                              "NS/NR"
+                              )
+labels2.1 <- rev(labels.1)
+plot2 <- plot_model(reg10.1_redis, title = "", show.values = TRUE, value.offset = .5, value.size = 4, axis.labels = labels2.1)
+
+ggsave(plot2, file="output/graphs/plot2.png")
+```
+
+```{r}
+easystats::model_dashboard(reg5_redis, output_file = "dashboard_redistribution.html", output_dir = "output/tables")
+```

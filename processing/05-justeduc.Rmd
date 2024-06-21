@@ -1,0 +1,140 @@
+---
+title: "02-justeduc"
+author: "Equipo EDUMER"
+date: '2022-06-27'
+output: 
+  html_document: 
+    toc: yes
+    code_folding: hide
+    toc_float: 
+      collapsed: true
+      smooth_scroll: false
+      number_sections: true
+---
+
+```{r}
+pacman::p_load(haven, dplyr, summarytools, sjmisc, car, sjlabelled, sjPlot, lme4, stargazer, corrplot, ltm, texreg, ordinal, MASS, webshot2)
+
+load("input/data/proc/data_rec.RData")
+```
+
+# Modelos de regresión logística ordenada (ordinal logit) (CLMM del paquete ordinal - Cumulative link mixed models)
+
+## Es justo que las personas de ingresos altos puedan optar a mejor educacion
+
+```{r}
+data_educ <- data_rec %>% dplyr::select(-just_pension, -just_salud, -redistribucion)
+data_educ <- na.omit(data_educ)
+```
+
+## Intra class correlation
+
+```{r}
+data_educ$just_educ_fact <- as_factor(data_educ$just_educ)
+reg0_educ <- clmm(just_educ_fact ~ 1 + (1 | mrbd), data = data_educ)
+performance::icc(reg0_educ)
+```
+
+```{r}
+reg1_educ <- clmm(just_educ_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + (1 | mrbd), data=data_educ)
+reg2_educ <- clmm(just_educ_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + (1 | mrbd), data=data_educ)
+reg3_educ <- clmm(just_educ_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + internet_rec + (1 | mrbd), data=data_educ)
+reg4_educ <- clmm(just_educ_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + internet_rec + mean_educ + cod_depe2 + cod_grupo + (1 | mrbd), data=data_educ)
+reg5_educ <- clmm(just_educ_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + internet_rec + mean_educ + cod_depe2 + cod_grupo + simce + (1 | mrbd), data=data_educ)
+```
+```{r results='asis'}
+htmlreg(list(reg0_educ, reg1_educ, reg2_educ, reg3_educ, reg4_educ, reg5_educ), 
+        custom.model.names = c("Model 0", 
+                               "Model 1",
+                               "Model 2",
+                               "Model 3",
+                               "Model 4",
+                               "Model 5"), 
+        custom.note = "$***p <$ 0.001, $**p <$ 0.01, $*p <$ 0.05", 
+        omit.coef = "(internet_rec)",
+        custom.coef.names = c("Strongly Disagree|Disagree",
+                              "Disagree|Agree",
+                              "Agree|Strongly Agree",
+                               "Social effort",
+                              "Deservingness", 
+                              "Social talent", 
+                              "School effort", 
+                              "School talent", 
+                              "Secondary <br> <i>(Ref. 8th grade or less)</i>", 
+                              "Higher tec.", 
+                              "University or posgraduate", 
+                              "Missing", 
+                              "More than 25 books <br> <i>(Ref. Less than 25)</i>", 
+                              "Technology access",
+                              "Prop. university level at school",
+                              "Subsidized private <br> <i>(Ref. Public)</i>", 
+                              "Private", 
+                              "SES Medium low <br> <i>(Ref. Low)</i>", 
+                              "SES Medium", 
+                              "SES Medium high", 
+                              "SES High", 
+                              "Simce Medium <i>(Ref. Low)</i>", 
+                              "Simce High"),
+        caption.above = TRUE,
+        file = "output/tables/reg_justeduc.html")
+
+webshot(url ="output/tables/reg_justeduc.html" ,file ="output/tables/reg_justeduc.png")
+```
+
+### Interacciones
+
+*meritocracia x ses familiar (educacion)*
+
+```{r}
+reg10_educ <- clmm(just_educ_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec*esfuerzo_soc + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + educacion_rec | mrbd), data=data_educ)
+reg11_educ <- clmm(just_educ_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec*merito_soc + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + educacion_rec | mrbd), data=data_educ)
+reg12_educ <- clmm(just_educ_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec*inteligencia_soc + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + educacion_rec | mrbd), data=data_educ)
+reg13_educ <- clmm(just_educ_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec*esfuerzo_esc + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + educacion_rec | mrbd), data=data_educ)
+reg14_educ <- clmm(just_educ_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec*inteligencia_esc + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + educacion_rec | mrbd), data=data_educ)
+```
+
+```{r results='asis'}
+htmlreg(list(reg9_educ, reg10_educ, reg11_educ, reg12_educ, reg13_educ, reg14_educ))
+```
+
+*meritocracia x ses familiar (libros)*
+
+```{r}
+reg15_educ <- clmm(just_educ_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec*esfuerzo_soc + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + libros_rec | mrbd), data=data_educ)
+reg16_educ <- clmm(just_educ_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec*merito_soc + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + libros_rec | mrbd), data=data_educ)
+reg17_educ <- clmm(just_educ_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec*inteligencia_soc + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + libros_rec | mrbd), data=data_educ)
+reg18_educ <- clmm(just_educ_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec*esfuerzo_esc + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + libros_rec | mrbd), data=data_educ)
+reg19_educ <- clmm(just_educ_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec*inteligencia_esc + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + libros_rec | mrbd), data=data_educ)
+```
+
+```{r results='asis'}
+htmlreg(list(reg9_educ, reg15_educ, reg16_educ, reg17_educ, reg18_educ, reg19_educ))
+```
+
+*meritocracia x ses escuela*
+
+```{r}
+reg20_educ <- clmm(just_educ_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo*esfuerzo_soc + simce + internet_rec + (1 + cod_grupo | mrbd), data=data_educ)
+reg21_educ <- clmm(just_educ_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo*merito_soc + simce + internet_rec + (1 + cod_grupo | mrbd), data=data_educ)
+reg22_educ <- clmm(just_educ_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo*inteligencia_soc + simce + internet_rec + (1 + cod_grupo | mrbd), data=data_educ)
+reg23_educ <- clmm(just_educ_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo*esfuerzo_esc + simce + internet_rec + (1 + cod_grupo | mrbd), data=data_educ)
+reg24_educ <- clmm(just_educ_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo*inteligencia_esc + simce + internet_rec + (1 + cod_grupo | mrbd), data=data_educ)
+```
+
+```{r results='asis'}
+htmlreg(list(reg9_educ, reg20_educ, reg21_educ, reg22_educ, reg23_educ, reg24_educ))
+```
+
+*meritocracia x simce*
+
+```{r}
+reg25_educ <- clmm(just_educ_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce*esfuerzo_soc + internet_rec + (1 + simce | mrbd), data=data_educ)
+reg26_educ <- clmm(just_educ_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce*merito_soc + internet_rec + (1 + simce | mrbd), data=data_educ)
+reg27_educ <- clmm(just_educ_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce*inteligencia_soc + internet_rec + (1 + simce | mrbd), data=data_educ)
+reg28_educ <- clmm(just_educ_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce*esfuerzo_esc + internet_rec + (1 + simce | mrbd), data=data_educ)
+reg29_educ <- clmm(just_educ_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce*inteligencia_esc + internet_rec + (1 + simce | mrbd), data=data_educ)
+```
+
+```{r results='asis'}
+htmlreg(list(reg9_educ, reg25_educ, reg26_educ, reg27_educ, reg28_educ, reg29_educ))
+```

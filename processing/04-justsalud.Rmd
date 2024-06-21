@@ -1,0 +1,140 @@
+---
+title: "03-justsalud"
+author: "Equipo EDUMER"
+date: '2022-06-27'
+output: 
+  html_document: 
+    toc: yes
+    code_folding: hide
+    toc_float: 
+      collapsed: true
+      smooth_scroll: false
+      number_sections: true
+---
+
+```{r}
+pacman::p_load(haven, dplyr, summarytools, sjmisc, car, sjlabelled, sjPlot, lme4, stargazer, corrplot, ltm, texreg, ordinal, MASS, webshot2)
+load("input/data/proc/data_rec.RData")
+```
+
+# Modelos de regresión logística ordenada (ordinal logit) (CLMM del paquete ordinal - Cumulative link mixed models)
+
+## Es justo que las personas de ingresos altos puedan optar a mejor salud
+
+```{r}
+data_salud <- data_rec %>% dplyr::select(-just_pension, -just_educ, -redistribucion)
+data_salud <- na.omit(data_salud)
+```
+
+## Intra class correlation
+
+```{r}
+data_salud$just_salud_fact <- as_factor(data_salud$just_salud)
+reg0_salud <- clmm(just_salud_fact ~ 1 + (1 | mrbd), data=data_salud)
+performance::icc(reg0_salud)
+```
+
+```{r}
+reg1_salud <- clmm(just_salud_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + (1 | mrbd), data=data_salud)
+reg2_salud <- clmm(just_salud_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + (1 | mrbd), data=data_salud)
+reg3_salud <- clmm(just_salud_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + internet_rec + (1 | mrbd), data=data_salud)
+reg4_salud <- clmm(just_salud_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + internet_rec + mean_educ + cod_depe2 + cod_grupo + (1 | mrbd), data=data_salud)
+reg5_salud <- clmm(just_salud_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + internet_rec + mean_educ + cod_depe2 + cod_grupo + simce + (1 | mrbd), data=data_salud)
+```
+
+```{r results='asis'}
+htmlreg(list(reg0_salud, reg1_salud, reg2_salud, reg3_salud, reg4_salud, reg5_salud), 
+        custom.model.names = c("Model 0", 
+                               "Model 1",
+                               "Model 2",
+                               "Model 3",
+                               "Model 4",
+                               "Model 5"), 
+        custom.note = "$***p <$ 0.001, $**p <$ 0.01, $*p <$ 0.05", 
+        omit.coef = "(internet_rec)",
+        custom.coef.names = c("Strongly Disagree|Disagree",
+                              "Disagree|Agree",
+                              "Agree|Strongly Agree",
+                              "Social effort",
+                              "Deservingness", 
+                              "Social talent", 
+                              "School effort", 
+                              "School talent", 
+                              "Secondary <br> <i>(Ref. 8th grade or less)</i>", 
+                              "Higher tec.", 
+                              "University or posgraduate", 
+                              "Missing", 
+                              "More than 25 books <br> <i>(Ref. Less than 25)</i>", 
+                              "Technology access",
+                              "Prop. university level at school",
+                              "Subsidized private <br> <i>(Ref. Public)</i>", 
+                              "Private", 
+                              "SES Medium low <br> <i>(Ref. Low)</i>", 
+                              "SES Medium", 
+                              "SES Medium high", 
+                              "SES High", 
+                              "Simce Medium <i>(Ref. Low)</i>", 
+                              "Simce High"),
+        caption.above = TRUE,
+        file = "output/tables/reg_justsalud.html")
+
+webshot(url ="output/tables/reg_justsalud.html" ,file ="output/tables/reg_justsalud.png")
+```
+
+### Interacciones
+
+*meritocracia x ses familiar (educacion)*
+
+```{r}
+reg10_salud <- clmm(just_salud_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec*esfuerzo_soc + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + educacion_rec | mrbd), data=data_salud)
+reg11_salud <- clmm(just_salud_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec*merito_soc + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + educacion_rec | mrbd), data=data_salud)
+reg12_salud <- clmm(just_salud_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec*inteligencia_soc + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + educacion_rec | mrbd), data=data_salud)
+reg13_salud <- clmm(just_salud_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec*esfuerzo_esc + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + educacion_rec | mrbd), data=data_salud)
+reg14_salud <- clmm(just_salud_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec*inteligencia_esc + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + educacion_rec | mrbd), data=data_salud)
+```
+
+```{r results='asis'}
+htmlreg(list(reg9_salud, reg10_salud, reg11_salud, reg12_salud, reg13_salud, reg14_salud))
+```
+
+*meritocracia x ses familiar (libros)*
+
+```{r}
+reg15_salud <- clmm(just_salud_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec*esfuerzo_soc + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + libros_rec | mrbd), data=data_salud)
+reg16_salud <- clmm(just_salud_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec*merito_soc + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + libros_rec | mrbd), data=data_salud)
+reg17_salud <- clmm(just_salud_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec*inteligencia_soc + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + libros_rec | mrbd), data=data_salud)
+reg18_salud <- clmm(just_salud_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec*esfuerzo_esc + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + libros_rec | mrbd), data=data_salud)
+reg19_salud <- clmm(just_salud_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec*inteligencia_esc + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + libros_rec | mrbd), data=data_salud)
+```
+
+```{r results='asis'}
+htmlreg(list(reg9_salud, reg15_salud, reg16_salud, reg17_salud, reg18_salud, reg19_salud))
+```
+
+*meritocracia x ses escuela*
+
+```{r}
+reg20_salud <- clmm(just_salud_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo*esfuerzo_soc + simce + internet_rec + (1 + cod_grupo | mrbd), data=data_salud)
+reg21_salud <- clmm(just_salud_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo*merito_soc + simce + internet_rec + (1 + cod_grupo | mrbd), data=data_salud)
+reg22_salud <- clmm(just_salud_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo*inteligencia_soc + simce + internet_rec + (1 + cod_grupo | mrbd), data=data_salud)
+reg23_salud <- clmm(just_salud_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo*esfuerzo_esc + simce + internet_rec + (1 + cod_grupo | mrbd), data=data_salud)
+reg24_salud <- clmm(just_salud_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo*inteligencia_esc + simce + internet_rec + (1 + cod_grupo | mrbd), data=data_salud)
+```
+
+```{r results='asis'}
+htmlreg(list(reg9_salud, reg20_salud, reg21_salud, reg22_salud, reg23_salud, reg24_salud))
+```
+
+*meritocracia x simce*
+
+```{r}
+reg25_salud <- clmm(just_salud_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce*esfuerzo_soc + internet_rec + (1 + simce | mrbd), data=data_salud)
+reg26_salud <- clmm(just_salud_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce*merito_soc + internet_rec + (1 + simce | mrbd), data=data_salud)
+reg27_salud <- clmm(just_salud_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce*inteligencia_soc + internet_rec + (1 + simce | mrbd), data=data_salud)
+reg28_salud <- clmm(just_salud_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce*esfuerzo_esc + internet_rec + (1 + simce | mrbd), data=data_salud)
+reg29_salud <- clmm(just_salud_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce*inteligencia_esc + internet_rec + (1 + simce | mrbd), data=data_salud)
+```
+
+```{r results='asis'}
+htmlreg(list(reg9_salud, reg25_salud, reg26_salud, reg27_salud, reg28_salud, reg29_salud))
+```

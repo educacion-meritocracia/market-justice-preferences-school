@@ -1,0 +1,114 @@
+---
+title: "ISSP2019"
+author: "Equipo EDUMER"
+date: "2022-11-28"
+output: html_document
+---
+
+
+```{r}
+pacman::p_load(dplyr, ggplot2, sjPlot, haven, sjlabelled, tidyverse)
+
+data <- read_sav("input/data/original/ISSP2019.sav")
+```
+
+```{r}
+table(data$v30)
+summary(data$v30)
+data$v30 <- factor(data$v30, 
+                   levels = c(5,4,3,2,1),
+                   labels = c("Very unjust, definitely wrong", 
+                              "Somewhat unjust, wrong", 
+                              "Neither just nor unjust, mixed feelings", 
+                              "Somewhat just, right", 
+                              "Very just, definitely right"
+                              ))
+
+data$v30 <- set_label(data$v30, label = "Just or unjust that people with higher incomes can buy better health care than people with lower incomes?")
+
+
+table(data$v31)
+summary(data$v31)
+data$v31 <- factor(data$v31, 
+                   levels = c(5,4,3,2,1),
+                   labels = c("Very unjust, definitely wrong", 
+                              "Somewhat unjust, wrong", 
+                              "Neither just nor unjust, mixed feelings", 
+                              "Somewhat just, right", 
+                              "Very just, definitely right"
+                              ))
+
+data$v31 <- set_label(data$v31, label = "Just or unjust that people with higher incomes can buy better education for children than people with lower incomes?")
+```
+
+```{r}
+issp2019 <- sjPlot::plot_stackfrq(dplyr::select(data, v30, v31), geom.size = 0.4) +
+  theme_bw() +
+  theme(legend.position="bottom")
+issp2019
+
+ggsave(issp2019, file = "output/graphs/issp2019.png",device = "png",width = 25,height = 13,dpi = "retina",units = "cm")
+```
+
+# Cleveland plot
+
+```{r}
+data$v30 <- as.numeric(data$v30)
+data$v31 <- as.numeric(data$v31)
+
+data$country <- factor(data$country, labels = get_labels(data$country))
+
+health <- data %>% group_by(country) %>% 
+  summarise(Health = mean(v30, na.rm=TRUE)) %>% 
+  arrange(Health) %>% 
+  mutate(country = factor(country, levels = .$country))
+
+education <- data %>% group_by(country) %>%
+  summarise(Education = mean(v31, na.rm=TRUE)) %>% 
+  arrange(Education) %>% 
+  mutate(country = factor(country, levels = .$country))
+
+base <- left_join(health, education, by="country")
+
+base <- base[order(base$Health), ]
+
+
+base <- base %>% pivot_longer(c("Health", "Education"), 
+                              names_to="justice", 
+                              values_to="mean")
+```
+
+```{r}
+cleveland_issp <- base %>% ggplot(aes(mean, country)) +
+  theme_bw() +
+  geom_point(aes(color = justice, shape = justice), size = 3) +
+  stat_summary(aes(xintercept = after_stat(x), y = 0), fun = mean, geom = "vline", orientation = "y", colour = "green") +
+  xlab("average") +
+  scale_x_continuous(limits = c(1, 5),
+                     breaks = seq(1, 5, by = 1),
+                     label = c("Very unjust, definitely wrong", 
+                               "Somewhat unjust, wrong", 
+                               "Neither just nor unjust, 
+  mixed feelings", 
+                               "Somewhat just, right", 
+                               "Very just, definitely right"))
+cleveland_issp
+
+ggsave(cleveland_issp, file = "output/graphs/cleveland_issp.png",device = "png",width = 25,height = 13,dpi = "retina",units = "cm")
+```
+
+# Solo Chile
+
+```{r}
+data_chile <- data %>% filter(country==152)
+data_chile$v30 <- as.numeric(data_chile$v30)
+data_chile$v31 <- as.numeric(data_chile$v31)
+issp2019_chile <- sjPlot::plot_stackfrq(select(data_chile, v30, v31), geom.size = 0.4) +
+  theme_bw() +
+  theme(legend.position="bottom")
+issp2019_chile
+
+ggsave(issp2019_chile, file = "output/graphs/issp2019_chile.png",device = "png",width = 25,height = 13,dpi = "retina",units = "cm")
+```
+
+

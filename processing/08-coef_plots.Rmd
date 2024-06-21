@@ -1,0 +1,308 @@
+---
+title: "coef plot"
+author: "equipo EDUMER"
+date: "2022-12-13"
+output: html_document
+---
+
+```{r}
+pacman::p_load(dplyr, sjPlot, lme4, stargazer, corrplot, texreg, ordinal, MASS, webshot2, ggplot2, sjlabelled, tidyverse, ggpubr)
+
+load("input/data/proc/data_rec.RData")
+```
+
+# Gráfico bivariado
+```{r}
+soc_effort = data_rec %>% filter(!is.na(esfuerzo_soc)) %>% 
+  group_by(esfuerzo_soc) %>%
+  summarise(education = mean(just_educ, na.rm = T),
+            pensions = mean(just_pension, na.rm = T),
+            health = mean(just_salud, na.rm = T))
+
+soc_effort <- soc_effort %>% pivot_longer(c("health", "education", "pensions"), 
+                              names_to="justice", 
+                              values_to="mean")
+
+deservingness = data_rec %>% filter(!is.na(merito_soc)) %>% 
+  group_by(merito_soc) %>%
+  summarise(education = mean(just_educ, na.rm = T),
+            pensions = mean(just_pension, na.rm = T),
+            health = mean(just_salud, na.rm = T))
+
+deservingness <- deservingness %>% pivot_longer(c("health", "education", "pensions"), 
+                              names_to="justice", 
+                              values_to="mean")
+
+soc_talent = data_rec %>% filter(!is.na(inteligencia_soc)) %>% 
+  group_by(inteligencia_soc) %>%
+  summarise(education = mean(just_educ, na.rm = T),
+            pensions = mean(just_pension, na.rm = T),
+            health = mean(just_salud, na.rm = T))
+
+soc_talent <- soc_talent %>% pivot_longer(c("health", "education", "pensions"), 
+                              names_to="justice", 
+                              values_to="mean")
+
+school_effort = data_rec %>% filter(!is.na(esfuerzo_esc)) %>% 
+  group_by(esfuerzo_esc) %>%
+  summarise(education = mean(just_educ, na.rm = T),
+            pensions = mean(just_pension, na.rm = T),
+            health = mean(just_salud, na.rm = T))
+
+school_effort <- school_effort %>% pivot_longer(c("health", "education", "pensions"), 
+                              names_to="justice", 
+                              values_to="mean")
+
+school_talent = data_rec %>% filter(!is.na(inteligencia_esc)) %>% 
+  group_by(inteligencia_esc) %>%
+  summarise(education = mean(just_educ, na.rm = T),
+            pensions = mean(just_pension, na.rm = T),
+            health = mean(just_salud, na.rm = T))
+
+school_talent <- school_talent %>% pivot_longer(c("health", "education", "pensions"), 
+                              names_to="justice", 
+                              values_to="mean")
+```
+
+```{r}
+plot_soc_effort <- soc_effort %>% ggplot(aes(esfuerzo_soc, mean)) +
+  theme_bw(base_size = 15) +
+  geom_point(aes(color = justice, shape = justice), size = 4) +
+  xlab("Social effort") +
+  ylab("Inequality Justification") +
+  scale_y_continuous(limits = c(1.5, 3)) +
+  scale_x_continuous(limits = c(1, 4),
+                     breaks = seq(1, 4, by = 1),
+                     label = c("Strongly 
+disagree", 
+                               "Disagree", 
+                               "Agree", 
+                               "Strongly 
+agree")) +
+  labs(color = "Justification of inequality", shape = "Justification of inequality")
+
+plot_deservingness <- deservingness %>% ggplot(aes(merito_soc, mean)) +
+  theme_bw(base_size = 15) +
+  geom_point(aes(color = justice, shape = justice), size = 4) +
+  xlab("Deservingness") +
+  ylab("Inequality Justification") +
+  scale_y_continuous(limits = c(1.5, 3)) +
+  scale_x_continuous(limits = c(1, 4),
+                     breaks = seq(1, 4, by = 1),
+                     label = c("Strongly 
+disagree", 
+                               "Disagree", 
+                               "Agree", 
+                               "Strongly 
+agree")) +
+  labs(color = "Justification of inequality", shape = "Justification of inequality")
+
+plot_soc_talent <- soc_talent %>% ggplot(aes(inteligencia_soc, mean)) +
+  theme_bw(base_size = 15) +
+  geom_point(aes(color = justice, shape = justice), size = 4) +
+  xlab("Social talent") +
+  ylab("Inequality Justification") +
+  scale_y_continuous(limits = c(1.5, 3)) +
+  scale_x_continuous(limits = c(1, 4),
+                     breaks = seq(1, 4, by = 1),
+                     label = c("Strongly 
+disagree", 
+                               "Disagree", 
+                               "Agree", 
+                               "Strongly 
+agree")) +
+  labs(color = "Justification of inequality", shape = "Justification of inequality")
+
+plot_school_effort <- school_effort %>% ggplot(aes(esfuerzo_esc, mean)) +
+  theme_bw(base_size = 15) +
+  geom_point(aes(color = justice, shape = justice), size = 4) +
+  xlab("School effort") +
+  ylab("") +
+  scale_y_continuous(limits = c(1.5, 3)) +
+  scale_x_continuous(limits = c(1, 4),
+                     breaks = seq(1, 4, by = 1),
+                     label = c("Strongly 
+disagree", 
+                               "Disagree", 
+                               "Agree", 
+                               "Strongly 
+agree")) +
+  labs(color = "Justification of inequality", shape = "Justification of inequality")
+
+plot_school_talent <- school_talent %>% ggplot(aes(inteligencia_esc, mean)) +
+  theme_bw(base_size = 15) +
+  geom_point(aes(color = justice, shape = justice), size = 4) +
+  xlab("School talent") +
+  ylab("") +
+  scale_y_continuous(limits = c(1.5, 3)) +
+  scale_x_continuous(limits = c(1, 4),
+                     breaks = seq(1, 4, by = 1),
+                     label = c("Strongly 
+disagree", 
+                               "Disagree", 
+                               "Agree", 
+                               "Strongly 
+agree")) +
+  labs(color = "Justification of inequality", shape = "Justification of inequality")
+
+plot_merit_justice <- ggarrange(plot_soc_effort, plot_school_effort, plot_soc_talent, plot_school_talent, plot_deservingness, common.legend = TRUE, ncol = 2, nrow = 3, legend = "bottom")
+plot_merit_justice
+
+ggsave(plot_merit_justice, file="output/graphs/plot_merit_justice.png", height = 10, width = 10)
+
+
+plot_merit_justice_school <- ggarrange(plot_school_effort, plot_school_talent, common.legend = TRUE, legend = "bottom")
+plot_merit_justice_school
+ggsave(plot_merit_justice_school, file="output/graphs/plot_merit_justice_school.png", height = 7, width = 10)
+
+plot_merit_justice_soc <- ggarrange(plot_soc_effort, plot_soc_talent, plot_deservingness, common.legend = TRUE, ncol = 3, nrow = 1, legend = "bottom")
+plot_merit_justice_soc
+ggsave(plot_merit_justice_soc, file="output/graphs/plot_merit_justice_soc.png", height = 7, width = 10)
+```
+
+## Correlaciones
+
+```{r}
+merit_cor<-
+  data_rec %>%
+  dplyr::select(just_pension, just_educ, just_salud, esfuerzo_soc, inteligencia_soc, merito_soc, esfuerzo_esc, inteligencia_esc) %>%
+  lavaan::lavCor(., ordered=names(.))
+diag(merit_cor) = NA
+rownames(merit_cor) <- c("A. Pension",
+                         "B. Education",
+                         "C. Health",
+                         "D. Social effort",
+                         "E. Social talent",
+                         "F. Deservingness",
+                         "G. School effort",
+                         "H. School talent")
+colnames(merit_cor) <-c("(A)", "(B)","(C)", "(D)", "(E)", "(F)", "(G)", "(H)")
+
+png("output/graphs/merit_cor.png",width=600,height=300, pointsize = 13)
+corrplot::corrplot(merit_cor,
+  method = "color",
+  addCoef.col = "#000390",
+  type = "upper",
+  tl.col = "black",
+  col=colorRampPalette(c("white","#0068DC"))(12),
+  bg = "white",
+  na.label = "-")
+
+dev.off()
+```
+
+
+
+## Es justo que las personas de ingresos altos puedan optar a mejores pensiones
+
+```{r}
+data_pension <- data_rec %>% dplyr::select(-just_educ, -just_salud, -redistribucion)
+data_pension <- na.omit(data_pension)
+data_pension$just_pension_fact <- as_factor(data_pension$just_pension)
+reg2_pension <- clmm(just_pension_fact ~ 1 + inteligencia_esc + esfuerzo_esc + inteligencia_soc + esfuerzo_soc + merito_soc + (1 | mrbd), data=data_pension)
+reg5_pension <- clmm(just_pension_fact ~ 1 + inteligencia_esc + esfuerzo_esc + inteligencia_soc + esfuerzo_soc + merito_soc + educacion_rec + libros_rec + acc_tec + internet_rec + mean_educ + cod_depe2 + cod_grupo + simce + (1 | mrbd), data=data_pension)
+```
+
+## Es justo que las personas de ingresos altos puedan optar a mejor salud
+
+```{r}
+data_salud <- data_rec %>% dplyr::select(-just_pension, -just_educ, -redistribucion)
+data_salud <- na.omit(data_salud)
+data_salud$just_salud_fact <- as_factor(data_salud$just_salud)
+reg2_salud <- clmm(just_salud_fact ~ 1 + inteligencia_esc + esfuerzo_esc + inteligencia_soc + esfuerzo_soc + merito_soc + (1 | mrbd), data=data_salud)
+reg5_salud <- clmm(just_salud_fact ~ 1 + inteligencia_esc + esfuerzo_esc + inteligencia_soc + esfuerzo_soc + merito_soc + educacion_rec + libros_rec + acc_tec + internet_rec + mean_educ + cod_depe2 + cod_grupo + simce + (1 | mrbd), data=data_salud)
+```
+
+## Es justo que las personas de ingresos altos puedan optar a mejor educacion
+
+```{r}
+data_educ <- data_rec %>% dplyr::select(-just_pension, -just_salud, -redistribucion)
+data_educ <- na.omit(data_educ)
+data_educ$just_educ_fact <- as_factor(data_educ$just_educ)
+reg2_educ <- clmm(just_educ_fact ~ 1 + inteligencia_esc + esfuerzo_esc + inteligencia_soc + esfuerzo_soc + merito_soc + (1 | mrbd), data=data_educ)
+reg5_educ <- clmm(just_educ_fact ~ 1 + inteligencia_esc + esfuerzo_esc + inteligencia_soc + esfuerzo_soc + merito_soc + educacion_rec + libros_rec + acc_tec + internet_rec + mean_educ + cod_depe2 + cod_grupo + simce + (1 | mrbd), data=data_educ)
+```
+
+# coef plot con modelo 2 (solo variables meritocracia)
+
+```{r eval=FALSE}
+plots <- plot_models(reg2_salud, reg2_pension, reg2_educ, 
+            rm.terms = c("1|2", "2|3", "3|4"), #quitar terminos
+            title = "", #quitar titulo
+            show.values = TRUE, #mostrar valor de efectos
+            dot.size = 3, #tamaño circulos
+            value.size = 3.5, #tamaño valor efectoss
+            spacing = .7, #espacio entre efectos
+            axis.labels = rev(c("School talent", 
+                            "School effort", 
+                            "Social talent",
+                            "Social effort", 
+                            "Deservingness")), #con rev porque automatico los tira en otro orden
+            m.labels = c("Health", "Pension", "Education")) # variables dependientes
+
+ggsave(plots, file="output/graphs/plots.png")
+```
+
+```{r eval=FALSE}
+data_bienestar <- na.omit(data_rec)
+data_bienestar <- data_bienestar %>% rowwise() %>% dplyr::mutate(bienestar = mean(c(just_pension, just_educ, just_salud), na.omit=TRUE))
+data_bienestar$bienestar <- round(data_bienestar$bienestar, 2)
+
+reg5_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + internet_rec + mean_educ + cod_depe2 + cod_grupo + simce + (1 | mrbd), data=data_bienestar)
+```
+
+
+# coef plot modelo 5 (todas las variables)
+
+```{r}
+plots2<-plot_models(reg5_salud, reg5_educ, reg5_pension,  
+            rm.terms = c("1|2", "2|3", "3|4", "educacion_recEd Media", "educacion_recEd Tecnica", "educacion_recUniversidad o posgrado", "educacion_recNs/Nr", "libros_recMás de 25", "acc_tec", "internet_rec2", "internet_recNs/Nr", "mean_educ", "cod_depe2Part. subvencionado", "cod_depe2Part. privado", "cod_grupoMedio bajo", "cod_grupoMedio", "cod_grupoMedio alto", "cod_grupoAlto", "simceMedio", "simceAlto"), #quitar terminos
+            title = "", #quitar titulo
+            show.values = TRUE, #mostrar valor de efectos
+            dot.size = 1.3, #tamaño circulos
+            line.size = 1, #tamaño CI
+            value.size = 3.5, #tamaño valor efectoss
+            spacing = .7, #espacio entre efectos
+            grid = TRUE, # separa en un plot por modelo
+            vline.color = "red", # linea roja en punto neutro (1)
+            axis.labels = rev(c("School talent", 
+                            "School effort", 
+                            "Social talent",
+                            "Social effort", 
+                            "Deservingness"
+                            )), #con rev porque automatico los tira en otro orden
+            show.legend = FALSE,
+            m.labels = c("Health", "Education","Pension")) + # variables dependientes
+  theme_bw(base_size = 16)
+
+plots2
+
+ggsave(plots2, file="output/graphs/plots2.png", width = 10, height = 7)
+```
+
+#### Mismo plot pero en español para presentación
+```{r}
+plots2_esp<-plot_models(reg5_salud, reg5_pension, reg5_educ, 
+            rm.terms = c("1|2", "2|3", "3|4", "educacion_recEd Media", "educacion_recEd Tecnica", "educacion_recUniversidad o posgrado", "educacion_recNs/Nr", "libros_recMás de 25", "acc_tec", "internet_rec2", "internet_recNs/Nr", "mean_educ", "cod_depe2Part. subvencionado", "cod_depe2Part. privado", "cod_grupoMedio bajo", "cod_grupoMedio", "cod_grupoMedio alto", "cod_grupoAlto", "simceMedio", "simceAlto"), #quitar terminos
+            title = "", #quitar titulo
+            show.values = TRUE, #mostrar valor de efectos
+            dot.size = 1.3, #tamaño circulos
+            line.size = 1, #tamaño CI
+            value.size = 3.5, #tamaño valor efectoss
+            spacing = .7, #espacio entre efectos
+            grid = TRUE, # separa en un plot por modelo
+            vline.color = "red", # linea roja en punto neutro (1)
+            axis.labels = rev(c("Esfuerzo social", 
+                            "Merecimiento", 
+                            "Talento social", 
+                            "Esfuerzo escolar", 
+                            "Talento escolar")), #con rev porque automatico los tira en otro orden
+            show.legend = FALSE,
+            m.labels = c("Salud", "Pensiones", "Educación")) + # variables dependientes
+  theme_bw(base_size = 16)
+
+plots2_esp
+
+ggsave(plots2_esp, file="output/graphs/plots2_esp.png", width = 10, height = 7)
+```
+

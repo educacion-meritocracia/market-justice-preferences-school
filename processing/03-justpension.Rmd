@@ -1,0 +1,140 @@
+---
+title: "01-justpension"
+author: "Equipo EDUMER"
+date: '2022-06-27'
+output: 
+  html_document: 
+    toc: yes
+    code_folding: hide
+    toc_float: 
+      collapsed: true
+      smooth_scroll: false
+      number_sections: true
+---
+
+```{r}
+pacman::p_load(haven, dplyr, summarytools, sjmisc, car, sjlabelled, sjPlot, lme4, stargazer, corrplot, ltm, texreg, ordinal, MASS, webshot2)
+load("input/data/proc/data_rec.RData")
+```
+
+# Modelos de regresión logística ordenada (ordinal logit) (CLMM del paquete ordinal - Cumulative link mixed models)
+
+## Es justo que las personas de ingresos altos puedan optar a mejores pensiones
+
+```{r}
+data_pension <- data_rec %>% dplyr::select(-just_educ, -just_salud, -redistribucion)
+data_pension <- na.omit(data_pension)
+```
+
+## Intra class correlation
+
+```{r}
+data_pension$just_pension_fact <- as_factor(data_pension$just_pension)
+reg0_pension <- clmm(just_pension_fact ~ 1 + (1 | mrbd), data=data_pension)
+performance::icc(reg0_pension)
+```
+
+```{r }
+reg1_pension <- clmm(just_pension_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + (1 | mrbd), data=data_pension)
+reg2_pension <- clmm(just_pension_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + (1 | mrbd), data=data_pension)
+reg3_pension <- clmm(just_pension_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + internet_rec + (1 | mrbd), data=data_pension)
+reg4_pension <- clmm(just_pension_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + internet_rec + mean_educ + cod_depe2 + cod_grupo + (1 | mrbd), data=data_pension)
+reg5_pension <- clmm(just_pension_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + internet_rec + mean_educ + cod_depe2 + cod_grupo + simce + (1 | mrbd), data=data_pension)
+```
+
+```{r results='asis'}
+htmlreg(list(reg0_pension, reg1_pension, reg2_pension, reg3_pension, reg4_pension, reg5_pension), 
+        custom.model.names = c("Model 0", 
+                               "Model 1",
+                               "Model 2",
+                               "Model 3",
+                               "Model 4",
+                               "Model 5"), 
+        custom.note = "$***p <$ 0.001, $**p <$ 0.01, $*p <$ 0.05", 
+        omit.coef = "(internet_rec)",
+        custom.coef.names = c("Strongly Disagree|Disagree",
+                              "Disagree|Agree",
+                              "Agree|Strongly Agree",
+                              "Social effort",
+                              "Deservingness", 
+                              "Social talent", 
+                              "School effort", 
+                              "School talent", 
+                              "Secondary <br> <i>(Ref. 8th grade or less)</i>", 
+                              "Higher tec.", 
+                              "University or posgraduate", 
+                              "Missing", 
+                              "More than 25 books <br> <i>(Ref. Less than 25)</i>", 
+                              "Technology access",
+                              "Prop. university level at school",
+                              "Subsidized private <br> <i>(Ref. Public)</i>", 
+                              "Private", 
+                              "SES Medium low <br> <i>(Ref. Low)</i>", 
+                              "SES Medium", 
+                              "SES Medium high", 
+                              "SES High", 
+                              "Simce Medium <i>(Ref. Low)</i>", 
+                              "Simce High"),
+        caption.above = TRUE,
+        file = "output/tables/reg_justpension.html")
+
+webshot(url ="output/tables/reg_justpension.html" ,file ="output/tables/reg_justpension.png")
+```
+
+### Interacciones
+
+*meritocracia x ses familiar (educacion)*
+
+```{r}
+reg10_pension <- clmm(just_pension_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec*esfuerzo_soc + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + educacion_rec | mrbd), data=data_pension)
+reg11_pension <- clmm(just_pension_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec*merito_soc + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + educacion_rec | mrbd), data=data_pension)
+reg12_pension <- clmm(just_pension_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec*inteligencia_soc + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + educacion_rec | mrbd), data=data_pension)
+reg13_pension <- clmm(just_pension_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec*esfuerzo_esc + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + educacion_rec | mrbd), data=data_pension)
+reg14_pension <- clmm(just_pension_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec*inteligencia_esc + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + educacion_rec | mrbd), data=data_pension)
+```
+
+```{r results='asis'}
+htmlreg(list(reg9_pension, reg10_pension, reg11_pension, reg12_pension, reg13_pension, reg14_pension))
+```
+
+*meritocracia x ses familiar (libros)*
+
+```{r}
+reg15_pension <- clmm(just_pension_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec*esfuerzo_soc + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + libros_rec | mrbd), data=data_pension)
+reg16_pension <- clmm(just_pension_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec*merito_soc + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + libros_rec | mrbd), data=data_pension)
+reg17_pension <- clmm(just_pension_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec*inteligencia_soc + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + libros_rec | mrbd), data=data_pension)
+reg18_pension <- clmm(just_pension_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec*esfuerzo_esc + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + libros_rec | mrbd), data=data_pension)
+reg19_pension <- clmm(just_pension_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec*inteligencia_esc + acc_tec + cod_depe2 + cod_grupo + simce + internet_rec + (1 + libros_rec | mrbd), data=data_pension)
+```
+
+```{r results='asis'}
+htmlreg(list(reg9_pension, reg15_pension, reg16_pension, reg17_pension, reg18_pension, reg19_pension))
+```
+
+*meritocracia x ses escuela*
+
+```{r}
+reg20_pension <- clmm(just_pension_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo*esfuerzo_soc + simce + internet_rec + (1 + cod_grupo | mrbd), data=data_pension)
+reg21_pension <- clmm(just_pension_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo*merito_soc + simce + internet_rec + (1 + cod_grupo | mrbd), data=data_pension)
+reg22_pension <- clmm(just_pension_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo*inteligencia_soc + simce + internet_rec + (1 + cod_grupo | mrbd), data=data_pension)
+reg23_pension <- clmm(just_pension_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo*esfuerzo_esc + simce + internet_rec + (1 + cod_grupo | mrbd), data=data_pension)
+reg24_pension <- clmm(just_pension_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo*inteligencia_esc + simce + internet_rec + (1 + cod_grupo | mrbd), data=data_pension)
+```
+
+```{r results='asis'}
+htmlreg(list(reg9_pension, reg20_pension, reg21_pension, reg22_pension, reg23_pension, reg24_pension))
+```
+
+*meritocracia x simce*
+
+```{r}
+reg25_pension <- clmm(just_pension_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce*esfuerzo_soc + internet_rec + (1 + simce | mrbd), data=data_pension)
+reg26_pension <- clmm(just_pension_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce*merito_soc + internet_rec + (1 + simce | mrbd), data=data_pension)
+reg27_pension <- clmm(just_pension_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce*inteligencia_soc + internet_rec + (1 + simce | mrbd), data=data_pension)
+reg28_pension <- clmm(just_pension_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce*esfuerzo_esc + internet_rec + (1 + simce | mrbd), data=data_pension)
+reg29_pension <- clmm(just_pension_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec + libros_rec + acc_tec + cod_depe2 + cod_grupo + simce*inteligencia_esc + internet_rec + (1 + simce | mrbd), data=data_pension)
+```
+
+```{r results='asis'}
+htmlreg(list(reg9_pension, reg25_pension, reg26_pension, reg27_pension, reg28_pension, reg29_pension))
+```
