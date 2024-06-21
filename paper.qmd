@@ -11,6 +11,9 @@ link-citations: true
 mainfont: Times New Roman
 ---
 
+This document was last modified at {{< modified >}}
+and it was last rendered at {{< now >}}.
+
 # The socialization of meritocracy and market justice preferences at school {.unnumbered}
 
 Abstract
