@@ -516,7 +516,7 @@ collapse_rows[c(-4),] %>%
                      "Market Justice Preferences"=5), 
                    bold = T) %>% 
   kable_styling(latex_options = c("scale_down","HOLD_position"),
-                full_width = F) %>% 
+                full_width = T) %>% 
   column_spec(1, bold = T, width = "4cm") %>%
   column_spec(column = 2:6,width = "1.5cm") %>%
   collapse_rows(columns = 1:2, valign = "middle") %>% 
