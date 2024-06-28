@@ -1,0 +1,123 @@
+---
+title: "0-patterns"
+author: "Equipo EDUMER"
+date: "2022-08-07"
+output: html_document
+---
+
+# Identificar patrones de respuesta en R
+
+base de datos: primer estudio de formacion ciudadana en chile 2017 (base alumnos)
+
+```{r}
+pacman::p_load(dplyr, responsePatterns, haven, sjmisc)
+
+load("input/data/original/base_estudiantes.RData")
+alumnos <- base_estudiantes %>% select(-codigoCurso, -serie, -mrbd, -numerolista, -sexo, -puntaje, -ponderador, -mrun, -agno, -cod_com_alu, -nom_com_alu, -prom_gral, -rbdi, -cod_depe1, -cod_depe2, -cod_grupo, -prom_lect8b_rbd, -prom_mate8b_rbd) #eliminé variable id curso y "serie". 
+#La idea es solo mantener una variable id y el resto de variables que posean un rango 
+#similar de valores de respuesta posibles
+```
+
+* El paquete estima las autocorrelaciones de todas las variables, para cada caso. 
+
+"Para cada encuestado, se calculan los coeficientes de autocorrelación para todos los valores razonables de lag (k) y se mantiene el coeficiente de autocorrelación absoluto más alto. El valor resultante debe indicar el nivel máximo absoluto de asociación en las respuestas del encuestado en función del orden de respuesta, y su respectivo k debe indicar la longitud del patrón de respuesta que se repite" (Gottfried, Jezek & Kralova, 2021)
+
+```{r}
+# calcula las auto correlaciones
+rp <- responsePatterns::rp.acors(alumnos, max.lag = 10, id.var = "idalumno") 
+```
+
+* El paquete permite ver un histograma de la distribución de las autocorrelaciones más altas de cada uno de los casos según su patrón (k)
+
+```{r}
+rp.hist(rp)
+```
+
+* Para una mejor visualización de los resultados se eliminan NA 0 y 99 y se estima de nuevo
+
+```{r}
+alumnos[2:220] <- alumnos[2:220] %>%  set_na(., na = c(0, 99), drop.levels = FALSE, as.tag = FALSE)
+rp2 <- responsePatterns::rp.acors(alumnos, max.lag = 10, id.var = "idalumno") 
+```
+
+
+* El reporte del paquete entrega los índices importantes (la autocorrelacion mas alta y el patron al que pertenece). Esta funcion no entrega los valores de autocorrelacion para cada k, solo el mas alto
+
+```{r}
+indices <- rp.indices(rp, round = 2, include.coefs = F)
+
+head(indices, 10)
+```
+
+* Como entrega una distribucion en percentiles, es posible enfocarnos solo en los más altos
+
+```{r}
+remove <- dplyr::filter(indices, percentile==0 | percentile>=99)
+dim(remove) # hay 430 casos con una autocorrelacion alta
+
+head(remove, 10)
+```
+
+* Finalmente, l-s autores recomiendan revisar cada caso por separado (en lo posible) antes de determinar qué casos excluir. Esto se puede hacer con la siguiente función
+
+```{r}
+rp.plot(rp2, rowname = 31)
+```
+
+```{r}
+base <- indices %>% select(percentile)
+load("input/data/original/estudiantes_labelled.RData")
+base_patt <- cbind(base_estudiantes, base)
+
+alumnos_patterns <- dplyr::filter(base_patt, percentile!=0 & percentile<99) %>% select(-percentile)
+save(alumnos_patterns, file = "input/data/proc/alumnos_patterns.RData")
+```
+
+# Apoderados
+
+se repiten los mismos pasos, pero para la base de apoderados
+
+```{r}
+load("input/data/original/base_apoderados.RData")
+apoderados <- base_apoderados %>% select(-codigoCurso, -serie, -apod_p1_1, -apod_p1_2)
+```
+
+```{r}
+# calcula las auto correlaciones
+rp3 <- responsePatterns::rp.acors(apoderados, max.lag = 10, id.var = "idalumno")
+```
+
+```{r}
+rp.hist(rp3)
+```
+
+```{r}
+apoderados[2:137] <- apoderados[2:137] %>%  set_na(., na = c(0, 99), drop.levels = FALSE, as.tag = FALSE)
+rp4 <- responsePatterns::rp.acors(apoderados, max.lag = 10, id.var = "idalumno") 
+```
+
+```{r}
+indices2 <- rp.indices(rp3, round = 2, include.coefs = F)
+
+head(indices2, 10)
+```
+
+```{r}
+remove2 <- dplyr::filter(indices2, percentile==0 | percentile>=99)
+dim(remove2) # hay 430 casos con una autocorrelacion alta
+
+head(remove2, 10)
+```
+
+```{r}
+rp.plot(rp4, rowname = 147)
+```
+
+```{r}
+base2 <- indices2 %>% select(percentile)
+load("input/data/original/apoderados_labelled.RData")
+base_patt2 <- cbind(base_apoderados, base2)
+
+apoderados_patterns <- dplyr::filter(base_patt2, percentile!=0 & percentile<99) %>% select(-percentile)
+save(apoderados_patterns, file = "input/data/proc/apoderados_patterns.RData")
+```

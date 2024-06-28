@@ -1,0 +1,774 @@
+---
+title: "05-interacciones"
+author: "Equipo EDUMER"
+date: "2022-08-24"
+output: html_document
+---
+
+## indice variables acceso a bienestar social
+
+```{r}
+pacman::p_load(haven, dplyr, summarytools, sjmisc, car, sjlabelled, sjPlot, lme4, stargazer, corrplot, ltm, texreg, ordinal, MASS, webshot, gtools, kableExtra, ggplot2)
+load("input/data/proc/data_rec.RData")
+
+data_rec <- data_rec %>% rowwise() %>%  mutate(educacion_rec2 = case_when(educacion_rec=="Ed Basica"~"Low level",
+                                                 educacion_rec=="Ed Media"~"Low level",
+                                                 educacion_rec=="Ed Tecnica"~"Low level",
+                                                 educacion_rec=="Universidad o posgrado"~"University or Postgraduate",
+                                                 educacion_rec=="Ns/Nr"~"Missing"
+                                                 ))
+data_rec$educacion_rec2 <- factor(data_rec$educacion_rec2, levels = c("Low level", "University or Postgraduate", "Missing"))
+
+
+data_rec <- data_rec %>% rowwise() %>%  mutate(cod_grupo2  = case_when(cod_grupo=="Bajo"~"Bajo",
+                                                                       cod_grupo=="Medio bajo"~"Bajo",
+                                                                       cod_grupo=="Medio"~"Bajo",
+                                                                       cod_grupo=="Medio alto"~"Alto",
+                                                                       cod_grupo=="Alto"~"Alto"))
+data_rec$cod_grupo2 <- factor(data_rec$cod_grupo2, levels = c("Bajo", "Alto"))
+data_rec$simce <- factor(data_rec$simce, labels = c("Low", "Medium", "High"))
+
+
+data_bienestar <- na.omit(data_rec)
+#data_bienestar <- data_bienestar %>% mutate(pension_rec = 5-just_pension,
+#                                            educ_rec = 5-just_educ,
+#                                            salud_rec = 5-just_salud)
+data_bienestar <- data_bienestar %>% rowwise() %>% dplyr::mutate(bienestar = mean(c(just_educ, just_salud, just_pension), na.omit=TRUE))
+data_bienestar$bienestar <- round(data_bienestar$bienestar, 2)
+
+reg10.1_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 | mrbd), data=data_bienestar)
+```
+
+*meritocracia x ses familiar (educacion)*
+
+```{r}
+reg10_bienestar <- lmer(bienestar ~ 1 + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2*esfuerzo_soc + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + educacion_rec2 | mrbd), data=data_bienestar)
+
+reg11_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2*merito_soc + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + educacion_rec2 | mrbd), data=data_bienestar)
+
+reg12_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2*inteligencia_soc + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + educacion_rec2 | mrbd), data=data_bienestar)
+
+reg13_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + inteligencia_esc + educacion_rec2*esfuerzo_esc + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + educacion_rec2 | mrbd), data=data_bienestar)
+
+reg14_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + educacion_rec2*inteligencia_esc + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + educacion_rec2 | mrbd), data=data_bienestar)
+```
+
+```{r results='asis'}
+htmlreg(list(reg10.1_bienestar, reg10_bienestar, reg11_bienestar, reg12_bienestar, reg13_bienestar, reg14_bienestar))
+```
+
+```{r}
+plot_model(reg11_bienestar, type = "int", mdrt.values="meansd")
+```
+
+```{r}
+plot_model(reg12_bienestar, type = "int", mdrt.values="meansd")
+```
+
+*meritocracia x ses familiar (libros)*
+
+```{r}
+reg15_bienestar <- lmer(bienestar ~ 1 + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec*esfuerzo_soc + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + libros_rec | mrbd), data=data_bienestar)
+reg16_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec*merito_soc + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + libros_rec | mrbd), data=data_bienestar)
+reg17_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec*inteligencia_soc + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + libros_rec | mrbd), data=data_bienestar)
+reg18_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + inteligencia_esc + educacion_rec2 + libros_rec*esfuerzo_esc + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + libros_rec | mrbd), data=data_bienestar)
+reg19_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + educacion_rec2 + libros_rec*inteligencia_esc + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + libros_rec | mrbd), data=data_bienestar)
+```
+
+```{r results='asis'}
+htmlreg(list(reg10.1_bienestar, reg15_bienestar, reg16_bienestar, reg17_bienestar, reg18_bienestar, reg19_bienestar))
+```
+
+```{r}
+plot_model(reg15_bienestar, type = "int", mdrt.values="meansd")
+```
+
+```{r}
+plot_model(reg17_bienestar, type = "int", mdrt.values="meansd")
+```
+
+```{r}
+plot_model(reg18_bienestar, type = "int", mdrt.values="meansd")
+```
+
+*meritocracia x ses escuela*
+
+```{r}
+reg20_bienestar <- lmer(bienestar ~ 1 + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2*esfuerzo_soc + simce + internet_rec + (1 + cod_grupo2 | mrbd), data=data_bienestar)
+reg21_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2*merito_soc + simce + internet_rec + (1 + cod_grupo2 | mrbd), data=data_bienestar)
+reg22_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2*inteligencia_soc + simce + internet_rec + (1 + cod_grupo2 | mrbd), data=data_bienestar)
+reg23_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2*esfuerzo_esc + simce + internet_rec + (1 + cod_grupo2 | mrbd), data=data_bienestar)
+reg24_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2*inteligencia_esc + simce + internet_rec + (1 + cod_grupo2 | mrbd), data=data_bienestar)
+```
+
+```{r results='asis'}
+htmlreg(list(reg10.1_bienestar, reg20_bienestar, reg21_bienestar, reg22_bienestar, reg23_bienestar, reg24_bienestar))
+```
+
+```{r}
+plot_model(reg21_bienestar, type = "int", mdrt.values="meansd")
+```
+
+```{r}
+plot_model(reg22_bienestar, type = "int", mdrt.values="meansd")
+```
+
+*meritocracia x prop. educacion universitaria por escuela*
+
+```{r}
+reg20.1_bienestar <- lmer(bienestar ~ 1 + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ*esfuerzo_soc + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + mean_educ | mrbd), data=data_bienestar)
+reg21.1_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ*merito_soc + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + mean_educ | mrbd), data=data_bienestar)
+reg22.1_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ*inteligencia_soc + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + mean_educ | mrbd), data=data_bienestar)
+reg23.1_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ*esfuerzo_esc + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + mean_educ | mrbd), data=data_bienestar)
+reg24.1_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ*inteligencia_esc + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + mean_educ | mrbd), data=data_bienestar)
+```
+
+```{r results='asis'}
+htmlreg(list(reg10.1_bienestar, reg20.1_bienestar, reg21.1_bienestar, reg22.1_bienestar, reg23.1_bienestar, reg24.1_bienestar))
+```
+
+```{r}
+plot_model(reg20.1_bienestar, type = "int", mdrt.values="meansd")
+```
+
+```{r}
+plot_model(reg21.1_bienestar, type = "int", mdrt.values="meansd")
+```
+
+```{r}
+plot_model(reg22.1_bienestar, type = "int", mdrt.values="meansd")
+```
+
+*meritocracia x simce*
+
+```{r}
+reg25_bienestar <- lmer(bienestar ~ 1 + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce*esfuerzo_soc + internet_rec + (1 + simce | mrbd), data=data_bienestar)
+
+reg26_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce*merito_soc + internet_rec + (1 + simce | mrbd), data=data_bienestar)
+
+reg27_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce*inteligencia_soc + internet_rec + (1 + simce | mrbd), data=data_bienestar)
+
+reg28_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce*esfuerzo_esc + internet_rec + (1 + simce | mrbd), data=data_bienestar)
+
+reg29_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce*inteligencia_esc + internet_rec + (1 + simce | mrbd), data=data_bienestar)
+```
+
+```{r results='asis'}
+htmlreg(list(reg10.1_bienestar, reg25_bienestar, reg26_bienestar, reg27_bienestar, reg28_bienestar, reg29_bienestar))
+```
+
+```{r}
+plot_model(reg25_bienestar, type = "int", mdrt.values="meansd")
+```
+
+```{r}
+plot_model(reg26_bienestar, type = "int", mdrt.values="meansd")
+```
+
+```{r}
+plot_model(reg27_bienestar, type = "int", mdrt.values="meansd")
+```
+
+# Modelos de regresión logística ordenada (ordinal logit) (CLMM del paquete ordinal - Cumulative link mixed models)
+
+## El gobierno deberia hacer algo para disminuir las brechas de ingresos
+
+```{r}
+data_redis <- data_rec %>% dplyr::select(-just_pension, -just_educ, -just_salud)
+data_redis <- na.omit(data_redis)
+data_redis$redistribucion_fact <- as_factor(data_redis$redistribucion)
+
+reg10.1_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 | mrbd), data=data_redis)
+```
+
+### Interacciones
+
+*meritocracia x ses familiar (educacion)*
+
+```{r}
+reg10_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2*esfuerzo_soc + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + educacion_rec2 | mrbd), data=data_redis)
+reg11_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2*merito_soc + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + educacion_rec2 | mrbd), data=data_redis)
+reg12_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2*inteligencia_soc + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + educacion_rec2 | mrbd), data=data_redis)
+reg13_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2*esfuerzo_esc + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + educacion_rec2 | mrbd), data=data_redis)
+reg14_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2*inteligencia_esc + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + educacion_rec2 | mrbd), data=data_redis)
+```
+
+```{r results='asis'}
+htmlreg(list(reg10.1_redis, reg10_redis, reg11_redis, reg12_redis, reg13_redis, reg14_redis))
+```
+
+*meritocracia x ses familiar (libros)*
+
+```{r}
+reg15_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec*esfuerzo_soc + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + libros_rec | mrbd), data=data_redis)
+reg16_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec*merito_soc + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + libros_rec | mrbd), data=data_redis)
+reg17_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec*inteligencia_soc + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + libros_rec | mrbd), data=data_redis)
+reg18_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec*esfuerzo_esc + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + libros_rec | mrbd), data=data_redis)
+reg19_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec*inteligencia_esc + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + libros_rec | mrbd), data=data_redis)
+```
+
+```{r results='asis'}
+htmlreg(list(reg10.1_redis, reg15_redis, reg16_redis, reg17_redis, reg18_redis, reg19_redis))
+```
+
+*meritocracia x ses escuela*
+
+```{r}
+reg20_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + cod_grupo2*esfuerzo_soc + simce + internet_rec + (1 + cod_grupo2 | mrbd), data=data_redis)
+
+reg21_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + cod_grupo2*merito_soc + simce + internet_rec + (1 + cod_grupo2 | mrbd), data=data_redis)
+
+reg22_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + cod_grupo2*inteligencia_soc + simce + internet_rec + (1 + cod_grupo2 | mrbd), data=data_redis)
+
+reg23_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + cod_grupo2*esfuerzo_esc + simce + internet_rec + (1 + cod_grupo2 | mrbd), data=data_redis)
+
+reg24_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + cod_grupo2*inteligencia_esc + simce + internet_rec + (1 + cod_grupo2 | mrbd), data=data_redis)
+```
+
+```{r results='asis'}
+htmlreg(list(reg20_redis, reg21_redis, reg22_redis, reg23_redis, reg24_redis))
+```
+
+*meritocracia x prop. educacion universitaria por escuela*
+
+```{r}
+reg20.1_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + mean_educ*esfuerzo_soc + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + mean_educ | mrbd), data=data_redis)
+
+reg21.1_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + mean_educ*merito_soc + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + mean_educ | mrbd), data=data_redis)
+
+reg22.1_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + mean_educ*inteligencia_soc + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + mean_educ | mrbd), data=data_redis)
+
+reg23.1_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + mean_educ*esfuerzo_esc + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + mean_educ | mrbd), data=data_redis)
+
+reg24.1_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + mean_educ*inteligencia_esc + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + mean_educ | mrbd), data=data_redis)
+```
+
+```{r results='asis'}
+htmlreg(list(reg20.1_redis, reg21.1_redis, reg22.1_redis, reg23.1_redis, reg24.1_redis))
+```
+
+*meritocracia x simce*
+
+```{r}
+reg25_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce*esfuerzo_soc + internet_rec + (1 + simce | mrbd), data=data_redis)
+reg26_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce*merito_soc + internet_rec + (1 + simce | mrbd), data=data_redis)
+reg27_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce*inteligencia_soc + internet_rec + (1 + simce | mrbd), data=data_redis)
+reg28_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce*esfuerzo_esc + internet_rec + (1 + simce | mrbd), data=data_redis)
+reg29_redis <- clmm(redistribucion_fact ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce*inteligencia_esc + internet_rec + (1 + simce | mrbd), data=data_redis)
+```
+
+```{r results='asis'}
+htmlreg(list(reg25_redis, reg26_redis, reg27_redis, reg28_redis, reg29_redis))
+```
+
+
+# Comparacion interacciones significativas
+
+```{r}
+sjPlot::tab_model(list(reg10.1_bienestar, reg11_bienestar, reg12_bienestar, reg15_bienestar, reg18_bienestar, reg21_bienestar, reg21.1_bienestar, reg25_bienestar, reg26_bienestar, reg27_bienestar), show.ci=FALSE)
+
+sjPlot::tab_model(list(reg10.1_bienestar, reg11_bienestar, reg12_bienestar, reg15_bienestar, reg18_bienestar, reg21_bienestar, reg21.1_bienestar, reg25_bienestar, reg26_bienestar, reg27_bienestar), # los modelos estimados
+  show.ci=FALSE, # no mostrar intervalo de confianza (por defecto lo hace)
+  p.style = "stars", # asteriscos de significación estadística
+  dv.labels = c("Model 1",
+                "Model 2",
+                "Model 3",
+                "Model 4",
+                "Model 5",
+                "Model 6",
+                "Model 7",
+                "Model 8",
+                "Model 9",
+                "Model 10"), # etiquetas de modelos o variables dep.
+  pred.labels = c("Intercept",
+                              "Social effort", 
+                              "Social merit", 
+                              "Social intelligence", 
+                              "School effort", 
+                              "School intelligence", 
+                              "Secondary <br> <i>(Ref. 8th grade or less)</i>", 
+                              "Higher tec.", 
+                              "University", 
+                              "Missing", 
+                              "More than 25 books <br> <i>(Ref. Less than 25)</i>", 
+                              "Technology access",
+                              "Prop. university level at school",
+                              "Subsidized private <br> <i>(Ref. Public)</i>", 
+                              "Private", 
+                              "SES Medium low <br> <i>(Ref. Low)</i>", 
+                              "SES Medium", 
+                              "SES Medium high", 
+                              "SES High", 
+                              "Simce Medium <i>(Ref. Low)</i>", 
+                              "Simce High",
+                  "Internet <br> <i>(Ref. No)</i>",
+                  "Missing",
+                              "Secondary*socialmerit",
+                              "Tec.*socialmerit",
+                              "university*socialmerit",
+                              "missing*socialmerit",
+                              "Secondary*socialintelligence",
+                              "Tec.*socialintelligence",
+                              "university*socialintelligence",
+                              "missing*socialintelligence",
+                              "More than 25 books*socialeffort",
+                              "More than 25 books*schooleffort",
+                              "SES Medium low*socialmerit", 
+                              "SES Medium*socialmerit", 
+                              "SES Medium high*socialmerit", 
+                              "SES High*socialmerit",
+                              "prop. university*socialmerit",
+                              "Simce medium*socialeffort",
+                              "Simce High*socialeffort",
+                              "Simce medium*socialmerit",
+                              "Simce high*socialmerit",
+                              "Simce medium*socialintelligence",
+                              "Simce high*socialintelligence"),
+  string.pred = "Predictors", string.est = "β") # nombre predictores y símbolo beta en tabla
+```
+
+
+```{r}
+htmlreg(list(reg10.1_bienestar, reg11_bienestar, reg12_bienestar, reg15_bienestar, reg18_bienestar, reg21_bienestar, reg21.1_bienestar, reg25_bienestar, reg26_bienestar, reg27_bienestar),
+        custom.model.names = c("Model 1",
+                               "Model 2",
+                               "Model 3",
+                               "Model 4",
+                               "Model 5",
+                               "Model 6",
+                               "Model 7",
+                               "Model 8",
+                               "Model 9",
+                               "Model 10"), 
+        custom.note = "$***p <$ 0.001, $**p <$ 0.01, $*p <$ 0.05", 
+        omit.coef = "(internet_rec)",
+        custom.coef.names = c("Intercept",
+                              "Social effort", 
+                              "Social merit", 
+                              "Social intelligence", 
+                              "School effort", 
+                              "School intelligence", 
+                              "Secondary <br> <i>(Ref. 8th grade or less)</i>", 
+                              "Higher tec.", 
+                              "University", 
+                              "Missing", 
+                              "More than 25 books <br> <i>(Ref. Less than 25)</i>", 
+                              "Technology access",
+                              "Prop. university level at school",
+                              "Subsidized private <br> <i>(Ref. Public)</i>", 
+                              "Private", 
+                              "SES Medium low <br> <i>(Ref. Low)</i>", 
+                              "SES Medium", 
+                              "SES Medium high", 
+                              "SES High", 
+                              "Simce Medium <i>(Ref. Low)</i>", 
+                              "Simce High",
+                              "Secondary*socialmerit",
+                              "Tec.*socialmerit",
+                              "university*socialmerit",
+                              "missing*socialmerit",
+                              "Secondary*socialintelligence",
+                              "Tec.*socialintelligence",
+                              "university*socialintelligence",
+                              "missing*socialintelligence",
+                              "More than 25 books*socialeffort",
+                              "More than 25 books*schooleffort",
+                              "SES Medium low*socialmerit", 
+                              "SES Medium*socialmerit", 
+                              "SES Medium high*socialmerit", 
+                              "SES High*socialmerit",
+                              "prop. university*socialmerit",
+                              "Simce medium*socialeffort",
+                              "Simce High*socialeffort",
+                              "Simce medium*socialmerit",
+                              "Simce high*socialmerit",
+                              "Simce medium*socialintelligence",
+                              "Simce high*socialintelligence"
+                              ),
+        file = "output/tables/interaction1.html")
+```
+
+```{r}
+screenreg(list(reg25_redis, reg26_redis))
+```
+
+
+# Tabla comparativa
+
+Se extraen coeficientes y pvalues de las interacciones
+
+```{r}
+# educacion
+interact1 <- texreg::extract(reg10_bienestar)
+interact1_1 <- cbind(interact1@coef[19], interact1@pvalues[19])
+
+interact2 <- texreg::extract(reg11_bienestar)
+interact2_1 <- cbind(interact2@coef[19], interact2@pvalues[19])
+
+interact3 <- texreg::extract(reg12_bienestar)
+interact3_1 <- cbind(interact3@coef[19], interact3@pvalues[19])
+
+interact4 <- texreg::extract(reg13_bienestar)
+interact4_1 <- cbind(interact4@coef[19], interact4@pvalues[19])
+
+interact5 <- texreg::extract(reg14_bienestar)
+interact5_1 <- cbind(interact5@coef[19], interact5@pvalues[19])
+
+#libros
+interact6 <- texreg::extract(reg15_bienestar)
+interact6_1 <- cbind(interact6@coef[19], interact6@pvalues[19])
+
+interact7 <- texreg::extract(reg16_bienestar)
+interact7_1 <- cbind(interact7@coef[19], interact7@pvalues[19])
+
+interact8 <- texreg::extract(reg17_bienestar)
+interact8_1 <- cbind(interact8@coef[19], interact8@pvalues[19])
+
+interact9 <- texreg::extract(reg18_bienestar)
+interact9_1 <- cbind(interact9@coef[19], interact9@pvalues[19])
+
+interact10 <- texreg::extract(reg19_bienestar)
+interact10_1 <- cbind(interact10@coef[19], interact10@pvalues[19])
+
+# Ses school
+interact11 <- texreg::extract(reg20_bienestar)
+interact11_1 <- cbind(interact11@coef[19], interact11@pvalues[19])
+
+interact12 <- texreg::extract(reg21_bienestar)
+interact12_1 <- cbind(interact12@coef[19], interact12@pvalues[19])
+
+interact13 <- texreg::extract(reg22_bienestar)
+interact13_1 <- cbind(interact13@coef[19], interact13@pvalues[19])
+
+interact14 <- texreg::extract(reg23_bienestar)
+interact14_1 <- cbind(interact14@coef[19], interact14@pvalues[19])
+
+interact15 <- texreg::extract(reg24_bienestar)
+interact15_1 <- cbind(interact15@coef[19], interact15@pvalues[19])
+
+# prop educacion school
+interact16 <- texreg::extract(reg20.1_bienestar)
+interact16_1 <- cbind(interact16@coef[19], interact16@pvalues[19])
+
+interact17 <- texreg::extract(reg21.1_bienestar)
+interact17_1 <- cbind(interact17@coef[19], interact17@pvalues[19])
+
+interact18 <- texreg::extract(reg22.1_bienestar)
+interact18_1 <- cbind(interact18@coef[19], interact18@pvalues[19])
+
+interact19 <- texreg::extract(reg23.1_bienestar)
+interact19_1 <- cbind(interact19@coef[19], interact19@pvalues[19])
+
+interact20 <- texreg::extract(reg24.1_bienestar)
+interact20_1 <- cbind(interact20@coef[19], interact20@pvalues[19])
+
+# Simce
+interact21 <- texreg::extract(reg25_bienestar)
+interact21_1 <- cbind(interact21@coef[19:20], interact21@pvalues[19:20])
+
+interact22 <- texreg::extract(reg26_bienestar)
+interact22_1 <- cbind(interact22@coef[19:20], interact22@pvalues[19:20])
+
+interact23 <- texreg::extract(reg27_bienestar)
+interact23_1 <- cbind(interact23@coef[19:20], interact23@pvalues[19:20])
+
+interact24 <- texreg::extract(reg28_bienestar)
+interact24_1 <- cbind(interact24@coef[19:20], interact24@pvalues[19:20])
+
+interact25 <- texreg::extract(reg29_bienestar)
+interact25_1 <- cbind(interact25@coef[19:20], interact25@pvalues[19:20])
+```
+
+```{r}
+soc_effort = 
+  c(paste0(round(interact1_1[,1],3), stars.pval(interact1_1[,2])),
+    paste0(round(interact6_1[,1],3), stars.pval(interact6_1[,2])),
+    paste0(round(interact11_1[,1],3), stars.pval(interact11_1[,2])),
+    paste0(round(interact16_1[,1],3), stars.pval(interact16_1[,2])),
+    paste0(round(interact21_1[,1],3), stars.pval(interact21_1[,2])))
+
+soc_merit =
+  c(paste0(round(interact2_1[,1],3), stars.pval(interact2_1[,2])),
+    paste0(round(interact7_1[,1],3), stars.pval(interact7_1[,2])),
+    paste0(round(interact12_1[,1],3), stars.pval(interact12_1[,2])),
+    paste0(round(interact17_1[,1],3), stars.pval(interact17_1[,2])),
+    paste0(round(interact22_1[,1],3), stars.pval(interact22_1[,2])))
+
+soc_intel =
+  c(paste0(round(interact3_1[,1],3), stars.pval(interact3_1[,2])),
+    paste0(round(interact8_1[,1],3), stars.pval(interact8_1[,2])),
+    paste0(round(interact13_1[,1],3), stars.pval(interact13_1[,2])),
+    paste0(round(interact18_1[,1],3), stars.pval(interact18_1[,2])),
+    paste0(round(interact23_1[,1],3), stars.pval(interact23_1[,2])))
+
+school_effort =
+  c(paste0(round(interact4_1[,1],3), stars.pval(interact4_1[,2])),
+    paste0(round(interact9_1[,1],3), stars.pval(interact9_1[,2])),
+    paste0(round(interact14_1[,1],3), stars.pval(interact14_1[,2])),
+    paste0(round(interact19_1[,1],3), stars.pval(interact19_1[,2])),
+    paste0(round(interact24_1[,1],3), stars.pval(interact24_1[,2])))
+
+school_intel =
+  c(paste0(round(interact5_1[,1],3), stars.pval(interact5_1[,2])),
+    paste0(round(interact10_1[,1],3), stars.pval(interact10_1[,2])),
+    paste0(round(interact15_1[,1],3), stars.pval(interact15_1[,2])),
+    paste0(round(interact20_1[,1],3), stars.pval(interact20_1[,2])),
+    paste0(round(interact25_1[,1],3), stars.pval(interact25_1[,2])))
+
+
+collapse_rows <-
+  data.frame(vars = c("University or Postgraduate", 
+                      "More than 25 books", 
+                      "School SES high", 
+                      "Prop. university level",
+                      "Simce Medium", 
+                      "Simce High"),
+             school_intel,
+             school_effort,
+             soc_intel,  
+             soc_effort, 
+             soc_merit 
+             ) #espacio privado
+```
+
+### Estas interacciones de redistribucion no se incluirán en la tabla final
+```{r, eval=FALSE}
+# educacion
+interact1.1 <- texreg::extract(reg10_redis)
+interact1.1_1 <- cbind(interact1.1@coef[18:19], interact1.1@pvalues[18:19])
+
+interact2.1 <- texreg::extract(reg11_redis)
+interact2.1_1 <- cbind(interact2.1@coef[18:19], interact2.1@pvalues[18:19])
+
+interact3.1 <- texreg::extract(reg12_redis)
+interact3.1_1 <- cbind(interact3.1@coef[18:19], interact3.1@pvalues[18:19])
+
+interact4.1 <- texreg::extract(reg13_redis)
+interact4.1_1 <- cbind(interact4.1@coef[18:19], interact4.1@pvalues[18:19])
+
+interact5.1 <- texreg::extract(reg14_redis)
+interact5.1_1 <- cbind(interact5.1@coef[18:19], interact5.1@pvalues[18:19])
+
+#libros
+interact6.1 <- texreg::extract(reg15_redis)
+interact6.1_1 <- cbind(interact6.1@coef[18], interact6.1@pvalues[18])
+
+interact7.1 <- texreg::extract(reg16_redis)
+interact7.1_1 <- cbind(interact7.1@coef[18], interact7.1@pvalues[18])
+
+interact8.1 <- texreg::extract(reg17_redis)
+interact8.1_1 <- cbind(interact8.1@coef[18], interact8.1@pvalues[18])
+
+interact9.1 <- texreg::extract(reg18_redis)
+interact9.1_1 <- cbind(interact9.1@coef[18], interact9.1@pvalues[18])
+
+interact10.1 <- texreg::extract(reg19_redis)
+interact10.1_1 <- cbind(interact10.1@coef[18], interact10.1@pvalues[18])
+
+# Ses school
+interact11.1 <- texreg::extract(reg20_redis)
+interact11.1_1 <- cbind(interact11.1@coef[18], interact11.1@pvalues[18])
+
+interact12.1 <- texreg::extract(reg21_redis)
+interact12.1_1 <- cbind(interact12.1@coef[18], interact12.1@pvalues[18])
+
+interact13.1 <- texreg::extract(reg22_redis)
+interact13.1_1 <- cbind(interact13.1@coef[18], interact13.1@pvalues[18])
+
+interact14.1 <- texreg::extract(reg23_redis)
+interact14.1_1 <- cbind(interact14.1@coef[18], interact14.1@pvalues[18])
+
+interact15.1 <- texreg::extract(reg24_redis)
+interact15.1_1 <- cbind(interact15.1@coef[18], interact15.1@pvalues[18])
+
+# prop educacion school
+interact16.1 <- texreg::extract(reg20.1_redis)
+interact16.1_1 <- cbind(interact16.1@coef[18], interact16.1@pvalues[18])
+
+interact17.1 <- texreg::extract(reg21.1_redis)
+interact17.1_1 <- cbind(interact17.1@coef[18], interact17.1@pvalues[18])
+
+interact18.1 <- texreg::extract(reg22.1_redis)
+interact18.1_1 <- cbind(interact18.1@coef[18], interact18.1@pvalues[18])
+
+interact19.1 <- texreg::extract(reg23.1_redis)
+interact19.1_1 <- cbind(interact19.1@coef[18], interact19.1@pvalues[18])
+
+interact20.1 <- texreg::extract(reg24.1_redis)
+interact20.1_1 <- cbind(interact20.1@coef[18], interact20.1@pvalues[18])
+
+# Simce
+interact21.1 <- texreg::extract(reg25_redis)
+interact21.1_1 <- cbind(interact21.1@coef[18:19], interact21.1@pvalues[18:19])
+
+interact22.1 <- texreg::extract(reg26_redis)
+interact22.1_1 <- cbind(interact22.1@coef[18:19], interact22.1@pvalues[18:19])
+
+interact23.1 <- texreg::extract(reg27_redis)
+interact23.1_1 <- cbind(interact23.1@coef[18:19], interact23.1@pvalues[18:19])
+
+interact24.1 <- texreg::extract(reg28_redis)
+interact24.1_1 <- cbind(interact24.1@coef[18:19], interact24.1@pvalues[18:19])
+
+interact25.1 <- texreg::extract(reg29_redis)
+interact25.1_1 <- cbind(interact25.1@coef[18:19], interact25.1@pvalues[18:19])
+```
+
+```{r, eval=FALSE}
+soc_effort.1 = 
+  c(paste0(round(interact1.1_1[,1],3), stars.pval(interact1.1_1[,2])),
+    paste0(round(interact6.1_1[,1],3), stars.pval(interact6.1_1[,2])),
+    paste0(round(interact11.1_1[,1],3), stars.pval(interact11.1_1[,2])),
+    paste0(round(interact16.1_1[,1],3), stars.pval(interact16.1_1[,2])),
+    paste0(round(interact21.1_1[,1],3), stars.pval(interact21.1_1[,2])))
+
+soc_merit.1 =
+  c(paste0(round(interact2.1_1[,1],3), stars.pval(interact2.1_1[,2])),
+    paste0(round(interact7.1_1[,1],3), stars.pval(interact7.1_1[,2])),
+    paste0(round(interact12.1_1[,1],3), stars.pval(interact12.1_1[,2])),
+    paste0(round(interact17.1_1[,1],3), stars.pval(interact17.1_1[,2])),
+    paste0(round(interact22.1_1[,1],3), stars.pval(interact22.1_1[,2])))
+
+soc_intel.1 =
+  c(paste0(round(interact3.1_1[,1],3), stars.pval(interact3.1_1[,2])),
+    paste0(round(interact8.1_1[,1],3), stars.pval(interact8.1_1[,2])),
+    paste0(round(interact13.1_1[,1],3), stars.pval(interact13.1_1[,2])),
+    paste0(round(interact18.1_1[,1],3), stars.pval(interact18.1_1[,2])),
+    paste0(round(interact23.1_1[,1],3), stars.pval(interact23.1_1[,2])))
+
+school_effort.1 =
+  c(paste0(round(interact4.1_1[,1],3), stars.pval(interact4.1_1[,2])),
+    paste0(round(interact9.1_1[,1],3), stars.pval(interact9.1_1[,2])),
+    paste0(round(interact14.1_1[,1],3), stars.pval(interact14.1_1[,2])),
+    paste0(round(interact19.1_1[,1],3), stars.pval(interact19.1_1[,2])),
+    paste0(round(interact24.1_1[,1],3), stars.pval(interact24.1_1[,2])))
+
+school_intel.1 =
+  c(paste0(round(interact5.1_1[,1],3), stars.pval(interact5.1_1[,2])),
+    paste0(round(interact10.1_1[,1],3), stars.pval(interact10.1_1[,2])),
+    paste0(round(interact15.1_1[,1],3), stars.pval(interact15.1_1[,2])),
+    paste0(round(interact20.1_1[,1],3), stars.pval(interact20.1_1[,2])),
+    paste0(round(interact25.1_1[,1],3), stars.pval(interact25.1_1[,2])))
+
+
+collapse_rows.1 <-
+  data.frame(vars = c("University or Postgraduate", 
+                      "Ed. Missing", 
+                      "More than 25 books",
+                      "School SES high", 
+                      "Prop. university level",
+                      "Simce Medium", 
+                      "Simce High"),
+             soc_effort.1, 
+             soc_merit.1, 
+             soc_intel.1, 
+             school_effort.1, 
+             school_intel.1) #espacio privado
+```
+
+```{r}
+collapse_cols <- left_join(collapse_rows, collapse_rows.1, by="vars")
+save(collapse_cols, file="input/data/proc/collapse_cols2.RData")
+```
+
+, 
+    caption = "Interactions",
+    align = "lcccccccccc", booktabs = T,
+    col.names =  c("Variable",
+                   "Social effort", 
+                   "Social merit",
+                   "Social intelligence", 
+                   "School effort", 
+                   "School intelligence",
+                   "Social effort", 
+                   "Social merit",
+                   "Social intelligence", 
+                   "School effort", 
+                   "School intelligence"
+
+
+```{r}
+kbl(collapse_rows,
+    align = "lccccc", booktabs = T,
+    col.names =  c("Variable", 
+                   "School talent", 
+                   "School effort",
+                   "Social talent",
+                   "Social effort", 
+                   "Deservingness")) %>%
+  add_header_above(c(" " = 1,
+                     "Justification of Inequality"=5), 
+                   bold = T)%>%  
+  kable_styling(latex_options = c("scale_down","HOLD_position"),
+                full_width = F) %>%
+  column_spec(1, bold = T, width = "4cm") %>%
+  column_spec(column = 2:6,width = "1.5cm") %>%
+  collapse_rows(columns = 1:2, valign = "middle") %>% 
+  footnote(general = "***p < 0.001, **p < 0.01, *p < 0.05",
+           footnote_as_chunk = T,general_title = "Note: ") %>% 
+  save_kable("output/tables/interactions3.png")
+```
+
+# Grafico de interacciones
+
+```{r}
+int1 <- plot_model(reg11_bienestar, type = "int", mdrt.values="meansd", title = "") +
+  theme_bw() +
+  labs(x = "Parental educational level", y="Justification of Inequality", colour = "Deservingness")
+
+ggsave(int1, file="output/graphs/int1.png")
+```
+
+```{r}
+int2 <- plot_model(reg26_bienestar, type = "int", mdrt.values="meansd", title = "") +
+  theme_bw() +
+  labs(x = "School Simce", y="Justification of Inequality", colour = "Deservingness")
+
+ggsave(int2, file="output/graphs/int2.png")
+```
+
+#### Gráfico sin categoría missing (con código sale sin intervalos de confianza; se deja Missing en blanco para ocultar)
+```{r}
+reg11.2_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + merito_soc*educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + educacion_rec2 | mrbd), data=data_bienestar)
+#no se xq no funciona el de abajo
+int1.2 <- sjPlot::plot_model(reg11.2_bienestar, type = "int", title = "", colors = c("red", "blue", "white")) +
+  theme_bw() +
+  labs(x ="Deservingness" , y="Justification of Inequality", colour = "Parental educational level")
+int1.2
+ggsave(int1.2, file="output/graphs/int1.2.png")
+```
+
+```{r}
+reg26.2_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + merito_soc*simce + internet_rec + (1 + simce | mrbd), data=data_bienestar)
+```
+```{r}
+int2.2 <- plot_model(reg26.2_bienestar, type = "int", mdrt.values="minmax", title = "", colors = c("red", "white", "blue")) +
+  theme_bw() +
+  ylim(1,4)+
+  labs(x = "Deservingness", y="Justification of Inequality", colour = "School Simce")
+int2.2
+ggsave(int2.2, file="output/graphs/int2.2.png")
+```
+
+* Lo mismo en español
+```{r}
+int2.2_esp <- plot_model(reg26.2_bienestar, type = "int", mdrt.values="minmax", title = "", colors = c("red", "white", "blue")) +
+  theme_bw() +
+  ylim(1,4)+
+  labs(x = "Merecimiento", y="Justificación de la desigualdad", colour = "Simce escolar")
+  
+int2.2_esp
+ggsave(int2.2_esp, file="output/graphs/int2.2_esp.png")
+```
+
+
+```{r}
+int2.3 <- plot_model(reg26.2_bienestar, type = "int", mdrt.values="minmax", title = "", colors = c("red", "white", "blue")) +
+  theme_bw() +
+  labs(x = "Mérito en la sociedad", y="Índice de acceso a servicios sociales", colour = "Logro Simce")
+int2.3
+ggsave(int2.3, file="output/graphs/int2.3.png")
+```
+
+
+

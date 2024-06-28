@@ -1,6 +1,7 @@
 ---
 author: "Equipo Edumer"
-editor: visual
+bibliography: "input/bib/just-ineq-merit.bib"
+csl: "input/bib/apa6.csl"
 ---
 
 # Results
@@ -230,7 +231,7 @@ This section presents the results of the multilevel models. We begin by showing 
 
 [^1]: The tables shows the effects of individual and contextual-level independent variables related to our hypothesis; however, the models also incorporate the control variables utilized in the study for each of the three dependent variables separately and for the average index (complete models are available in the [Appendix](#appendix)).
 
-```{r echo=FALSE, include=FALSE}
+```{r echo=FALSE, include=FALSE, eval=FALSE}
 sjmisc::frq(data_rec$educacion_rec)
 data_rec <- data_rec %>% mutate(universitario = case_when(educacion_rec=="Ed Basica"~"No",
                                                           educacion_rec=="Ed Media"~"No",
@@ -326,7 +327,7 @@ modelos_educ <- list(m1_e, m2_e, m3_e)
 
 ```
 
-```{r echo=FALSE, results='asis'}
+```{r echo=FALSE, results='asis', eval=FALSE}
 #| tbl-cap: "Cumulative link multilevel models of differential acces justificacion of health, pensions, and education"
 #| label: tbl-ordinal-reg
 
@@ -363,10 +364,13 @@ texreg::htmlreg(l = list(modelos_health[[2]],
                                 "Socioeconomic level (Ref.= Low)" = 9:10,
                                 "Achievement score (Ref.= Low)" = 11:12),
                 custom.gof.rows = list("Controls"=rep("Yes",6)),
-                include.loglik = FALSE, include.aic = FALSE)
+                include.loglik = FALSE, include.aic = FALSE,
+                file = "output/tables/tab-ordinalreg.html")
 
-
+webshot::webshot(url = "output/tables/tab-ordinalreg.html", file = "output/tables/tab-ordinalreg.png")
 ```
+
+![](output/tables/tab-ordinalreg.png)
 
 Model 1 in @tbl-ordinal-reg for the three dependent variables of justice in differential access to health, pensions, and education demonstrates a similar trend regarding the effect of the perception of meritocracy on these items, with all effects being statistically significant (*p* \< 0.05). Regarding the variables of social meritocracy, the three variables---talent, effort, and deservingness---show that as these increase, the justification for differentiated access to pensions, education, and health also increases. In the context of school meritocracy, the effects are mixed: as perceived school talent increases, the justification for differentiated access to these services increases; conversely, as perceived school effort increases, the justification decreases, holding all other variables constant.
 

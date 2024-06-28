@@ -1,0 +1,287 @@
+---
+title: "descriptivos-meritocracia"
+author: "Equipo EDUMER"
+date: "29-11-2021"
+output:
+  pdf_document:
+    toc: true
+  html_document:
+    toc: true
+    code_folding: hide
+    toc_float:
+      collapsed: true
+      smooth_scroll: false
+      number_sections: true
+---
+
+```{r}
+pacman::p_load(haven, dplyr, summarytools, sjmisc, car, sjlabelled, webshot, sjPlot, ggplot2, corrplot, ltm)
+load("input/data/proc/alumnos_patterns.RData")
+load("input/data/proc/apoderados_patterns.RData")
+```
+
+```{r}
+data_est <- alumnos_patterns %>% dplyr::select(idalumno,
+                                               sexo,
+                                               codigoCurso,
+                                               mrbd,
+                                               cod_depe2, #dependencia administrativa
+                                               cod_grupo, #categorizacion socioeconomica
+                                               simce_lect=prom_lect8b_rbd, #Promedio lectura escuela
+                                               simce_mate=prom_mate8b_rbd, # Promedio matematica escuela
+                                               inteligencia_esc=est_p6_1, # inteligencia escolar
+                                               esfuerzo_esc=est_p6_2, # esfuerzo escolar
+                                               esfuerzo_soc=est_p38_2, #esfuerzo social
+                                               merito_soc=est_p38_3, #merito social
+                                               inteligencia_soc=est_p38_4, #inteligencia social
+                                               just_pension=est_p39_1, #justicia pension
+                                               just_educ=est_p39_2, # justicia educacion
+                                               just_salud=est_p39_3, # justicia salud
+                                               redistribucion=est_p39_4, # redistribucion
+                                               libros=est_p3, # cantidad de libros
+                                               pc=est_p4_1, # tiene pc
+                                               tablet=est_p4_2, # tiene tablet
+                                               celular=est_p4_3 # tiene celular
+                                               ) %>% as.data.frame(.)
+
+data_apod <- apoderados_patterns %>% dplyr::select(idalumno,
+                                               educacion=educ_max, # nivel educacional mas alto
+                                               internet=apod_p9 # conexion a internet en la casa
+                                               ) %>% as.data.frame(.)
+```
+
+## merge bases
+```{r}
+data <- merge(data_est, data_apod, by="idalumno")
+rm(apoderados_patterns, alumnos_patterns, data_est, data_apod)
+```
+
+```{r}
+# Educacion. 10 categorías, se recodifican en 4 y una de no sabe y no responde
+data$educacion_rec <- ifelse(is.na(data$educacion), "Ns/Nr", data$educacion)
+data <- data %>% rowwise() %>%  mutate(educacion_rec = case_when(educacion_rec==1~"8th grade or less",
+                                                 educacion_rec==2~"8th grade or less",
+                                                 educacion_rec==3~"8th grade or less",
+                                                 educacion_rec==4~"Secondary Education",
+                                                 educacion_rec==5~"Secondary Education",
+                                                 educacion_rec==6~"Higher tec. education",
+                                                 educacion_rec==7~"Higher tec. education",
+                                                 educacion_rec==8~"University or Postgraduate",
+                                                 educacion_rec==9~"University or Postgraduate",
+                                                 educacion_rec==10~"University or Postgraduate",
+                                                 educacion_rec=="Ns/Nr"~"Missing"
+                                                 ))
+data$educacion_rec <- factor(data$educacion_rec, levels = c("8th grade or less", "Secondary Education", "Higher tec. education", "University or Postgraduate", "Missing"))
+data$educacion_rec <- set_label(data$educacion_rec,label = "Parental educational level")
+
+## Proporcion de Universidad o posgrado por escuela
+data <- data %>% group_by(mrbd) %>%
+  mutate(mean_educ = mean(educacion_rec=="University or Postgraduate", na.rm=T))
+data$mean_educ <- set_label(data$mean_educ,label = "Proportion of parents with university level by school")
+
+# Internet
+data <- data %>% set_na(internet, na = c(0,99), drop.levels = FALSE, as.tag = FALSE) # recode missings de doble marca (99) y vacío (0) a NA
+
+data$internet_rec <- ifelse(is.na(data$internet), "Missing", data$internet)
+data$internet_rec <- factor(data$internet_rec, levels = c("1", "2"), labels = c("Yes", "No"))
+# libros
+data$libros_rec <- as.numeric(data$libros)
+data <- data %>% rowwise() %>% mutate(libros_rec = case_when(libros_rec==1 ~ "Les than 25",
+                                                             libros_rec==2 ~ "Les than 25",
+                                                             libros_rec==3 ~ "More than 25",
+                                                             libros_rec==4 ~ "More than 25",
+                                                             libros_rec==5 ~ "More than 25"))
+data$libros_rec <- factor(data$libros_rec, levels = c("Les than 25", "More than 25"))
+data$libros_rec <- set_label(data$libros_rec,label = "Number of books at home")
+## Promedio simce
+data <- data %>% rowwise() %>% mutate(prom_simce = mean(simce_lect,simce_mate))
+summary(data$prom_simce)
+data$simce <- ntile(data$prom_simce,3)
+table(data$simce)
+data$simce <- factor(data$simce, labels = c("Low", "Medium", "High"))
+data$simce <- set_label(data$simce,label = "SIMCE score by school")
+```
+
+```{r}
+# Acceso a tecnologia
+data$pc <- as.numeric(data$pc)
+data$tablet <- as.numeric(data$tablet)
+data$celular <- as.numeric(data$celular)
+
+corrplot.mixed(cor(dplyr::select(data, pc, tablet, celular),
+                   method = "spearman",
+                   use = "complete.obs"))
+```
+
+```{r}
+ltm::cronbach.alpha(data  %>%
+  dplyr::select(pc, tablet, celular), na.rm=TRUE)
+```
+
+```{r}
+data <- data %>% rowwise() %>% dplyr::mutate(acc_tec = sum(pc, tablet, celular, na.rm = T))
+summary(data$acc_tec)
+data$acc_tec <- set_label(data$acc_tec,label = "Technology access index")
+```
+
+# Dependientes
+```{r}
+dependientes <- data %>% dplyr::select(just_pension, just_educ, just_salud)
+
+dependientes$pension_rec <- as.numeric(dependientes$just_pension)
+dependientes$educ_rec <- as.numeric(dependientes$just_salud)
+dependientes$salud_rec <- as.numeric(dependientes$just_educ)
+#dependientes <- dependientes %>% dplyr::mutate(pension_rec = 5-pension_rec,
+#                                            educ_rec = 5-educ_rec,
+#                                            salud_rec = 5-salud_rec)
+
+ltm::cronbach.alpha(dependientes  %>%
+  dplyr::select(educ_rec, salud_rec, pension_rec), na.rm=TRUE)
+
+
+dependientes <- dependientes %>% rowwise() %>% dplyr::mutate(bienestar = mean(c(educ_rec, salud_rec, pension_rec), na.rm=TRUE))
+dependientes$bienestar <- round(dependientes$bienestar, 2)
+dependientes <- dependientes %>% dplyr::select(-pension_rec, -educ_rec, -salud_rec)
+
+dependientes$just_pension <- factor(dependientes$just_pension, levels = c("Muy desacuerdo", "Desacuerdo", "De acuerdo", "Muy de acuerdo"), labels = c("Strongly disagree", "Disagree", "Agree", "Strongly agree"))
+dependientes$just_pension <- set_label(dependientes$just_pension, label = "It is just that in Chile people with higher incomes can have better pensions than people with low incomes")
+
+dependientes$just_salud <- factor(dependientes$just_salud, levels = c("Muy desacuerdo", "Desacuerdo", "De acuerdo", "Muy de acuerdo"), labels = c("Strongly disagree", "Disagree", "Agree", "Strongly agree"))
+dependientes$just_salud <- set_label(dependientes$just_salud,label = "It is just that in Chile people with higher incomes can access better health services than people with low incomes")
+
+dependientes$just_educ <- factor(dependientes$just_educ, levels = c("Muy desacuerdo", "Desacuerdo", "De acuerdo", "Muy de acuerdo"), labels = c("Strongly disagree", "Disagree", "Agree", "Strongly agree"))
+dependientes$just_educ <- set_label(dependientes$just_educ,label = "It is just that in Chile people who can pay have a better education for their children")
+
+dependientes$bienestar <- set_label(dependientes$bienestar,label = "Market Justice Preferences")
+
+#dependientes$redistribucion <- factor(dependientes$redistribucion, levels = c("Muy desacuerdo", "Desacuerdo", "De acuerdo", "Muy de acuerdo"), labels = c("Strongly disagree", "Disagree", "Agree", "Strongly agree"))
+#dependientes$redistribucion <- set_label(dependientes$redistribucion,label = "The Chilean government should do something to reduce the income gap between the rich and the poor.")
+```
+
+
+```{r, results='asis'}
+df<-dfSummary(dependientes,
+               plain.ascii = TRUE,
+               style = "multiline",
+               tmp.img.dir = "/tmp",
+               graph.magnif = 0.75,
+               headings = F,  # encabezado
+               varnumbers = F, # num variable
+               labels.col = T, # etiquetas
+               na.col = F,    # missing
+               graph.col = F, # plot
+               valid.col = T, # n valido
+               col.widths = c(30,10,10,10))
+
+
+
+df$Variable <- NULL # delete variable column
+df
+view(df, footnote=NA, file = "output/tables/desc01.html")
+webshot::webshot(url ="output/tables/desc01.html" ,file ="output/tables/desc01.png")
+```
+
+# independientes
+```{r}
+independientes <- data %>% dplyr::select(inteligencia_esc, esfuerzo_esc, inteligencia_soc, esfuerzo_soc, merito_soc,  educacion_rec, libros_rec, acc_tec)
+
+independientes$inteligencia_esc <- factor(independientes$inteligencia_esc, levels = c("Muy desacuerdo", "Desacuerdo", "De acuerdo", "Muy de acuerdo"), labels = c("Strongly disagree", "Disagree", "Agree", "Strongly agree"))
+independientes$inteligencia_esc <- set_label(independientes$inteligencia_esc, label = "Intelligence is important to get good grades")
+
+independientes$esfuerzo_esc <- factor(independientes$esfuerzo_esc, levels = c("Muy desacuerdo", "Desacuerdo", "De acuerdo", "Muy de acuerdo"), labels = c("Strongly disagree", "Disagree", "Agree", "Strongly agree"))
+independientes$esfuerzo_esc <- set_label(independientes$esfuerzo_esc, label = "Effort is important to get good grades")
+
+independientes$esfuerzo_soc <- factor(independientes$esfuerzo_soc, levels = c("Muy desacuerdo", "Desacuerdo", "De acuerdo", "Muy de acuerdo"), labels = c("Strongly disagree", "Disagree", "Agree", "Strongly agree"))
+independientes$esfuerzo_soc <- set_label(independientes$esfuerzo_soc, label = "In Chile, people are rewarded for their efforts")
+
+independientes$merito_soc <- factor(independientes$merito_soc, levels = c("Muy desacuerdo", "Desacuerdo", "De acuerdo", "Muy de acuerdo"), labels = c("Strongly disagree", "Disagree", "Agree", "Strongly agree"))
+independientes$merito_soc <- set_label(independientes$merito_soc, label = "In Chile, people get what they deserve")
+
+independientes$inteligencia_soc <- factor(independientes$inteligencia_soc, levels = c("Muy desacuerdo", "Desacuerdo", "De acuerdo", "Muy de acuerdo"), labels = c("Strongly disagree", "Disagree", "Agree", "Strongly agree"))
+independientes$inteligencia_soc <- set_label(independientes$inteligencia_soc, label = "In Chile, people are rewarded for their intelligence and skill")
+
+
+df2<- dfSummary(independientes,
+               plain.ascii = FALSE,
+               style = "grid",
+               tmp.img.dir = "/tmp",
+               graph.magnif = 0.75,
+               headings = F,  # encabezado
+               varnumbers = F, # num variable
+               labels.col = T, # etiquetas
+               na.col = F,    # missing
+               graph.col = F, # plot
+               valid.col = T, # n valido
+               col.widths = c(20,30,10,10,10))
+
+df2$Variable <- c("School talent", "School effort", "Social talent", "Social effort", "Deservingness", "Education", "Books", "Technology")
+df2
+view(df2, footnote=NA, file = "output/tables/desc02.html")
+webshot(url ="output/tables/desc02.html" ,file ="output/tables/desc02.png")
+```
+
+# School
+
+```{r}
+school <- data %>%
+  group_by(mrbd) %>%
+  summarise(
+    mean_educ = mean(mean_educ, na.rm = TRUE),
+    simce = first(simce),
+    cod_depe2 = first(cod_depe2),
+    cod_grupo = first(cod_grupo)
+  )
+
+school$cod_depe2  <- factor(school$cod_depe2, levels = c("Municipal", "Part. subvencionado", "Part. privado"), labels = c("Public", "Subsidized private", "Private"))
+school$cod_depe2 <- set_label(school$cod_depe2, label = "Administrative dependency of school")
+
+school$cod_grupo  <- factor(school$cod_grupo, levels = c("Bajo", "Medio bajo", "Medio", "Medio alto", "Alto"), labels = c("Low", "Medium low", "Medium", "Medium high", "High"))
+school$cod_grupo <- set_label(school$cod_grupo, label = "Socioeconomic level of school")
+
+school$mean_educ <- set_label(school$mean_educ, label = "Proportion of parents with university level by school")
+
+school$simce <- set_label(school$simce, label = "SIMCE score achievement by school")
+
+school <- school %>% dplyr::select(-mrbd)
+
+save(school, file="input/data/school.RData")
+
+df3<- dfSummary(school,
+               plain.ascii = FALSE,
+               style = "grid",
+               tmp.img.dir = "/tmp",
+               graph.magnif = 0.75,
+               headings = F,  # encabezado
+               varnumbers = F, # num variable
+               labels.col = T, # etiquetas
+               na.col = F,    # missing
+               graph.col = F, # plot
+               valid.col = T, # n valido
+               col.widths = c(10,30,10,10,10))
+df3$Variable <- c("Prop. university level
+at school",
+                  "Achievement", "Dependency", "Socioeconomic level")
+view(df3, footnote=NA, file = "output/tables/desc03.html")
+webshot(url ="output/tables/desc03.html" ,file ="output/tables/desc03.png")
+```
+
+# graficos descriptivos
+
+## dependientes
+```{r}
+dependientes <- sjPlot::plot_stackfrq(dplyr::select(data, just_educ, just_pension, just_salud), geom.size = 0.4) +
+  theme_bw() +
+  theme(legend.position="bottom")
+dependientes
+ggsave(dependientes, file = "output/graphs/dependientes.png",device = "png",width = 25,height = 13,dpi = "retina",units = "cm")
+```
+
+## independientes
+
+```{r}
+independientes <- sjPlot::plot_stackfrq(dplyr::select(data, inteligencia_esc, esfuerzo_esc, inteligencia_soc, merito_soc, esfuerzo_soc)) +
+  theme_bw() +
+  theme(legend.position="bottom")
+
+ggsave(independientes, file = "output/graphs/independientes.png",device = "png",width = 25,height = 13,dpi = "retina",units = "cm")
+```
