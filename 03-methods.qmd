@@ -9,7 +9,6 @@ editor: visual
 
 The First Study of Civic Education in Chile, conducted by the Agency for Quality Education of the Ministry of Education in 2017, serves as the main data source. This database is composed by a civic knowledge test score and a series of items batteries measuring different aspects of citizenship. The target population includes 8th-grade students in 242 schools nationwide, as well as their parents and teachers. Initially, the database contains 8,589 student observations and 6,770 parent observations. To ensure higher data quality and considering the survey's unit of analysis, we removed 171 student cases and 79 parent cases that exhibited repetitive and careless response patterns [@gottfried_autocorrelation_2022]. Additionally, we utilized data from the System for Measuring the Quality of Education (SIMCE) conducted by the Ministry of Education in 2017, which provides school-level information such as administrative dependence, socioeconomic classification, and results obtained in standardized mathematics and language tests. After processing the variables and removing missing cases, the final database for this study includes a two-level stratified sample composed of 5,047 students and parents (level 1) nested within 231 schools (level 2).
 
-
 ## Variables
 
 ***Individual level***
@@ -116,4 +115,4 @@ A series of control variables are included. At the individual level, an index of
 
 Given the hierarchical structure of the data, with students nested within schools, model estimation is performed within a multilevel framework. These models are appropriate for capturing both individual and contextual effects in a single analysis, allowing for the estimation of fixed effects between groups and random effects that vary from one group to another [@bell_fixed_2019; @hox_multilevel_2010]. Cumulative link mixed models were employed for the ordinal dependent variables, while linear mixed-effects models were applied for the average market justice preference index.
 
-The hypotheses of this research were pre-registered in the Open Science Framework platform of the Center for Open Science (OSF), the access to the document is available at this [link](https://doi.org/10.17605/OSF.IO/UFSDV). The statistical analysis of this research was performed using the free software R version 4.1.3.
+The hypotheses of this research were pre-registered in the Open Science Framework platform of the Center for Open Science (OSF), the access to the document is available at this [link](https://doi.org/10.17605/OSF.IO/UFSDV). The statistical analysis for this research was conducted using the *lme4* package in R version 4.1.3.
