@@ -16,7 +16,8 @@ pacman::p_load(tidyverse,
                sjPlot, 
                texreg,
                kableExtra,
-               easystats)
+               easystats,
+               ggeffects)
 
 
 options(scipen=999)
@@ -60,8 +61,6 @@ theme_set(theme_bw())
 
 @fig-marketjustice illustrates the distribution of responses to the three items on market justice preferences (healthcare, pensions, and education), indicating that most respondents tend to disagree or strongly disagree with the idea that it is just for people with higher incomes to have access to better services in these areas. The strongest opposition is observed in the healthcare sector, as the majority of respondents (66.4%) are against the idea that higher-income individuals should have access to better healthcare services. Similarly, regarding the concept of justice related to access to better pensions based on income, the level of disagreement reaches 63.0%. This decreases significantly in the field of education, as the percentage of respondents who disagree or strongly disagree with those with higher incomes having access to better education decreases to 58.8%. Only a small proportion agree that access to healthcare should be conditional on income (23.6%), and a minority strongly agree (10%), as is the case with pensions. However, this increases in the case of education, being the area where there is a significant proportion of respondents who agree or strongly agree with access based on market justice (41.2%).
 
-This contrasts with the pattern observed for these items in the Chilean adult population (see @fig-elsoc). While both age groups tend to disagree that higher-income individuals should access better health, pension, and education services, this tendency is more pronounced in adults than in students, who show greater agreement with market justice preferences in these areas. Additionally, the hierarchy of these domains differs between groups; adults justify market justice least in education, followed by health, and then pensions, whereas students justify market principles less in health, then pensions, and lastly in education.
-
 ```{r echo=FALSE}
 #| fig-cap: "Market justice preferences in health, pensions and education"
 #| fig-asp: 0.6
@@ -79,8 +78,7 @@ data_rec %>%
  # theme_light(base_size = 16) +
   theme(legend.position="bottom", text = element_text(size = 14),
         plot.caption = element_text(hjust = 1)) +
-       labs(caption = paste0("Source: Authors calculation based on First Study of Civic Education 2017",
-                             " (N = ",dim(data_rec)[1],")"))
+       labs(caption = "Source: own elaboration based on First Study of Civic Education 2017")
 
 ```
 
@@ -109,8 +107,7 @@ plot<-data_rec %>%
 plot + 
   annotate("text", x = 5.5, y = 0, label = "School meritocracy", size = 5, hjust = 0, vjust = 1) +
   annotate("text", x = 3.5, y = 0, label = "Social meritocracy", size = 5, hjust = 0, vjust = 1) +
-       labs(caption = paste0("Source: Authors calculation based on First Study of Civic Education 2017",
-                             " (N = ",dim(data_rec)[1],")"))
+       labs(caption = "Source: own elaboration based on First Study of Civic Education 2017")
 ```
 
 At the societal level, @fig-meritocracy shows that a majority of respondents agree or strongly agree that individuals are rewarded for their talents (63.7%) and efforts (62%). Nevertheless, a notable proportion perceives that both effort and talent are not adequately rewarded in society, with 38.1% and 36.3% respectively. The perception of whether people get what they deserve in society is more divided; while a slim majority (56.5% combining agree and strongly agree) agrees, a significant minority (43.6%) disagrees, indicating that this is the most contentious item among respondents. There is general agreement that people are rewarded for talent and effort in society, but the consensus is weaker compared to school meritocracy.
@@ -225,8 +222,7 @@ plot_school_talent <- plot_school_talent + theme(legend.position = "none")
 
 ggarrange(plot_soc_effort, plot_school_effort, plot_soc_talent,
           plot_school_talent, plot_deservingness, leg, ncol = 2, nrow = 3) +
-  labs(caption = paste0("Source: Authors calculation based on First Study of Civic Education 2017",
-                             " (N = ",dim(data_rec)[1],")"))
+  labs(caption = "Source: own elaboration based on First Study of Civic Education 2017")
 ```
 
 ## Multivariate
@@ -358,7 +354,7 @@ texreg::htmlreg(l = list(modelos_health[[2]],
                          modelos_educ[[3]]),   
                 caption = NULL,
                 stars = c(0.05, 0.01, 0.001),
-                custom.note = "Note: Cells contain regression coefficients with standard errors in parentheses. Control variables are included. %stars",
+                custom.note = "Note: Cells contain regression coefficients with standard errors in parentheses. Control variables are included. %stars. Source: own elaboration based on First Study of Civic Education 2017.",
                 custom.header = list("Health" = 1:2, "Pensions" = 3:4, "Education" = 5:6),
                 custom.model.names = rep(c("Model 1", "Model 2"), 3),
                 custom.coef.map = ccoef,
@@ -479,7 +475,7 @@ texreg::htmlreg(list(reg1_bienestar, reg2_bienestar, reg4_bienestar, reg5_bienes
                                        "Model 4"),
                 caption = NULL,
                 stars = c(0.05, 0.01, 0.001),
-                custom.note = "Note: Cells contain regression coefficients with standard errors in parentheses. Control variables are included. %stars",
+                custom.note = "Note: Cells contain regression coefficients with standard errors in parentheses. Control variables are included. %stars. Source: own elaboration based on First Study of Civic Education 2017.",
                 custom.coef.map = ccoef,
                 leading.zero = T,
                 scalebox = 0.60,
@@ -524,11 +520,11 @@ collapse_rows[c(-4),] %>%
                      "Market Justice Preferences"=5), 
                    bold = T) %>% 
   kable_styling(latex_options = c("scale_down","HOLD_position"),
-                full_width = F) %>% 
+                full_width = T) %>% 
   column_spec(1, bold = T, width = "4cm") %>%
   column_spec(column = 2:6,width = "1.5cm") %>%
   collapse_rows(columns = 1:2, valign = "middle") %>% 
-  kableExtra::add_footnote(label = "Note: ***p < 0.001, **p < 0.01, *p < 0.05", 
+  kableExtra::add_footnote(label = "Note: ***p < 0.001, **p < 0.01, *p < 0.05. Source: own elaboration based on First Study of Civic Education 2017.", 
                            notation = "none")
 
 
@@ -567,16 +563,22 @@ data_bienestar$bienestar <- round(data_bienestar$bienestar, 2)
 
 reg26.2_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + merito_soc*simce + internet_rec + (1 + simce | mrbd), data=data_bienestar)
 
-plot_interact<- plot_model(reg26.2_bienestar, type = "int", mdrt.values="minmax", title = "", colors = c("red", "white", "blue")) +
-  ylim(1,4)+
-  labs(x = "Deservingness", y="Market Justice Preferences", colour = "School Simce")+
-  theme_bw()
+plot_interact <- ggpredict(model = reg26.2_bienestar, terms = c("merito_soc", "simce")) %>% 
+  filter(group != "Medium") %>% 
+  plot() +
+  ylim(1,4) +
+  labs(title = NULL,
+       x = "Deservingness", 
+       y ="Market Justice Preferences", 
+       colour = "School Simce",
+       caption = "Source: own elaboration based on First Study of Civic Education 2017")
 ```
 
 ```{r echo=FALSE, warning=FALSE}
 #| fig-cap: "Interaction between deservingness and justification of inequality by school SIMCE achievement"
 #| label: fig-interaction
 
-plot_interact
+plot_interact +
+  theme_bw()
 
 ```
