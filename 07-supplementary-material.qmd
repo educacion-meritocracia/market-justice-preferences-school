@@ -1,0 +1,30 @@
+---
+author: "Equipo EDUMER"
+bibliography: "input/bib/just-ineq-merit.bib"
+csl: "input/bib/apa6.csl"
+---
+
+## Supplementary Material {#appendix}
+
+```{r}
+#| tbl-cap: "Translation of inequality justification items"
+```
+
+|                                                                                                                    |                                                                                                                                              |
+|---------------------------------|---------------------------------------|
+| **English translation**                                                                                            | **Original Spanish**                                                                                                                         |
+| It is just that in Chile people who cna pay have a better education for their children                             | Es justo que en Chile las personas que puedan pagar tengan una mejor educación para sus hijos.                                               |
+| It is just that in Chile people with higher incomes can have better pensions than people with low incomes          | Es justo que en Chile las personas con mayores ingresos puedan tener mejores pensiones que las personas de ingresos más bajos                |
+| It is just that in Chile people with higher incomes can access better health services than people with low incomes | Es justo que en Chile las personas con mayores ingresos puedan acceder a una mejor atención de salud que las personas con ingresos más bajos |
+
+```{r}
+#| fig-cap: "Access to better health services"
+```
+
+```{r}
+#| fig-cap: "Access to better education"
+```
+
+```{r}
+#| fig-cap: "Access to better pensions"
+```

@@ -1,0 +1,66 @@
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=6.25in,height=\textheight]{input/img/hypothesis2.png}
+
+}
+
+\caption{\label{fig-hypotheses}Summary of hypotheses}
+
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+
+\centering{
+
+\includegraphics{paper_files/figure-pdf/fig-marketjustice-1.pdf}
+
+}
+
+\caption{\label{fig-marketjustice}Market justice preferences in health,
+pensions and education}
+
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+
+\centering{
+
+\includegraphics{paper_files/figure-pdf/fig-meritocracy-1.pdf}
+
+}
+
+\caption{\label{fig-meritocracy}Social and school meritocracy}
+
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+
+\centering{
+
+\includegraphics{paper_files/figure-pdf/fig-bivariate-1.pdf}
+
+}
+
+\caption{\label{fig-bivariate}Market justice preferences in education,
+health and pensions by social and school meritocracy}
+
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+
+\centering{
+
+\includegraphics{paper_files/figure-pdf/fig-interaction-1.pdf}
+
+}
+
+\caption{\label{fig-interaction}Interaction between deservingness and
+justification of inequality by school SIMCE achievement}
+
+\end{figure}

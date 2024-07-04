@@ -1,0 +1,48 @@
+---
+title: "The Socialization of Meritocracy and Market Justice Preferences at School"
+subtitle: "Back Matter"
+format:
+  hikmah-pdf: 
+    indent: false
+  hikmah-manuscript-pdf: 
+    indent: false
+bibliography: "input/bib/just-ineq-merit.bib"
+csl: "input/bib/apa6.csl"
+link-citations: true
+linestretch: 1.15       
+mainfont: Times New Roman
+fontsize: 12pt          
+geometry: "left=2.54cm,right=2.54cm,top=2.54cm,bottom=2.54cm"
+papersize: letter
+colorlinks: true
+fig-height: 4
+fig-width: 7.5
+header-includes:
+  - \usepackage{threeparttable}
+---
+
+{{< include 07-supplementary-material.qmd >}}
+
+## Acknowledgments
+
+The authors acknowledge the support of ANID/FONDECYT grant 1210847 and the Center for Conflict and Social Cohesion Studies (COES) grant ANID/FONDAP 1513009.
+
+## Authors' Contributions
+
+The following statements should be used "Conceptualization, X.X. and Y.Y.; Methodology, X.X.; Software, X.X.; Validation, X.X., Y.Y. and Z.Z.; Formal Analysis, X.X.; Investigation, X.X.; Resources, X.X.; Data Curation, X.X.; Writing – Original Draft Preparation, X.X.; Writing – Review & Editing, X.X.; Visualization, X.X.; Supervision, X.X.; Project Administration, X.X.; Funding Acquisition, Y.Y.”
+
+## Conflict of Interest
+
+The authors report no competing interests to declare.
+
+## Funding
+
+This research received no external funding.
+
+## Data Avaibility Statement
+
+The original data presented in the study are openly available in <https://www.agenciaeducacion.cl/orientar/estudios/estudios-nacionales/>
+
+Access the data, code, and analysis presented in the study are openly available in <https://github.com/educacion-meritocracia/market-justice-preferences-school>.
+
+## References

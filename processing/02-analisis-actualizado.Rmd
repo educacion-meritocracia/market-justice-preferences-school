@@ -1,0 +1,344 @@
+---
+title: "Análisis actualizados"
+author: "Equipo EDUMER"
+date: "`r Sys.setlocale('LC_TIME', 'es_ES.UTF-8'); format(Sys.Date(), '%A %d, %B %Y')`"
+output: 
+  html_document: 
+    toc: yes
+    code_folding: hide
+    toc_float: 
+      collapsed: true
+      smooth_scroll: false
+      number_sections: true
+---
+
+```{r packages, echo=FALSE}
+pacman::p_load(tidyverse,
+               ggpubr, 
+               lme4,
+               ordinal,
+               sjPlot, 
+               texreg,
+               kableExtra,
+               easystats,
+               ggeffects,
+               webshot)
+
+
+options(scipen=999)
+rm(list = ls())
+```
+
+```{r data, echo=FALSE}
+
+load("../input/data/data_index.RData")
+load("../input/data/data_rec.RData")
+webshot::install_phantomjs(force = T)
+```
+
+## Cumulative link mixed models
+
+```{r echo=FALSE, include=FALSE, eval=FALSE}
+sjmisc::frq(data_rec$educacion_rec)
+data_rec <- data_rec %>% mutate(universitario = case_when(educacion_rec=="Ed Basica"~"No",
+                                                          educacion_rec=="Ed Media"~"No",
+                                                          educacion_rec=="Ed Tecnica"~"No",
+                                                          educacion_rec=="Universidad o posgrado"~"Si",
+                                                          educacion_rec=="Ns/Nr"~"Ns/Nr"))
+data_rec$universitario <- factor(data_rec$universitario, levels = c("No", "Si", "Ns/Nr"))
+sjmisc::frq(data_rec$universitario)
+
+data_rec <- data_rec %>% mutate(school_nse = case_when(cod_grupo=="Bajo"~"Bajo",
+                                                          cod_grupo=="Medio bajo"~"Medio",
+                                                          cod_grupo=="Medio"~"Medio",
+                                                          cod_grupo=="Medio alto"~"Medio",
+                                                          cod_grupo=="Alto"~"Alto"))
+sjmisc::frq(data_rec$school_nse)
+data_rec$school_nse <- factor(data_rec$school_nse, levels = c("Bajo", "Medio", "Alto"))
+
+data_pension <- data_rec %>% 
+    dplyr::select(-just_educ, -just_salud, -redistribucion)
+data_pension <- na.omit(data_pension)
+data_pension$just_pension_fact <- as_factor(data_pension$just_pension)
+
+m0_p <- clmm(just_pension_fact ~ 1 + (1 | mrbd), data=data_pension)
+
+performance::icc(m0_p, by_group = T) 
+
+m1_p <- clmm(just_pension_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
+    inteligencia_soc + esfuerzo_soc + merito_soc + (1 | mrbd), data=data_pension) 
+
+m2_p <- clmm(just_pension_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
+    inteligencia_soc + esfuerzo_soc + merito_soc + universitario + 
+    libros_rec + acc_tec + internet_rec + (1 | mrbd), data=data_pension) 
+
+m3_p <- clmm(just_pension_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
+    inteligencia_soc + esfuerzo_soc + merito_soc + universitario + 
+    libros_rec + acc_tec + internet_rec + mean_educ + cod_depe2 + 
+    school_nse + simce + (1 | mrbd), data=data_pension) 
+
+modelos_pension <- list(m1_p, m2_p, m3_p)
+
+# modelos_odd_pension <- map(tbls, odds_fun)
+
+data_salud <- data_rec %>% 
+    dplyr::select(-just_pension, -just_educ, -redistribucion)
+data_salud <- na.omit(data_salud)
+data_salud$just_salud_fact <- as_factor(data_salud$just_salud)
+
+m0_h <- clmm(just_salud_fact ~ 1 + (1 | mrbd), data=data_salud)
+
+performance::icc(m0_h, by_group = T) 
+
+m1_h <- clmm(just_salud_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
+    inteligencia_soc + esfuerzo_soc + merito_soc + (1 | mrbd), data=data_salud) 
+
+m2_h <- clmm(just_salud_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
+    inteligencia_soc + esfuerzo_soc + merito_soc + universitario + 
+    libros_rec + acc_tec + internet_rec + (1 | mrbd), data=data_salud) 
+
+m3_h <- clmm(just_salud_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
+    inteligencia_soc + esfuerzo_soc + merito_soc + universitario + 
+    libros_rec + acc_tec + internet_rec + mean_educ + cod_depe2 + 
+    school_nse + simce + (1 | mrbd), data=data_salud) 
+
+modelos_health <- list(m1_h, m2_h, m3_h)
+
+# modelos_odd_health <- map(tbls, odds_fun)
+
+
+data_educ <- data_rec %>% 
+    dplyr::select(-just_pension, -just_salud, -redistribucion)
+data_educ <- na.omit(data_educ)
+data_educ$just_educ_fact <- as_factor(data_educ$just_educ)
+
+m0_e <- clmm(just_educ_fact ~ 1 + (1 | mrbd), data=data_educ)
+
+performance::icc(m0_e, by_group = T) 
+
+m1_e <- clmm(just_educ_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
+    inteligencia_soc + esfuerzo_soc + merito_soc + (1 | mrbd), data=data_educ) 
+
+m2_e <- clmm(just_educ_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
+    inteligencia_soc + esfuerzo_soc + merito_soc + universitario + 
+    libros_rec + acc_tec + internet_rec + (1 | mrbd), data=data_educ) 
+
+m3_e <- clmm(just_educ_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
+    inteligencia_soc + esfuerzo_soc + merito_soc + universitario + 
+    libros_rec + acc_tec + internet_rec + mean_educ + cod_depe2 + 
+    school_nse + simce + (1 | mrbd), data=data_educ) 
+
+modelos_educ <- list(m1_e, m2_e, m3_e)
+
+#modelos_odd_educ <- map(tbls, odds_fun)
+
+```
+
+```{r echo=FALSE, results='asis', eval=FALSE}
+#| tbl-cap: "Cumulative link multilevel models of differential acces justificacion of health, pensions, and education"
+#| label: tbl-ordinal-reg
+
+ccoef <- list(
+  inteligencia_esc = "School talent",
+  esfuerzo_esc = "School effort",
+  inteligencia_soc = "Social talent",
+  esfuerzo_soc = "Social effort",
+  merito_soc = "Deservingness",
+  "universitarioSi" = "University or posgraduate",
+  "universitarioNs/Nr" = "Missing",
+  "libros_recMás de 25" = "More than 25 books (Ref.= Less than 25)",
+  "school_nseMedio" = "SES Medium",
+  school_nseAlto = "SES High",
+  simceMedio = "Simce Medium",
+  simceAlto = "Simce High"
+)
+
+texreg::htmlreg(l = list(modelos_health[[2]],
+                         modelos_health[[3]],
+                         modelos_pension[[2]],
+                         modelos_pension[[3]],
+                         modelos_educ[[2]],
+                         modelos_educ[[3]]),   
+                caption = NULL,
+                stars = c(0.05, 0.01, 0.001),
+                custom.note = "Note: Cells contain regression coefficients with standard errors in parentheses. Control variables are included. %stars. Source: own elaboration based on First Study of Civic Education 2017.",
+                custom.header = list("Health" = 1:2, "Pensions" = 3:4, "Education" = 5:6),
+                custom.model.names = rep(c("Model 1", "Model 2"), 3),
+                custom.coef.map = ccoef,
+                leading.zero = T,
+                scalebox = 0.60,
+                groups = list("Parental education (Ref.= Non-university)" = 6:7,
+                                "Socioeconomic level (Ref.= Low)" = 9:10,
+                                "Achievement score (Ref.= Low)" = 11:12),
+                custom.gof.rows = list("Controls"=rep("Yes",6)),
+                include.loglik = FALSE, include.aic = FALSE,
+                file = "../output/tables/tab-ordinalreg.html")
+
+webshot::webshot(url = "../output/tables/tab-ordinalreg.html", file = "../output/tables/tab-ordinalreg.png")
+```
+
+## Mixed effects models
+
+```{r echo=FALSE, include=FALSE}
+data_bienestar <- data_bienestar %>% mutate(universitario = case_when(educacion_rec=="Ed Basica"~"No",
+                                                          educacion_rec=="Ed Media"~"No",
+                                                          educacion_rec=="Ed Tecnica"~"No",
+                                                          educacion_rec=="Universidad o posgrado"~"Si",
+                                                          educacion_rec=="Ns/Nr"~"Ns/Nr"))
+data_bienestar$universitario <- factor(data_bienestar$universitario, levels = c("No", "Si", "Ns/Nr"))
+
+sjmisc::frq(data_bienestar$cod_grupo)
+data_bienestar <- data_bienestar %>% mutate(school_nse = case_when(cod_grupo=="Bajo"~"Bajo",
+                                                          cod_grupo=="Medio bajo"~"Medio",
+                                                          cod_grupo=="Medio"~"Medio",
+                                                          cod_grupo=="Medio alto"~"Medio",
+                                                          cod_grupo=="Alto"~"Alto"))
+sjmisc::frq(data_bienestar$school_nse)
+data_bienestar$school_nse <- factor(data_bienestar$school_nse, levels = c("Bajo", "Medio", "Alto"))
+
+
+reg0_bienestar <- lmer(bienestar ~ 1 + (1 | mrbd), data = data_bienestar)
+
+performance::icc(reg0_bienestar, by_group = T) 
+
+reg1_bienestar <- lmer(bienestar ~ 1 + inteligencia_esc + esfuerzo_esc + 
+                         inteligencia_soc + esfuerzo_soc + merito_soc + 
+                         acc_tec + internet_rec +
+                         (1 | mrbd), data=data_bienestar)
+
+reg2_bienestar <- lmer(bienestar ~ 1 + inteligencia_esc + esfuerzo_esc + 
+                         inteligencia_soc + esfuerzo_soc + merito_soc + 
+                         universitario + libros_rec + acc_tec + internet_rec +
+                         (1 | mrbd), data=data_bienestar)
+
+reg3_bienestar <- lmer(bienestar ~ 1 + mean_educ + cod_depe2 + school_nse +
+                         simce + (1 | mrbd), data=data_bienestar)
+
+reg4_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + 
+                         inteligencia_soc + esfuerzo_esc + inteligencia_esc + 
+                         universitario + libros_rec + acc_tec + internet_rec + 
+                         mean_educ + cod_depe2 + school_nse + 
+                         (1 | mrbd), data=data_bienestar)
+
+reg5_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + 
+                         inteligencia_soc + esfuerzo_esc + inteligencia_esc + 
+                         universitario + libros_rec + acc_tec + internet_rec + 
+                         mean_educ + cod_depe2 + school_nse + simce + 
+                         (1 | mrbd), data=data_bienestar)
+
+
+test01 <- anova(reg0_bienestar, reg1_bienestar, test = "Chisq")
+test02 <- anova(reg0_bienestar, reg2_bienestar, test = "Chisq")
+test03 <- anova(reg0_bienestar, reg3_bienestar, test = "Chisq")
+test04 <- anova(reg0_bienestar, reg4_bienestar, test = "Chisq")
+test05 <- anova(reg0_bienestar, reg5_bienestar, test = "Chisq")
+
+test.pvalues1 <- test01$`Pr(>Chisq)`[2]
+test.pvalues2 <- test02$`Pr(>Chisq)`[2]
+test.pvalues3 <- test03$`Pr(>Chisq)`[2]
+test.pvalues4 <- test04$`Pr(>Chisq)`[2]
+test.pvalues5 <- test05$`Pr(>Chisq)`[2]
+
+deviance1 <- test01$deviance[2]
+deviance2 <- test02$deviance[2]
+deviance3 <- test03$deviance[2]
+deviance4 <- test04$deviance[2]
+deviance5 <- test05$deviance[2]
+```
+
+
+```{r echo=FALSE, results='asis'}
+#| tbl-cap: "Linear mixed-effects models for meritocracy perception and market justice preferences"
+#| label: tbl-lineal-reg
+
+
+ccoef <- list(
+  "(Intercept)" = "Constant",
+  inteligencia_esc = "School talent",
+  esfuerzo_esc = "School effort",
+  inteligencia_soc = "Social talent",
+  esfuerzo_soc = "Social effort",
+  merito_soc = "Deservingness",
+  "universitarioSi" = "University or posgraduate",
+  "universitarioNs/Nr" = "Missing",
+  "libros_recMás de 25" = "More than 25 books (Ref.= Less than 25)",
+  "school_nseMedio" = "SES Medium",
+  school_nseAlto = "SES High",
+  simceMedio = "Simce Medium",
+  simceAlto = "Simce High"
+)
+
+
+texreg::htmlreg(list(reg1_bienestar, reg2_bienestar, reg4_bienestar, reg5_bienestar),
+                custom.model.names = c("Model 1",
+                                       "Model 2",
+                                       "Model 3",
+                                       "Model 4"),
+                caption = NULL,
+                stars = c(0.05, 0.01, 0.001),
+                custom.note = "Note: Cells contain regression coefficients with standard errors in parentheses. Control variables are included. %stars. Source: own elaboration based on First Study of Civic Education 2017.",
+                custom.coef.map = ccoef,
+                leading.zero = T,
+                scalebox = 0.60,
+                groups = list("Parental education (Ref.= Non-university)" = 7:8,
+                              "Socioeconomic level (Ref.= Low)" = 10:11,
+                              "Achievement score (Ref.= Low)" = 12:13),
+                custom.gof.rows = list("Controls"=rep("Yes",4),
+                                       "Deviance" = c(deviance1,
+                                                    deviance2,
+                                                    deviance4,
+                                                    deviance5),
+                                       "Deviance Test (p)" = c(test.pvalues1,
+                                                             test.pvalues2,
+                                                             test.pvalues4,
+                                                             test.pvalues5)),
+                include.loglik = FALSE,include.aic = FALSE,
+                file = "../output/tables/tab-linealreg.html")
+
+webshot::webshot(url = "../output/tables/tab-linealreg.html", file = "../output/tables/tab-linealreg.png")
+
+```
+
+```{r echo=FALSE, include=FALSE}
+load("../input/data/data_rec.RData")
+data_rec <- data_rec %>% rowwise() %>%  mutate(educacion_rec2 = case_when(educacion_rec=="Ed Basica"~"Low level",
+                                                 educacion_rec=="Ed Media"~"Low level",
+                                                 educacion_rec=="Ed Tecnica"~"Low level",
+                                                 educacion_rec=="Universidad o posgrado"~"University or Postgraduate",
+                                                 educacion_rec=="Ns/Nr"~"Missing"
+                                                 ))
+data_rec$educacion_rec2 <- factor(data_rec$educacion_rec2, levels = c("Low level", "University or Postgraduate", "Missing"))
+
+
+data_rec <- data_rec %>% rowwise() %>%  mutate(cod_grupo2  = case_when(cod_grupo=="Bajo"~"Bajo",
+                                                                       cod_grupo=="Medio bajo"~"Bajo",
+                                                                       cod_grupo=="Medio"~"Bajo",
+                                                                       cod_grupo=="Medio alto"~"Alto",
+                                                                       cod_grupo=="Alto"~"Alto"))
+data_rec$cod_grupo2 <- factor(data_rec$cod_grupo2, levels = c("Bajo", "Alto"))
+data_rec$simce <- factor(data_rec$simce, labels = c("Low", "Medium", "High"))
+
+
+data_bienestar <- na.omit(data_rec)
+#data_bienestar <- data_bienestar %>% mutate(pension_rec = 5-just_pension,
+#                                            educ_rec = 5-just_educ,
+#                                            salud_rec = 5-just_salud)
+data_bienestar <- data_bienestar %>% rowwise() %>% dplyr::mutate(bienestar = mean(c(just_educ, just_salud, just_pension), na.omit=TRUE))
+data_bienestar$bienestar <- round(data_bienestar$bienestar, 2)
+
+reg26.2_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + merito_soc*simce + internet_rec + (1 + simce | mrbd), data=data_bienestar)
+
+```
+
+
+```{r echo=FALSE}
+save(m0_h, m1_h, m2_h, m3_h, 
+     m0_p, m1_p, m2_p, m3_p,
+     m0_e, m1_e, m2_e, m3_e,
+     reg0_bienestar, reg1_bienestar, reg2_bienestar, reg4_bienestar, reg5_bienestar,
+     deviance1, deviance2, deviance3, deviance4, deviance5,
+     test.pvalues1, test.pvalues2, test.pvalues3, test.pvalues4, test.pvalues5,
+     reg26.2_bienestar, file = "../input/data/mlm_models.RData"
+     )
+```
+

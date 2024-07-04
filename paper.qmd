@@ -1,22 +1,42 @@
 ---
+title: "The socialization of meritocracy and market justice preferences at school"
 format:
-  html: 
-    toc: true
-    keep-tex: true
-smooth-scroll: true
-number-sections: true
+  hikmah-pdf: 
+    indent: false
+  hikmah-manuscript-pdf: 
+    indent: false
+author:
+  - name: Juan Carlos Castillo
+    affiliations: Department of Sociology, Universidad de Chile
+    email: juancastillov@uchile.cl
+    attributes:
+      corresponding: true
+  - name: Mauricio Salgado
+    affiliations: School of Sociology, Universidad Andrés Bello
+  - name: Kevin Carrasco
+    affiliations: Center for Social Conflict and Cohesion Studies
+  - name: Andreas Laffert
+    affiliations: Institute of Sociology, Universidad Católica de Chile
+abstract: |
+  This article evaluates novel approaches to do some really important things.
+keywords: 
+  - open-source 
+  - scientific publishing
+  - reproducible research
 bibliography: "input/bib/just-ineq-merit.bib"
 csl: "input/bib/apa6.csl"
 link-citations: true
+linestretch: 1.15       
 mainfont: Times New Roman
+fontsize: 12pt          
+geometry: "left=2.54cm,right=2.54cm,top=2.54cm,bottom=2.54cm"
+papersize: letter
+colorlinks: true
+fig-height: 4
+fig-width: 7.5
+header-includes:
+  - \usepackage{threeparttable}
 ---
-
-This document was last modified at {{< modified >}}
-and it was last rendered at {{< now >}}.
-
-# The socialization of meritocracy and market justice preferences at school {.unnumbered}
-
-Abstract
 
 {{< include 01-introduction.qmd >}}
 
@@ -30,4 +50,3 @@ Abstract
 
 {{< include 06-conclusion.qmd >}}
 
-{{< include 07-anexos.qmd >}}
