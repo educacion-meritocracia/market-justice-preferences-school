@@ -7,7 +7,7 @@ format:
   hikmah-manuscript-pdf: 
     indent: false
 bibliography: "input/bib/just-ineq-merit.bib"
-csl: "input/bib/apa6.csl"
+csl: "input/bib/multidisciplinary-digital-publishing-institute.csl"
 link-citations: true
 linestretch: 1.15       
 mainfont: Times New Roman
@@ -21,28 +21,30 @@ header-includes:
   - \usepackage{threeparttable}
 ---
 
-{{< include 07-supplementary-material.qmd >}}
-
-## Acknowledgments
+# Acknowledgments
 
 The authors acknowledge the support of ANID/FONDECYT grant 1210847 and the Center for Conflict and Social Cohesion Studies (COES) grant ANID/FONDAP 1513009.
 
-## Authors' Contributions
+# Authors' Contributions
 
-The following statements should be used "Conceptualization, X.X. and Y.Y.; Methodology, X.X.; Software, X.X.; Validation, X.X., Y.Y. and Z.Z.; Formal Analysis, X.X.; Investigation, X.X.; Resources, X.X.; Data Curation, X.X.; Writing – Original Draft Preparation, X.X.; Writing – Review & Editing, X.X.; Visualization, X.X.; Supervision, X.X.; Project Administration, X.X.; Funding Acquisition, Y.Y.”
+Conceptualization, Juan Carlos Castillo & Mauricio Salgado; Methodology, Juan Carlos Castillo, Kevin Carrasco & Andreas Laffert; Software, Kevin Carrasco & Andreas Laffert; Formal Analysis, Kevin Carrasco & Andreas Laffert; Writing – Original Draft Preparation, Juan Carlos Castillo, Mauricio Salgado, Kevin Carrasco & Andreas Laffert; Visualization, Kevin Carrasco & Andreas Laffert; Supervision, Juan Carlos Castillo.
 
-## Conflict of Interest
+# Conflict of Interest
 
 The authors report no competing interests to declare.
 
-## Funding
+# Funding
 
 This research received no external funding.
 
-## Data Avaibility Statement
+# Data Avaibility Statement
 
 The original data presented in the study are openly available in <https://www.agenciaeducacion.cl/orientar/estudios/estudios-nacionales/>
 
 Access the data, code, and analysis presented in the study are openly available in <https://github.com/educacion-meritocracia/market-justice-preferences-school>.
 
-## References
+{{< pagebreak >}}
+
+
+{{< include 07-supplementary-material.qmd >}}
+

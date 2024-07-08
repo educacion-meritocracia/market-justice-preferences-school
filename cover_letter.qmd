@@ -7,7 +7,7 @@ format:
   hikmah-manuscript-pdf: 
     indent: false
 bibliography: "input/bib/just-ineq-merit.bib"
-csl: "input/bib/apa6.csl"
+csl: "input/bib/multidisciplinary-digital-publishing-institute.csl"
 link-citations: true
 linestretch: 1.15       
 mainfont: Times New Roman

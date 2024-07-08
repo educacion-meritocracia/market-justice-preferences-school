@@ -7,16 +7,31 @@ format:
     indent: false
 author:
   - name: Juan Carlos Castillo
-    affiliations: Department of Sociology, Universidad de Chile
     email: juancastillov@uchile.cl
+    orcid: 0000-0003-1265-7854
+    affiliations: 
+        name: Department of Sociology, Universidad de Chile
+        country: Chile
     attributes:
       corresponding: true
   - name: Mauricio Salgado
-    affiliations: School of Sociology, Universidad Andrés Bello
+    email: msalgado@unab.cl
+    orcid: 0000-0002-8108-6154
+    affiliations: 
+        name: Centro de Estudios Públicos, Chile
+        country: Chile
   - name: Kevin Carrasco
-    affiliations: Center for Social Conflict and Cohesion Studies
+    email: kevin.carrasco@ug.uchile.cl
+    orcid: 0000-0002-9348-8361
+    affiliations: 
+        name: Center for Social Conflict and Cohesion Studies
+        country: Chile
   - name: Andreas Laffert
-    affiliations: Institute of Sociology, Universidad Católica de Chile
+    email: alaffertt@estudiante.uc.cl
+    orcid: 0000-0002-9008-2454
+    affiliations: 
+        name: Institute of Sociology, Universidad Católica de Chile
+        country: Chile
 abstract: |
   This article evaluates novel approaches to do some really important things.
 keywords: 
@@ -24,7 +39,7 @@ keywords:
   - scientific publishing
   - reproducible research
 bibliography: "input/bib/just-ineq-merit.bib"
-csl: "input/bib/apa6.csl"
+csl: "input/bib/multidisciplinary-digital-publishing-institute.csl"
 link-citations: true
 linestretch: 1.15       
 mainfont: Times New Roman

@@ -1,7 +1,7 @@
 ---
 author: "Equipo Edumer"
 bibliography: "input/bib/just-ineq-merit.bib"
-csl: "input/bib/apa6.csl"
+csl: "input/bib/multidisciplinary-digital-publishing-institute.csl"
 ---
 
 # Results
@@ -285,10 +285,14 @@ texreg::texreg(
   use.packages = FALSE,
   booktabs = TRUE,
   scalebox = 0.8,
-  groups = list("Parental education (Ref.= Non-university)" = 6:7, "Socioeconomic level (Ref.= Low)" = 9:10, "Achievement score (Ref.= Low)" = 11:12),
-  custom.gof.rows = list("Controls" = rep("Yes", 6)),
   include.loglik = FALSE,
   include.aic = FALSE,
+  groups = list("Parental education (Ref.= Non-university)" = 6:7, "Socioeconomic level (Ref.= Low)" = 9:10, "Achievement score (Ref.= Low)" = 11:12),
+  custom.gof.names = c("BIC", 
+                       "Num.obs",
+                       "Num. groups: Schools",
+                       "Var: Schools (Intercept)"),
+  custom.gof.rows = list("Controls"=rep("Yes", 6))
 )
 
                
@@ -323,32 +327,41 @@ ccoef <- list(
 )
 
 
-texreg::texreg(list(reg1_bienestar, reg2_bienestar, reg4_bienestar, reg5_bienestar),
-                custom.model.names = c("Model 1",
-                                       "Model 2",
-                                       "Model 3",
-                                       "Model 4"),
-                caption = NULL,
-                stars = c(0.05, 0.01, 0.001),
-                custom.coef.map = ccoef,
+texreg::texreg(list(reg1_bienestar, reg2_bienestar, 
+                       reg4_bienestar, reg5_bienestar),
+               custom.model.names = c("Model 1",
+                                      "Model 2",
+                                      "Model 3",
+                                      "Model 4"),
+               caption = NULL,
+               stars = c(0.05, 0.01, 0.001),
+               custom.coef.map = ccoef,
                custom.note = "\\item Note: Cells contain regression coefficients with standard errors in parentheses. Control variables are included. %stars \\\\ \\item Source: own elaboration based on First Study of Civic Education 2017.",threeparttable = T,
-                leading.zero = T,
-                use.packages = F,
-                booktabs = TRUE,
-                scalebox = 0.85,
-                groups = list("Parental education (Ref.= Non-university)" = 7:8,
-                              "Socioeconomic level (Ref.= Low)" = 10:11,
-                              "Achievement score (Ref.= Low)" = 12:13),
-                custom.gof.rows = list("Controls"=rep("Yes",4),
-                                       "Deviance" = c(deviance1,
-                                                    deviance2,
-                                                    deviance4,
-                                                    deviance5),
-                                       "Deviance Test (p)" = c(test.pvalues1,
-                                                             test.pvalues2,
-                                                             test.pvalues4,
-                                                             test.pvalues5)),
-                include.loglik = FALSE,include.aic = FALSE)
+               leading.zero = T,
+               use.packages = F,
+               booktabs = TRUE,
+               scalebox = 0.85,
+               include.loglik = FALSE,
+               include.aic = FALSE,
+               groups = list("Parental education (Ref.= Non-university)" = 7:8,
+                             "Socioeconomic level (Ref.= Low)" = 10:11,
+                             "Achievement score (Ref.= Low)" = 12:13),
+               custom.gof.names = c("BIC", 
+                                    "Num.obs",
+                                    "Num. groups: Schools",
+                                    "Var: Schools (Intercept)",
+                                    "Var: Residual"),
+               custom.gof.rows = list("Controls"=rep("Yes",4),
+                                      "Deviance" = c(deviance1,
+                                                     deviance2,
+                                                     deviance4,
+                                                     deviance5),
+                                      "Deviance Test (p)" = c(test.pvalues1,
+                                                              test.pvalues2,
+                                                              test.pvalues4,
+                                                              test.pvalues5))
+               )
+
 
 ```
 
