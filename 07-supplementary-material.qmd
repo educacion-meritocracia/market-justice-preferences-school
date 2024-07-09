@@ -4,7 +4,7 @@ bibliography: "input/bib/just-ineq-merit.bib"
 csl: "input/bib/multidisciplinary-digital-publishing-institute.csl"
 ---
 
-# Supplementary Material {#appendix}
+# Supplementary Material 
 
 
 
@@ -37,7 +37,7 @@ knitr::opts_chunk$set(echo = F,
                       message = F) 
 ```
 
-## Translated items for market justice preferences
+# Translated items for market justice preferences
 
 ```{r echo=FALSE}
 #| tbl-cap: "Translation of items for health, pensions, and education"
@@ -55,13 +55,13 @@ data <- data.frame(
 kableExtra::kable(data, 
       col.names = c("English Translation", "Original Spanish"), 
       booktabs = T, escape = F, align = 'l') %>%
-  kableExtra::kable_styling(latex_options = "HOLD_position", bootstrap_options = "striped", full_width = T)  %>%
+  kableExtra::kable_styling(latex_options = "hold_position", bootstrap_options = "striped", full_width = T)  %>%
   row_spec(0, bold = T)
 
 ```
 
 
-## Complete multilevel models
+# Complete multilevel models
 
 
 ```{r echo=FALSE}
@@ -149,7 +149,7 @@ texreg::texreg(
   leading.zero = TRUE,
   use.packages = FALSE,
   booktabs = TRUE,
-  scalebox = 0.8,
+  scalebox = 0.7,
   groups = list("Parental education (Ref.= Non-university)" = 9:10, "Socioeconomic level (Ref.= Low)" = 14:15, "Achievement score (Ref.= Low)" = 16:17, "School dependence (Ref.= Public)" = 19:20),
   custom.gof.names = c("Log Likelihood",
                        "AIC", 
