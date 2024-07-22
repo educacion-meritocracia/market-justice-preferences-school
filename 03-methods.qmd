@@ -1,7 +1,7 @@
 ---
 author: "Equipo Edumer"
 bibliography: "input/bib/just-ineq-merit.bib"
-csl: "input/bib/apa6.csl"
+csl: "input/bib/multidisciplinary-digital-publishing-institute.csl"
 ---
 
 # Data, variables and method

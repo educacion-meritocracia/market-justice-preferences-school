@@ -1,0 +1,169 @@
+\begin{table}
+
+\caption{\label{tbl-ordinal-reg}Cumulative link multilevel models of
+differential acces justificacion of health, pensions, and education}
+
+\centering{
+
+\caption{}
+\begin{center}
+\scalebox{0.8}{
+\begin{threeparttable}
+\begin{tabular}{l c c c c c c}
+\toprule
+ & \multicolumn{2}{c}{Health} & \multicolumn{2}{c}{Pensions} & \multicolumn{2}{c}{Education} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+ & Model 1 & Model 2 & Model 1 & Model 2 & Model 1 & Model 2 \\
+\midrule
+School talent                             & $0.23^{***}$  & $0.22^{***}$  & $0.17^{***}$  & $0.16^{***}$  & $0.25^{***}$  & $0.25^{***}$  \\
+                                          & $(0.03)$      & $(0.03)$      & $(0.03)$      & $(0.03)$      & $(0.03)$      & $(0.03)$      \\
+School effort                             & $-0.26^{***}$ & $-0.26^{***}$ & $-0.26^{***}$ & $-0.25^{***}$ & $-0.23^{***}$ & $-0.23^{***}$ \\
+                                          & $(0.04)$      & $(0.04)$      & $(0.04)$      & $(0.04)$      & $(0.04)$      & $(0.04)$      \\
+Social talent                             & $0.16^{***}$  & $0.16^{***}$  & $0.12^{**}$   & $0.13^{**}$   & $0.14^{**}$   & $0.15^{***}$  \\
+                                          & $(0.05)$      & $(0.05)$      & $(0.04)$      & $(0.04)$      & $(0.04)$      & $(0.04)$      \\
+Social effort                             & $0.11^{*}$    & $0.11^{*}$    & $0.27^{***}$  & $0.27^{***}$  & $0.15^{**}$   & $0.15^{**}$   \\
+                                          & $(0.05)$      & $(0.05)$      & $(0.05)$      & $(0.05)$      & $(0.05)$      & $(0.05)$      \\
+Deservingness                             & $0.52^{***}$  & $0.51^{***}$  & $0.38^{***}$  & $0.37^{***}$  & $0.44^{***}$  & $0.43^{***}$  \\
+                                          & $(0.05)$      & $(0.05)$      & $(0.05)$      & $(0.05)$      & $(0.05)$      & $(0.05)$      \\
+Parental education (Ref.= Non-university) &               &               &               &               &               &               \\
+                                          &               &               &               &               &               &               \\
+\quad University or posgraduate           & $0.05$        & $0.08$        & $0.14$        & $0.12$        & $0.09$        & $0.07$        \\
+                                          & $(0.08)$      & $(0.08)$      & $(0.08)$      & $(0.08)$      & $(0.08)$      & $(0.08)$      \\
+\quad Missing                             & $0.10$        & $0.11$        & $0.12^{*}$    & $0.11$        & $0.13^{*}$    & $0.12^{*}$    \\
+                                          & $(0.06)$      & $(0.06)$      & $(0.06)$      & $(0.06)$      & $(0.06)$      & $(0.06)$      \\
+More than 25 books (Ref.= Less than 25)   & $-0.16^{**}$  & $-0.13^{*}$   & $-0.13^{*}$   & $-0.13^{*}$   & $-0.07$       & $-0.07$       \\
+                                          & $(0.06)$      & $(0.06)$      & $(0.06)$      & $(0.06)$      & $(0.06)$      & $(0.06)$      \\
+Socioeconomic level (Ref.= Low)           &               &               &               &               &               &               \\
+                                          &               &               &               &               &               &               \\
+\quad SES Medium                          &               & $0.08$        &               & $0.02$        &               & $0.08$        \\
+                                          &               & $(0.10)$      &               & $(0.10)$      &               & $(0.10)$      \\
+\quad SES High                            &               & $0.71^{*}$    &               & $0.72^{**}$   &               & $0.93^{***}$  \\
+                                          &               & $(0.28)$      &               & $(0.26)$      &               & $(0.28)$      \\
+Achievement score (Ref.= Low)             &               &               &               &               &               &               \\
+                                          &               &               &               &               &               &               \\
+\quad Simce Medium                        &               & $-0.29^{***}$ &               & $-0.19^{*}$   &               & $-0.16^{*}$   \\
+                                          &               & $(0.08)$      &               & $(0.08)$      &               & $(0.08)$      \\
+\quad Simce High                          &               & $-0.56^{***}$ &               & $-0.53^{***}$ &               & $-0.46^{***}$ \\
+                                          &               & $(0.10)$      &               & $(0.09)$      &               & $(0.10)$      \\
+\midrule
+Controls                                  & Yes           & Yes           & Yes           & Yes           & Yes           & Yes           \\
+BIC                                       & $12747.58$    & $12761.47$    & $13103.81$    & $13112.87$    & $13329.33$    & $13352.18$    \\
+Num. obs.                                 & $5144$        & $5144$        & $5177$        & $5177$        & $5159$        & $5159$        \\
+Groups (mrbd)                             & $231$         & $231$         & $232$         & $232$         & $231$         & $231$         \\
+Variance: mrbd: (Intercept)               & $0.11$        & $0.05$        & $0.09$        & $0.04$        & $0.10$        & $0.05$        \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\scriptsize{\item Note: Cells contain regression coefficients with standard errors in parentheses. Control variables are included. $^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$ \\ \item Source: own elaboration based on First Study of Civic Education 2017.}
+\end{tablenotes}
+\end{threeparttable}
+}
+\label{table:coefficients}
+\end{center}
+
+}
+
+\end{table}
+\efloatseparator
+ 
+\begin{table}
+
+\caption{\label{tbl-lineal-reg}Linear mixed-effects models for
+meritocracy perception and market justice preferences}
+
+\centering{
+
+\caption{}
+\begin{center}
+\scalebox{0.85}{
+\begin{threeparttable}
+\begin{tabular}{l c c c c}
+\toprule
+ & Model 1 & Model 2 & Model 3 & Model 4 \\
+\midrule
+Constant                                  & $1.31^{***}$  & $1.30^{***}$  & $1.36^{***}$  & $1.39^{***}$  \\
+                                          & $(0.09)$      & $(0.10)$      & $(0.10)$      & $(0.10)$      \\
+School talent                             & $0.11^{***}$  & $0.11^{***}$  & $0.10^{***}$  & $0.10^{***}$  \\
+                                          & $(0.01)$      & $(0.01)$      & $(0.01)$      & $(0.01)$      \\
+School effort                             & $-0.12^{***}$ & $-0.12^{***}$ & $-0.12^{***}$ & $-0.12^{***}$ \\
+                                          & $(0.02)$      & $(0.02)$      & $(0.02)$      & $(0.02)$      \\
+Social talent                             & $0.07^{***}$  & $0.07^{***}$  & $0.07^{***}$  & $0.07^{***}$  \\
+                                          & $(0.02)$      & $(0.02)$      & $(0.02)$      & $(0.02)$      \\
+Social effort                             & $0.08^{***}$  & $0.08^{***}$  & $0.08^{***}$  & $0.08^{***}$  \\
+                                          & $(0.02)$      & $(0.02)$      & $(0.02)$      & $(0.02)$      \\
+Deservingness                             & $0.20^{***}$  & $0.20^{***}$  & $0.20^{***}$  & $0.20^{***}$  \\
+                                          & $(0.02)$      & $(0.02)$      & $(0.02)$      & $(0.02)$      \\
+Parental education (Ref.= Non-university) &               &               &               &               \\
+                                          &               &               &               &               \\
+\quad University or posgraduate           &               & $0.05$        & $0.05$        & $0.05$        \\
+                                          &               & $(0.03)$      & $(0.04)$      & $(0.04)$      \\
+\quad Missing                             &               & $0.06^{*}$    & $0.06^{*}$    & $0.06^{*}$    \\
+                                          &               & $(0.03)$      & $(0.03)$      & $(0.03)$      \\
+More than 25 books (Ref.= Less than 25)   &               & $-0.05$       & $-0.05$       & $-0.04$       \\
+                                          &               & $(0.03)$      & $(0.03)$      & $(0.03)$      \\
+Socioeconomic level (Ref.= Low)           &               &               &               &               \\
+                                          &               &               &               &               \\
+\quad SES Medium                          &               &               & $-0.01$       & $0.01$        \\
+                                          &               &               & $(0.05)$      & $(0.05)$      \\
+\quad SES High                            &               &               & $0.31^{*}$    & $0.37^{**}$   \\
+                                          &               &               & $(0.14)$      & $(0.13)$      \\
+Achievement score (Ref.= Low)             &               &               &               &               \\
+                                          &               &               &               &               \\
+\quad Simce Medium                        &               &               &               & $-0.11^{**}$  \\
+                                          &               &               &               & $(0.04)$      \\
+\quad Simce High                          &               &               &               & $-0.26^{***}$ \\
+                                          &               &               &               & $(0.04)$      \\
+\midrule
+Controls                                  & Yes           & Yes           & Yes           & Yes           \\
+Deviance                                  & $12368.01$    & $12359.40$    & $12344.10$    & $12310.90$    \\
+Deviance Test (p)                         & $0.00$        & $0.00$        & $0.00$        & $0.00$        \\
+BIC                                       & $12517.46$    & $12550.41$    & $12595.11$    & $12589.48$    \\
+Num. obs.                                 & $5047$        & $5047$        & $5047$        & $5047$        \\
+Num. groups: mrbd                         & $231$         & $231$         & $231$         & $231$         \\
+Var: mrbd (Intercept)                     & $0.02$        & $0.02$        & $0.02$        & $0.01$        \\
+Var: Residual                             & $0.66$        & $0.66$        & $0.67$        & $0.66$        \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\scriptsize{\item Note: Cells contain regression coefficients with standard errors in parentheses. Control variables are included. $^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$ \\ \item Source: own elaboration based on First Study of Civic Education 2017.}
+\end{tablenotes}
+\end{threeparttable}
+}
+\label{table:coefficients}
+\end{center}
+
+}
+
+\end{table}
+\efloatseparator
+ 
+\begin{table}
+
+\caption{\label{tbl-interact}Interactions effects}
+
+\centering{
+
+\resizebox{\linewidth}{!}{
+\begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{4cm}>{\centering\arraybackslash}p{1.5cm}>{\centering\arraybackslash}p{1.5cm}>{\centering\arraybackslash}p{1.5cm}>{\centering\arraybackslash}p{1.5cm}>{\centering\arraybackslash}p{1.5cm}}
+\toprule
+\multicolumn{1}{c}{\textbf{ }} & \multicolumn{5}{c}{\textbf{Market Justice Preferences}} \\
+\cmidrule(l{3pt}r{3pt}){2-6}
+Variable & School talent & School effort & Social talent & Social effort & Deservingness\\
+\midrule
+\textbf{University or Postgraduate} & -0.034 & -0.012 & -0.073. & -0.079* & -0.118**\\
+\cmidrule{1-6}
+\textbf{More than 25 books} & -0.015 & -0.046 & -0.029 & -0.081** & -0.035\\
+\cmidrule{1-6}
+\textbf{School SES high} & 0.004 & 0.001 & -0.057. & -0.063* & -0.08**\\
+\cmidrule{1-6}
+\textbf{Simce Medium} & 0.001 & 0.032 & -0.037 & -0.041 & -0.082*\\
+\cmidrule{1-6}
+\textbf{Simce High} & -0.016 & 0.008 & -0.043 & -0.063. & -0.087*\\
+\bottomrule
+\multicolumn{6}{l}{\textsuperscript{} Note: ***p < 0.001, **p < 0.01, *p < 0.05. Source: own elaboration based on First Study of Civic}\\
+\multicolumn{6}{l}{Education 2017.}\\
+\end{tabu}}
+
+}
+
+\end{table}

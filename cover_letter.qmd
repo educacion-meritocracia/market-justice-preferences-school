@@ -1,0 +1,45 @@
+---
+title: "The Socialization of Meritocracy and Market Justice Preferences at School"
+subtitle: "Cover Letter"
+format:
+  hikmah-pdf: 
+    indent: false
+  hikmah-manuscript-pdf: 
+    indent: false
+bibliography: "input/bib/just-ineq-merit.bib"
+csl: "input/bib/multidisciplinary-digital-publishing-institute.csl"
+link-citations: true
+linestretch: 1.15       
+mainfont: Times New Roman
+fontsize: 12pt          
+geometry: "left=2.54cm,right=2.54cm,top=2.54cm,bottom=2.54cm"
+papersize: letter
+colorlinks: true
+fig-height: 4
+fig-width: 7.5
+header-includes:
+  - \usepackage{threeparttable}
+---
+
+This article evaluates
+
+## Authors Identification
+
+Juan Carlos Castillo, Department of Sociology, Universidad de Chile, Santiago de Chile[^*].  
+ORCID: 0000-0003-1265-7854
+
+Mauricio Salgado, School of Sociology, Universidad Andrés Bello.  
+ORCID: 0000-0002-8108-6154
+
+Kevin Carrasco, Center for Social Conflict and Cohesion Studies.  
+ORCID: 0000-0002-9348-8361
+
+Andreas Laffert, Institute of Sociology, Pontificia Universidad Católica de Chile.  
+ORCID: 0000-0002-9008-2454
+
+
+## Exclusive Submission Statement
+
+The authors confirm that this article has been submitted exclusively to this journal.
+
+[^*]: Corresponding author (juancastillov@uchile.cl - [jc-castillo.com](https://juancarloscastillo.github.io/jc-castillo/) - Ignacio Carrera Pinto 1045 Ñuñoa, Santiago de Chile). The authors acknowledge the support of ANID/FONDECYT grant 1210847 and the Center for Conflict and Social Cohesion Studies (COES) grant ANID/FONDAP 1513009.
