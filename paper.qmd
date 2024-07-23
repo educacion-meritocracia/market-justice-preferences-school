@@ -1,14 +1,14 @@
 ---
 title: "The socialization of meritocracy and market justice preferences at school"
 format:
-  hikmah-pdf: 
-    indent: false
-  hikmah-manuscript-pdf: 
-    indent: false
+  mdpi-pdf:
+    keep-tex: true
+mdpi_journal: behavsci
+article_type: article
+article_status: submit
 author:
   - name: Juan Carlos Castillo
     email: juancastillov@uchile.cl
-    orcid: 0000-0003-1265-7854
     affiliations: 
         name: Department of Sociology, Universidad de Chile
         country: Chile
@@ -16,19 +16,16 @@ author:
       corresponding: true
   - name: Mauricio Salgado
     email: msalgado@unab.cl
-    orcid: 0000-0002-8108-6154
     affiliations: 
         name: Centro de Estudios Públicos, Chile
         country: Chile
   - name: Kevin Carrasco
     email: kevin.carrasco@ug.uchile.cl
-    orcid: 0000-0002-9348-8361
     affiliations: 
         name: Center for Social Conflict and Cohesion Studies
         country: Chile
   - name: Andreas Laffert
     email: alaffertt@estudiante.uc.cl
-    orcid: 0000-0002-9008-2454
     affiliations: 
         name: Institute of Sociology, Universidad Católica de Chile
         country: Chile
@@ -43,17 +40,10 @@ keywords:
   - Chile
 bibliography: "input/bib/just-ineq-merit.bib"
 csl: "input/bib/multidisciplinary-digital-publishing-institute.csl"
-link-citations: true
-linestretch: 1.15       
-mainfont: Times New Roman
-fontsize: 12pt          
-geometry: "left=2.54cm,right=2.54cm,top=2.54cm,bottom=2.54cm"
-papersize: letter
-colorlinks: true
-fig-height: 4
-fig-width: 7.5
 header-includes:
   - \usepackage{threeparttable}
+  - \usepackage{graphicx}
+  - \includegraphics{pics/logo-mdpi.pdf}
 ---
 
 {{< include 01-introduction.qmd >}}
@@ -67,4 +57,3 @@ header-includes:
 {{< include 05-discussion.qmd >}}
 
 {{< include 06-conclusion.qmd >}}
-

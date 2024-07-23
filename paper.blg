@@ -1,0 +1,121 @@
+This is BibTeX, Version 0.99d (TeX Live 2024)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: paper.aux
+The style file: mdpi.bst
+Illegal, another \bibstyle command---line 6 of file paper.aux
+ : \bibstyle
+ :          {plainnat}
+I'm skipping whatever remains of this command
+I found no \bibdata command---while reading file paper.aux
+Warning--I didn't find a database entry for "bourdieu_reproduction_1990"
+Warning--I didn't find a database entry for "vonhippel_test_2019"
+Warning--I didn't find a database entry for "batruch_belief_2022"
+Warning--I didn't find a database entry for "wiederkehr_belief_2015"
+Warning--I didn't find a database entry for "young_rise_1958"
+Warning--I didn't find a database entry for "sandel_tyranny_2020"
+Warning--I didn't find a database entry for "mcnamee_meritocracy_2004"
+Warning--I didn't find a database entry for "mijs_stratified_2016"
+Warning--I didn't find a database entry for "lane_market_1986"
+Warning--I didn't find a database entry for "lindh_bringing_2023"
+Warning--I didn't find a database entry for "chafel_schooling_1997"
+Warning--I didn't find a database entry for "flores_top_2020"
+Warning--I didn't find a database entry for "chancel_world_2022"
+Warning--I didn't find a database entry for "ffrench-davis_reformas_2018"
+Warning--I didn't find a database entry for "boccardo_30_2020"
+Warning--I didn't find a database entry for "observatoriosocial_estadisticas_2024"
+Warning--I didn't find a database entry for "superintendenciadepensiones_estadisticas_2024"
+Warning--I didn't find a database entry for "ministeriodeeducacion_resumen_2023"
+Warning--I didn't find a database entry for "boltanski_new_2005"
+Warning--I didn't find a database entry for "streeck_citizens_2012"
+Warning--I didn't find a database entry for "kluegel_beliefs_1987"
+Warning--I didn't find a database entry for "wegener_dominant_1995"
+Warning--I didn't find a database entry for "homan_being_2017"
+Warning--I didn't find a database entry for "castillo_legitimacy_2011"
+Warning--I didn't find a database entry for "evans_family_2010"
+Warning--I didn't find a database entry for "jasso_how_1999"
+Warning--I didn't find a database entry for "shariff_income_2016"
+Warning--I didn't find a database entry for "centeno_arc_2012"
+Warning--I didn't find a database entry for "harvey_breve_2015"
+Warning--I didn't find a database entry for "jensen_worlds_2008"
+Warning--I didn't find a database entry for "stoy_worlds_2014"
+Warning--I didn't find a database entry for "salamon_marketization_1993"
+Warning--I didn't find a database entry for "sivesind_changing_2017"
+Warning--I didn't find a database entry for "lindh_public_2015"
+Warning--I didn't find a database entry for "greitemeyer_subjective_2016"
+Warning--I didn't find a database entry for "mishra_subjective_2015"
+Warning--I didn't find a database entry for "smith_relative_2012"
+Warning--I didn't find a database entry for "power_deprivationprotest_2018"
+Warning--I didn't find a database entry for "wilson_role_2003"
+Warning--I didn't find a database entry for "bucca_merit_2016"
+Warning--I didn't find a database entry for "chong_mystery_2008"
+Warning--I didn't find a database entry for "torche_intergenerational_2014"
+Warning--I didn't find a database entry for "salgado_inequality_2023"
+Warning--I didn't find a database entry for "molyneux_neoliberal_2008"
+Warning--I didn't find a database entry for "centrodeestudiospublicos_estudio_2024"
+Warning--I didn't find a database entry for "goldthorpe_myth_2003"
+Warning--I didn't find a database entry for "castillo_multidimensional_2023"
+Warning--I didn't find a database entry for "mijs_unfulfillable_2016"
+Warning--I didn't find a database entry for "mijs_paradox_2019"
+Warning--I didn't find a database entry for "duru-bellat_who_2012"
+Warning--I didn't find a database entry for "castillo_meritocracia_2019"
+Warning--I didn't find a database entry for "lampert_meritocratic_2013"
+Warning--I didn't find a database entry for "reynolds_perceptions_2014"
+Warning--I didn't find a database entry for "morris_representing_2022"
+Warning--I didn't find a database entry for "frank_performance_2015"
+Warning--I didn't find a database entry for "almas_cutthroat_2020"
+Warning--I didn't find a database entry for "barr_effect_2020"
+Warning--I didn't find a database entry for "evans_strong_2018"
+Warning--I didn't find a database entry for "mikus_children_2019"
+Warning--I didn't find a database entry for "jack_no_2016"
+Warning--I didn't find a database entry for "khan_privilege_2011"
+Warning--I didn't find a database entry for "goudeau_hidden_2017"
+Warning--I didn't find a database entry for "darnon_where_2018"
+Warning--I didn't find a database entry for "resh_sense_2010"
+Warning--I didn't find a database entry for "resh_sense_2014"
+Warning--I didn't find a database entry for "kohn_social_1963"
+Warning--I didn't find a database entry for "kohn_class_1969"
+Warning--I didn't find a database entry for "acemoglu_obedience_2021"
+Warning--I didn't find a database entry for "iacoviello_collectivism_2019"
+Warning--I didn't find a database entry for "almas_fairness_2017"
+You've used 0 entries,
+            2887 wiz_defined-function locations,
+            626 strings with 5301 characters,
+and the built_in function-call counts, 18 in all, are:
+= -- 0
+> -- 0
+< -- 0
++ -- 0
+- -- 0
+* -- 0
+:= -- 12
+add.period$ -- 0
+call.type$ -- 0
+change.case$ -- 0
+chr.to.int$ -- 0
+cite$ -- 0
+duplicate$ -- 0
+empty$ -- 0
+format.name$ -- 0
+if$ -- 0
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 0
+newline$ -- 3
+num.names$ -- 0
+pop$ -- 0
+preamble$ -- 0
+purify$ -- 0
+quote$ -- 0
+skip$ -- 0
+stack$ -- 0
+substring$ -- 0
+swap$ -- 0
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 0
+width$ -- 0
+write$ -- 2
+(There were 2 error messages)
