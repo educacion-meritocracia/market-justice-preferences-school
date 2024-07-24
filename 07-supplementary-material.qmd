@@ -4,10 +4,6 @@ bibliography: "input/bib/just-ineq-merit.bib"
 csl: "input/bib/multidisciplinary-digital-publishing-institute.csl"
 ---
 
-# Supplementary Material 
-
-
-
 ```{r load, include=FALSE}
 pacman::p_load(tidyverse,
                ggpubr, 

@@ -1,11 +1,13 @@
 ---
 title: "The Socialization of Meritocracy and Market Justice Preferences at School"
-subtitle: "Back Matter"
+subtitle: "Supplementary Material"
 format:
   hikmah-pdf: 
     indent: false
+    keep-tex: true
   hikmah-manuscript-pdf: 
     indent: false
+    keep-tex: true
 bibliography: "input/bib/just-ineq-merit.bib"
 csl: "input/bib/multidisciplinary-digital-publishing-institute.csl"
 link-citations: true
@@ -20,31 +22,6 @@ fig-width: 7.5
 header-includes:
   - \usepackage{threeparttable}
 ---
-
-# Acknowledgments
-
-The authors acknowledge the support of ANID/FONDECYT grant 1210847 and the Center for Conflict and Social Cohesion Studies (COES) grant ANID/FONDAP 1513009.
-
-# Authors' Contributions
-
-Conceptualization, Juan Carlos Castillo & Mauricio Salgado; Methodology, Juan Carlos Castillo, Kevin Carrasco & Andreas Laffert; Software, Kevin Carrasco & Andreas Laffert; Formal Analysis, Kevin Carrasco & Andreas Laffert; Writing – Original Draft Preparation, Juan Carlos Castillo, Mauricio Salgado, Kevin Carrasco & Andreas Laffert; Visualization, Kevin Carrasco & Andreas Laffert; Supervision, Juan Carlos Castillo.
-
-# Conflict of Interest
-
-The authors report no competing interests to declare.
-
-# Funding
-
-This research received funding from ANID/FONDECYT grant 1210847 and the Center for Conflict and Social Cohesion Studies (COES) through ANID/FONDAP grant 1513009.
-
-# Data Avaibility Statement
-
-The original data presented in the study are openly available in <https://www.agenciaeducacion.cl/orientar/estudios/estudios-nacionales/>
-
-Access the data, code, and analysis presented in the study are openly available in <https://github.com/educacion-meritocracia/market-justice-preferences-school>.
-
-{{< pagebreak >}}
-
 
 {{< include 07-supplementary-material.qmd >}}
 

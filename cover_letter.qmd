@@ -4,8 +4,10 @@ subtitle: "Cover Letter"
 format:
   hikmah-pdf: 
     indent: false
+    keep-tex: true
   hikmah-manuscript-pdf: 
     indent: false
+    keep-tex: true
 bibliography: "input/bib/just-ineq-merit.bib"
 csl: "input/bib/multidisciplinary-digital-publishing-institute.csl"
 link-citations: true
