@@ -8,42 +8,66 @@ article_type: article
 article_status: submit
 author:
   - name: Juan Carlos Castillo
+    corresponding: true
+    orcid: 0000-0003-1265-7854
     email: juancastillov@uchile.cl
-    affiliations: 
-        name: Department of Sociology, Universidad de Chile
+    role:
+      - Conceptualization
+      - Supervision
+      - Methodology
+      - Writing - review and editing
+    affiliations:
+      - name: "Universidad de Chile"
+        department: Department of Sociology
+        id: 1
         country: Chile
-    attributes:
-      corresponding: true
   - name: Mauricio Salgado
-    email: msalgado@unab.cl
-    affiliations: 
-        name: Centro de Estudios Públicos, Chile
+    orcid: 0000-0002-8108-6154
+    role:
+      - Conceptualization
+      - Methodology
+      - Writing - review and editing    
+    affiliations:
+      - name: Centro de Estudios Públicos
+        id: 2
+        department: CEP
         country: Chile
   - name: Kevin Carrasco
-    email: kevin.carrasco@ug.uchile.cl
-    affiliations: 
-        name: Center for Social Conflict and Cohesion Studies
+    orcid: 0000-0002-9348-8361
+    role:
+      - Methodology
+      - formal analysis
+      - software
+      - visualization
+      - Writing - review and editing
+    affiliations:
+      - name: Center for Social Conflict and Cohesion Studies
+        id: 3
+        department: COES
         country: Chile
   - name: Andreas Laffert
-    email: alaffertt@estudiante.uc.cl
-    affiliations: 
-        name: Institute of Sociology, Universidad Católica de Chile
+    orcid: 0000-0002-9008-2454
+    role:
+      - Methodology
+      - formal analysis
+      - software
+      - visualization
+      - Writing - review and editing  
+    affiliations:
+      - name: Universidad Católica de Chile
+        id: 4
+        department: Institute of Sociology
         country: Chile
+fundingstatement: | 
+  The authors acknowledge the support of ANID/FONDECYT grant 1210847 and the Center for Conflict and Social Cohesion Studies (COES) grant ANID/FONDAP 1513009.
+dataavailability: |
+  The original data presented in the study are openly available in <https://www.agenciaeducacion.cl/orientar/estudios/estudios-nacionales/>
+conflictsofinterest: |
+  The authors declare no conflict of interest.
 abstract: |
   Previous research has shown that schools justify student performance differences based on meritocratic ideals. However, the link between school meritocracy and students’ justification of inequalities has received little attention. This paper examines how school and family socialization influence students’ beliefs about meritocracy and market-based justifications for access to health, pensions, and education in Chile. Using data from the First Study of Civic Education in Chile, we employ a multilevel modeling strategy to analyze 5,047 students and parents nested within 231 schools. Our findings reveal that a significant proportion of Chilean students agree with market justice principles, at a higher rate than adults. Most students endorse meritocratic views, particularly the reward of effort. Multilevel estimations show strong associations between meritocratic beliefs and market justice preferences: students who believe in the reward of effort and talent are more likely to justify inequalities based on financial capacity. At the school level, market justice preferences are higher in high-status schools but lower in schools with better achievement. Additionally, the conditional influence of meritocracy beliefs weakens in schools with higher socioeconomic status and performance. These results suggest that meritocratic beliefs and market justice preferences begin early and are influenced by the school environment.
-keywords: 
-  - market justice 
-  - meritocracy
-  - socialization
-  - family
-  - schools
-  - Chile
+keywords: [market justice, Meritocracy, socialization, family, schools, Chile]
 bibliography: "input/bib/just-ineq-merit.bib"
-csl: "input/bib/multidisciplinary-digital-publishing-institute.csl"
-header-includes:
-  - \usepackage{threeparttable}
-  - \usepackage{graphicx}
-  - \includegraphics{pics/logo-mdpi.pdf}
 ---
 
 {{< include 01-introduction.qmd >}}

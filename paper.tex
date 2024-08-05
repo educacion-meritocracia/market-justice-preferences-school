@@ -110,9 +110,6 @@ moreauthors
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
-\usepackage{threeparttable}
-\usepackage{graphicx}
-\includegraphics{pics/logo-mdpi.pdf}
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
@@ -165,9 +162,9 @@ moreauthors
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
   pdftitle={The socialization of meritocracy and market justice preferences at school},
-  pdfauthor={Equipo EDUMER},
+  pdfauthor={Juan Carlos Castillo; Mauricio Salgado; Kevin Carrasco; Andreas Laffert},
   pdfkeywords={market
-justice, meritocracy, socialization, family, schools, Chile},
+justice, Meritocracy, socialization, family, schools, Chile},
   pdfcreator={LaTeX via pandoc},
   unicode=true,
 	bookmarksopen={true},
@@ -213,14 +210,18 @@ preferences at school }
 % Author Orchid ID: enter ID or remove command
 %\newcommand{\orcidauthorA}{0000-0000-0000-000X} % Add \orcidA{} behind the author's name
 %\newcommand{\orcidauthorB}{0000-0000-0000-000X} % Add \orcidB{} behind the author's name
+\newcommand{\orcidauthorA}{0000-0003-1265-7854} 
+\newcommand{\orcidauthorB}{0000-0002-8108-6154} 
+\newcommand{\orcidauthorC}{0000-0002-9348-8361} 
+\newcommand{\orcidauthorD}{0000-0002-9008-2454} 
 
 
 % Authors, for the paper (add full first names)
 %\Author{Firstname Lastname $^{1,\dagger,\ddagger}$\orcidA{}, Firstname Lastname $^{2,\ddagger}$ and Firstname Lastname $^{2,}$*}
 
-\Author{Juan Carlos Castillo$^{aff-1}$, 
-Mauricio Salgado$^{aff-2}$, 
-Kevin Carrasco$^{aff-3}$~and~Andreas Laffert$^{aff-4}$
+\Author{Juan Carlos Castillo$^{1}$\orcidA{}, 
+Mauricio Salgado$^{2}$\orcidB{}, 
+Kevin Carrasco$^{3}$\orcidC{}~and~Andreas Laffert$^{4}$\orcidD{}
 }
 %\longauthorlist{yes}
 
@@ -242,11 +243,10 @@ Kevin Carrasco$^{aff-3}$~and~Andreas Laffert$^{aff-4}$
 
 % Affiliations / Addresses (Add [1] after \address if there is only one affiliation.)
 \address {%
-$^{aff-1}$ \quad , Department of Sociology, Universidad de Chile\\
-$^{aff-2}$ \quad , Centro de Estudios Públicos, Chile\\
-$^{aff-3}$ \quad , Center for Social Conflict and Cohesion Studies\\
-$^{aff-4}$ \quad , Institute of Sociology, Universidad Católica de
-Chile\\
+$^{1}$ \quad Department of Sociology, Universidad de Chile\\
+$^{2}$ \quad CEP, Centro de Estudios Públicos\\
+$^{3}$ \quad COES, Center for Social Conflict and Cohesion Studies\\
+$^{4}$ \quad Institute of Sociology, Universidad Católica de Chile\\
 }
 
 %\address{
@@ -291,7 +291,7 @@ begin early and are influenced by the school environment. }
 
 % Keywords
 \keyword{market
-justice; meritocracy; socialization; family; schools; Chile}
+justice; Meritocracy; socialization; family; schools; Chile}
 
 \begin{document}
 
@@ -1092,7 +1092,7 @@ agree or strongly agree with access based on market justice (41.2\%).
 
 \centering{
 
-\includegraphics{paper_files/figure-pdf/fig-marketjustice-1.pdf}
+\includegraphics{template-mdpi_files/figure-pdf/fig-marketjustice-1.pdf}
 
 }
 
@@ -1114,7 +1114,7 @@ respondents value effort more than talent in this context.
 
 \centering{
 
-\includegraphics{paper_files/figure-pdf/fig-meritocracy-1.pdf}
+\includegraphics{template-mdpi_files/figure-pdf/fig-meritocracy-1.pdf}
 
 }
 
@@ -1148,7 +1148,7 @@ items, particularly for the one referred to effort.
 
 \centering{
 
-\includegraphics{paper_files/figure-pdf/fig-bivariate-1.pdf}
+\includegraphics{template-mdpi_files/figure-pdf/fig-bivariate-1.pdf}
 
 }
 
@@ -1377,7 +1377,7 @@ significant when controlling for other variables.
 
 \centering{
 
-\resizebox{\linewidth}{!}{
+\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{4cm}>{\centering\arraybackslash}p{1.5cm}>{\centering\arraybackslash}p{1.5cm}>{\centering\arraybackslash}p{1.5cm}>{\centering\arraybackslash}p{1.5cm}>{\centering\arraybackslash}p{1.5cm}}
 \toprule
 \multicolumn{1}{c}{\textbf{ }} & \multicolumn{5}{c}{\textbf{Market Justice Preferences}} \\
@@ -1431,7 +1431,7 @@ talent in achieving good grades.
 
 \centering{
 
-\includegraphics{paper_files/figure-pdf/fig-interaction-1.pdf}
+\includegraphics{template-mdpi_files/figure-pdf/fig-interaction-1.pdf}
 
 }
 
@@ -1627,12 +1627,21 @@ formation of inequality preferences and beliefs.
 
 %\authorcontributions{For research articles with several authors, a short paragraph specifying their individual contributions must be provided. The following statements should be used ``Conceptualization, X.X. and Y.Y.; methodology, X.X.; software, X.X.; validation, X.X., Y.Y. and Z.Z.; formal analysis, X.X.; investigation, X.X.; resources, X.X.; data curation, X.X.; writing---original draft preparation, X.X.; writing---review and editing, X.X.; visualization, X.X.; supervision, X.X.; project administration, X.X.; funding acquisition, Y.Y. All authors have read and agreed to the published version of the manuscript.'', please turn to the  \href{http://img.mdpi.org/data/contributor-role-instruction.pdf}{CRediT taxonomy} for the term explanation. Authorship must be limited to those who have contributed substantially to the work~reported.}
 
-}
+\authorcontributions{Author roles were classified using the Contributor Role Taxonomy (CRediT; https://credit.niso.org/) as follows: \getfirst{Juan Carlos}.\getfirst{Castillo}.:   Conceptualization, Supervision, Methodology, Writing
+- review and
+editing; \getfirst{Mauricio}.\getfirst{Salgado}.:   Conceptualization, Methodology, Writing
+- review and
+editing; \getfirst{Kevin}.\getfirst{Carrasco}.:   Methodology, formal
+analysis, software, visualization, Writing - review and
+editing; \getfirst{Andreas}.\getfirst{Laffert}.:   Methodology, formal
+analysis, software, visualization, Writing - review and editing}
 
 
 %\funding{Please add: ``This research received no external funding'' or ``This research was funded by NAME OF FUNDER grant number XXX.'' and  and ``The APC was funded by XXX''. Check carefully that the details given are accurate and use the standard spelling of funding agency names at \url{https://search.crossref.org/funding}, any errors may affect your future funding.}
 
-
+\funding{The authors acknowledge the support of ANID/FONDECYT grant
+1210847 and the Center for Conflict and Social Cohesion Studies (COES)
+grant ANID/FONDAP 1513009.}
 
 %\institutionalreview{In this section, you should add the Institutional Review Board Statement and approval number, if relevant to your study. You might choose to exclude this statement if the study did not require ethical approval. Please note that the Editorial Office might ask you for further information. Please add “The study was conducted in accordance with the Declaration of Helsinki, and approved by the Institutional Review Board (or Ethics Committee) of NAME OF INSTITUTE (protocol code XXX and date of approval).” for studies involving humans. OR “The animal study protocol was approved by the Institutional Review Board (or Ethics Committee) of NAME OF INSTITUTE (protocol code XXX and date of approval).” for studies involving animals. OR “Ethical review and approval were waived for this study due to REASON (please provide a detailed justification).” OR “Not applicable” for studies not involving humans or animals.}
 
@@ -1644,7 +1653,9 @@ formation of inequality preferences and beliefs.
 
 %\dataavailability{We encourage all authors of articles published in MDPI journals to share their research data. In this section, please provide details regarding where data supporting reported results can be found, including links to publicly archived datasets analyzed or generated during the study. Where no new data were created, or where data is unavailable due to privacy or ethical restrictions, a statement is still required. Suggested Data Availability Statements are available in section ``MDPI Research Data Policies'' at \url{https://www.mdpi.com/ethics}.} 
 
-
+\dataavailability{The original data presented in the study are openly
+available in
+\url{https://www.agenciaeducacion.cl/orientar/estudios/estudios-nacionales/}}
 
 % Only for journal Nursing Reports
 %\publicinvolvement{Please describe how the public (patients, consumers, carers) were involved in the research. Consider reporting against the GRIPP2 (Guidance for Reporting Involvement of Patients and the Public) checklist. If the public were not involved in any aspect of the research add: ``No public involvement in any aspect of this research''.}
@@ -1658,7 +1669,7 @@ formation of inequality preferences and beliefs.
 
 %\conflictsofinterest{Declare conflicts of interest or state ``The authors declare no conflicts of interest.'' Authors must identify and declare any personal circumstances or interest that may be perceived as inappropriately influencing the representation or interpretation of reported research results. Any role of the funders in the design of the study; in the collection, analyses or interpretation of data; in the writing of the manuscript; or in the decision to publish the results must be declared in this section. If there is no role, please state ``The funders had no role in the design of the study; in the collection, analyses, or interpretation of data; in the writing of the manuscript; or in the decision to publish the results''.} 
 
-
+\conflictsofinterest{The authors declare no conflict of interest.}
 
 \begin{adjustwidth}{-\extralength}{0cm}
 %\printendnotes[custom] % Un-comment to print a list of endnotes
