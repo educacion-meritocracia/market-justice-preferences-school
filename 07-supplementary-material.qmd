@@ -1,8 +1,4 @@
----
-author: "Equipo EDUMER"
-bibliography: "input/bib/just-ineq-merit.bib"
-csl: "input/bib/multidisciplinary-digital-publishing-institute.csl"
----
+# Supplementary material
 
 ```{r load, include=FALSE}
 pacman::p_load(tidyverse,
@@ -33,7 +29,7 @@ knitr::opts_chunk$set(echo = F,
                       message = F) 
 ```
 
-# Translated items for market justice preferences
+## Translated items for market justice preferences
 
 ```{r echo=FALSE}
 #| tbl-cap: "Translation of items for health, pensions, and education"
@@ -57,7 +53,7 @@ kableExtra::kable(data,
 ```
 
 
-# Complete multilevel models
+## Complete multilevel models
 
 
 ```{r echo=FALSE}
@@ -335,7 +331,7 @@ reg5_bienestar <- lmer(bienestar ~ 1 + inteligencia_esc + esfuerzo_esc +
 
 ```{r echo=FALSE, results='asis'}
 #| tbl-cap: "Linear mixed-effects models for meritocracy perception and market justice preferences"
-#| label: tbl-lineal-reg
+#| label: tbl-lineal-reg-complete
 ccoef <- list(
  "(Intercept)" = "Constant",
   inteligencia_esc = "School talent",

@@ -6,58 +6,58 @@ format:
 mdpi_journal: behavsci
 article_type: article
 article_status: submit
-author:
-  - name: Juan Carlos Castillo
-    corresponding: true
-    orcid: 0000-0003-1265-7854
-    email: juancastillov@uchile.cl
-    role:
-      - Conceptualization
-      - Supervision
-      - Methodology
-      - Writing - review and editing
-    affiliations:
-      - name: "Universidad de Chile"
-        department: Department of Sociology
-        id: 1
-        country: Chile
-  - name: Mauricio Salgado
-    orcid: 0000-0002-8108-6154
-    role:
-      - Conceptualization
-      - Methodology
-      - Writing - review and editing    
-    affiliations:
-      - name: Centro de Estudios Públicos
-        id: 2
-        department: CEP
-        country: Chile
-  - name: Kevin Carrasco
-    orcid: 0000-0002-9348-8361
-    role:
-      - Methodology
-      - formal analysis
-      - software
-      - visualization
-      - Writing - review and editing
-    affiliations:
-      - name: Center for Social Conflict and Cohesion Studies
-        id: 3
-        department: COES
-        country: Chile
-  - name: Andreas Laffert
-    orcid: 0000-0002-9008-2454
-    role:
-      - Methodology
-      - formal analysis
-      - software
-      - visualization
-      - Writing - review and editing  
-    affiliations:
-      - name: Universidad Católica de Chile
-        id: 4
-        department: Institute of Sociology
-        country: Chile
+#author:
+#  - name: Juan Carlos Castillo
+#    corresponding: true
+#    orcid: 0000-0003-1265-7854
+#    email: juancastillov@uchile.cl
+#    role:
+#      - Conceptualization
+#      - Supervision
+#      - Methodology
+#      - Writing - review and editing
+#    affiliations:
+#      - name: "Universidad de Chile"
+#        department: Department of Sociology
+#        id: 1
+#        country: Chile
+#  - name: Mauricio Salgado
+#    orcid: 0000-0002-8108-6154
+#    role:
+#      - Conceptualization
+#      - Methodology
+#      - Writing - review and editing    
+#    affiliations:
+#      - name: Centro de Estudios Públicos
+#        id: 2
+#        department: CEP
+#        country: Chile
+#  - name: Kevin Carrasco
+#    orcid: 0000-0002-9348-8361
+#    role:
+#      - Methodology
+#      - formal analysis
+#      - software
+#      - visualization
+#      - Writing - review and editing
+#    affiliations:
+#      - name: Center for Social Conflict and Cohesion Studies
+#        id: 3
+#        department: COES
+#        country: Chile
+#  - name: Andreas Laffert
+#    orcid: 0000-0002-9008-2454
+#    role:
+#      - Methodology
+#      - formal analysis
+#      - software
+#      - visualization
+#      - Writing - review and editing  
+#    affiliations:
+#      - name: Universidad Católica de Chile
+#        id: 4
+#        department: Institute of Sociology
+#        country: Chile
 fundingstatement: | 
   The authors acknowledge the support of ANID/FONDECYT grant 1210847 and the Center for Conflict and Social Cohesion Studies (COES) grant ANID/FONDAP 1513009.
 dataavailability: |
