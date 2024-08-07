@@ -44,4 +44,27 @@ ORCID: 0000-0002-9008-2454
 
 The authors confirm that this article has been submitted exclusively to this journal.
 
+## Acknowledgments
+
+The authors acknowledge the support of ANID/FONDECYT grant 1210847 and the Center for Conflict and Social Cohesion Studies (COES) grant ANID/FONDAP 1513009.
+
+## Authors' Contributions
+
+Author roles were classified using the Contributor Role Taxonomy [CRediT](https://credit.niso.org/) as follows: Juan Carlos Castillo: Conceptualization, Supervision, Methodology, Writing - review and editing; Mauricio Salgado: Conceptualization, Methodology, Writing - review and editing; Kevin Carrasco: Methodology, formal analysis, software, visualization, Writing - review and editing; Andreas Laffert: Methodology, formal analysis, software, visualization, Writing - review and editing.
+
+## Conflict of Interest
+
+The authors declare no conflict of interest.
+
+## Funding
+
+This research received funding from ANID/FONDECYT grant 1210847 and the Center for Conflict and Social Cohesion Studies (COES) through ANID/FONDAP grant 1513009.
+
+## Data Avaibility Statement
+
+The original data presented in the study are openly available in <https://www.agenciaeducacion.cl/orientar/estudios/estudios-nacionales/>
+
+Access to the data, code, and analysis presented in the study are openly available in <https://github.com/educacion-meritocracia/market-justice-preferences-school>.
+
+
 [^*]: Corresponding author (juancastillov@uchile.cl - [jc-castillo.com](https://juancarloscastillo.github.io/jc-castillo/) - Ignacio Carrera Pinto 1045 Ñuñoa, Santiago de Chile). 

@@ -33,11 +33,10 @@ Here is the description of the pre-registration of the analysis plan in the Open
 |   06-conclusion.qmd
 |   07-supplementary-material.qmd
 |   cover_letter.qmd
-|   back_matter.qmd
 │
 |───_extensions
 |
-├───MDPI-submit
+├───submission
 │       README-submit.md
 |
 ├───input

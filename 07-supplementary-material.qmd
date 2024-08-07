@@ -1,3 +1,9 @@
+---
+author: "Equipo EDUMER"
+bibliography: "input/bib/just-ineq-merit.bib"
+csl: "input/bib/multidisciplinary-digital-publishing-institute.csl"
+---
+
 # Supplementary material
 
 ```{r load, include=FALSE}
@@ -28,30 +34,6 @@ knitr::opts_chunk$set(echo = F,
                       error = F, 
                       message = F) 
 ```
-
-## Translated items for market justice preferences
-
-```{r echo=FALSE}
-#| tbl-cap: "Translation of items for health, pensions, and education"
-#| label: tbl-translation
-
-data <- data.frame(
-  English = c("It is just that in Chile people with higher incomes can access better health services than people with low incomes",
-              "It is just that in Chile people with higher incomes can have better pensions than people with low incomes",
-              "It is just that in Chile people who can pay have a better education for their children"),
-  Spanish = c("Es justo que en Chile las personas con mayores ingresos puedan acceder a una mejor atención de salud que las personas con ingresos más bajos",
-              "Es justo que en Chile las personas con mayores ingresos puedan tener mejores pensiones que las personas de ingresos más bajos",
-              "Es justo que en Chile las personas que puedan pagar tengan una mejor educación para sus hijos")
-  )
-
-kableExtra::kable(data, 
-      col.names = c("English Translation", "Original Spanish"), 
-      booktabs = T, escape = F, align = 'l') %>%
-  kableExtra::kable_styling(latex_options = "hold_position", bootstrap_options = "striped", full_width = T)  %>%
-  row_spec(0, bold = T)
-
-```
-
 
 ## Complete multilevel models
 
