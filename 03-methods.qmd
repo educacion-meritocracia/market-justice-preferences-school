@@ -4,7 +4,7 @@ bibliography: "input/bib/just-ineq-merit.bib"
 csl: "input/bib/multidisciplinary-digital-publishing-institute.csl"
 ---
 
-# Data, variables and method
+# Data, Variables and Methods
 
 ## Data
 

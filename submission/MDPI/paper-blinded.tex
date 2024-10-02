@@ -44,7 +44,7 @@
 \usepackage{xcolor}
 \usepackage[left=2.54cm,right=2.54cm,top=2.54cm,bottom=2.54cm]{geometry}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\setcounter{secnumdepth}{5}
 
 
 \providecommand{\tightlist}{%
@@ -366,8 +366,6 @@ justice, meritocracy, socialization, family, schools, Chile},
 % ---------------------- 
 \usepackage{orcidlink}  % Create automatic ORCID icons/links
 
-
-
 \title{The socialization of meritocracy and market justice preferences
 at school}
 
@@ -397,27 +395,29 @@ at school}
 \maketitle
 
 \begin{abstract}
-Previous research has shown that schools justify student performance
-differences based on meritocratic ideals. However, the link between
-school meritocracy and students' justification of inequalities has
-received little attention. This paper examines how school and family
-socialization influence students' beliefs about meritocracy and
-market-based justifications for access to health, pensions, and
-education in Chile. Using data from the First Study of Civic Education
-in Chile, we employ a multilevel modeling strategy to analyze 5,047
-students and parents nested within 231 schools. Our findings reveal that
+Previous research has shown that schools often justify student
+performance differences using meritocratic ideals. One potential
+consequence of such ideals is the legitimization of outcome inequalities
+across various spheres, including those traditionally associated with
+equality and redistribution. In this study, we argue that the promotion
+of meritocratic values during school-age can shape students' beliefs
+about meritocracy and influence their views on market-based access to
+health, pensions, and education. Using data from the 2017 National Study
+of Civic Education in Chile, which includes 5,047 8th-grade students
+from 231 schools, we estimated a series of multilevel models (lme4
+library, R version 4.1.3) to test our hypotheses. Our findings show that
 a significant proportion of Chilean students agree with market justice
-principles, at a higher rate than adults. Most students endorse
-meritocratic views, particularly the reward of effort. Multilevel
-estimations show strong associations between meritocratic beliefs and
-market justice preferences: students who believe in the reward of effort
-and talent are more likely to justify inequalities based on financial
-capacity. At the school level, market justice preferences are higher in
-high-status schools but lower in schools with better achievement.
-Additionally, the conditional influence of meritocracy beliefs weakens
-in schools with higher socioeconomic status and performance. These
-results suggest that meritocratic beliefs and market justice preferences
-begin early and are influenced by the school environment.
+principles---more so than adults. Most students endorse meritocratic
+views, particularly the notion that effort should be rewarded, which
+strongly correlates with market justice preferences: students who
+believe in meritocracy are more likely to justify inequalities based on
+financial capacity. At the school level, market justice preferences are
+higher in high-status schools but lower in schools with higher academic
+achievement. Furthermore, the conditional influence of meritocratic
+beliefs diminishes in schools with higher socioeconomic status and
+performance levels. These results suggest that the association between
+meritocratic beliefs and market justice preferences is already
+established at school age and is shaped by the school environment.
 \end{abstract}
 \vskip 3em
 
@@ -433,6 +433,7 @@ Chile
 Front Matter
 
 \end{ideuno}
+
 % -------------------
 % END TITLE SECTION
 % -------------------
@@ -494,15 +495,63 @@ in health, education and pensions, which are traditional social policy
 areas where access to better services could be justified based on
 payment capacity, referred to as market justice
 {[}\citeproc{ref-lane_market_1986}{9},\citeproc{ref-lindh_bringing_2023}{10}{]}.
-Most of the research in this realm has only considered adults, leaving
-aside the study of how beliefs in this field develop at student age as
-well as the impact of the school context and the family as the main
-socialization agencies {[}\citeproc{ref-batruch_belief_2022}{3}{]}.
-Regarding schools, the way in which they deal with unequal conditions of
-origin has been linked to the \emph{hidden curriculum}
-{[}\citeproc{ref-chafel_schooling_1997}{11}{]}, whereby students learn
-about distributive norms in society and mechanisms of justification of
-social differences.
+Market justice preferences refers to a belief in a market-based
+distributive principle, where goods and rewards are allocated according
+to individual merit, effort and contributions in a free-market economy
+{[}\citeproc{ref-lindh_public_2015}{11}{]}.
+
+Most of the research on meritocracy and justice preferences has only
+considered adults, leaving aside the study of how beliefs in this field
+develop at student age as well as the impact of the school context and
+the family as the main socialization agencies
+{[}\citeproc{ref-batruch_belief_2022}{3}{]}. Studying beliefs about
+meritocracy and market justice preferences at school age is crucial
+because these early beliefs can shape individuals' attitudes towards
+inequality and social justice later in life. As Castillo et al.
+{[}\citeproc{ref-castillo_meritocracia_2019}{12}{]} argues, meritocratic
+ideals serve as a principle that legitimizes the distribution of goods
+and rewards based on individual talent and effort, making it essential
+to understand how these beliefs develop during adolescence. Furthermore,
+early exposure to these beliefs may influence broader perceptions of
+fairness, as Reynolds and Xian
+{[}\citeproc{ref-reynolds_perceptions_2014}{13}{]} highlights, beliefs
+about the stratification system influence people's judgments about the
+fairness of inequality, suggesting that such attitudes formed at a young
+age can have lasting impacts. Additionally, García-Sierra
+{[}\citeproc{ref-garcia-sierra_dark_2023}{14}{]} emphasizes that the
+effects of holding meritocratic beliefs are not uniform, as these
+ideologies may reinforce socioeconomic disparities depending on
+students' social backgrounds.
+
+The Chilean case is particularly intriguing for studying market justice
+preferences. This country is characterized by acute and persistent
+economic inequality, which stands out in Latin America and among OECD
+countries {[}\citeproc{ref-flores_top_2020}{15}{]}. In Chile, the
+poorest 50\% captures only 10\% of the total income and has negative
+wealth, while the richest 1\% receives almost 27\% of the income and
+holds 49.6\% of the wealth {[}\citeproc{ref-chancel_world_2022}{16}{]}.
+Much of this inequality has been attributed to the deep neoliberal
+reforms that institutionalized privatization and commodification of
+various economic sectors. Such reforms where introduced during the
+dictatorship (1973-1989) and expanded in democracy through concessions,
+demand credits, and specific regulatory frameworks
+{[}\citeproc{ref-ffrench-davis_reformas_2018}{17}{]}. This shift in
+economic policy has allowed the unprecedented emergence of markets in
+areas related to social reproduction, such as health, pensions, and
+education, with provision and access managed by private entities and
+segmented by individual payment capacity, heavily reliant on State
+subsidies {[}\citeproc{ref-boccardo_30_2020}{18}{]}. In health, although
+the majority of the population uses the public insurance system
+(78.9\%), 15.3\% are served by private insurers
+{[}\citeproc{ref-observatoriosocial_estadisticas_2024}{19}{]}. The
+pension system is based on individual capitalization, with mandatory
+contributions managed by private administrators investing in the
+financial market, currently involving 11 million contributors
+{[}\citeproc{ref-superintendenciadepensiones_estadisticas_2024}{20}{]}.
+In education, 30.6\% of school enrollment is in public schools, 54.0\%
+in state-subsidized (voucher) private schools, and 9.3\% in fully
+private schools, generally attracting higher-income groups
+{[}\citeproc{ref-ministeriodeeducacion_resumen_2023}{21}{]}.
 
 Based on recent studies that relate school meritocracy to the
 justification of economic inequalities in the adult population
@@ -520,36 +569,6 @@ school as two main socialization agencies that play a significant role
 in the socialization of cultural beliefs by transmitting cultural norms,
 values, and expectations to young people.
 
-The Chilean case is particularly intriguing for studying market justice
-preferences. This country is characterized by acute and persistent
-economic inequality, which stands out in Latin America and among OECD
-countries {[}\citeproc{ref-flores_top_2020}{12}{]}. In Chile, the
-poorest 50\% captures only 10\% of the total income and has negative
-wealth, while the richest 1\% receives almost 27\% of the income and
-holds 49.6\% of the wealth {[}\citeproc{ref-chancel_world_2022}{13}{]}.
-Much of this inequality has been attributed to the deep neoliberal
-reforms that institutionalized privatization and commodification of
-various economic sectors. Such reforms where introduced during the
-dictatorship (1973-1989) and expanded in democracy through concessions,
-demand credits, and specific regulatory frameworks
-{[}\citeproc{ref-ffrench-davis_reformas_2018}{14}{]}. This shift in
-economic policy has allowed the unprecedented emergence of markets in
-areas related to social reproduction, such as health, pensions, and
-education, with provision and access managed by private entities and
-segmented by individual payment capacity, heavily reliant on State
-subsidies {[}\citeproc{ref-boccardo_30_2020}{15}{]}. In health, although
-the majority of the population uses the public insurance system
-(78.9\%), 15.3\% are served by private insurers
-{[}\citeproc{ref-observatoriosocial_estadisticas_2024}{16}{]}. The
-pension system is based on individual capitalization, with mandatory
-contributions managed by private administrators investing in the
-financial market, currently involving 11 million contributors
-{[}\citeproc{ref-superintendenciadepensiones_estadisticas_2024}{17}{]}.
-In education, 30.6\% of school enrollment is in public schools, 54.0\%
-in state-subsidized (voucher) private schools, and 9.3\% in fully
-private schools, generally attracting higher-income groups
-{[}\citeproc{ref-ministeriodeeducacion_resumen_2023}{18}{]}.
-
 \subsection{Justification of inequality and market
 justice}\label{justification-of-inequality-and-market-justice}
 
@@ -557,19 +576,19 @@ The justification of social inequality based on market-type criteria has
 been conceptualized as the individuals' adherence to the deservingness
 of social goods and services (such as health, education, and pensions)
 based on prices and individuals' ability to pay
-{[}\citeproc{ref-lane_market_1986}{9},\citeproc{ref-boltanski_new_2005}{19},\citeproc{ref-streeck_citizens_2012}{20}{]}.
+{[}\citeproc{ref-lane_market_1986}{9},\citeproc{ref-boltanski_new_2005}{22},\citeproc{ref-streeck_citizens_2012}{23}{]}.
 Research on social stratification beliefs, which explore individual
 perceptions of who deserves what and why
-{[}\citeproc{ref-kluegel_beliefs_1987}{21}{]}, highlights that people's
+{[}\citeproc{ref-kluegel_beliefs_1987}{24}{]}, highlights that people's
 explanations and justifications of social inequality are closely tied to
 their judgments of deservingness. The influence of ideologies
-{[}\citeproc{ref-wegener_dominant_1995}{22}{]} and cultural schemas
-{[}\citeproc{ref-homan_being_2017}{23}{]} is pivotal in shaping these
+{[}\citeproc{ref-wegener_dominant_1995}{25}{]} and cultural schemas
+{[}\citeproc{ref-homan_being_2017}{26}{]} is pivotal in shaping these
 explanations by offering symbolic representations that frame societal
 structures and expectations. While significant attention has been paid
 to wage inequality, income distribution, and payment differentials in
 the literature
-{[}\citeproc{ref-castillo_legitimacy_2011}{24}--\citeproc{ref-shariff_income_2016}{27}{]},
+{[}\citeproc{ref-castillo_legitimacy_2011}{27}--\citeproc{ref-shariff_income_2016}{30}{]},
 there has been less examination of public beliefs about which life
 domains should be governed by market relations
 {[}\citeproc{ref-lindh_bringing_2023}{10}{]} and even less about
@@ -577,12 +596,12 @@ children's acceptance or rejection of these market principles. This
 oversight is notable given the extensive encroachment of market logic
 into public goods, welfare policy, and social services over the past
 five decades
-{[}\citeproc{ref-centeno_arc_2012}{28},\citeproc{ref-harvey_breve_2015}{29}{]},
+{[}\citeproc{ref-centeno_arc_2012}{31},\citeproc{ref-harvey_breve_2015}{32}{]},
 affecting areas such as pensions, health services, and education.
 
 There are substantial differences in funding and delivery methods in the
 management of social services across nations
-{[}\citeproc{ref-jensen_worlds_2008}{30},\citeproc{ref-stoy_worlds_2014}{31}{]}.
+{[}\citeproc{ref-jensen_worlds_2008}{33},\citeproc{ref-stoy_worlds_2014}{34}{]}.
 Nordic countries, for example, predominantly employ public agencies to
 produce and provide social services, funding these through collective
 taxation and offering them in kind to the majority of citizens. This
@@ -592,14 +611,14 @@ for-profit entities and private funding, where service distribution
 depends mainly on individual financial capacity to pay user fees,
 highlighting the influence of market justice in service allocation. The
 trend toward marketization of welfare services has been growing since
-the 1980s {[}\citeproc{ref-salamon_marketization_1993}{32}{]}, and this
+the 1980s {[}\citeproc{ref-salamon_marketization_1993}{35}{]}, and this
 shift is increasingly evident even in countries where market solutions
 have traditionally had a minor role in social policy
-{[}\citeproc{ref-sivesind_changing_2017}{33}{]}. The expansion of
+{[}\citeproc{ref-sivesind_changing_2017}{36}{]}. The expansion of
 marketization has been related to a larger justification of market
 mechanisms, whereby societies with larger private spending on services
 show larger market justice preferences
-{[}\citeproc{ref-lindh_public_2015}{34}{]}.
+{[}\citeproc{ref-lindh_public_2015}{11}{]}.
 
 Robert E. Lane proposed the underpinnings of the concept of market
 justice, which he differentiated from political justice. For him, ``it
@@ -608,26 +627,26 @@ stimulating a sense of deserving more than one gets''
 {[}\citeproc{ref-lane_market_1986}{9}{]}. Contrary to the evidence that
 unequal distribution produces feelings of dissatisfaction, anger, and
 resentment that might motivate forms of collective action
-{[}\citeproc{ref-greitemeyer_subjective_2016}{35}--\citeproc{ref-power_deprivationprotest_2018}{38}{]},
+{[}\citeproc{ref-greitemeyer_subjective_2016}{37}--\citeproc{ref-power_deprivationprotest_2018}{40}{]},
 Lane pointed out that in market settings, social comparisons are more
 likely to motivate increased effort rather than feelings of acute
 injustice because individuals attribute outcomes to their actions. In
 this sense, unequal levels of well-being would be, to some extent, a
 function of their talents and efforts, instead of being based on
 distributive principles that characterize welfare states, such as need
-and equality (see {[}\citeproc{ref-wilson_role_2003}{39}{]}).
+and equality (see {[}\citeproc{ref-wilson_role_2003}{41}{]}).
 
 Despite high-income inequality and limited social mobility in Chile, and
 in Latin America in general, there is a prevalent belief that
 individuals are solely responsible for their economic outcomes, a view
 that varies across the region
-{[}\citeproc{ref-bucca_merit_2016}{40}--\citeproc{ref-salgado_inequality_2023}{43}{]}.
+{[}\citeproc{ref-bucca_merit_2016}{42}--\citeproc{ref-salgado_inequality_2023}{45}{]}.
 The reliance on private welfare providers and widespread user fees
-{[}\citeproc{ref-molyneux_neoliberal_2008}{44}{]} adds complexity to
+{[}\citeproc{ref-molyneux_neoliberal_2008}{46}{]} adds complexity to
 this context, as reflected in surveys conducted by the Center for Public
 Studies (CEP). According to this data, 35.9\% prefer private health
 insurance, and 63\% would prefer private education
-{[}\citeproc{ref-centrodeestudiospublicos_estudio_2024}{45}{]}. Yet,
+{[}\citeproc{ref-centrodeestudiospublicos_estudio_2024}{47}{]}. Yet,
 research on children's justification in this area remains limited,
 highlighting a significant gap in understanding how younger generations
 view market-based access to welfare and whether these views are
@@ -642,31 +661,31 @@ distributive system where merit is the main criterion for allocating
 valuable goods and rewards. From a sociological perspective, meritocracy
 has been used in research on social mobility to characterize societies
 with low mobility that threaten the meritocratic ideal
-{[}\citeproc{ref-goldthorpe_myth_2003}{46}{]}. More recently, sociology
+{[}\citeproc{ref-goldthorpe_myth_2003}{48}{]}. More recently, sociology
 and social psychology research has attended to subjective aspects
 related to the support for meritocratic principles in different
 societies, such as beliefs in meritocracy
-{[}\citeproc{ref-castillo_multidimensional_2023}{47}--\citeproc{ref-mijs_paradox_2019}{49}{]}.
+{[}\citeproc{ref-castillo_multidimensional_2023}{49}--\citeproc{ref-mijs_paradox_2019}{51}{]}.
 
 Meritocratic beliefs can cover two types of subjective processes:
 preferences and perceptions
-{[}\citeproc{ref-castillo_multidimensional_2023}{47}{]}. While
+{[}\citeproc{ref-castillo_multidimensional_2023}{49}{]}. While
 meritocratic preferences refer to a justification of distribution based
 on merit criteria (effort and talent), the perception of meritocracy
 refers to how individuals view and understand the concept of meritocracy
 in their society
-{[}\citeproc{ref-duru-bellat_who_2012}{50},\citeproc{ref-castillo_meritocracia_2019}{51}{]}.
+{[}\citeproc{ref-castillo_meritocracia_2019}{12},\citeproc{ref-duru-bellat_who_2012}{52}{]}.
 The perception can vary greatly depending on individual experiences, as
 well as social, economic, and cultural background. Some people may see
 meritocracy as a fair and just system that allows anyone to succeed
 based on their abilities and hard work. In contrast, others may view it
 as a myth or a cover for existing power dynamics and inequality, serving
 to maintain and even reinforce inequality
-{[}\citeproc{ref-mijs_paradox_2019}{49},\citeproc{ref-lampert_meritocratic_2013}{52}{]}.
+{[}\citeproc{ref-mijs_paradox_2019}{51},\citeproc{ref-lampert_meritocratic_2013}{53}{]}.
 Some studies have analyzed how those with greater privileges believe
-more in meritocracy {[}\citeproc{ref-reynolds_perceptions_2014}{53}{]},
+more in meritocracy {[}\citeproc{ref-reynolds_perceptions_2014}{13}{]},
 how greater economic inequality increases meritocratic beliefs
-{[}\citeproc{ref-mijs_paradox_2019}{49}{]}, and how larger inequality
+{[}\citeproc{ref-mijs_paradox_2019}{51}{]}, and how larger inequality
 decreases it {[}\citeproc{ref-morris_representing_2022}{54}{]}.
 
 A larger justification of meritocratic distribution has been related to
@@ -708,8 +727,8 @@ to differences in efforts and talents
 that the perception of meritocracy can influence students' judgments
 about market justice preferences, leading to our first hypothesis:
 
-\(H_{1a}\): Students who perceive that there is more meritocracy in
-society will show larger market justice preferences
+\(H_{1a}\): Students who perceive greater meritocracy in society will
+exhibit stronger preferences for market justice.
 
 The perception of meritocracy has been mostly studied with general
 questions about reward allocation based on effort and talent (usually
@@ -724,8 +743,8 @@ differentiate in this study between meritocratic perception in society
 at large, and meritocratic perception at school, proposing the next
 hypothesis:
 
-\(H_{1b}\): Students who perceive that there is more meritocracy at
-school will show larger market justice preferences
+\(H_{1b}\): Students who perceive greater meritocracy in their schools
+will exhibit stronger preferences for market justice.
 
 \subsection{The socialization of market justice: families and
 schools}\label{the-socialization-of-market-justice-families-and-schools}
@@ -756,8 +775,8 @@ will be differences in the socialization of values according to
 socioeconomic differences in families that could influence market
 justice preferences, which leads us to the following hypothesis:
 
-\(H_2\): Students from families of higher social status will show larger
-market justice preferences.
+\(H_2\): Students from higher social status families will exhibit
+stronger preferences for market justice.
 
 Recent empirical research has demonstrated that the institutional design
 of schools, coupled with the meritocratic ideology it fosters,
@@ -777,12 +796,12 @@ performance scores in standardized large-scale assessments would also
 show larger market justice preferences. The correspondent hypotheses
 are:
 
-\(H_3\): Students from schools of higher social status will show larger
-market justice preferences.
+\(H_3\): Students from higher social status schools will show stronger
+preferences for market justice.
 
-\(H_4\): Students from schools with an average better performance in
-standardized achievement tests will show larger market justice
-preferences.
+\(H_4\): Students from schools with higher average performance on
+standardized achievement tests will show stronger preferences for market
+justice.
 
 The last set of hypotheses deals with the moderation effects. We propose
 that the link between meritocracy and market justice could be stronger
@@ -795,15 +814,15 @@ preferences. In similar terms, schools of better performance would
 promote meritocratic perception, strengthening market justice
 preferences:
 
-\(H_5\): The family's social status will moderate the effect of
-meritocratic perception on market justice preferences.
+\(H_5\): The family's social status will moderate the relationship
+between perceptions of meritocracy and preferences for market justice.
 
-\(H_6\): The school's status will moderate the effect of meritocratic
-perceptions on market justice preferences.
+\(H_6\): The school's status will moderate the relationship between
+perceptions of meritocracy and preferences for market justice.
 
-\(H_7\): The school's performance in standardized achievement tests will
-moderate the effect of meritocratic perceptions on market justice
-preferences.
+\(H_7\): The school's performance on standardized achievement tests will
+moderate the relationship between perceptions of meritocracy and
+preferences for market justice.
 
 Figure~\ref{fig-hypotheses} depicts a summary of the research hypothesis
 described before. Market justice preferences are our main concept under
@@ -828,20 +847,19 @@ estimated through interaction effects.
 
 \end{figure}%
 
-\section{Data, variables and method}\label{data-variables-and-method}
+\section{Data, Variables and Methods}\label{data-variables-and-methods}
 
 \subsection{Data}\label{data}
 
 The First Study of Civic Education in Chile, conducted by the Agency for
-Quality Education of the Ministry of Education in 2017, serves as the
-main data source. This database is composed by a civic knowledge test
-score and a series of items batteries measuring different aspects of
-citizenship. The target population includes 8th-grade students in 242
-schools nationwide, as well as their parents and teachers. Initially,
-the database contains 8,589 student observations and 6,770 parent
-observations. To ensure higher data quality and considering the survey's
-unit of analysis, we removed 171 student cases and 79 parent cases that
-exhibited repetitive and careless response patterns
+Quality Education of the Ministry of Education in 2017, is the primary
+data source. This database comprises a civic knowledge test score and a
+series of items that measure different aspects of citizenship. The
+target population includes 8th-grade students in 242 schools nationwide.
+Initially, the database contains 8,589 student observations.To ensure
+higher data quality and considering the survey's unit of analysis, we
+removed 171 student cases that exhibited repetitive and careless
+response patterns
 {[}\citeproc{ref-gottfried_autocorrelation_2022}{73}{]}. Additionally,
 we utilized data from the System for Measuring the Quality of Education
 (SIMCE) conducted by the Ministry of Education in 2017, which provides
@@ -849,8 +867,8 @@ school-level information such as administrative dependence,
 socioeconomic classification, and results obtained in standardized
 mathematics and language tests. After processing the variables and
 removing missing cases, the final database for this study includes a
-two-level stratified sample composed of 5,047 students and parents
-(level 1) nested within 231 schools (level 2).
+two-level stratified sample composed of 5,047 students (level 1) nested
+within 231 schools (level 2).
 
 \subsection{Variables}\label{variables}
 
@@ -860,17 +878,18 @@ two-level stratified sample composed of 5,047 students and parents
 study are market justice preferences. This construct is measured through
 three variables that address the degree of justification regarding
 whether access to social services in pensions, education, and health
-should be income conditional. Justification of inequality in health is
-measured by the item: ``Is it fair in Chile that people with higher
-incomes can access better healthcare than those with lower incomes?''
-The same question is asked for education and pensions. In all cases,
-respondents indicate their preferences on a Likert scale ranging from
-``completely disagree'' (1) to ``completely agree'' (4). Additionally,
-we include a summarized indicator of ``market justice preferences'',
-measured by an average index across these items (α = 0.86), with values
-ranging from 1 to 4, where higher values represent greater preferences
-for market justice (see Table~\ref{tbl-desc-dependientes}). We analyzed
-these items independently as well as by the average index.
+should be conditional on income. The Justification of inequality in
+health is measured by the following item: ``Is it fair in Chile that
+people with higher incomes can access better healthcare than those with
+lower incomes?'' The same question is asked for education and pensions.
+In all cases, respondents indicate their preferences on a Likert scale
+ranging from ``completely disagree'' (1) to ``completely agree'' (4).
+Additionally, we include a summarized indicator of ``market justice
+preferences'', measured by an average index across these items (α =
+0.86), with values ranging from 1 to 4, where higher values represent
+stronger preferences for market justice (see
+Table~\ref{tbl-desc-dependientes}). We analyzed these items
+independently and by the average index.
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.4286}}
@@ -1132,12 +1151,11 @@ status and academic performance. Socioeconomic status is assessed using
 the Ministry of Education's classification, measured as an ordinal item
 with five categories ranging from ``low'' (1) to ``high'' (5). Academic
 performance is measured using the school's results in the SIMCE (System
-of Measurement of Educational Quality) standardized tests, which are
-administered yearly at different educational levels in areas such as
-language and mathematics. These results are categorized as ``low,''
-``medium,'' and ``high.'' The contextual level items used, response
-categories, and their frequencies are detailed in
-Table~\ref{tbl-desc-school}.
+of Measurement of Educational Quality) standardized tests, administered
+yearly at different educational levels in language and mathematics.
+These results are categorized as ``low,'' ``medium,'' and ``high.'' The
+contextual level items used, response categories, and their frequencies
+are detailed in Table~\ref{tbl-desc-school}.
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.4138}}
@@ -1227,7 +1245,7 @@ variables, while linear mixed-effects models were applied for the
 average market justice preference index.
 
 The hypotheses of this research were pre-registered in the Open Science
-Framework platform of the Center for Open Science (OSF), the access to
+Framework platform of the Center for Open Science (OSF), and access to
 the document is available at this
 \href{https://doi.org/10.17605/OSF.IO/UFSDV}{link}. The statistical
 analysis for this research was conducted using the \emph{lme4} package
@@ -1235,7 +1253,7 @@ in R version 4.1.3.
 
 \section{Results}\label{results}
 
-\subsection{Descriptive}\label{descriptive}
+\subsection{Descriptive statistics}\label{descriptive-statistics}
 
 Figure~\ref{fig-marketjustice} illustrates the distribution of responses
 to the three items on market justice preferences (healthcare, pensions,
@@ -1325,7 +1343,7 @@ health and pensions by social and school meritocracy}
 
 \end{figure}%
 
-\subsection{Multivariate}\label{multivariate}
+\subsection{Multivariate analysis}\label{multivariate-analysis}
 
 This section presents the results of the multilevel models. We begin by
 showing the results of the cumulative link mixed models in
@@ -1423,31 +1441,34 @@ of justice in differential access to health, pensions, and education
 demonstrates a similar trend regarding the effect of the perception of
 meritocracy on these items, with all effects being statistically
 significant (\emph{p} \textless{} 0.05). Regarding the variables of
-social meritocracy, the three variables---talent, effort, and
-deservingness---show that as these increase, the justification for
-differentiated access to pensions, education, and health also increases.
-In the context of school meritocracy, the effects are mixed: as
-perceived school talent increases, the justification for differentiated
-access to these services increases; conversely, as perceived school
-effort increases, the justification decreases, holding all other
-variables constant.
+social meritocracy, the three variables---talent (\(\beta\) = 0.16),
+effort (\(\beta\) = 0.11), and deservingness (\(\beta\) = 0.51)---show
+that as these increase, the justification for differentiated access to
+pensions, education, and health also increases. In the context of school
+meritocracy, the effects are mixed: as perceived school talent
+increases, the justification for differentiated access to these services
+increases (\(\beta\) = 0.23); conversely, as perceived school effort
+increases, the justification decreases (\(\beta\) = -0.26), holding all
+other variables constant.
 
 Additionally, Model 1 examines family status through parents'
 educational level and the number of books at home. For health, pensions,
 and education, a negative but statistically non-significant association
 with parents' education is observed. However, having more than 25 books
 at home shows a negative and statistically significant effect on market
-justice in health and pensions, suggesting less justification for
-differentiated access compared to those with fewer books.
+justice in health and pensions (\(\beta\) = -0.13; \emph{p} \textless{}
+0.001), suggesting less justification for differentiated access compared
+to those with fewer books.
 
 Model 2 in Table~\ref{tbl-ordinal-reg} incorporates school-level
 variables. The results show that high socioeconomic level schools show
 greater preferences for market justice in health, pensions, and
 education compared to low socioeconomic level schools, with
-statistically significant results (\emph{p} \textless{} 0.05). Moreover,
-and contrary to our hypothesis, schools with higher academic performance
-show negative and statistically significant effects across the three
-items.
+statistically significant results (\(\beta\) = 0.71; \emph{p}
+\textless{} 0.05). Moreover, and contrary to our hypothesis, schools
+with higher academic performance show negative and statistically
+significant effects across the three items (\(\beta\) = -0.56; \emph{p}
+\textless{} 0.001).
 
 \begin{table}
 
@@ -1519,25 +1540,28 @@ Var: Residual                             & $0.66$        & $0.66$        & $0.6
 
 \end{table}%
 
-Table~\ref{tbl-lineal-reg} presents the results of linear mixed-effects
+Table~\ref{tbl-lineal-reg} ppresents the results of linear mixed-effects
 models for the market justice preference index. Model 1 shows that
-higher perceived societal meritocracy, through effort, talent, and
-deservingness, is positively and significantly associated with market
-justice preferences. School meritocracy perceptions yield mixed effects:
-perceived talent increases market justice preference, while perceived
-effort decreases it, both statistically significant (\emph{p}
+higher perceived societal meritocracy, through effort (\(\beta\) =
+0.08), talent (\(\beta\) = 0.07), and deservingness (\(\beta\) = 0.2),
+is positively and significantly associated with market justice
+preferences (\emph{p} \textless{} 0.001). School meritocracy perceptions
+yield mixed effects: perceived talent increases market justice
+preference (\(\beta\) = 0.1), while perceived effort decreases it
+(\(\beta\) = -0.12), both statistically significant (\emph{p}
 \textless{} 0.001). Model 2 includes family status, finding no
 statistically significant effects from parents' education or the number
 of books at home. Regarding school characteristics, Models 3 and 4
 introduce socioeconomic level and academic performance. The results of
 Model 3 suggest a statistically significant relationship between school
 socioeconomic levels and market justice preferences, specifically those
-schools with high socioeconomic levels (\(\beta\) = 0.37) compared to
-low socioeconomic levels. However, Model 4 indicates that schools with
-medium (\(\beta\) = -0.11) and high (\(\beta\) = -0.26) academic
-performance present lower market justice preferences compared to
-low-performing schools, with these effects being statistically
-significant when controlling for other variables.
+schools with high socioeconomic levels (\(\beta\) = 0.37; \emph{p}
+\textless{} 0.01) compared to low socioeconomic levels. However, Model 4
+indicates that schools with medium (\(\beta\) = -0.11; \emph{p}
+\textless{} 0.01) and high (\(\beta\) = -0.26; \emph{p} \textless{}
+0.001) academic performance present lower market justice preferences
+compared to low-performing schools, with these effects being
+statistically significant when controlling for other variables.
 
 \begin{table}
 
@@ -1576,12 +1600,14 @@ moderates the relationship between their meritocratic perceptions and
 their justification of market allocation in social services.
 Specifically, the relationship between social effort and market justice
 preferences is less positive for students whose parents have university
-or postgraduate education. Lower-status students (measured by parental
-education) prefer more market justice when they strongly adhere to
-meritocratic perceptions of deservingness. A similar moderating effect
-is seen with family cultural capital: the relationship between effort
-and market justice preferences is less positive for students with more
-than 25 books at home.
+or postgraduate education (\(\beta\) = -0.079; \emph{p} \textless{}
+0.05). Lower-status students (measured by parental education) prefer
+more market justice when they strongly adhere to meritocratic
+perceptions of deservingness (\(\beta\) = -0.118; \emph{p} \textless{}
+0.01). A similar moderating effect is seen with family cultural capital:
+the relationship between effort and market justice preferences is less
+positive for students with more than 25 books at home (\(\beta\) =
+-0.081; \emph{p} \textless{} 0.01).
 
 At the school level, we observe that school status and students'
 meritocratic beliefs moderate their preferences for market justice.
@@ -1768,7 +1794,7 @@ more willing to agree with that richer individuals can have better
 health, education, and pensions. This is not the first time that
 meritocratic perceptions (and also beliefs) have been related with the
 legitimation of social inequalities
-{[}\citeproc{ref-mijs_paradox_2019}{49},\citeproc{ref-darnon_where_2018}{63}{]},
+{[}\citeproc{ref-mijs_paradox_2019}{51},\citeproc{ref-darnon_where_2018}{63}{]},
 but the consideration of school level population as well as market
 justice preferences allows adding evidence regarding the role of
 meritocracy regarding inequality beliefs: legitimation of market
@@ -1875,15 +1901,39 @@ Inequality. \emph{Socio-Economic Review} \textbf{2023}, \emph{21},
 1035--1055,
 doi:\href{https://doi.org/10.1093/ser/mwac018}{10.1093/ser/mwac018}.}
 
-\bibitem[\citeproctext]{ref-chafel_schooling_1997}
+\bibitem[\citeproctext]{ref-lindh_public_2015}
 \CSLLeftMargin{11. }%
-\CSLRightInline{Chafel, J.A. Schooling, the {Hidden Curriculum}, and
-{Children}'s {Conceptions} of {Poverty}. \emph{Social Policy Report}
-\textbf{1997}, \emph{11}, 1--28,
-doi:\href{https://doi.org/10.1002/j.2379-3988.1997.tb00004.x}{10.1002/j.2379-3988.1997.tb00004.x}.}
+\CSLRightInline{Lindh, A. Public {Opinion} Against {Markets}?
+{Attitudes} Towards {Market Distribution} of {Social Services} -- {A
+Comparison} of 17 {Countries}. \emph{Social Policy \& Administration}
+\textbf{2015}, \emph{49}, 887--910,
+doi:\href{https://doi.org/10.1111/spol.12105}{10.1111/spol.12105}.}
+
+\bibitem[\citeproctext]{ref-castillo_meritocracia_2019}
+\CSLLeftMargin{12. }%
+\CSLRightInline{Castillo, J.C.; Torres, A.; Atria, J.; Maldonado, L.
+Meritocracia y Desigualdad Econ{ó}mica: {Percepciones}, Preferencias e
+Implicancias. \emph{Revista Internacional de Sociolog{í}a}
+\textbf{2019}, \emph{77}, 117,
+doi:\href{https://doi.org/10.3989/ris.2019.77.1.17.114}{10.3989/ris.2019.77.1.17.114}.}
+
+\bibitem[\citeproctext]{ref-reynolds_perceptions_2014}
+\CSLLeftMargin{13. }%
+\CSLRightInline{Reynolds, J.; Xian, H. Perceptions of Meritocracy in the
+Land of Opportunity. \emph{Research in Social Stratification and
+Mobility} \textbf{2014}, \emph{36}, 121--137,
+doi:\href{https://doi.org/10.1016/j.rssm.2014.03.001}{10.1016/j.rssm.2014.03.001}.}
+
+\bibitem[\citeproctext]{ref-garcia-sierra_dark_2023}
+\CSLLeftMargin{14. }%
+\CSLRightInline{García-Sierra, A. The Dark Side of Meritocratic Beliefs:
+{Is} Believing in Meritocracy Detrimental to Individuals from Low
+Socioeconomic Backgrounds? \emph{Social Justice Research} \textbf{2023},
+\emph{36}, 385--409,
+doi:\href{https://doi.org/10.1007/s11211-023-00413-x}{10.1007/s11211-023-00413-x}.}
 
 \bibitem[\citeproctext]{ref-flores_top_2020}
-\CSLLeftMargin{12. }%
+\CSLLeftMargin{15. }%
 \CSLRightInline{Flores, I.; Sanhueza, C.; Atria, J.; Mayer, R. Top
 {Incomes} in {Chile}: {A Historical Perspective} on {Income Inequality},
 1964--2017. \emph{Review of Income and Wealth} \textbf{2020}, \emph{66},
@@ -1891,56 +1941,56 @@ doi:\href{https://doi.org/10.1002/j.2379-3988.1997.tb00004.x}{10.1002/j.2379-398
 doi:\href{https://doi.org/10.1111/roiw.12441}{10.1111/roiw.12441}.}
 
 \bibitem[\citeproctext]{ref-chancel_world_2022}
-\CSLLeftMargin{13. }%
+\CSLLeftMargin{16. }%
 \CSLRightInline{Chancel, L.; Piketty, T.; Saez, E.; Zucman, G. World
 Inequality Report 2022 2022.}
 
 \bibitem[\citeproctext]{ref-ffrench-davis_reformas_2018}
-\CSLLeftMargin{14. }%
+\CSLLeftMargin{17. }%
 \CSLRightInline{Ffrench-Davis, R. \emph{{Reformas econ{ó}micas en Chile
 1973-2017}}; TAURUS, 2018; ISBN 978-956-9635-21-2.}
 
 \bibitem[\citeproctext]{ref-boccardo_30_2020}
-\CSLLeftMargin{15. }%
+\CSLLeftMargin{18. }%
 \CSLRightInline{Boccardo, G. \emph{30 a{ñ}os de Privatizaciones En
 {Chile}: Lo Que La Pandemia Revel{ó}}; Nodo XXI.; Santiago, 2020;}
 
 \bibitem[\citeproctext]{ref-observatoriosocial_estadisticas_2024}
-\CSLLeftMargin{16. }%
+\CSLLeftMargin{19. }%
 \CSLRightInline{Social, O. \emph{Estad{í}sticas {Encuesta Casen} 2022,
 Secci{ó}n {Salud}}; Observatorio social, 2024;}
 
 \bibitem[\citeproctext]{ref-superintendenciadepensiones_estadisticas_2024}
-\CSLLeftMargin{17. }%
+\CSLLeftMargin{20. }%
 \CSLRightInline{Superintendencia de Pensiones \emph{Estad{í}sticas de
 {Afiliados} En {AFP} En {Sistema} de {Pensiones}. {Abril} 2024};
 Superintendencia de Pensiones, 2024;}
 
 \bibitem[\citeproctext]{ref-ministeriodeeducacion_resumen_2023}
-\CSLLeftMargin{18. }%
+\CSLLeftMargin{21. }%
 \CSLRightInline{Ministerio de Educación \emph{Resumen de Matr{í}cula Por
 Establecimiento Educacional}; Datos abiertos Ministerio de Educaci{ó}n,
 2023;}
 
 \bibitem[\citeproctext]{ref-boltanski_new_2005}
-\CSLLeftMargin{19. }%
+\CSLLeftMargin{22. }%
 \CSLRightInline{Boltanski, L.; Chiapello, E. \emph{The New Spirit of
 Capitalism}; Verso: London ; New York, 2005; ISBN 978-1-85984-554-7.}
 
 \bibitem[\citeproctext]{ref-streeck_citizens_2012}
-\CSLLeftMargin{20. }%
+\CSLLeftMargin{23. }%
 \CSLRightInline{Streeck, W. Citizens as {Customers}: {Considerations} on
 the {New Politics} of {Consumption}. \emph{New Left Review}
 \textbf{2012}, \emph{76}.}
 
 \bibitem[\citeproctext]{ref-kluegel_beliefs_1987}
-\CSLLeftMargin{21. }%
+\CSLLeftMargin{24. }%
 \CSLRightInline{Kluegel, J.R.; Smith, E.R. \emph{Beliefs about
 {Inequality}: {Americans}' {Views} of {What} Is and {What Ought} to Be};
 Routledge: New York, 1987; ISBN 978-0-202-30327-7.}
 
 \bibitem[\citeproctext]{ref-wegener_dominant_1995}
-\CSLLeftMargin{22. }%
+\CSLLeftMargin{25. }%
 \CSLRightInline{Wegener, B.; Liebig, S. Dominant {Ideologies} and the
 {Variation} of {Distributive Justice Norms}: {A Comparison} of {East}
 and {West Germany}, and the {United States}. In \emph{Social {Justice}
@@ -1949,21 +1999,21 @@ and {Political Change}: {Public Opinion} in {Capitalist} and
 Walter de Gruyter: New York, 1995; pp. 239--259 ISBN 978-3-11-086894-4.}
 
 \bibitem[\citeproctext]{ref-homan_being_2017}
-\CSLLeftMargin{23. }%
+\CSLLeftMargin{26. }%
 \CSLRightInline{Homan, P.; Valentino, L.; Weed, E. Being and {Becoming
 Poor}: {How Cultural Schemas Shape Beliefs About Poverty}. \emph{Social
 Forces} \textbf{2017}, \emph{95}, 1023--1048,
 doi:\href{https://doi.org/10.1093/sf/sox007}{10.1093/sf/sox007}.}
 
 \bibitem[\citeproctext]{ref-castillo_legitimacy_2011}
-\CSLLeftMargin{24. }%
+\CSLLeftMargin{27. }%
 \CSLRightInline{Castillo, J.C. Legitimacy of {Inequality} in a {Highly
 Unequal Context}: {Evidence} from the {Chilean Case}. \emph{Social
 Justice Research} \textbf{2011}, \emph{24}, 314--340,
 doi:\href{https://doi.org/10.1007/s11211-011-0144-5}{10.1007/s11211-011-0144-5}.}
 
 \bibitem[\citeproctext]{ref-evans_family_2010}
-\CSLLeftMargin{25. }%
+\CSLLeftMargin{28. }%
 \CSLRightInline{Evans, M.; Kelley, J.; Sikora, J.; Treiman, D. Family
 Scholarly Culture and Educational Success: {Books} and Schooling in 27
 Nations. \emph{Research in Social Stratification and Mobility}
@@ -1971,14 +2021,14 @@ Nations. \emph{Research in Social Stratification and Mobility}
 doi:\href{https://doi.org/10.1016/j.rssm.2010.01.002}{10.1016/j.rssm.2010.01.002}.}
 
 \bibitem[\citeproctext]{ref-jasso_how_1999}
-\CSLLeftMargin{26. }%
+\CSLLeftMargin{29. }%
 \CSLRightInline{Jasso, G. How {Much Injustice} Is {There} in the
 {World}? {Two New Justice Indexes}. \emph{American Sociological Review}
 \textbf{1999}, \emph{64}, 133--168,
 doi:\href{https://doi.org/10.1177/000312249906400110}{10.1177/000312249906400110}.}
 
 \bibitem[\citeproctext]{ref-shariff_income_2016}
-\CSLLeftMargin{27. }%
+\CSLLeftMargin{30. }%
 \CSLRightInline{Shariff, A.F.; Wiwad, D.; Aknin, L.B. Income {Mobility
 Breeds Tolerance} for {Income Inequality}: {Cross-National} and
 {Experimental Evidence}. \emph{Perspectives on Psychological Science}
@@ -1986,39 +2036,39 @@ Breeds Tolerance} for {Income Inequality}: {Cross-National} and
 doi:\href{https://doi.org/10.1177/1745691616635596}{10.1177/1745691616635596}.}
 
 \bibitem[\citeproctext]{ref-centeno_arc_2012}
-\CSLLeftMargin{28. }%
+\CSLLeftMargin{31. }%
 \CSLRightInline{Centeno, M.A.; Cohen, J.N. The {Arc} of {Neoliberalism}.
 \emph{Annual Review of Sociology} \textbf{2012}, \emph{38}, 317--340,
 doi:\href{https://doi.org/10.1146/annurev-soc-081309-150235}{10.1146/annurev-soc-081309-150235}.}
 
 \bibitem[\citeproctext]{ref-harvey_breve_2015}
-\CSLLeftMargin{29. }%
+\CSLLeftMargin{32. }%
 \CSLRightInline{Harvey, D. \emph{{Breve historia del neoliberalismo}};
 Ediciones Akal: Madrid (Espa{ñ}a), 2015; ISBN 978-84-460-2517-7.}
 
 \bibitem[\citeproctext]{ref-jensen_worlds_2008}
-\CSLLeftMargin{30. }%
+\CSLLeftMargin{33. }%
 \CSLRightInline{Jensen, C. Worlds of Welfare Services and Transfers.
 \emph{Journal of European Social Policy} \textbf{2008}, \emph{18},
 151--162,
 doi:\href{https://doi.org/10.1177/0958928707087591}{10.1177/0958928707087591}.}
 
 \bibitem[\citeproctext]{ref-stoy_worlds_2014}
-\CSLLeftMargin{31. }%
+\CSLLeftMargin{34. }%
 \CSLRightInline{Stoy, V. Worlds of {Welfare Services}: {From Discovery}
 to {Exploration}. \emph{Social Policy \& Administration} \textbf{2014},
 \emph{48}, 343--360,
 doi:\href{https://doi.org/10.1111/spol.12006}{10.1111/spol.12006}.}
 
 \bibitem[\citeproctext]{ref-salamon_marketization_1993}
-\CSLLeftMargin{32. }%
+\CSLLeftMargin{35. }%
 \CSLRightInline{Salamon, L.M. The {Marketization} of {Welfare}:
 {Changing Nonprofit} and {For-Profit Roles} in the {American Welfare
 State}. \emph{Social Service Review} \textbf{1993}, \emph{67}, 16--39,
 doi:\href{https://doi.org/10.1086/603963}{10.1086/603963}.}
 
 \bibitem[\citeproctext]{ref-sivesind_changing_2017}
-\CSLLeftMargin{33. }%
+\CSLLeftMargin{36. }%
 \CSLRightInline{Sivesind, K.H.
 \href{https://doi.org/10.1007/978-3-319-55381-8_2}{The {Changing Roles}
 of {For-Profit} and {Nonprofit Welfare Provision} in {Norway}, {Sweden},
@@ -2026,16 +2076,8 @@ and {Denmark}}. In \emph{Promoting {Active Citizenship}}; Sivesind,
 K.H., Saglie, J., Eds.; Springer International Publishing: Cham, 2017;
 pp. 33--74 ISBN 978-3-319-55380-1 978-3-319-55381-8.}
 
-\bibitem[\citeproctext]{ref-lindh_public_2015}
-\CSLLeftMargin{34. }%
-\CSLRightInline{Lindh, A. Public {Opinion} Against {Markets}?
-{Attitudes} Towards {Market Distribution} of {Social Services} -- {A
-Comparison} of 17 {Countries}. \emph{Social Policy \& Administration}
-\textbf{2015}, \emph{49}, 887--910,
-doi:\href{https://doi.org/10.1111/spol.12105}{10.1111/spol.12105}.}
-
 \bibitem[\citeproctext]{ref-greitemeyer_subjective_2016}
-\CSLLeftMargin{35. }%
+\CSLLeftMargin{37. }%
 \CSLRightInline{Greitemeyer, T.; Sagioglou, C. Subjective Socioeconomic
 Status Causes Aggression: {A} Test of the Theory of Social Deprivation.
 \emph{Journal of Personality and Social Psychology} \textbf{2016},
@@ -2043,14 +2085,14 @@ Status Causes Aggression: {A} Test of the Theory of Social Deprivation.
 doi:\href{https://doi.org/10.1037/pspi0000058}{10.1037/pspi0000058}.}
 
 \bibitem[\citeproctext]{ref-mishra_subjective_2015}
-\CSLLeftMargin{36. }%
+\CSLLeftMargin{38. }%
 \CSLRightInline{Mishra, S.; Carleton, R.N. Subjective Relative
 Deprivation Is Associated with Poorer Physical and Mental Health.
 \emph{Social Science \& Medicine} \textbf{2015}, \emph{147}, 144--149,
 doi:\href{https://doi.org/10.1016/j.socscimed.2015.10.030}{10.1016/j.socscimed.2015.10.030}.}
 
 \bibitem[\citeproctext]{ref-smith_relative_2012}
-\CSLLeftMargin{37. }%
+\CSLLeftMargin{39. }%
 \CSLRightInline{Smith, H.J.; Pettigrew, T.F.; Pippin, G.M.;
 Bialosiewicz, S. Relative {Deprivation}: {A Theoretical} and
 {Meta-Analytic Review}. \emph{Personality and Social Psychology Review}
@@ -2058,21 +2100,21 @@ Bialosiewicz, S. Relative {Deprivation}: {A Theoretical} and
 doi:\href{https://doi.org/10.1177/1088868311430825}{10.1177/1088868311430825}.}
 
 \bibitem[\citeproctext]{ref-power_deprivationprotest_2018}
-\CSLLeftMargin{38. }%
+\CSLLeftMargin{40. }%
 \CSLRightInline{Power, S.A. The {Deprivation-Protest Paradox}: {How} the
 {Perception} of {Unfair Economic Inequality Leads} to {Civic Unrest}.
 \emph{Current Anthropology} \textbf{2018}, \emph{59}, 765--789,
 doi:\href{https://doi.org/10.1086/700679}{10.1086/700679}.}
 
 \bibitem[\citeproctext]{ref-wilson_role_2003}
-\CSLLeftMargin{39. }%
+\CSLLeftMargin{41. }%
 \CSLRightInline{Wilson, C. The {Role} of a {Merit Principle} in
 {Distributive Justice}. \emph{The Journal of Ethics} \textbf{2003},
 \emph{7}, 277--314,
 doi:\href{https://doi.org/10.1023/A:1024667228488}{10.1023/A:1024667228488}.}
 
 \bibitem[\citeproctext]{ref-bucca_merit_2016}
-\CSLLeftMargin{40. }%
+\CSLLeftMargin{42. }%
 \CSLRightInline{Bucca, M. Merit and Blame in Unequal Societies:
 {Explaining Latin Americans}' Beliefs about Wealth and Poverty.
 \emph{Research in Social Stratification and Mobility} \textbf{2016},
@@ -2080,20 +2122,20 @@ doi:\href{https://doi.org/10.1023/A:1024667228488}{10.1023/A:1024667228488}.}
 doi:\href{https://doi.org/10.1016/j.rssm.2016.02.005}{10.1016/j.rssm.2016.02.005}.}
 
 \bibitem[\citeproctext]{ref-chong_mystery_2008}
-\CSLLeftMargin{41. }%
+\CSLLeftMargin{43. }%
 \CSLRightInline{Chong, A.; Ñopo, H. The {Mystery} of {Discrimination} in
 {Latin America}. \emph{Econom{í}a} \textbf{2008}, \emph{8}, 79--107,
 doi:\href{https://doi.org/10.1353/eco.0.0005}{10.1353/eco.0.0005}.}
 
 \bibitem[\citeproctext]{ref-torche_intergenerational_2014}
-\CSLLeftMargin{42. }%
+\CSLLeftMargin{44. }%
 \CSLRightInline{Torche, F. Intergenerational {Mobility} and
 {Inequality}: {The Latin American Case}. \emph{Annual Review of
 Sociology} \textbf{2014}, \emph{40}, 619--642,
 doi:\href{https://doi.org/10.1146/annurev-soc-071811-145521}{10.1146/annurev-soc-071811-145521}.}
 
 \bibitem[\citeproctext]{ref-salgado_inequality_2023}
-\CSLLeftMargin{43. }%
+\CSLLeftMargin{45. }%
 \CSLRightInline{Salgado, M.; Castillo, J. Inequality and
 {Stratification} in {Latin America}. In \emph{The {Oxford Handbook} of
 {Social Stratification}}; Gangl, M., Platt, L., Polavieja, J.G., van de
@@ -2101,26 +2143,26 @@ Werfhorst, H.G., Eds.; Oxford University Press: 2023, 2023; p. 0 ISBN
 978-0-19-753948-4.}
 
 \bibitem[\citeproctext]{ref-molyneux_neoliberal_2008}
-\CSLLeftMargin{44. }%
+\CSLLeftMargin{46. }%
 \CSLRightInline{Molyneux, M. The {``{Neoliberal Turn}''} and the {New
 Social Policy} in {Latin America}: {How Neoliberal}, {How New}?
 \emph{Development and Change} \textbf{2008}, \emph{39}, 775--797,
 doi:\href{https://doi.org/10.1111/j.1467-7660.2008.00505.x}{10.1111/j.1467-7660.2008.00505.x}.}
 
 \bibitem[\citeproctext]{ref-centrodeestudiospublicos_estudio_2024}
-\CSLLeftMargin{45. }%
+\CSLLeftMargin{47. }%
 \CSLRightInline{Centro de Estudios Públicos \emph{Estudio {Nacional} de
 {Opini{ó}n P{ú}blica Base Consolidada}}; Centro de Estudios P{ú}blicos,
 2024;}
 
 \bibitem[\citeproctext]{ref-goldthorpe_myth_2003}
-\CSLLeftMargin{46. }%
+\CSLLeftMargin{48. }%
 \CSLRightInline{Goldthorpe, J. The Myth of Education-Based Meritocracy.
 \emph{New Economy} \textbf{2003}, \emph{10}, 234--239,
 doi:\href{https://doi.org/10.1046/j.1468-0041.2003.00324.x}{10.1046/j.1468-0041.2003.00324.x}.}
 
 \bibitem[\citeproctext]{ref-castillo_multidimensional_2023}
-\CSLLeftMargin{47. }%
+\CSLLeftMargin{49. }%
 \CSLRightInline{Castillo, J.C.; Iturra, J.; Maldonado, L.; Atria, J.;
 Meneses, F. A {Multidimensional Approach} for {Measuring Meritocratic
 Beliefs}: {Advantages}, {Limitations} and {Alternatives} to the {ISSP
@@ -2129,47 +2171,32 @@ Social Inequality Survey}. \emph{International Journal of Sociology}
 doi:\href{https://doi.org/10.1080/00207659.2023.2274712}{10.1080/00207659.2023.2274712}.}
 
 \bibitem[\citeproctext]{ref-mijs_unfulfillable_2016}
-\CSLLeftMargin{48. }%
+\CSLLeftMargin{50. }%
 \CSLRightInline{Mijs, J. The {Unfulfillable Promise} of {Meritocracy}:
 {Three Lessons} and {Their Implications} for {Justice} in {Education}.
 \emph{Social Justice Research} \textbf{2016}, \emph{29}, 14--34,
 doi:\href{https://doi.org/10.1007/s11211-014-0228-0}{10.1007/s11211-014-0228-0}.}
 
 \bibitem[\citeproctext]{ref-mijs_paradox_2019}
-\CSLLeftMargin{49. }%
+\CSLLeftMargin{51. }%
 \CSLRightInline{Mijs, J. The Paradox of Inequality: Income Inequality
 and Belief in Meritocracy Go Hand in Hand. \emph{Socio-Economic Review}
 \textbf{2019}, \emph{19}, 7--35,
 doi:\href{https://doi.org/10.1093/ser/mwy051}{10.1093/ser/mwy051}.}
 
 \bibitem[\citeproctext]{ref-duru-bellat_who_2012}
-\CSLLeftMargin{50. }%
+\CSLLeftMargin{52. }%
 \CSLRightInline{Duru-Bellat, M.; Tenret, E. Who's for {Meritocracy}?
 {Individual} and {Contextual Variations} in the {Faith}.
 \emph{Comparative Education Review} \textbf{2012}, \emph{56}, 223--247,
 doi:\href{https://doi.org/10.1086/661290}{10.1086/661290}.}
 
-\bibitem[\citeproctext]{ref-castillo_meritocracia_2019}
-\CSLLeftMargin{51. }%
-\CSLRightInline{Castillo, J.C.; Torres, A.; Atria, J.; Maldonado, L.
-Meritocracia y Desigualdad Econ{ó}mica: {Percepciones}, Preferencias e
-Implicancias. \emph{Revista Internacional de Sociolog{í}a}
-\textbf{2019}, \emph{77}, 117,
-doi:\href{https://doi.org/10.3989/ris.2019.77.1.17.114}{10.3989/ris.2019.77.1.17.114}.}
-
 \bibitem[\citeproctext]{ref-lampert_meritocratic_2013}
-\CSLLeftMargin{52. }%
+\CSLLeftMargin{53. }%
 \CSLRightInline{Lampert, K.
 \emph{\href{https://doi.org/10.1057/9781137324894}{Meritocratic
 {Education} and {Social Worthlessness}}}; Palgrave Macmillan UK: London,
 2013; ISBN 978-1-349-45908-7 978-1-137-32489-4.}
-
-\bibitem[\citeproctext]{ref-reynolds_perceptions_2014}
-\CSLLeftMargin{53. }%
-\CSLRightInline{Reynolds, J.; Xian, H. Perceptions of Meritocracy in the
-Land of Opportunity. \emph{Research in Social Stratification and
-Mobility} \textbf{2014}, \emph{36}, 121--137,
-doi:\href{https://doi.org/10.1016/j.rssm.2014.03.001}{10.1016/j.rssm.2014.03.001}.}
 
 \bibitem[\citeproctext]{ref-morris_representing_2022}
 \CSLLeftMargin{54. }%
@@ -2372,7 +2399,6 @@ doi:\href{https://doi.org/10.1017/S0007123419000504}{10.1017/S0007123419000504}.
 
 \end{CSLReferences}
 
-\newpage{}
 
 \section{Supplementary material}\label{supplementary-material}
 
@@ -3060,5 +3086,9 @@ Var: Residual                             & $0.66$        & $0.66$        & $0.6
 }
 
 \end{table}%
+
+
+
+
 
 \end{document}

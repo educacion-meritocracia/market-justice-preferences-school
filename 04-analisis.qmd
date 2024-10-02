@@ -6,7 +6,7 @@ csl: "input/bib/multidisciplinary-digital-publishing-institute.csl"
 
 # Results
 
-## Descriptive
+## Descriptive statistics
 
 ```{r packages, echo=FALSE}
 pacman::p_load(tidyverse,
@@ -241,7 +241,7 @@ ggarrange(plot_soc_effort, plot_school_effort, plot_soc_talent,
   labs(caption = "Source: own elaboration based on First Study of Civic Education 2017")
 ```
 
-## Multivariate
+## Multivariate analysis
 
 This section presents the results of the multilevel models. We begin by showing the results of the cumulative link mixed models in @tbl-ordinal-reg for the ordinal dependent variables of justice in health, pensions, and education separately in order to compare the effect of the predictors. Then, we present the results of the linear mixed-effects models for the average index of preference for market justice in @tbl-lineal-reg[^1]. 
 
